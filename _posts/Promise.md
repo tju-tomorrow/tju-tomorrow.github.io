@@ -1,0 +1,314 @@
+# Promise
+
+## Preface:Scene Imagination
+
+> Imagine that you’re a top singer, and fans ask day and night for your upcoming song.
+>
+> To get some relief, you promise to send it to them when it’s published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can’t publish the song, they will still be notified.
+
+To map to our topic about promise :
+
+1. "A producing code" is the singer. It can't immediately give program-flow or another-code a result so that program-flow can proceed So it make a _promise_ For instance, some code that loads the data over a network and this takes time
+2.  A “consuming code”(another-code above) that wants the result of the “producing code” once it’s ready(for passing paramters or something else) .These are the “fans”.
+3. A *promise* is a special JavaScript object that links the “producing code” and the “consuming code” together. In terms of our analogy: this is the “subscription list”. The “producing code” takes whatever time it needs to produce the promised result, and the “promise” makes that result available to all of the subscribed code when it’s ready.
+
+## Syntax
+
+The constructor syntax for a promise object is:
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  // executor (the producing code, "singer")
+});
+```
+
+To explain:
+
+1. The function passed to `new Promise` is called the *executor*. When `new Promise` is created, the executor runs **automatically**(this is a func don't need to be called at all). It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the “singer”.
+
+2. Its arguments `resolve` and `reject` are callbacks provided by JavaScript itself. 
+
+3. When the executor obtains the result, be it soon or late, doesn’t matter, (for example use resolve('something')in a setTimeout)it should call one of these callbacks:
+
+   - `resolve(value)` — if the job is finished successfully, with result `value`. 
+
+   - `reject(error)` — if an error has occurred, `error` is the error object.
+     To supplementay:
+
+     > [!CAUTION]
+     >
+     > The executor receives two arguments: `resolve` and `reject`. These functions are pre-defined by the JavaScript engine, so we don’t need to create them. We should only call one of them when ready.
+     > the executor may calls `resolve("done")` to produce the **result**(remember above we said the executor should eventually produce the result? Yeah it can be done by calling resolve)
+
+     
+
+4. So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt, it calls `resolve` if it was successful or `reject` if there was an error.
+
+To proceed:
+
+**The `promise` object returned** by the `new Promise` constructor has these internal properties:
+
+- `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
+- `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when `reject(error)` is called.
+
+So the executor eventually moves `promise` to one of these states:![image-20240727013201754](D:/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png)
+
+and if we successfully produce the result which the consuming codes are craving for. It turned like this:![image-20240727014147939](D:/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png)
+
+To summarize:
+the executor should perform a job (usually something that takes time) and then call `resolve` or `reject` to change the state of the corresponding promise object.
+
+A promise that is either resolved or rejected is called “settled”, as opposed to an initially “pending” promise.
+
+## To be noted (fundamental)
+
+1. **There can be only a single result or an error**
+
+The executor should call only one `resolve` or one `reject`. **Any state change is final.**
+
+All further calls of `resolve` and `reject` are ignored:
+
+```javascript
+let promise = new Promise(function(resolve, reject) {
+  resolve("done");
+
+  reject(new Error("…")); // ignored
+  setTimeout(() => resolve("…")); // ignored
+});
+```
+
+Also, `resolve`/`reject` expect only one argument (or none) and will ignore additional arguments.
+
+2. **Reject with** `Error` **objects**
+
+   In case something goes wrong, the executor should call `reject`. That can be done with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`)
+   To explain: `reject(new Errror('wrong'))` is better than `reject('wrong')`
+
+3. > [!NOTE]
+   >
+   > **The** `state` **and** `result` **are internal**
+
+   Which means :`state` and `result` of the Promise object  can’t be directly accessed.Accessing has to be done bymethods `.then`/`.catch`/`.finally` （They are described below.）
+
+## Consumers:then catch
+
+First A Promise object **serves as a link** between the executor (the “producing code” or “singer”) and the consuming functions (the “fans”)  which will receive the result or error.It actually bond these two togther **by something.**
+
+Something(mentioned above) is methods `.then` and `.catch`.
+
+### then
+
+The syntax is:
+
+```javascript
+promise.then(
+  function(result) { /* handle a successful result */ },
+  function(error) { /* handle an error */ }
+);
+```
+
+See? The promise comes from a producing code (executor)
+(In case you forget):
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  // executor (the producing code, "singer")
+});
+```
+
+And it serves as a link And it uses then/catch methods to connect with the consuming functions (that desperate to receive a result or a error) 
+You can see  the consuming functions as the one above
+
+```js
+function(result) { /* handle a successful result */ },
+function(error) { /* handle an error */ }
+```
+
+> [!NOTE]
+>
+> the then methods could specify two functions:1.one for the success result 2. one for the rejected error
+
+> [!TIP]
+>
+> If we're interested to see successful completions(what's in resolve)      
+> we can provide only one function argument to `.then`:
+>
+> ```js
+> let promise = new Promise(resolve => {
+> setTimeout(() => resolve("done!"), 1000);
+> });
+> 
+> promise.then(alert); // shows "done!" after 1 second
+> ```
+
+### catch
+
+catch only for error
+
+If we’re interested only in errors, then we can use `null` as the first argument: `.then(null, errorHandlingFunction)`. Or we can use `.catch(errorHandlingFunction)`, which is exactly the same:
+
+```javascript
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error("Whoops!")), 1000);
+});
+
+// .catch(f) is the same as promise.then(null, f)
+promise.catch(alert); // shows "Error: Whoops!" after 1 second
+```
+
+> [!CAUTION]
+>
+> The call `.catch(f)` is a complete analog of `.then(null, f)`, it’s just a shorthand.
+
+## finally
+
+The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs always, when the promise is settled: be it resolve or reject.
+
+### Why need finally
+
+The idea of `finally` is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
+`finally` 的想法是设置一个处理程序，用于在前面的操作完成后执行清理/终结。
+
+> [!NOTE]
+>
+> a handler is function in promise-chain but a object in Proxy(,handler) Its translation in Chinese is "处理程序"
+
+E.g. stopping loading indicators, closing no longer needed connections, etc.
+
+Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+
+### syntax
+
+```js
+new Promise((resolve, reject) => {
+  /* do something that takes time, and then call resolve or maybe reject */
+})
+  // runs when the promise is settled, doesn't matter successfully or not
+  .finally(() => stop loading indicator)
+  // so the loading indicator is always stopped before we go on
+  .then(result => show result, err => show error)
+```
+
+### Differences between finally(f) and then(f,f)
+
+1. A `finally` handler has no arguments. 
+
+   > [!NOTE]
+   >
+   > In `finally` we don’t know whether the promise is successful or not.
+
+    That’s all right, as our task is usually to perform “general” finalizing procedures.
+
+   take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled by the next handler.
+
+2. A `finally` handler **“passes through”** the result or error to the next suitable handler.
+
+   For instance, here the result is passed through `finally` to `then`:
+
+   ```javascript
+   new Promise((resolve, reject) => {
+     setTimeout(() => resolve("value"), 2000);
+   })
+     .finally(() => alert("Promise ready")) // triggers first
+     .then(result => alert(result)); // <-- .then shows "value"
+   ```
+
+3. > [!IMPORTANT]
+   >
+   > That’s very convenient, because `finally` is **not meant to** process a promise result (the treasure produced). As said, it’s a place to do generic cleanup, no matter what the outcome was.
+
+4. A `finally` handler also shouldn’t return anything. If it does, the returned value is silently ignored.
+
+   > [!WARNING]
+   >
+   > The only exception to this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
+
+   
+
+> [!TIP]
+>
+> ## handlers
+>
+> To supplementary: finally and then-catch (which means all handlers)all operate on Promise object
+> And The premise that they run is Promise object formed,or you can say the state of Promise object is settled
+> In below's case they run immediately
+>
+> ```js
+> // the promise becomes resolved immediately upon creation
+> let promise = new Promise(resolve => resolve("done!"));
+> 
+> promise.then(alert); // done! (shows up right now)
+> ```
+>
+> Note that this makes promises more powerful than the real life “subscription list” scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won’t receive that song. Subscriptions in real life must be done prior to the event.
+> 订阅发生在事件发生之前
+
+### To be more clear about what finally can do
+
+"finally" doesn't give a f*** whether your promise was fulfilled or rejected; it runs regardless.
+Here's why the `finally` method is needed: it ensures that a piece of code executes no matter what the outcome of the promise is.
+Imagine you have some *clean-up* work to do, like closing a database connection or clearing a loading spinner. You want this to happen whether your operation was a raging success or a flaming pile of failure.
+
+## Eg:loadScript
+
+```js
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () => callback(null, script);//The moment when script loads successfully the callback runs
+  script.onerror = () => callback(new Error(`Script load error for ${src}`));//The moment when script loads fail 
+
+  document.head.append(script);
+}
+```
+
+> [!NOTE]
+>
+> 1. the onload and onerror methods of A script element (Actually HTML-Element is built-in object) implies what will happen when script loads successfully or fail 
+> 2. To put callback directly in this position(right after "()=>")  doesn't invoke the callback immediately; it just assigns it as the handler for the event.So when the event occurs callback is invoked automatically
+
+Let’s rewrite it using Promises.
+
+The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
+
+```javascript
+function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => resolve(script);
+    script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+    document.head.append(script);
+  });
+}
+```
+
+```js
+let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+
+promise.then(
+  script => alert(`${script.src} is loaded!`),
+  error => alert(`Error: ${error.message}`)
+);
+
+promise.then(script => alert('Another handler...'));
+```
+
+| Promises                                                     | Callbacks                                                    |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| Promises allow us to do things in the natural order. First, we run `loadScript(script)`, and `.then` we write what to do with the result. | We must have a `callback` function at our disposal when calling `loadScript(script, callback)`. In other words, we must know what to do with the result *before* `loadScript` is called. |
+| We can call `.then` on a Promise as many times as we want. Each time, we’re adding a new “fan”, a new subscribing function, to the “subscription list”. | There can be only one callback.                              |
+
+## eg2:delay using promise
+
+```js
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+delay(3000).then(() => alert('runs after 3 seconds'));
+```
+
