@@ -1,0 +1,373 @@
+# Proxy and Reflect
+
+## what's a proxy
+
+a proxy is a object with a superpower of wrapping another object Like a trash wrapper 
+Not only wrap it but also protect it . The protecting way is to intercept the operations that are about to operate on the object that been wrapped inside For example  reading/writing properties 
+**optionally handling them on Proxy's own** 
+
+## Proxy syntax
+
+```jav
+let` proxy `=` `new` `Proxy``(`target`,` handler`)
+```
+
+- `target` – is an object to wrap, can be anything, including functions.
+- `handler` – proxy configuration: an object with “traps”, methods that intercept operations. – e.g. `get` trap for reading a property of `target`, `set` trap for writing a property into `target`, and so on.
+
+For operations on `proxy`, if there’s a corresponding trap in `handler`, then it runs
+otherwise the operation is performed **directly** on `target`.
+
+### A proxy with no "traps" can be seen as the object(inside) itself OR without any traps, `proxy` is a transparent wrapper around `target`
+
+ Below is the demonstration
+
+```
+let target = {};
+let proxy = new Proxy(target, {});
+proxy.test = 5; //set to proxy also set to target
+console.log("target.test is ", target.test);
+```
+
+As there are no traps, all operations on `proxy` are forwarded to `target`.
+
+### What can we intercept
+
+For a object there are some so-called “internal method” `[[Get]]`, the internal method to read a property, `[[Set]]`, the internal method to write a property,
+
+**Proxy traps intercept invocations of these methods**
+
+They are listed in the [Proxy specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots) and in the table below.
+
+## Internal Method and handler methods and Trigger-point
+
+ **For every internal method, there’s a trap in this table: the name of the method that we can add to the `handler` parameter of `new Proxy` to intercept the operation**
+
+| Internal Method 内部方法 | Handler Method 处理程序方法 | Triggers when… 触发时...                                     |
+| :----------------------- | :-------------------------- | :----------------------------------------------------------- |
+| `[[Get]]`                | `get`                       | reading a property 读取属性 use [ ] or . on a object         |
+| `[[Set]]`                | `set`                       | writing to a property 写入属性 .newproperty = /.push(for array) /unshift |
+| `[[HasProperty]]`        | `has`                       | `in` operator `in` 运算符                                    |
+| `[[Delete]]`             | `deleteProperty`            | `delete` operator `delete` 运算符                            |
+| `[[Call]]`               | `apply`                     | function call 函数调用                                       |
+| `[[Construct]]`          | `construct`                 | `new` operator `new` 运算符                                  |
+| `[[GetPrototypeOf]]`     | `getPrototypeOf`            | [Object.getPrototypeOf 对象.getPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) |
+| `[[SetPrototypeOf]]`     | `setPrototypeOf`            | [Object.setPrototypeOf 对象.setPrototypeOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf) |
+| `[[IsExtensible]]`       | `isExtensible`              | [Object.isExtensible 对象可扩展](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible) |
+| `[[PreventExtensions]]`  | `preventExtensions`         | [Object.preventExtensions 对象.preventExtensions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions) |
+| `[[DefineOwnProperty]]`  | `defineProperty`            | [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty), [Object.defineProperties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) 对象.defineProperty, 对象.defineProperties |
+| `[[GetOwnProperty]]`     | `getOwnPropertyDescriptor`  | [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor), `for..in`, `Object.keys/values/entries` Object.getOwnPropertyDescriptor， `for..in` ， `Object.keys/values/entries` |
+| `[[OwnPropertyKeys]]`    | `ownKeys`                   | [Object.getOwnPropertyNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames), [Object.getOwnPropertySymbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols), `for..in`, `Object.keys/values/entries` Object.getOwnPropertyNames、Object.getOwnPropertySymbols、 `for..in` 、 `Object.keys/values/entries` |
+
+#### Notification
+
+- `[[Set]]` must return `true` if the value was written successfully, otherwise `false`.
+- `[[Delete]]` must return `true` if the value was deleted successfully, otherwise `false`.
+
+### How to set the handler
+
+To intercept reading, the `handler` should have a method `get(target, property, receiver)` **It triggers when a property is read**
+
+- `target` – is the target object, the one passed as the first argument to `new Proxy`,
+- `property` – property name,
+- `receiver` – if the target property is a getter, then `receiver` is the object that’s going to be used as `this` in its call. Usually that’s the `proxy` object itself (or an object that inherits from it, if we inherit from proxy). Right now we don’t need this argument, so it will be explained in more detail later.
+
+#### eg1
+
+Usually when one tries to get a non-existing array item, they get `undefined`, but we’ll wrap a regular array into the proxy that traps reading and returns `0` if there’s no such property:
+
+```js
+let numbers = [1, 2, 3];
+let proxy = new Proxy(number, {
+  get(target, prop) {
+    if (prop in target) {
+      return target[prop];
+    } else {
+      return 0;
+    }
+  },
+});
+
+```
+
+there should be a supplement For array : if array is seen as a object  {key：value}The 索引 is the key The 具体数值 是value   
+
+#### eg2
+
+Let’s say we want an array exclusively for numbers. If a value of another type is added, there should be an error.
+
+**The `set` trap triggers when a property is written.**
+
+`set(target, property, value, receiver)`:
+
+- `target` – is the target object, the one passed as the first argument to `new Proxy`,
+- `property` – property name,
+- `value` – property value,
+- `receiver` – similar to `get` trap, matters only for setter properties.
+
+```javascript
+let numbers = [];
+
+numbers = new Proxy(numbers, { // (*)
+  set(target, prop, val) { // to intercept property writing
+    if (typeof val == 'number') {
+      target[prop] = val;
+      return true;//For set, it must return true for a successful write.
+    } else {
+      return false;
+    }
+  }
+});
+
+numbers.push(1); // added successfully
+numbers.push(2); // added successfully
+alert("Length is: " + numbers.length); // 2
+
+numbers.push("test"); // TypeError ('set' on proxy returned false)
+
+alert("This line is never reached (error in the line above)");
+```
+
+**For `set`, it must return `true` for a successful write.**
+
+### Notation : Only interact with the proxy object
+
+#### You should
+
+When a proxy object is created You shouldn't reference the origin(or target) object after it got proxied. 
+And 
+
+```
+dictionary = new Proxy(dictionary, ...);
+```
+
+can overwrite the "dictionary" variable . 
+
+#### Why
+
+Usually When you created a proxy You got to devise some traps . And so it's important for you to make sure the defined behaviors and traps are constantly applied to ensure all operation go through the proxy and its traps 
+
+## iteration
+
+### `[[OwnPropertyKeys]]` internal method 
+
+`Object.keys`, `for..in` loop and most other methods that iterate over object properties use `[[OwnPropertyKeys]]` internal method (intercepted by `ownKeys` trap) to get a list of properties
+
+Such methods differ in details:
+
+- `Object.getOwnPropertyNames(obj)` returns non-symbol keys.
+- `Object.getOwnPropertySymbols(obj)` returns symbol keys.
+- `Object.keys/values()` returns non-symbol keys/values with `enumerable` flag (property flags were explained in the article [Property flags and descriptors](https://javascript.info/property-descriptors)).
+- `for..in` loops over non-symbol keys with `enumerable` flag, and also prototype keys.
+
+### eg3
+
+In the example below we use `ownKeys` trap to make `for..in` loop over `user`, and also `Object.keys` and `Object.values`, to skip properties starting with an underscore `_
+
+```js
+let user = {
+  name: "John",
+  age: 30,
+  _password: "***"
+};
+
+user = new Proxy(user, {
+  ownKeys(target) {
+    return Object.keys(target).filter(key => !key.startsWith('_'));
+  }
+});
+
+// "ownKeys" filters out _password
+for(let key in user) alert(key); // name, then: age
+
+// same effect on these methods:
+alert( Object.keys(user) ); // name,age
+alert( Object.values(user) ); // John,30
+```
+
+**To articulate**
+
+No matter "for in" "Object.keys" or "Object.values"  Deep inside They still use the same list offered by  [[OwnPropertyKeys]] 
+Different methods just filter the list with different ways. And "ownKeys" trap does something to the list (above:Object.keys(target).filter(key => !key.startsWith('_'));)         **before** the  "for in" "Object.keys" or "Object.values" can access the list.
+
+#### To note
+
+if we return a key that doesn’t exist in the object, `Object.keys` won’t list it:
+
+```js
+let user = { };
+
+user = new Proxy(user, {
+  ownKeys(target) {
+    return ['a', 'b', 'c'];
+  }
+});
+
+alert( Object.keys(user) ); // <empty>
+```
+
+the trap return a list full of keys But none of these keys exist in the "user "object 
+**Why?** The reason is simple: `Object.keys` returns only properties **with the `enumerable` flag.** 
+
+the properties of  ['a', 'b', 'c'] don't have the flag    But how does Object.keys find out?
+Object.keys check for it by calling the internal method `[[GetOwnProperty]]` of "user"  for every property to get its **descriptor**
+ And here, as there’s no property in user, its descriptor is empty, no `enumerable` flag, so the listing-properties procedure is skipped.
+
+```js
+let user = { };
+
+user = new Proxy(user, {
+  ownKeys(target) { // called once to get a list of properties
+    return ['a', 'b', 'c'];
+  },
+
+  getOwnPropertyDescriptor(target, prop) { // called for every property
+    return {
+      enumerable: true,
+      configurable: true
+      /* ...other flags, probable "value:..." */
+    };
+  }
+
+});
+
+alert( Object.keys(user) ); // a, b, c
+```
+
+when Object.keys is checking by calling the internal method `[[GetOwnProperty]]`of "user" the calling will be intercepted and Object.keys will receive the informing-letter(haha) which is written "it's enumable"
+
+## deleteProperty
+
+### Convention
+
+1. There’s a widespread convention that properties and methods prefixed by an underscore `_` are internal. They shouldn’t be accessed from outside the object.
+2. (prop can be seen as a key in the wrapped object's key-value pair)
+3. target in "get(target,prop)" is the original object
+
+```js
+let user = {
+  name: "John",
+  _password: "secret"
+};
+
+alert(user._password); // secret
+```
+
+### eg4 
+
+Let’s use proxies to prevent any access to properties starting with `_`.
+
+We’ll need the traps:
+
+- `get` to throw an error when reading such property,
+- `set` to throw an error when writing,
+- `deleteProperty` to throw an error when deleting,
+- `ownKeys` to exclude properties starting with `_` from `for..in` and methods like `Object.keys`.
+
+here is how we approach that:
+
+```js
+let user = {
+  name: "John",
+  _password: "***"
+};
+
+user = new Proxy(user, {
+  get(target, prop) {
+    if (prop.startsWith('_')) {
+      throw new Error("Access denied");
+    }
+    let value = target[prop];
+    return (typeof value === 'function') ? value.bind(target) : value; // (*)
+  },
+  set(target, prop, val) { // to intercept property writing
+    if (prop.startsWith('_')) {
+      throw new Error("Access denied");
+    } else {
+      target[prop] = val;
+      return true;
+    }
+  },
+  deleteProperty(target, prop) { // to intercept property deletion
+    if (prop.startsWith('_')) {
+      throw new Error("Access denied");
+    } else {
+      delete target[prop];
+      return true;
+    }
+  },
+  ownKeys(target) { // to intercept property list
+    return Object.keys(target).filter(key => !key.startsWith('_'));
+  }
+});
+
+// "get" doesn't allow to read _password
+try {
+  alert(user._password); // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// "set" doesn't allow to write _password
+try {
+  user._password = "test"; // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// "deleteProperty" doesn't allow to delete _password
+try {
+  delete user._password; // Error: Access denied
+} catch(e) { alert(e.message); }
+
+// "ownKeys" filters out _password
+for(let key in user) alert(key); // name
+```
+
+To explain:
+
+1. get: the throwing-error part is obvious But why do we need to return a function binded to the object "target"when what we try to use[[Get]] to get is a  function 
+   Because:
+   In real-life code there will absolutely be a method in the _original object_ that can access the internal value(_ prefixed)
+
+   ```js
+   user = {
+     // ...
+     checkPassword(value) {
+       // object method must be able to read _password
+       return value === this._password;
+     }
+   }
+   ```
+
+   for example _above_ should be working properly! But with the trap "get" is set already when you write user.checkPassword "this._password" will activate the trap which will deny your access So the checkPassword won't be working.
+   After you set “value.bind(target)” actually you are bonding the context of the method(signing "this" to the) to  target (we know it's the original object) And in the target(the original object) there are no traps at all.
+   **To be more clear : You need to ensure when "checkPassword" is working its("checkPassword") "this" should point to the "obedient"(no traps)object to ensure it ("checkPassword") functions!(起作用)**
+
+That solution usually works, but isn’t ideal
+
+2. the rest is simple
+
+## In to has trap
+
+As you can see above(in the internal method and handler method). The has trap intercept the "in" operator(which operate on the proxy object)because the in operator will invoke the `[[HasProperty]]`
+
+### eg5
+
+We’d like to use the `in` operator to check that a number is in `range`.
+
+```js
+let range = {
+  start: 1,
+  end: 10,
+};
+proxy = new Proxy(range, {
+  has(target, prop) {
+    return prop >= target.start && prop <= target.end;
+  },
+});
+console.log(2 in proxy);//true
+```
+
+## Wrapping functions:"apply" 
+
+You should see the article Decortor and forwarding,call/apply first to understand this section
+
+# to be continued.....
+
