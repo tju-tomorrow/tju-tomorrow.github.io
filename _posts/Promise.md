@@ -1,3 +1,15 @@
+---
+layout:     post   				    # 使用的布局（不需要改ti）
+title:      Promise 				# 标题 
+subtitle:   Basis about Promise#副标题
+date:       2024-07-27 				# 时间
+author:     BY 陈凯旋		 				# 作者
+header-img: img/post-bg-2015.jpg 	#这篇文章标题背景图片
+catalog: true 						# 是否归档
+tags:								#标签
+    - Javascript
+    - Promise
+---
 # Promise
 
 ## Preface:Scene Imagination
@@ -51,9 +63,11 @@ To proceed:
 - `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
 - `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when `reject(error)` is called.
 
-So the executor eventually moves `promise` to one of these states:![image-20240727013201754](D:/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png)
+So the executor eventually moves `promise` to one of these states:
+![image-20240727013201754](../../img/Promise.assets/image-20240727013201754.png)
 
-and if we successfully produce the result which the consuming codes are craving for. It turned like this:![image-20240727014147939](D:/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png)
+and if we successfully produce the result which the consuming codes are craving for. It turned like this:
+![image-20240727014147939](../../img/Promise.assets/image-20240727014147939.png)
 
 To summarize:
 the executor should perform a job (usually something that takes time) and then call `resolve` or `reject` to change the state of the corresponding promise object.
@@ -308,6 +322,11 @@ promise.then(script => alert('Another handler...'));
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+delay(3000).then(() => alert('runs after 3 seconds'));
+```
+
+
 
 delay(3000).then(() => alert('runs after 3 seconds'));
 ```
