@@ -14,7 +14,9 @@ tags:								#标签
 
 ## what is Promise chainning
 
-It's a mechanism in Promise-chain which formed like this:
+A Promise-chain starts with `new Promise` constructor and use`then/catch` as middle-party to pass the `promise.result` 
+
+which formed like this:
 
 ```js
 new Promise(function(resolve, reject) {
@@ -41,10 +43,9 @@ new Promise(function(resolve, reject) {
 
 ## why it's created
 
-we have a sequence of asynchronous tasks to be performed one after another  for instance, loading scripts.
+We have a sequence of asynchronous tasks needed to be performed one after another In other words:When dealing with tasks that have sequencial order 
+for instance, loading scripts.
 we can't hold all tasks in one "then" handler
-And if you notice above: the result is passed through the chain of `.then` handlers.
-
 It's known that When a handler returns a value, it becomes the result of that promise and in this chainning system
 the promise holding a value peformed by the last handler become the input of next handler
 
@@ -89,7 +90,10 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Here the first `.then` shows `1` and returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it’s `result * 2`) is passed on to the handler of the second `.then`. That handler is in the line `(**)`, it shows `2` and does the same thing.
+> [!NOTE]
+>
+> In `then` handler if you return a value the value become a Promise for the next `then`
+> But returning a Promise seems more reasonable 
 
 So the output is the same as in the previous example: 1 → 2 → 4, but now with 1 second delay between `alert` calls.
 
@@ -126,12 +130,12 @@ loadScript("/article/promise-chaining/one.js")
   });
 ```
 
-## A special feature 
+## A special feature
 
-This feature will allow us to integrate custom objects with promise chains without having to inherit from Promise
+**This feature will allow us to integrate custom objects with promise chains without having to inherit from Promise**
 What does above mean ? To understand that there should be a clarification:
-Actually in the promise-chain It's not promise that continuely flow up and down (return and input)(that means what the handler returns is not Promise ) It's another special object called _“thenable” object_ 
-All the things we said above still valid because this “thenable” object has _.then_ method and can be treated like Promise.So actually it gives us flexibilty!Because we can build like an architect on a object that has already implemented with basic Promise-function
+**Actually in the promise-chain It's not promise that continuely flow up and down (return and input)(that means what the handler returns is not Promise ) It's another special object called _“thenable” object_** 
+All the things we said above still **valid** because this “thenable” object has _.then_ method and can be treated like Promise.So actually it gives us flexibilty!Because we can build like an architect on a object that has already implemented with basic Promise-function
 
 ```js
 class Thenable {
@@ -154,6 +158,13 @@ new Promise(resolve => resolve(1))
 
 JavaScript checks the object returned by the `.then` handler in line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to an executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
 
+> [!TIP]
+>
+> A Thenable class should still define the `then` method inside 
+> And what is passed into the constructor is actually the `promise.result`
+
+
+
 ## example associated with _fetch_
 
 We’ll use the [fetch](https://javascript.info/fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in [separate chapters](https://javascript.info/fetch), but the basic syntax is quite simple:
@@ -169,7 +180,10 @@ fetch(url) is saying :make a network request to the `url` and returns a promise.
 > You haven't got the infomation now
 
 To read the full response, we should call the method `response.text()`: it returns a promise that resolves when the full text is downloaded from the remote server, with that text(information we require) as a result.
-So response is a promise and response.text() is also a promise 
+
+> [!NOTE]
+>
+> So response is a promise and response.text() is also a promise 
 
 The code below makes a request to `user.json` and loads its text from the server:
 
@@ -243,7 +257,11 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
-As a good practice, an asynchronous action should always return a promise. That makes it possible to plan actions after it; even if we don’t plan to extend the chain now, we may need it later.
+> [!CAUTION]
+>
+> As a good practice, an asynchronous action should always return a promise.
+
+ That makes it possible to plan actions after it; even if we don’t plan to extend the chain now, we may need it later.
 
 ## When should you consider about Promise
 
