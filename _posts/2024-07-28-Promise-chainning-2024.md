@@ -16,7 +16,7 @@ tags:								#标签
 
 A Promise-chain starts with `new Promise` constructor and use`then/catch` as middle-party to pass the `promise.result` 
 
-which formed like this:
+which is formed like this:
 
 ```js
 new Promise(function(resolve, reject) {
