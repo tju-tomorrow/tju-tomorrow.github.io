@@ -11,7 +11,7 @@ github_repo: "https://github.com/tju-tomorrow/tju-tomorrow.github.io.git" # you 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Learning gives me orgasm"
+sidebar-about-description: "Real knowledge is to know the extent of one's ignorance"
 sidebar-avatar: /img/labixiaoxin.png  # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
