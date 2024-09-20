@@ -1,4 +1,16 @@
-# Proxy and Reflect
+---
+layout:     post   				    # 使用的布局（不需要改ti）
+title:       	Proxy		# 标题 
+subtitle:          #副标题
+date:       2024-08-19 				# 时间
+author:     BY 陈凯旋		 				# 作者
+header-img: img/post-bg-2015.jpg 	#这篇文章标题背景图片
+catalog: true 						# 是否归档
+tags:								#标签
+    - Javascript
+    - Proxy
+---
+# Proxy 
 
 ## what's a proxy
 
@@ -369,5 +381,5 @@ console.log(2 in proxy);//true
 
 You should see the article Decortor and forwarding,call/apply first to understand this section
 
-# to be continued.....
+
 
