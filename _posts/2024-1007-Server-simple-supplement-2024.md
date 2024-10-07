@@ -1,20 +1,20 @@
-# Server
-
 ---
 layout:     post   				    # 使用的布局（不需要改ti）
 title:       	Server			# 标题 
-subtitle:          Simple supplement about Server to better understand how browser work#副标题
+subtitle:          #副标题
 date:       2024-10-07 				# 时间
 author:     BY 陈凯旋		 				# 作者
 header-img: img/post-bg-2015.jpg 	#这篇文章标题背景图片
 catalog: true 						# 是否归档
 tags:								#标签
+    - Javascript
     - Server
-    - http
+    - http 
     - https
-    - port
     - domain
 ---
+
+# Server
 
 a point should be explicit .As a user the browser is on your side like Chrome,it fights for you.And the server is a provider that offers services . It’s like a computer being open all the time 24/7.
 
