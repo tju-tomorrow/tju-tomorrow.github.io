@@ -314,7 +314,7 @@ td {
 .btn {
   background: var(--btn-default-bg);
   border: 2px solid var(--btn-default-border-color);
-  border-radius: 2px;
+  border-radius: 8px;
   color: var(--btn-default-color);
   display: inline-block;
   font-size: 0.875em;
@@ -1139,7 +1139,10 @@ pre .javascript .function {
   border: 1px solid #eee;
   display: block;
   margin: 0 auto;
-  max-width: 120px;
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+  max-width: 250px;
   padding: 2px;
 }
 .site-author-name {
@@ -1171,7 +1174,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffc2ed;
+  background: #6bffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
