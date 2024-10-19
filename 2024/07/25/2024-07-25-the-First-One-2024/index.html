@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Hey 这是我的第一篇博客。  prefaceIn the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.">
+  <meta name="description" content="Hey &#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;  prefaceIn the first blog I want to talk about methods of primitives.We know objects have methods and in javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="My First Post">
 <meta property="og:url" content="https://tju-tomorrow.github.io/2024/07/25/2024-07-25-the-First-One-2024/index.html">
 <meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
-<meta property="og:description" content="Hey 这是我的第一篇博客。  prefaceIn the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.">
+<meta property="og:description" content="Hey &#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;  prefaceIn the first blog I want to talk about methods of primitives.We know objects have methods and in javascript">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-24T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-10-18T07:22:35.517Z">
@@ -243,7 +243,7 @@
 
       
         <h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
-<p>这是我的第一篇博客。</p>
+<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
 </blockquote>
 <h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
 <span id="more"></span>
@@ -252,16 +252,16 @@
 <hr>
 
 <p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
-<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it’s light-weight.</p>
-<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their “properties”</p>
+<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
+<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
 <p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
 
-<h4 id="So-Objects-are-“heavier”-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-“heavier”-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are “heavier” than primitives. They require additional resources to support the internal machinery."></a>So Objects are “heavier” than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use “.” to invoke some methods.</p>
+<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
 <h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
 <p>we also want to keep primitives lightweight In the meantime.</p>
-<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don’t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
-<p>In order to do that :<strong>a special “object wrapper” that provides the extra functionality is created, and then is destroyed.</strong></p>
+<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
+<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
 <h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
 
 <ol>
@@ -271,13 +271,13 @@
 </ol>
 <p>Which means something besides the simple and standalone value is actually created!</p>
 <h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
-<li><p><strong>null&#x2F;undefined have no methods</strong><br>In a sense, they are “the most primitive”.</p>
+<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
 </li>
 <li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
 <p>For example, this is entirely valid:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Still !! <strong>primitives are not objects.</strong> which means they can’t store additional data</p>
+<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
 </li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
@@ -287,10 +287,10 @@
 <li><code>undefined</code> (no strict mode)</li>
 <li>An error (strict mode).</li>
 </ol>
-<p>The reason is that “wrapper object” :<br>when you use “.” after “str” (in other words when you wanna access the “str”) the “wrapper object” is created.</p>
+<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
 <ol>
-<li>in “no strict mode” it carries the “test” property but remember it will disappear When you see the “;” after”5;” it disappears. So you won’t have the trace of the “wrapper object” .It vanishes with no trace. So you could only get “undefined”</li>
-<li>in “strict mode” : there is a red flag or a Rule that cannot be crossed : you can’t write into “wrapper object” So An error</li>
+<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
+<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
 </ol>
 
     </div>
@@ -390,7 +390,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -429,7 +429,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
       <canvas width="250" height="250" id="resCanvas" style="width:100%">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheerio/" rel="tag">cheerio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li></ul>
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheerio/" rel="tag">cheerio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li></ul>
       </canvas>
     </div>
   </div>

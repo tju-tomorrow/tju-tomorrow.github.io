@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="程序员写完一个程序以后，程序去哪里了？">
+  <meta name="description" content="&#x7A0B;&#x5E8F;&#x5458;&#x5199;&#x5B8C;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x4EE5;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x53BB;&#x54EA;&#x91CC;&#x4E86;&#xFF1F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Process &amp; Thread">
 <meta property="og:url" content="https://tju-tomorrow.github.io/2024/10/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
-<meta property="og:description" content="程序员写完一个程序以后，程序去哪里了？">
+<meta property="og:description" content="&#x7A0B;&#x5E8F;&#x5458;&#x5199;&#x5B8C;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x4EE5;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x53BB;&#x54EA;&#x91CC;&#x4E86;&#xFF1F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png">
 <meta property="article:published_time" content="2024-10-16T16:00:00.000Z">
@@ -236,27 +236,27 @@
 
       
         <p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
-<p>程序员写完一个程序以后，程序去哪里了？</p>
+<p>&#x7A0B;&#x5E8F;&#x5458;&#x5199;&#x5B8C;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x4EE5;&#x540E;&#xFF0C;&#x7A0B;&#x5E8F;&#x53BB;&#x54EA;&#x91CC;&#x4E86;&#xFF1F;</p>
 <span id="more"></span>
 
 <h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><p>After a programmer finishes writing a program, it is saved permanently on the hard drive. Just as a chef needs a cutting board and a countertop to prepare food, the CPU needs to load the program from the hard drive to execute it.</p>
-<p>What’s loaded into memory is a process, which is an <strong>executable instance</strong> of the program.<br>A single program can be loaded into memory <strong>multiple times</strong>, or <strong>multiple programs</strong> can be loaded into memory.Which means there will be existing <strong>multiple process</strong> in memory.</p>
+<p>What&#x2019;s loaded into memory is a process, which is an <strong>executable instance</strong> of the program.<br>A single program can be loaded into memory <strong>multiple times</strong>, or <strong>multiple programs</strong> can be loaded into memory.Which means there will be existing <strong>multiple process</strong> in memory.</p>
 <p>Every physical memory spot in memory has been labeled with <strong>physical address</strong><br>Looking into memory,there lies processes.<br>Each process has its own <strong>virtual address space</strong>, These virtual address space can be converted to **physical address.**to access the corresponding <strong>memory spot.</strong></p>
-<h2 id="feature-of-Process"><a href="#feature-of-Process" class="headerlink" title="feature of Process"></a>feature of Process</h2><p>Each process thinks it has the <strong>entire memory</strong> and doesn’t need to care about other processes</p>
+<h2 id="feature-of-Process"><a href="#feature-of-Process" class="headerlink" title="feature of Process"></a>feature of Process</h2><p>Each process thinks it has the <strong>entire memory</strong> and doesn&#x2019;t need to care about other processes</p>
 <p>In this way, processes are separated</p>
-<h1 id="What’s-in-each-process-：Thread"><a href="#What’s-in-each-process-：Thread" class="headerlink" title="What’s in each process ：Thread"></a>What’s in each process ：Thread</h1><p>一个程序计数器<br>It’s going to compute based on the program-flow<br>one of the program-flow or <strong>execution streams</strong> here is one thread<br>if there are multiple threads<br>You need multiple <strong>program counters</strong></p>
+<h1 id="What&#x2019;s-in-each-process-&#xFF1A;Thread"><a href="#What&#x2019;s-in-each-process-&#xFF1A;Thread" class="headerlink" title="What&#x2019;s in each process &#xFF1A;Thread"></a>What&#x2019;s in each process &#xFF1A;Thread</h1><p>&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;<br>It&#x2019;s going to compute based on the program-flow<br>one of the program-flow or <strong>execution streams</strong> here is one thread<br>if there are multiple threads<br>You need multiple <strong>program counters</strong></p>
 <h1 id="So-why-do-we-need-a-design-thread"><a href="#So-why-do-we-need-a-design-thread" class="headerlink" title="So why do we need a design thread"></a>So why do we need a design thread</h1><p>we look at it through <strong>a document editor</strong> Like a notepad</p>
 <p>This notepad holds some text-data and some document which makes it a process</p>
 <p>Now the user uses the keyboard to type a return at the end of the second line</p>
 <p>There needs to be <strong>an interactive program</strong> that knows about keyboard <strong>press events</strong> and then the process that manages the layout recalculates the text and renders it</p>
 <p>and every once in a while the writing-program needs to save the document to the hard disk</p>
-<p><strong>Three programs</strong> need to execute <strong>concurrently</strong>, but they must access and modify the same document. Since processes have their own <strong>independent memory spaces</strong>, they must operate within the same process to access shared resources. Therefore, three lighter-weight constructs—threads—are necessary for this scenario.</p>
+<p><strong>Three programs</strong> need to execute <strong>concurrently</strong>, but they must access and modify the same document. Since processes have their own <strong>independent memory spaces</strong>, they must operate within the same process to access shared resources. Therefore, three lighter-weight constructs&#x2014;threads&#x2014;are necessary for this scenario.</p>
 <p>Threads allow these programs to run in parallel while sharing the same memory space for document access and modification.</p>
 <pre><code>    +-----------------+
      |    Notepad      |
      | (Document Data) |
      +-----------------+
-            ↑
+            &#x2191;
             |
             | (User Input)
             |
@@ -381,7 +381,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -420,7 +420,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
       <canvas width="250" height="250" id="resCanvas" style="width:100%">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheerio/" rel="tag">cheerio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li></ul>
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheerio/" rel="tag">cheerio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li></ul>
       </canvas>
     </div>
   </div>
