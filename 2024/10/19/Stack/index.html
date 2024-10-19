@@ -20,23 +20,24 @@
     var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ServerBrowser is the middleman between you and Server. A server is a provider that offers services . It can be visualize as a computer being open all the time 24&#x2F;7.">
+  <meta name="description" content="Stacks and queues are important">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Server">
-<meta property="og:url" content="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/index.html">
+<meta property="og:title" content="Stacks in DS">
+<meta property="og:url" content="https://tju-tomorrow.github.io/2024/10/19/Stack/index.html">
 <meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
-<meta property="og:description" content="ServerBrowser is the middleman between you and Server. A server is a provider that offers services . It can be visualize as a computer being open all the time 24&#x2F;7.">
+<meta property="og:description" content="Stacks and queues are important">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-10-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-18T12:50:14.138Z">
+<meta property="og:image" content="https://tju-tomorrow.github.io/.io//1.png">
+<meta property="og:image" content="https://tju-tomorrow.github.io/2024/10/19/Stack/image.png">
+<meta property="article:published_time" content="2024-10-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-19T16:37:00.311Z">
 <meta property="article:author" content="Victor Chen">
-<meta property="article:tag" content="Server">
-<meta property="article:tag" content="http">
-<meta property="article:tag" content="https">
-<meta property="article:tag" content="domain">
+<meta property="article:tag" content="Stack">
+<meta property="article:tag" content="Data structure">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tju-tomorrow.github.io/.io//1.png">
 
-<link rel="canonical" href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">
+<link rel="canonical" href="https://tju-tomorrow.github.io/2024/10/19/Stack/">
 
 
 <script id="page-configurations">
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>Server | Chenkaixuan's Blog</title>
+  <title>Stacks in DS | Chenkaixuan's Blog</title>
   
 
 
@@ -183,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/19/Stack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/mbappe.webp">
@@ -196,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Server
+          Stacks in DS
         </h1>
 
         <div class="post-meta">
@@ -206,14 +207,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-10-07 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-07T00:00:00+08:00">2024-10-07</time>
+              <time title="创建时间：2024-10-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-19T00:00:00+08:00">2024-10-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-18 20:50:14" itemprop="dateModified" datetime="2024-10-18T20:50:14+08:00">2024-10-18</time>
+                <time title="修改时间：2024-10-20 00:37:00" itemprop="dateModified" datetime="2024-10-20T00:37:00+08:00">2024-10-20</time>
               </span>
 
           
@@ -234,19 +235,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
-<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24&#x2F;7.</p>
-<span id="more"></span>
+        <p><img src="/.io//1.png" alt="1"></p>
+<!-- ![1](1.png)
+<img src="image.png"> -->
 
-<p>the websites you visit and the webpages you view doesn’t belong to the browser <br> It originally comes from server.</p>
-<h1 id="IP-Domain-Port"><a href="#IP-Domain-Port" class="headerlink" title="IP Domain Port"></a>IP Domain Port</h1><p>Every server has a unique ip address to be differentiated But it’s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
-<p><strong>So</strong> when you put a Domain on the browser’s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
-<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
-<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> （80 443）</p>
-<p>The Internet request when you are expecting a webpage is sent by the browser to the server<br>And To be concrete to port 80 &#x2F;443 <strong>of</strong> the server(Biu!!!)</p>
-<hr>
+<h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><p>Stacks and queues are two <strong>special</strong> linear lists.<br>In terms of structure, both are linear lists, but in terms of operation, the basic operations they support are only a <strong>subset</strong> of linear list operations So they are linear lists with <strong>restricted</strong> operations.</p>
+<h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h2><p>It is a linear list that allows insertion or deletion <strong>only</strong> at the <strong>end</strong> of the list.<br>The end that <strong>allows</strong> insertion and deletion is called the <strong>top</strong> of the stack, and the other side is called the bottom of the stack.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>Above gives it a feature : <strong>Last In First Out</strong> (LIFO)<br>The latest node added to a stack is the node which is eligible to be removed first.</p>
+<p><img src="data:image/png;base64,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" alt="Stack Data Structure and Implementation in Python, Java and C/C++"></p>
+<h2 id="basic-OP-code"><a href="#basic-OP-code" class="headerlink" title="basic OP code"></a>basic OP code</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 初始化栈 */</span></span><br><span class="line">stack&lt;<span class="type">int</span>&gt; stack;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/* 元素入栈 */</span></span><br><span class="line">stack.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 访问栈顶元素 */</span></span><br><span class="line">    <span class="type">int</span> top = stack.<span class="built_in">top</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 元素出栈 */</span></span><br><span class="line">    stack.<span class="built_in">pop</span>(); <span class="comment">// 无返回值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 获取栈的长度 */</span></span><br><span class="line">    <span class="type">int</span> size = stack.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">/* 判断是否为空 */</span></span><br><span class="line">    <span class="type">bool</span> empty = stack.<span class="built_in">empty</span>();</span><br></pre></td></tr></table></figure>
 
-<p>I want to clarify that a server can host many services, not just websites, and each service typically runs on different ports.</p>
+<h2 id="Stack-Realization-Based-on-LinkList"><a href="#Stack-Realization-Based-on-LinkList" class="headerlink" title="Stack Realization Based on LinkList"></a>Stack Realization Based on LinkList</h2><h3 id="stack-structure"><a href="#stack-structure" class="headerlink" title="stack structure"></a>stack structure</h3><p>every element in this stack is a <strong>listNode</strong> which has this structure</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">listNode</span>&#123;</span><br><span class="line"><span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">MyStack</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    listNode* next;</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">listNode</span>();</span><br><span class="line">    <span class="built_in">listNode</span>(<span class="type">int</span> nodeData, listNode* succ = <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The indispensable compositions of a stack are</p>
+<ol>
+<li>a top-pointer for keeping track of the <strong>most recently added item</strong>, the stack’s top pointer allows you to quickly access and manipulate the top element.</li>
+<li>stackSize</li>
+</ol>
+<p>So we have</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    listNode* topNode;</span><br><span class="line">    <span class="type">int</span> stackSize;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -256,10 +264,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Server/" rel="tag"># Server</a>
-              <a href="/tags/http/" rel="tag"># http</a>
-              <a href="/tags/https/" rel="tag"># https</a>
-              <a href="/tags/domain/" rel="tag"># domain</a>
+              <a href="/tags/Stack/" rel="tag"># Stack</a>
+              <a href="/tags/Data-structure/" rel="tag"># Data structure</a>
           </div>
 
         
@@ -268,13 +274,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/08/19/2024-08-19-Proxy-2024/" rel="prev" title="Proxy">
-      <i class="fa fa-chevron-left"></i> Proxy
+    <a href="/2024/10/18/axiosAndcheerio/" rel="prev" title="How to use axios and cheerio to grab bullshit">
+      <i class="fa fa-chevron-left"></i> How to use axios and cheerio to grab bullshit
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/10/15/2024-10-15-How-browser-retrieve-your-website-2024/" rel="next" title="What happens when you type a URL into your browser?">
-      What happens when you type a URL into your browser? <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -333,7 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Server"><span class="nav-number">1.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IP-Domain-Port"><span class="nav-number">2.</span> <span class="nav-text">IP Domain Port</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic"><span class="nav-number">1.</span> <span class="nav-text">Basic</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stack"><span class="nav-number">2.</span> <span class="nav-text">Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition"><span class="nav-number">2.1.</span> <span class="nav-text">Definition:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Features"><span class="nav-number">2.2.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-OP-code"><span class="nav-number">2.3.</span> <span class="nav-text">basic OP code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-Realization-Based-on-LinkList"><span class="nav-number">2.4.</span> <span class="nav-text">Stack Realization Based on LinkList</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stack-structure"><span class="nav-number">2.4.1.</span> <span class="nav-text">stack structure</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
