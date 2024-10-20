@@ -20,21 +20,23 @@
     var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="&#x4EC0;&#x4E48;&#x662F;&#x865A;&#x62DF;&#x5185;&#x5B58;&#xFF1F;">
+  <meta name="description" content="IntroductionYou open a web browser, a text editor, and a game concurrently. Together, these applications consume 10 GB of RAM.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Virtual Memory">
 <meta property="og:url" content="https://tju-tomorrow.github.io/2024/10/20/Virtual%20Memory/index.html">
 <meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
-<meta property="og:description" content="&#x4EC0;&#x4E48;&#x662F;&#x865A;&#x62DF;&#x5185;&#x5B58;&#xFF1F;">
+<meta property="og:description" content="IntroductionYou open a web browser, a text editor, and a game concurrently. Together, these applications consume 10 GB of RAM.">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgur.com/7Uu9Dge.png">
 <meta property="og:image" content="https://imgur.com/zjbcuyG.png">
+<meta property="og:image" content="https://imgur.com/wHlFmqj.png">
 <meta property="article:published_time" content="2024-10-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-19T17:35:34.629Z">
+<meta property="article:modified_time" content="2024-10-20T14:57:01.201Z">
 <meta property="article:author" content="Victor Chen">
 <meta property="article:tag" content="计算机组成原理">
 <meta property="article:tag" content="cs app">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://imgur.com/zjbcuyG.png">
+<meta name="twitter:image" content="https://imgur.com/7Uu9Dge.png">
 
 <link rel="canonical" href="https://tju-tomorrow.github.io/2024/10/20/Virtual%20Memory/">
 
@@ -207,7 +209,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-10-20 00:00:00 / 修改时间：01:35:34" itemprop="dateCreated datePublished" datetime="2024-10-20T00:00:00+08:00">2024-10-20</time>
+              <time title="创建时间：2024-10-20 00:00:00 / 修改时间：22:57:01" itemprop="dateCreated datePublished" datetime="2024-10-20T00:00:00+08:00">2024-10-20</time>
             </span>
 
           
@@ -228,7 +230,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://imgur.com/zjbcuyG.png"></p>
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+<span id="more"></span>
+
+<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OP uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
+<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OP load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
+<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
+<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV REG,1000</span><br></pre></td></tr></table></figure>
+
+<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
+<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
+<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
+<pre><code>      +---------------------+
+      |         CPU         |
+      |                     |
+      |   MOV REG, 1000    |
+      +----------+----------+
+                 |
+                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
+                 v
+      +---------------------+
+      |         MMU         |
+      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
+      +----------+----------+
+                 |
+                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
+                 v
+      +---------------------+
+      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
+      |                     |
+      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
+      +----------+----------+
+</code></pre>
+<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
+<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
+<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
+</li>
+<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
+<p>If the entry exists, the physical address is retrieved.</p>
+</li>
+<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
+<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
+</li>
+<li><p>Page Fault Handling (if needed)</p>
+<p>If the virtual address isn&#x2019;t mapped (a page fault occurs):</p>
+<ul>
+<li>The OS retrieves the required data from <strong>disk storage</strong>.</li>
+<li>Updates the page table with the new mapping.</li>
+<li>Returns to step 3 to complete the address translation.</li>
+</ul>
+<p><img src="https://imgur.com/zjbcuyG.png"></p>
+</li>
+</ol>
+<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
+<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
+<ul>
+<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;&#x6307;&#x793A;&#x8BE5;&#x9875;&#x662F;&#x5426;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF08;&#x6709;&#x6548;&#xFF09;&#x6216;&#x4E0D;&#x5728;&#x5185;&#x5B58;&#x4E2D;</li>
+<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
+<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
+</ul>
+<p><img src="https://imgur.com/wHlFmqj.png"></p>
 
     </div>
 
@@ -310,6 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Definition"><span class="nav-number">2.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Why-this-called-Virtual-Memory"><span class="nav-number">3.</span> <span class="nav-text">Why this called Virtual Memory?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Senario"><span class="nav-number">4.</span> <span class="nav-text">Senario</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MMU"><span class="nav-number">4.1.</span> <span class="nav-text">MMU</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-MMU-works"><span class="nav-number">5.</span> <span class="nav-text">How MMU works</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#page-table"><span class="nav-number">6.</span> <span class="nav-text">page-table</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

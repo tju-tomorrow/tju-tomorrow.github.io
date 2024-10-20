@@ -264,6 +264,62 @@
       </tags>
   </entry>
   <entry>
+    <title>What happens when you type a URL into your browser?</title>
+    <url>/2024/10/15/2024-10-15-How-browser-retrieve-your-website-2024/</url>
+    <content><![CDATA[<p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
+<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
+<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
+<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
+<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
+<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
+<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
+<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
+<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
+<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
+<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
+<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
+<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
+<hr>
+
+<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
+]]></content>
+      <categories>
+        <category>Internet</category>
+      </categories>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+        <tag>Browser</tag>
+        <tag>URL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Server</title>
+    <url>/2024/10/07/2024-10-07-Server-2024/</url>
+    <content><![CDATA[<h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
+<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
+<span id="more"></span>
+
+<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
+<h1 id="IP-Domain-Port"><a href="#IP-Domain-Port" class="headerlink" title="IP Domain Port"></a>IP Domain Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
+<p><strong>So</strong> when you put a Domain on the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
+<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
+<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
+<p>The Internet request when you are expecting a webpage is sent by the browser to the server<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
+<hr>
+
+<p>I want to clarify that a server can host many services, not just websites, and each service typically runs on different ports.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Promise chainning</title>
     <url>/2024/07/28/2024-07-28-Promise-chainning-2024/</url>
     <content><![CDATA[<h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
@@ -548,62 +604,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Server</title>
-    <url>/2024/10/07/2024-10-07-Server-2024/</url>
-    <content><![CDATA[<h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
-<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
-<span id="more"></span>
-
-<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
-<h1 id="IP-Domain-Port"><a href="#IP-Domain-Port" class="headerlink" title="IP Domain Port"></a>IP Domain Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
-<p><strong>So</strong> when you put a Domain on the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
-<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
-<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
-<p>The Internet request when you are expecting a webpage is sent by the browser to the server<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
-<hr>
-
-<p>I want to clarify that a server can host many services, not just websites, and each service typically runs on different ports.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What happens when you type a URL into your browser?</title>
-    <url>/2024/10/15/2024-10-15-How-browser-retrieve-your-website-2024/</url>
-    <content><![CDATA[<p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
-<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
-<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
-<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
-<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
-<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
-<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
-<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
-<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
-<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
-<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
-<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
-<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
-<hr>
-
-<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
-]]></content>
-      <categories>
-        <category>Internet</category>
-      </categories>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-        <tag>Browser</tag>
-        <tag>URL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Stacks in DS</title>
     <url>/2024/10/19/Stack/</url>
     <content><![CDATA[<p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
@@ -632,7 +632,68 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Virtual Memory</title>
     <url>/2024/10/20/Virtual%20Memory/</url>
-    <content><![CDATA[<p><img src="https://imgur.com/zjbcuyG.png"></p>
+    <content><![CDATA[<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+<span id="more"></span>
+
+<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OP uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
+<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OP load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
+<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
+<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000</span><br></pre></td></tr></table></figure>
+
+<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
+<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
+<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
+<pre><code>      +---------------------+
+      |         CPU         |
+      |                     |
+      |   MOV REG, 1000    |
+      +----------+----------+
+                 |
+                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
+                 v
+      +---------------------+
+      |         MMU         |
+      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
+      +----------+----------+
+                 |
+                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
+                 v
+      +---------------------+
+      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
+      |                     |
+      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
+      +----------+----------+
+</code></pre>
+<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
+<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
+<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
+</li>
+<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
+<p>If the entry exists, the physical address is retrieved.</p>
+</li>
+<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
+<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
+</li>
+<li><p>Page Fault Handling (if needed)</p>
+<p>If the virtual address isn&#x2019;t mapped (a page fault occurs):</p>
+<ul>
+<li>The OS retrieves the required data from <strong>disk storage</strong>.</li>
+<li>Updates the page table with the new mapping.</li>
+<li>Returns to step 3 to complete the address translation.</li>
+</ul>
+<p><img src="https://imgur.com/zjbcuyG.png"></p>
+</li>
+</ol>
+<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
+<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
+<ul>
+<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;&#x6307;&#x793A;&#x8BE5;&#x9875;&#x662F;&#x5426;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF08;&#x6709;&#x6548;&#xFF09;&#x6216;&#x4E0D;&#x5728;&#x5185;&#x5B58;&#x4E2D;</li>
+<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
+<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
+</ul>
+<p><img src="https://imgur.com/wHlFmqj.png"></p>
 ]]></content>
       <tags>
         <tag>计算机组成原理</tag>
