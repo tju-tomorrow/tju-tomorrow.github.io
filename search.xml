@@ -154,31 +154,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Server</title>
-    <url>/2024/10/07/2024-10-07-Server-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
-<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
-<span id="more"></span>
-
-<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
-<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
-<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
-<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
-<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
-<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
-<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
-<hr>
-
-<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Promise</title>
     <url>/2024/07/27/2024-07-27-Promise-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
@@ -233,8 +208,8 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 <li><code>state</code> &#x2014; initially <code>&quot;pending&quot;</code>, then changes to either <code>&quot;fulfilled&quot;</code> when <code>resolve</code> is called or <code>&quot;rejected&quot;</code> when <code>reject</code> is called.</li>
 <li><code>result</code> &#x2014; initially <code>undefined</code>, then changes to <code>value</code> when <code>resolve(value)</code> is called or <code>error</code> when <code>reject(error)</code> is called.</li>
 </ul>
-<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
-<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
+<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
+<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
 <p>A promise that is either fulfilled or rejected is called &#x201C;settled&#x201D;, as opposed to an initially &#x201C;pending&#x201D; promise.</p>
 <h2 id="To-be-noted-fundamental"><a href="#To-be-noted-fundamental" class="headerlink" title="To be noted (fundamental)"></a>To be noted (fundamental)</h2><ol>
 <li><strong>There can be only a single result or an error</strong></li>
@@ -376,6 +351,126 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       <tags>
         <tag>Javascript</tag>
         <tag>Promise</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Server</title>
+    <url>/2024/10/07/2024-10-07-Server-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
+<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
+<span id="more"></span>
+
+<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
+<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
+<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
+<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
+<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
+<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
+<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
+<hr>
+
+<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What happens when you type a URL into your browser?</title>
+    <url>/2024/10/15/2024-10-15-How-browser-retrieve-your-website-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
+<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
+<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
+<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
+<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
+<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
+<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
+<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
+<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
+<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
+<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
+<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
+<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
+<hr>
+
+<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
+]]></content>
+      <categories>
+        <category>Internet</category>
+      </categories>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+        <tag>Browser</tag>
+        <tag>URL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bubbling and capturing</title>
+    <url>/2024/10/22/Bubbling%20and%20capturing/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
+<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
+<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
+<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
+<p>Note the differences from</p>
+<ol>
+<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
+</li>
+<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
+</li>
+</ol>
+<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
+<p>In form.onclick handler:</p>
+<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
+<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
+<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
+<p>The method for it is <code>event.stopPropagation()</code>.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
+<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
+<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
+<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
+<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
+<p>For example:</p>
+<ul>
+<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
+<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
+<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
+</ul>
+<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
+<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
+<ol>
+<li>Capturing phase &#x2013; the event goes down to the element.</li>
+<li>Target phase &#x2013; the event reached the target element.</li>
+<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
+</ol>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
+<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>&#x4ED6;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x503C;&#xFF0C;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E; true/false &#x5C31;&#x662F;&#x5728;&#x4E0D;&#x540C;&#x9636;&#x6BB5;&#x8BBE;&#x8BA1;&#x76D1;&#x542C;&#x5668;&#xFF0C;true &#x8868;&#x793A;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#xFF0C;false &#x5728;&#x6309;&#x7167;&#x5192;&#x6CE1;&#x9636;&#x6BB5;&#x3002;</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
+<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>&#x65E2;&#x6709;&#x5192;&#x6CE1;&#x53C8;&#x6709;&#x6355;&#x83B7; &#x4F46;&#x662F;&#x6309;&#x7167;&#x524D;&#x9762;&#x7684;&#x8FC7;&#x5C71;&#x8F66; &#x6355;&#x83B7;&#x4F18;&#x5148;&#x4E8E;&#x5192;&#x6CE1;<br>&#x5F53;&#x4F60;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x540E; &#x6D4F;&#x89C8;&#x5668;&#x5148;&#x770B;&#x4F60;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x6709;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668; &#x518D;&#x5230;&#x4F60;&#x7684;&#x5143;&#x7D20;&#x4E0A;&#x7684;&#x76D1;&#x542C;&#x5668; &#x518D;&#x770B;&#x4F60;&#x7684;&#x5192;&#x6CE1;&#x9636;&#x6BB5;&#x6709;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;</p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
+<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
+]]></content>
+      <tags>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -573,111 +668,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>What happens when you type a URL into your browser?</title>
-    <url>/2024/10/15/2024-10-15-How-browser-retrieve-your-website-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
-<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
-<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
-<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
-<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
-<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
-<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
-<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
-<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
-<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
-<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
-<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
-<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
-<hr>
-
-<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
-]]></content>
-      <categories>
-        <category>Internet</category>
-      </categories>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-        <tag>Browser</tag>
-        <tag>URL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bubbling and capturing</title>
-    <url>/2024/10/22/Bubbling%20and%20capturing/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
-<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
-<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
-<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
-<p>Note the differences from</p>
-<ol>
-<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
-</li>
-<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
-</li>
-</ol>
-<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
-<p>In form.onclick handler:</p>
-<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
-<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
-<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
-<p>The method for it is <code>event.stopPropagation()</code>.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
-<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
-<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
-<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
-<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
-<p>For example:</p>
-<ul>
-<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
-<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
-<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
-</ul>
-<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
-<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
-<ol>
-<li>Capturing phase &#x2013; the event goes down to the element.</li>
-<li>Target phase &#x2013; the event reached the target element.</li>
-<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
-<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>&#x4ED6;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x503C;&#xFF0C;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E; true/false &#x5C31;&#x662F;&#x5728;&#x4E0D;&#x540C;&#x9636;&#x6BB5;&#x8BBE;&#x8BA1;&#x76D1;&#x542C;&#x5668;&#xFF0C;true &#x8868;&#x793A;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#xFF0C;false &#x5728;&#x6309;&#x7167;&#x5192;&#x6CE1;&#x9636;&#x6BB5;&#x3002;</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-
-<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
-<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>&#x65E2;&#x6709;&#x5192;&#x6CE1;&#x53C8;&#x6709;&#x6355;&#x83B7; &#x4F46;&#x662F;&#x6309;&#x7167;&#x524D;&#x9762;&#x7684;&#x8FC7;&#x5C71;&#x8F66; &#x6355;&#x83B7;&#x4F18;&#x5148;&#x4E8E;&#x5192;&#x6CE1;<br>&#x5F53;&#x4F60;&#x89E6;&#x53D1;&#x4E8B;&#x4EF6;&#x540E; &#x6D4F;&#x89C8;&#x5668;&#x5148;&#x770B;&#x4F60;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x6709;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668; &#x518D;&#x5230;&#x4F60;&#x7684;&#x5143;&#x7D20;&#x4E0A;&#x7684;&#x76D1;&#x542C;&#x5668; &#x518D;&#x770B;&#x4F60;&#x7684;&#x5192;&#x6CE1;&#x9636;&#x6BB5;&#x6709;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;</p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
-<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
-]]></content>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Retaining Computer Science Knowledge</title>
-    <url>/2024/10/23/Retaining%20Computer%20Science%20Knowledge/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://startupnextdoor.com/retaining-computer-science-knowledge/">https://startupnextdoor.com/retaining-computer-science-knowledge/</a></p>
-<span id="more"></span>
-]]></content>
-      <tags>
-        <tag>好文章</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ref and Reactive in Vue</title>
     <url>/2024/10/23/Ref%E5%92%8CReactive/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x5728; twt &#x9762;&#x8BD5;&#x88AB;&#x95EE;&#x5230;</p>
@@ -705,6 +695,16 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Retaining Computer Science Knowledge</title>
+    <url>/2024/10/23/Retaining%20Computer%20Science%20Knowledge/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://startupnextdoor.com/retaining-computer-science-knowledge/">https://startupnextdoor.com/retaining-computer-science-knowledge/</a></p>
+<span id="more"></span>
+]]></content>
+      <tags>
+        <tag>好文章</tag>
       </tags>
   </entry>
   <entry>

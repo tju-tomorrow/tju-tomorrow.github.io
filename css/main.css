@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #aded12;
+  background: #81ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1611,6 +1611,26 @@ pre .javascript .function {
   border-radius: 10px;
   transition: background-color 0.3s ease;
   background-color: #cdcbca;
+}
+.tag-cloud {
+  text-align: center;
+  background-color: #fff;
+  height: 500px;
+  border-radius: 1.5rem;
+}
+.tag-cloud a {
+  display: inline-block;
+  margin: 10px;
+  font-weight: bold; /* 加粗字体 */
+  color: #953f3f !important;
+  transition: all 0.7s linear;
+}
+.tag-cloud a:hover {
+  background-color: #baceec;
+  border-radius: 10px;
+  backdrop-filter: blur(25px);
+  color: #be5757 !important; /* 悬停时的颜色 */
+  transform: scale(1.2);
 }
 .posts-collapse {
   margin-left: 35px;
