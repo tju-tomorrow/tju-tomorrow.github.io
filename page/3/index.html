@@ -118,14 +118,14 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-personal">
+
+    <a href="/personal/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a>
+
+  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -150,7 +150,7 @@
   </span>
   <div class="search-input-container">
     <input autocomplete="off" autocapitalize="off"
-           placeholder="Come on Baby ! Search My Whole body..." spellcheck="false"
+           placeholder="Come on! ..." spellcheck="false"
            type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
@@ -183,6 +183,170 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/09/23/Ref%E5%92%8CReactive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/mbappe.webp">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/23/Ref%E5%92%8CReactive/" class="post-title-link" itemprop="url">Ref and Reactive in Vue</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-23 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-23T00:00:00+08:00">2024-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-11 15:17:31" itemprop="dateModified" datetime="2024-11-11T15:17:31+08:00">2024-11-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-end/" itemprop="url" rel="index"><span itemprop="name">Front-end</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+
+<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
+<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
+<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
+<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
+<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
+<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
+<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
+<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/09/22/What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/mbappe.webp">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/22/What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/" class="post-title-link" itemprop="url">What’s the Difference Between localhost and 127.0.0.1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-09-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-22T00:00:00+08:00">2024-09-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-11-11 15:19:07" itemprop="dateModified" datetime="2024-11-11T15:19:07+08:00">2024-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
+<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
+<p>The scope of localhost is limited to the local machine</p>
+<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
+<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
+<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
+<p>localhost is a domain name</p>
+<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
+<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
+<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -256,172 +420,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/mbappe.webp">
-      <meta itemprop="name" content="Victor Chen">
-      <meta itemprop="description" content="Victor Chen's English Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chenkaixuan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/" class="post-title-link" itemprop="url">What happens when you type a URL into your browser?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-25T00:00:00+08:00">2024-08-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-11 15:19:55" itemprop="dateModified" datetime="2024-11-11T15:19:55+08:00">2024-11-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Internet/" itemprop="url" rel="index"><span itemprop="name">Internet</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          When you have finished typing a URL and you hit &quot;click&quot;
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/07/28/2024-07-28-Promise-chainning-2024/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/mbappe.webp">
-      <meta itemprop="name" content="Victor Chen">
-      <meta itemprop="description" content="Victor Chen's English Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chenkaixuan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/28/2024-07-28-Promise-chainning-2024/" class="post-title-link" itemprop="url">Promise chainning</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-07-28 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-28T00:00:00+08:00">2024-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-18 15:22:51" itemprop="dateModified" datetime="2024-10-18T15:22:51+08:00">2024-10-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-end/" itemprop="url" rel="index"><span itemprop="name">Front-end</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/28/2024-07-28-Promise-chainning-2024/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -489,7 +491,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -500,7 +502,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -530,7 +532,7 @@
     <h3 class="widget-title">Tag Cloud</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
       <canvas width="250" height="250" id="resCanvas" style="width:100%">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li></ul>
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">2</span></li></ul>
       </canvas>
     </div>
   </div>
@@ -555,7 +557,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

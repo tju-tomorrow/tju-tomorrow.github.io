@@ -1,6 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Promise</title>
+    <url>/2024/07/27/2024-07-27-Promise-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
+<p>Imagine that you&#x2019;re a top singer, and fans ask day and night for your upcoming song.</p>
+</blockquote>
+<span id="more"></span>
+
+<blockquote>
+<p>To get some relief, you promise to send it to them when it&#x2019;s published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can&#x2019;t publish the song, they will still be notified.</p>
+</blockquote>
+<p>For the first sight:1.What?Promise is made by the singer and<br>2.Why?it&#x2019;s produced because the result can&#x2019;t be immediate.<br>3.Efficacy?And promise connects singer and prospective subcribers. and makes it possible for the existence of delay.So it&#x2019;s actually for dealing tasks that requires <strong>time</strong>.</p>
+<p>And To map to concepts about Promise :</p>
+<ol>
+<li>&#x201C;A producing code&#x201D; is the singer. It can&#x2019;t immediately give program-flow or another-code a result so that program-flow can proceed So it make a <em>promise</em> .<br>What may be the &#x201C;producing code&#x201D; :For instance, some code that loads the data over a network and that takes <strong>time</strong></li>
+<li>A &#x201C;consuming code&#x201D;(another-code that mentioned above) that wants the result of the &#x201C;producing code&#x201D; once it&#x2019;s ready(for inputing paramters or something else) .These are the &#x201C;fans&#x201D;.</li>
+<li><strong>A <em>promise</em> is a special JavaScript</strong> object that links the &#x201C;producing code&#x201D; and the &#x201C;consuming code&#x201D; together. In terms of our analogy: this is the &#x201C;subscription list&#x201D;. The &#x201C;producing code&#x201D; takes whatever time it needs to produce the promised result, and the &#x201C;promise&#x201D; makes that result available to all of the subscribed code when it&#x2019;s ready.</li>
+</ol>
+<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><p>The constructor syntax for a promise object is:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="comment">// executor (the producing code, &quot;singer&quot;)</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>To explain:</p>
+<ol>
+<li><p>The function passed to <code>new Promise</code> is called the <em>executor</em>.</p>
+<p>When <code>new Promise</code> is created, the executor runs <strong>automatically</strong>(this is a func don&#x2019;t need to be called by&#x201D;()&#x201D;). It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the &#x201C;singer&#x201D;.</p>
+</li>
+<li><p>Its arguments <code>resolve</code> and <code>reject</code> are callbacks provided by JavaScript itself.</p>
+</li>
+<li><p>When the executor obtains the result, be it soon or late, doesn&#x2019;t matter,it should call one of these callbacks:</p>
+<ul>
+<li><p><code>resolve(value)</code> &#x2014; if the job is finished successfully, with result <code>value</code>.</p>
+</li>
+<li><p><code>reject(error)</code> &#x2014; if an error has occurred, <code>error</code> is a Error object.<br>To supplementay:</p>
+<blockquote>
+<p>[!CAUTION]</p>
+<p>The executor receives two arguments: <code>resolve</code> and <code>reject</code>. These functions are pre-defined by the JavaScript engine, so we don&#x2019;t need to create them. We should only call one of them when ready.<br>the executor may calls <code>resolve(&quot;done&quot;)</code> to produce the <strong>result</strong>(remember above we said the executor should eventually produce the result? Yeah it can be done by calling resolve)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt, it calls <code>resolve</code> if it was successful or <code>reject</code> if there was an error.</p>
+<blockquote>
+<p>[!Important]</p>
+<p>1.So Promise constructor requires a function that contains two built-in callbacks as paramter And the function is <em>the</em> executor<br>2.executor carries two callback that is ready to be called and then produces the <strong>result</strong><br>3.result exists relating to two possible state<br>4.what is eventually returned by this syntax constructor is actually a object which is the Promise. And result is just been carried with.</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+
+<p>To proceed:</p>
+<p><strong>The <code>promise</code> object returned</strong> by the <code>new Promise</code> constructor has these internal properties:</p>
+<ul>
+<li><code>state</code> &#x2014; initially <code>&quot;pending&quot;</code>, then changes to either <code>&quot;fulfilled&quot;</code> when <code>resolve</code> is called or <code>&quot;rejected&quot;</code> when <code>reject</code> is called.</li>
+<li><code>result</code> &#x2014; initially <code>undefined</code>, then changes to <code>value</code> when <code>resolve(value)</code> is called or <code>error</code> when <code>reject(error)</code> is called.</li>
+</ul>
+<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
+<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
+<p>A promise that is either fulfilled or rejected is called &#x201C;settled&#x201D;, as opposed to an initially &#x201C;pending&#x201D; promise.</p>
+<h2 id="To-be-noted-fundamental"><a href="#To-be-noted-fundamental" class="headerlink" title="To be noted (fundamental)"></a>To be noted (fundamental)</h2><ol>
+<li><strong>There can be only a single result or an error</strong></li>
+</ol>
+<p>The executor should call only one <code>resolve</code> or one <code>reject</code>. <strong>Any state change is final.</strong></p>
+<p>All further calls of <code>resolve</code> and <code>reject</code> are ignored:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&quot;done&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;&#x2026;&quot;</span>)); <span class="comment">// ignored</span></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;&#x2026;&quot;</span>)); <span class="comment">// ignored</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>Also, <code>resolve</code>/<code>reject</code> expect only one argument <strong>(or none)</strong> and will ignore additional arguments.</p>
+<ol start="2">
+<li><p><strong>A good habit:Reject with</strong> <code>Error</code> <strong>objects</strong></p>
+<p>In case something goes wrong, the executor should call <code>reject</code>. That can be done with any type of argument (just like <code>resolve</code>). But it is recommended to use <code>Error</code> objects (or objects that inherit from <code>Error</code>)<br>To explain: <code>reject(new Errror(&apos;wrong&apos;))</code> is better than <code>reject(&apos;wrong&apos;)</code></p>
+</li>
+<li><blockquote>
+<p>[!NOTE]</p>
+<p><strong>The</strong> <code>state</code> <strong>and</strong> <code>result</code> <strong>are internal</strong></p>
+</blockquote>
+<p>Which means :<code>state</code> and <code>result</code> of the Promise object can&#x2019;t be directly accessed.Accessing has to be done bymethods <code>.then</code>/<code>.catch</code>/<code>.finally</code> &#xFF08;They are described below.&#xFF09;</p>
+</li>
+</ol>
+<h2 id="Consumers-then-catch"><a href="#Consumers-then-catch" class="headerlink" title="Consumers:then catch"></a>Consumers:then catch</h2><p>As you might have comprehensed by now: A Promise object <strong>serves as a link</strong> between the executor (the &#x201C;producing code&#x201D; or &#x201C;singer&#x201D;) and the consuming functions (the &#x201C;fans&#x201D;) which will receive the result or error.It actually bond these two togther <strong>by something.</strong></p>
+<p>Something(mentioned above) is methods <code>.then</code> and <code>.catch</code>.</p>
+<h3 id="then"><a href="#then" class="headerlink" title="then"></a>then</h3><p>The syntax is:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">promise.<span class="title function_">then</span>(</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">/* handle a successful result */</span></span><br><span class="line">  },</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">error</span>) {</span><br><span class="line">    <span class="comment">/* handle an error */</span></span><br><span class="line">  }</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>See? The promise comes from a producing code (executor)<br>(In case you forget):</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="comment">// executor (the producing code, &quot;singer&quot;)</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>And it serves as a link And it uses then/catch methods to connect with the consuming functions (that desperate to receive a result or a error)<br>You can see the consuming functions as the one above</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>(<span class="params">result</span>) { <span class="comment">/* handle a successful result */</span> },</span><br><span class="line"><span class="keyword">function</span>(<span class="params">error</span>) { <span class="comment">/* handle an error */</span> }</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>the then methods <strong>could</strong> specify two functions:1.one for the success result 2. one for the rejected error</p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p>If we&#x2019;re interested to see successful completions(what&#x2019;s in resolve)<br>we can provide only one function argument to <code>.then</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;done!&quot;</span>), <span class="number">1000</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(alert); <span class="comment">// shows &quot;done!&quot; after 1 second</span></span><br></pre></td></tr></table></figure>
+
+<p>because in then handler <strong>promise.result</strong> is passed as paramter</p>
+</blockquote>
+<h3 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h3><p>catch only for error</p>
+<p>If we&#x2019;re interested only in errors, then we can use <code>null</code> as the first argument: <code>.then(null, errorHandlingFunction)</code>. Or we can use <code>.catch(errorHandlingFunction)</code>, which is exactly the same:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Whoops!&quot;</span>)), <span class="number">1000</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// .catch(f) is the same as promise.then(null, f)</span></span><br><span class="line">promise.<span class="title function_">catch</span>(alert); <span class="comment">// shows &quot;Error: Whoops!&quot; after 1 second</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!CAUTION]</p>
+<p>The call <code>.catch(f)</code> is a complete analog of <code>.then(null, f)</code>, it&#x2019;s just a shorthand.</p>
+</blockquote>
+<h2 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h2><p>The call <code>.finally(f)</code> is similar to <code>.then(f, f)</code> in the sense that <code>f</code> runs always, when the promise is settled: be it resolve or reject.</p>
+<h3 id="Why-need-finally"><a href="#Why-need-finally" class="headerlink" title="Why need finally"></a>Why need finally</h3><p>The idea of <code>finally</code> is to set up a handler for performing cleanup/finalizing after the previous operations are complete.<br><code>finally</code> &#x7684;&#x60F3;&#x6CD5;&#x662F;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x524D;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x540E;&#x6267;&#x884C;&#x6E05;&#x7406;/&#x7EC8;&#x7ED3;&#x3002;<br>Because in real-life code after promise is produced,something should be close or clean up.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>a handler is function in promise-chain but a object in Proxy(,handler) Its translation in Chinese is &#x201C;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x201D;</p>
+</blockquote>
+<p>E.g. stopping loading indicators, closing no longer needed connections, etc.</p>
+<p>Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.</p>
+<h3 id="syntax"><a href="#syntax" class="headerlink" title="syntax"></a>syntax</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="comment">/* do something that takes time, and then call resolve or maybe reject */</span></span><br><span class="line">})</span><br><span class="line">  <span class="comment">// runs when the promise is settled, doesn&apos;t matter successfully or not</span></span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> stop loading indicator)</span><br><span class="line">  <span class="comment">// so the loading indicator is always stopped before we go on</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> show result, <span class="function"><span class="params">err</span> =&gt;</span> show error)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Differences-between-finally-f-and-then-f-f"><a href="#Differences-between-finally-f-and-then-f-f" class="headerlink" title="Differences between finally(f) and then(f,f)"></a>Differences between finally(f) and then(f,f)</h3><ol>
+<li><p>A <code>finally</code> handler has no arguments.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>In <code>finally</code> we don&#x2019;t know and we shouldn&#x2019;t know whether the promise is successful or not.</p>
+</blockquote>
+<p>That&#x2019;s all right, as our task is usually to perform &#x201C;general&#x201D; <strong>finalizing</strong> procedures.(=producing promise procedure cause when you created the state-change is <strong>final</strong>)</p>
+<p>take a look at the example above: as you can see, the <code>finally</code> handler has no arguments, and the promise outcome is handled by the next handler.</p>
+</li>
+<li><p>A <code>finally</code> handler <strong>&#x201C;passes through&#x201D;</strong> the result or error to the next suitable handler.</p>
+<p>For instance, here the result is passed through <code>finally</code> to <code>then</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;value&quot;</span>), <span class="number">2000</span>);</span><br><span class="line">})</span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;Promise ready&quot;</span>)) <span class="comment">// triggers first</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> <span class="title function_">alert</span>(result)); <span class="comment">// &lt;-- .then shows &quot;value&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><blockquote>
+<p>[!IMPORTANT]</p>
+<p>That&#x2019;s very convenient, because <code>finally</code> is <strong>not meant to</strong> process a promise result (the treasure produced). As said, it&#x2019;s a place to do generic cleanup, no matter what the outcome was.</p>
+</blockquote>
+</li>
+<li><p>A <code>finally</code> handler also shouldn&#x2019;t return anything. If it does, the returned value is silently ignored.</p>
+<blockquote>
+<p>[!WARNING]</p>
+<p>The only exception to this rule is when a <code>finally</code> handler throws an error. Then this error goes to the next handler, instead of any previous outcome.</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>Sum up finally :<br>finally is <strong>just</strong> a dutiful cleaner lady.<br>Only pass promise.result and clean<br>don&#x2019;t receive (paramter) don&#x2019;t return don&#x2019;t know (what&#x2019;s going on about promise)<br>it runs regardlessly and ensures that a piece of code executes no matter what the outcome of the promise is.<br>But If cleaning-machine malfunctions throw a Error</p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<h2 id="handlers"><a href="#handlers" class="headerlink" title="handlers"></a>handlers</h2><p>To supplementary: finally and then-catch (which means all handlers)all operate on Promise object<br>And The premise that they run is Promise object which just produced,or you can say the state of Promise object is settled<br>In below&#x2019;s case they run immediately</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// the promise becomes resolved immediately upon creation</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;done!&quot;</span>));</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(alert); <span class="comment">// done! (shows up right now)</span></span><br></pre></td></tr></table></figure>
+
+<p>Note that this makes promises more powerful than the real life &#x201C;subscription list&#x201D; scenario. If the singer has already released their song before a person signs up on the subscription list, they probably won&#x2019;t receive that song. Subscriptions in real life must be done prior to the event.<br>&#x8BA2;&#x9605;&#x53D1;&#x751F;&#x5728;&#x4E8B;&#x4EF6;&#x53D1;&#x751F;&#x4E4B;&#x524D;</p>
+</blockquote>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>Sum up handler:<br>1.operate on Promise object<br>2.when &#x201C;.handler&#x201D; &#x2018;s front is a promise fully formed,handler runs immediately</p>
+</blockquote>
+<h2 id="eg1-loadScript"><a href="#eg1-loadScript" class="headerlink" title="eg1:loadScript"></a>eg1:loadScript</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loadScript</span>(<span class="params">src, callback</span>) {</span><br><span class="line">  <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;script&quot;</span>);</span><br><span class="line">  script.<span class="property">src</span> = src;</span><br><span class="line"></span><br><span class="line">  script.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">callback</span>(<span class="literal">null</span>, script); <span class="comment">//The moment when script loads successfully the callback runs</span></span><br><span class="line">  script.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">callback</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Script load error for <span class="subst">${src}</span>`</span>)); <span class="comment">//The moment when script loads fail</span></span><br><span class="line"></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">append</span>(script);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<ol>
+<li>the onload and onerror methods of A script element (Actually HTML-Element is built-in object) implies what will happen when script loads successfully or fail</li>
+<li>To put callback directly in this position(right after &#x201C;()=&gt;&#x201D;) doesn&#x2019;t invoke the callback immediately; it just assigns it as the handler for the event.So when the event occurs callback is invoked automatically</li>
+</ol>
+</blockquote>
+<p>Let&#x2019;s rewrite it using Promises.</p>
+<p>The new function <code>loadScript</code> will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using <code>.then</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loadScript</span>(<span class="params">src</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">    <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;script&quot;</span>);</span><br><span class="line">    script.<span class="property">src</span> = src;</span><br><span class="line"></span><br><span class="line">    script.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">resolve</span>(script);</span><br><span class="line">    script.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Script load error for <span class="subst">${src}</span>`</span>));</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">append</span>(script);</span><br><span class="line">  });</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="title function_">loadScript</span>(</span><br><span class="line">  <span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">`<span class="subst">${script.src}</span> is loaded!`</span>),</span><br><span class="line">  <span class="function">(<span class="params">error</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">`Error: <span class="subst">${error.message}</span>`</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;Another handler...&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">Promises</th>
+<th align="left">Callbacks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Promises allow us to do things in the natural order. First, we run <code>loadScript(script)</code>, and <code>.then</code> we write what to do with the result.</td>
+<td align="left">We must have a <code>callback</code> function at our disposal when calling <code>loadScript(script, callback)</code>. In other words, we must know what to do with the result <em>before</em> <code>loadScript</code> is called.</td>
+</tr>
+<tr>
+<td align="left">We can call <code>.then</code> on a Promise as many times as we want. Each time, we&#x2019;re adding a new &#x201C;fan&#x201D;, a new subscribing function, to the &#x201C;subscription list&#x201D;.</td>
+<td align="left">There can be only one callback.</td>
+</tr>
+</tbody></table>
+<h2 id="eg2-delay-using-promise"><a href="#eg2-delay-using-promise" class="headerlink" title="eg2:delay using promise"></a>eg2:delay using promise</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(resolve, ms));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">delay</span>(<span class="number">3000</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;runs after 3 seconds&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<h1 id="To-supplementay"><a href="#To-supplementay" class="headerlink" title="To supplementay"></a>To supplementay</h1><p>For a Promise<br>the state change of a Promise is a one-time thing.<br>And there are only two results:alive or dead<br>fulfilled or rejected</p>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Promise</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>My First Post</title>
     <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
@@ -144,206 +344,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 <li><p>Ajax with XMLHttpRequest</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params">url</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, url);</span><br><span class="line">    xhr.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">resolve</span>(xhr.<span class="property">responseText</span>);</span><br><span class="line">    xhr.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;ajax failed&quot;</span>));</span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"><span class="title function_">ajax</span>(<span class="string">&quot;https://&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(error));</span><br></pre></td></tr></table></figure></li>
 </ol>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Promise</title>
-    <url>/2024/07/27/2024-07-27-Promise-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
-<p>Imagine that you&#x2019;re a top singer, and fans ask day and night for your upcoming song.</p>
-</blockquote>
-<span id="more"></span>
-
-<blockquote>
-<p>To get some relief, you promise to send it to them when it&#x2019;s published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can&#x2019;t publish the song, they will still be notified.</p>
-</blockquote>
-<p>For the first sight:1.What?Promise is made by the singer and<br>2.Why?it&#x2019;s produced because the result can&#x2019;t be immediate.<br>3.Efficacy?And promise connects singer and prospective subcribers. and makes it possible for the existence of delay.So it&#x2019;s actually for dealing tasks that requires <strong>time</strong>.</p>
-<p>And To map to concepts about Promise :</p>
-<ol>
-<li>&#x201C;A producing code&#x201D; is the singer. It can&#x2019;t immediately give program-flow or another-code a result so that program-flow can proceed So it make a <em>promise</em> .<br>What may be the &#x201C;producing code&#x201D; :For instance, some code that loads the data over a network and that takes <strong>time</strong></li>
-<li>A &#x201C;consuming code&#x201D;(another-code that mentioned above) that wants the result of the &#x201C;producing code&#x201D; once it&#x2019;s ready(for inputing paramters or something else) .These are the &#x201C;fans&#x201D;.</li>
-<li><strong>A <em>promise</em> is a special JavaScript</strong> object that links the &#x201C;producing code&#x201D; and the &#x201C;consuming code&#x201D; together. In terms of our analogy: this is the &#x201C;subscription list&#x201D;. The &#x201C;producing code&#x201D; takes whatever time it needs to produce the promised result, and the &#x201C;promise&#x201D; makes that result available to all of the subscribed code when it&#x2019;s ready.</li>
-</ol>
-<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><p>The constructor syntax for a promise object is:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="comment">// executor (the producing code, &quot;singer&quot;)</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>To explain:</p>
-<ol>
-<li><p>The function passed to <code>new Promise</code> is called the <em>executor</em>.</p>
-<p>When <code>new Promise</code> is created, the executor runs <strong>automatically</strong>(this is a func don&#x2019;t need to be called by&#x201D;()&#x201D;). It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the &#x201C;singer&#x201D;.</p>
-</li>
-<li><p>Its arguments <code>resolve</code> and <code>reject</code> are callbacks provided by JavaScript itself.</p>
-</li>
-<li><p>When the executor obtains the result, be it soon or late, doesn&#x2019;t matter,it should call one of these callbacks:</p>
-<ul>
-<li><p><code>resolve(value)</code> &#x2014; if the job is finished successfully, with result <code>value</code>.</p>
-</li>
-<li><p><code>reject(error)</code> &#x2014; if an error has occurred, <code>error</code> is a Error object.<br>To supplementay:</p>
-<blockquote>
-<p>[!CAUTION]</p>
-<p>The executor receives two arguments: <code>resolve</code> and <code>reject</code>. These functions are pre-defined by the JavaScript engine, so we don&#x2019;t need to create them. We should only call one of them when ready.<br>the executor may calls <code>resolve(&quot;done&quot;)</code> to produce the <strong>result</strong>(remember above we said the executor should eventually produce the result? Yeah it can be done by calling resolve)</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt, it calls <code>resolve</code> if it was successful or <code>reject</code> if there was an error.</p>
-<blockquote>
-<p>[!Important]</p>
-<p>1.So Promise constructor requires a function that contains two built-in callbacks as paramter And the function is <em>the</em> executor<br>2.executor carries two callback that is ready to be called and then produces the <strong>result</strong><br>3.result exists relating to two possible state<br>4.what is eventually returned by this syntax constructor is actually a object which is the Promise. And result is just been carried with.</p>
-</blockquote>
-</li>
-</ol>
-<hr>
-
-<p>To proceed:</p>
-<p><strong>The <code>promise</code> object returned</strong> by the <code>new Promise</code> constructor has these internal properties:</p>
-<ul>
-<li><code>state</code> &#x2014; initially <code>&quot;pending&quot;</code>, then changes to either <code>&quot;fulfilled&quot;</code> when <code>resolve</code> is called or <code>&quot;rejected&quot;</code> when <code>reject</code> is called.</li>
-<li><code>result</code> &#x2014; initially <code>undefined</code>, then changes to <code>value</code> when <code>resolve(value)</code> is called or <code>error</code> when <code>reject(error)</code> is called.</li>
-</ul>
-<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
-<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
-<p>A promise that is either fulfilled or rejected is called &#x201C;settled&#x201D;, as opposed to an initially &#x201C;pending&#x201D; promise.</p>
-<h2 id="To-be-noted-fundamental"><a href="#To-be-noted-fundamental" class="headerlink" title="To be noted (fundamental)"></a>To be noted (fundamental)</h2><ol>
-<li><strong>There can be only a single result or an error</strong></li>
-</ol>
-<p>The executor should call only one <code>resolve</code> or one <code>reject</code>. <strong>Any state change is final.</strong></p>
-<p>All further calls of <code>resolve</code> and <code>reject</code> are ignored:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">&quot;done&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;&#x2026;&quot;</span>)); <span class="comment">// ignored</span></span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;&#x2026;&quot;</span>)); <span class="comment">// ignored</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>Also, <code>resolve</code>/<code>reject</code> expect only one argument <strong>(or none)</strong> and will ignore additional arguments.</p>
-<ol start="2">
-<li><p><strong>A good habit:Reject with</strong> <code>Error</code> <strong>objects</strong></p>
-<p>In case something goes wrong, the executor should call <code>reject</code>. That can be done with any type of argument (just like <code>resolve</code>). But it is recommended to use <code>Error</code> objects (or objects that inherit from <code>Error</code>)<br>To explain: <code>reject(new Errror(&apos;wrong&apos;))</code> is better than <code>reject(&apos;wrong&apos;)</code></p>
-</li>
-<li><blockquote>
-<p>[!NOTE]</p>
-<p><strong>The</strong> <code>state</code> <strong>and</strong> <code>result</code> <strong>are internal</strong></p>
-</blockquote>
-<p>Which means :<code>state</code> and <code>result</code> of the Promise object can&#x2019;t be directly accessed.Accessing has to be done bymethods <code>.then</code>/<code>.catch</code>/<code>.finally</code> &#xFF08;They are described below.&#xFF09;</p>
-</li>
-</ol>
-<h2 id="Consumers-then-catch"><a href="#Consumers-then-catch" class="headerlink" title="Consumers:then catch"></a>Consumers:then catch</h2><p>As you might have comprehensed by now: A Promise object <strong>serves as a link</strong> between the executor (the &#x201C;producing code&#x201D; or &#x201C;singer&#x201D;) and the consuming functions (the &#x201C;fans&#x201D;) which will receive the result or error.It actually bond these two togther <strong>by something.</strong></p>
-<p>Something(mentioned above) is methods <code>.then</code> and <code>.catch</code>.</p>
-<h3 id="then"><a href="#then" class="headerlink" title="then"></a>then</h3><p>The syntax is:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">promise.<span class="title function_">then</span>(</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">/* handle a successful result */</span></span><br><span class="line">  },</span><br><span class="line">  <span class="keyword">function</span> (<span class="params">error</span>) {</span><br><span class="line">    <span class="comment">/* handle an error */</span></span><br><span class="line">  }</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>See? The promise comes from a producing code (executor)<br>(In case you forget):</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="comment">// executor (the producing code, &quot;singer&quot;)</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>And it serves as a link And it uses then/catch methods to connect with the consuming functions (that desperate to receive a result or a error)<br>You can see the consuming functions as the one above</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>(<span class="params">result</span>) { <span class="comment">/* handle a successful result */</span> },</span><br><span class="line"><span class="keyword">function</span>(<span class="params">error</span>) { <span class="comment">/* handle an error */</span> }</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>[!NOTE]</p>
-<p>the then methods <strong>could</strong> specify two functions:1.one for the success result 2. one for the rejected error</p>
-</blockquote>
-<blockquote>
-<p>[!TIP]</p>
-<p>If we&#x2019;re interested to see successful completions(what&#x2019;s in resolve)<br>we can provide only one function argument to <code>.then</code>:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;done!&quot;</span>), <span class="number">1000</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(alert); <span class="comment">// shows &quot;done!&quot; after 1 second</span></span><br></pre></td></tr></table></figure>
-
-<p>because in then handler <strong>promise.result</strong> is passed as paramter</p>
-</blockquote>
-<h3 id="catch"><a href="#catch" class="headerlink" title="catch"></a>catch</h3><p>catch only for error</p>
-<p>If we&#x2019;re interested only in errors, then we can use <code>null</code> as the first argument: <code>.then(null, errorHandlingFunction)</code>. Or we can use <code>.catch(errorHandlingFunction)</code>, which is exactly the same:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Whoops!&quot;</span>)), <span class="number">1000</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// .catch(f) is the same as promise.then(null, f)</span></span><br><span class="line">promise.<span class="title function_">catch</span>(alert); <span class="comment">// shows &quot;Error: Whoops!&quot; after 1 second</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>[!CAUTION]</p>
-<p>The call <code>.catch(f)</code> is a complete analog of <code>.then(null, f)</code>, it&#x2019;s just a shorthand.</p>
-</blockquote>
-<h2 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h2><p>The call <code>.finally(f)</code> is similar to <code>.then(f, f)</code> in the sense that <code>f</code> runs always, when the promise is settled: be it resolve or reject.</p>
-<h3 id="Why-need-finally"><a href="#Why-need-finally" class="headerlink" title="Why need finally"></a>Why need finally</h3><p>The idea of <code>finally</code> is to set up a handler for performing cleanup/finalizing after the previous operations are complete.<br><code>finally</code> &#x7684;&#x60F3;&#x6CD5;&#x662F;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x524D;&#x9762;&#x7684;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x540E;&#x6267;&#x884C;&#x6E05;&#x7406;/&#x7EC8;&#x7ED3;&#x3002;<br>Because in real-life code after promise is produced,something should be close or clean up.</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>a handler is function in promise-chain but a object in Proxy(,handler) Its translation in Chinese is &#x201C;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x201D;</p>
-</blockquote>
-<p>E.g. stopping loading indicators, closing no longer needed connections, etc.</p>
-<p>Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.</p>
-<h3 id="syntax"><a href="#syntax" class="headerlink" title="syntax"></a>syntax</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="comment">/* do something that takes time, and then call resolve or maybe reject */</span></span><br><span class="line">})</span><br><span class="line">  <span class="comment">// runs when the promise is settled, doesn&apos;t matter successfully or not</span></span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> stop loading indicator)</span><br><span class="line">  <span class="comment">// so the loading indicator is always stopped before we go on</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> show result, <span class="function"><span class="params">err</span> =&gt;</span> show error)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Differences-between-finally-f-and-then-f-f"><a href="#Differences-between-finally-f-and-then-f-f" class="headerlink" title="Differences between finally(f) and then(f,f)"></a>Differences between finally(f) and then(f,f)</h3><ol>
-<li><p>A <code>finally</code> handler has no arguments.</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>In <code>finally</code> we don&#x2019;t know and we shouldn&#x2019;t know whether the promise is successful or not.</p>
-</blockquote>
-<p>That&#x2019;s all right, as our task is usually to perform &#x201C;general&#x201D; <strong>finalizing</strong> procedures.(=producing promise procedure cause when you created the state-change is <strong>final</strong>)</p>
-<p>take a look at the example above: as you can see, the <code>finally</code> handler has no arguments, and the promise outcome is handled by the next handler.</p>
-</li>
-<li><p>A <code>finally</code> handler <strong>&#x201C;passes through&#x201D;</strong> the result or error to the next suitable handler.</p>
-<p>For instance, here the result is passed through <code>finally</code> to <code>then</code>:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;value&quot;</span>), <span class="number">2000</span>);</span><br><span class="line">})</span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">() =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;Promise ready&quot;</span>)) <span class="comment">// triggers first</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> <span class="title function_">alert</span>(result)); <span class="comment">// &lt;-- .then shows &quot;value&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><blockquote>
-<p>[!IMPORTANT]</p>
-<p>That&#x2019;s very convenient, because <code>finally</code> is <strong>not meant to</strong> process a promise result (the treasure produced). As said, it&#x2019;s a place to do generic cleanup, no matter what the outcome was.</p>
-</blockquote>
-</li>
-<li><p>A <code>finally</code> handler also shouldn&#x2019;t return anything. If it does, the returned value is silently ignored.</p>
-<blockquote>
-<p>[!WARNING]</p>
-<p>The only exception to this rule is when a <code>finally</code> handler throws an error. Then this error goes to the next handler, instead of any previous outcome.</p>
-</blockquote>
-</li>
-</ol>
-<blockquote>
-<p>[!IMPORTANT]</p>
-<p>Sum up finally :<br>finally is <strong>just</strong> a dutiful cleaner lady.<br>Only pass promise.result and clean<br>don&#x2019;t receive (paramter) don&#x2019;t return don&#x2019;t know (what&#x2019;s going on about promise)<br>it runs regardlessly and ensures that a piece of code executes no matter what the outcome of the promise is.<br>But If cleaning-machine malfunctions throw a Error</p>
-</blockquote>
-<blockquote>
-<p>[!TIP]</p>
-<h2 id="handlers"><a href="#handlers" class="headerlink" title="handlers"></a>handlers</h2><p>To supplementary: finally and then-catch (which means all handlers)all operate on Promise object<br>And The premise that they run is Promise object which just produced,or you can say the state of Promise object is settled<br>In below&#x2019;s case they run immediately</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// the promise becomes resolved immediately upon creation</span></span><br><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;done!&quot;</span>));</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(alert); <span class="comment">// done! (shows up right now)</span></span><br></pre></td></tr></table></figure>
-
-<p>Note that this makes promises more powerful than the real life &#x201C;subscription list&#x201D; scenario. If the singer has already released their song before a person signs up on the subscription list, they probably won&#x2019;t receive that song. Subscriptions in real life must be done prior to the event.<br>&#x8BA2;&#x9605;&#x53D1;&#x751F;&#x5728;&#x4E8B;&#x4EF6;&#x53D1;&#x751F;&#x4E4B;&#x524D;</p>
-</blockquote>
-<blockquote>
-<p>[!IMPORTANT]</p>
-<p>Sum up handler:<br>1.operate on Promise object<br>2.when &#x201C;.handler&#x201D; &#x2018;s front is a promise fully formed,handler runs immediately</p>
-</blockquote>
-<h2 id="eg1-loadScript"><a href="#eg1-loadScript" class="headerlink" title="eg1:loadScript"></a>eg1:loadScript</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loadScript</span>(<span class="params">src, callback</span>) {</span><br><span class="line">  <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;script&quot;</span>);</span><br><span class="line">  script.<span class="property">src</span> = src;</span><br><span class="line"></span><br><span class="line">  script.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">callback</span>(<span class="literal">null</span>, script); <span class="comment">//The moment when script loads successfully the callback runs</span></span><br><span class="line">  script.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">callback</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Script load error for <span class="subst">${src}</span>`</span>)); <span class="comment">//The moment when script loads fail</span></span><br><span class="line"></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">append</span>(script);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>[!NOTE]</p>
-<ol>
-<li>the onload and onerror methods of A script element (Actually HTML-Element is built-in object) implies what will happen when script loads successfully or fail</li>
-<li>To put callback directly in this position(right after &#x201C;()=&gt;&#x201D;) doesn&#x2019;t invoke the callback immediately; it just assigns it as the handler for the event.So when the event occurs callback is invoked automatically</li>
-</ol>
-</blockquote>
-<p>Let&#x2019;s rewrite it using Promises.</p>
-<p>The new function <code>loadScript</code> will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using <code>.then</code>:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">loadScript</span>(<span class="params">src</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">    <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;script&quot;</span>);</span><br><span class="line">    script.<span class="property">src</span> = src;</span><br><span class="line"></span><br><span class="line">    script.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">resolve</span>(script);</span><br><span class="line">    script.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`Script load error for <span class="subst">${src}</span>`</span>));</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">append</span>(script);</span><br><span class="line">  });</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="title function_">loadScript</span>(</span><br><span class="line">  <span class="string">&quot;https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">`<span class="subst">${script.src}</span> is loaded!`</span>),</span><br><span class="line">  <span class="function">(<span class="params">error</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">`Error: <span class="subst">${error.message}</span>`</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;Another handler...&quot;</span>));</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="left">Promises</th>
-<th align="left">Callbacks</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Promises allow us to do things in the natural order. First, we run <code>loadScript(script)</code>, and <code>.then</code> we write what to do with the result.</td>
-<td align="left">We must have a <code>callback</code> function at our disposal when calling <code>loadScript(script, callback)</code>. In other words, we must know what to do with the result <em>before</em> <code>loadScript</code> is called.</td>
-</tr>
-<tr>
-<td align="left">We can call <code>.then</code> on a Promise as many times as we want. Each time, we&#x2019;re adding a new &#x201C;fan&#x201D;, a new subscribing function, to the &#x201C;subscription list&#x201D;.</td>
-<td align="left">There can be only one callback.</td>
-</tr>
-</tbody></table>
-<h2 id="eg2-delay-using-promise"><a href="#eg2-delay-using-promise" class="headerlink" title="eg2:delay using promise"></a>eg2:delay using promise</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">delay</span>(<span class="params">ms</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="built_in">setTimeout</span>(resolve, ms));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">delay</span>(<span class="number">3000</span>).<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="title function_">alert</span>(<span class="string">&quot;runs after 3 seconds&quot;</span>));</span><br></pre></td></tr></table></figure>
-
-<h1 id="To-supplementay"><a href="#To-supplementay" class="headerlink" title="To supplementay"></a>To supplementay</h1><p>For a Promise<br>the state change of a Promise is a one-time thing.<br>And there are only two results:alive or dead<br>fulfilled or rejected</p>
 ]]></content>
       <categories>
         <category>Front-end</category>
@@ -580,31 +580,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Server</title>
-    <url>/2024/09/02/2024-09-02-Server-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
-<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
-<span id="more"></span>
-
-<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
-<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
-<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
-<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
-<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
-<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
-<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
-<hr>
-
-<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Bubbling and capturing</title>
     <url>/2024/10/22/Bubbling%20and%20capturing/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
@@ -668,6 +643,31 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Server</title>
+    <url>/2024/09/02/2024-09-02-Server-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
+<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
+<span id="more"></span>
+
+<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
+<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
+<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
+<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
+<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
+<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
+<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
+<hr>
+
+<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ref and Reactive in Vue</title>
     <url>/2024/09/23/Ref%E5%92%8CReactive/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><span id="more"></span>
@@ -693,6 +693,111 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Stacks And Queues in Data structure</title>
+    <url>/2024/10/19/StackAndQueue/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
+<h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><p>Stacks and queues are two <strong>special</strong> linear lists.<br>In terms of structure, both are linear lists, but in terms of operation, the basic operations they support are only a <strong>subset</strong> of linear list operations So they are linear lists with <strong>restricted</strong> operations.</p>
+<h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h2><p>It is a linear list that allows insertion or deletion <strong>only</strong> at the <strong>end</strong> of the list.<br>The end that <strong>allows</strong> insertion and deletion is called the <strong>top</strong> of the stack, and the other side is called the bottom of the stack.</p>
+<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>Above gives it a feature : <strong>Last In First Out</strong> (LIFO)<br>The latest node added to a stack is the node which is eligible to be removed first.</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASQAAACtCAMAAAAu7/J6AAAAxlBMVEX///9qtf8A18es7+gAAABfsf9ks/+n0f+t1P+68ezO9fHy/Pvr+/kA282e7OVO4dV65t3g+fbe7f/U9/LX6P/m8P/v9P+z8Oq0tLSBv/+Rxv9cr//G8+/B3v/O5P/5//zFxcX19fW3t7fAwMCpqans7Ozc3Ny42f/Ozs7t7e3Z2dkQEBCfn58eHh49PT32+v92dnaUlJSYyv8vLy+CgoJgYGCJiYlsbGxNTU1CQkIYGBgqKipWVlY2NjZkZGR1u/+P6+Nm5dvIVK28AAALcklEQVR4nO2dbXuayhaGl+mAtml2W6sWpBoGBiQgosa3aIxn//8/dQbS3S2vA2gFzpnnQ3vJ5QPDzcxi1mIiAFxcXFxcXFxcXFxcXFxcXFxcXFxcXBXKsqtuQQNkEc2oug21lyVJko6rbkWdZVi65IuYVbekrsKWRKSAkvZUdVtqKqwSycbBcOPdKEW/47VlVdyS2uqJdx+mbKJW3YTayyJ8AsmSSvjskSXOiC2LM2LK4JNrpjC52bSIEE21i/ZaiWi6VdwkUdP18k9du9quWDJNW9WIpBY6ZSMwkcImi5r0K40R49YBCZt68VJMYCp6xtigedZVMGnqNfZSTE8qKZ5A4zJlLmqSLu8EBqmkcIT1EpGQJuAlTNbluYR+8R5KypS04pfHkKRSpsvqPri6KRLWSPG20x5YosHqZZMcU7rEfaFKTfStMid8WWqqqheYL1ZJSiVM9iV9Sas2+VfL3DZKUiodV/AV7o8XSS8z3NUS0ZuiLXsbxyVi53UlqSVMml7CVDqzwNXMks5UKrvG5Uxlc9SqGfmPZkqY7DIX16y8R5RXqQt8u1F6ue7v2d/5/BjdEP5oJ3Slx8/RLZENSb2CaTKSIjDLlKg83/mtL1/Z33n4K/z5413kCwmJ+l8PkQ2f7iKXQ4rPXX5Ed/zt7lt4gxbvtD+jpvu777EvRfXtrgilq0Cy4rcdNqSE/seGZJKYKQHSJ4DJMF2TSiAlFCLYkBImL2xIEJ9RJvakoSKmS5CrgJQw3tiQEnKFHJDi4y0J0kBoZUnp3x4SBt0CHO5MTEjYzzojJiYkDJaOI6YkSH0lBEUUxNBnoXtzSJgEq6HCl5gJSfJdkWoaE9K7KTwPyAFpMh6dxGoh0RDsK7yNCckMTAV7kkHiJiYk0fO3ymK1kECTYgta2DHJX2gWiUrsmKRSUyQqsSCJIxgrIxhVDcmQpOhUmA3pSZKiMwc2JBzrsuyeJLdbSrt6SKDHbuc57m7xgl2Ou1u8rMmOSaLchX7FgRv8J0zRLTkg4VgilgMSxEw5ArfsgVd5TEpQDkhx5YEUExOSoIjKEroCh3SmaODugUwh9Tmkc0UhTcDrAbQrGG6DpZyuUZ0gtYQRDUmd80TlRpC8jPxRFJVOnSDRrKSlhPIS5TaQRtkZpFgxJC+7eYJ3E0iTcMYYzSCVK0IaDDP67NJLLpVMFCG9UkI7egWQRLkX3nBNSK0w/0iXlVMqk/1Ruro3KrqFmAhLCN1hrwnpc1dpZUkZ1Ld8ew6J3mMhNFe7KqReaMd0rIRHttAUSO3B8kaQxGHX6y7PKTWlJ9HLO7wNJHFIJ2gAw7ODNwaS3/ibQBJ60FZGoYNzSLHhdpIFCqndSEiCDN3QnPbPBW464MbnWxoD6dTr0hwyFCn+GCR57DUzJp0GVN5NIMmi0obzTY2B1FIEqhsMN3EAQxqTxg2BNM6cB4unPwSpE0wB5IYMN1gGvSdN3T803IR2tz+WQylRnSFBf5wu73pFt1haIjQnLWHqalUAL3tgtxqzPilB1yuVjEQlXa0ehxRUJr1+uqA5K90SlAxp0E0XpELKNiVDyjJ5tYY0EdLviUqrmzLcskxiynAbi1mmcX0hPfZZk6vrBe6skq//IOB7bSGNGYv0ckwB4uebOAXIvhy3eqTEFBuSQBOxyNMDNiRBlFvhDTkgxU1NgUSjCYRTwByQaDTJVSqJPMGlG3tVLwdMEguSOILuJFKJZeduE+hPvBxFt9BagDYMJgPoNGPpTQiSMB6clHG4EsuGNPJOkZV9OSBNvKHSCdVXmgKpRe/5Sh+WhSC1RGrqhTpFjuEmKiK9HNUvB4wrx91NoOOgYEyipiF47EdK0XXcMkBoJ42BJCzBOxWF5Ne45aKQfEbDJgbud0ZK0bsb7UeyUBBSwEhpIiRxSScAnYlcLHDTfjTqTNgPAkKBWw5MyybGpPetoZo+G1Kwtj+0OCMHpEGwddCQu1to5Vc7ULF5UmsZM7Fn3OK7qZE96deKqrMtAnvpTYIpR0yKmar4U64kJUHyxKzknEby4ou4hJRFXHKWSTzVt1RyD/1hRtPbqcsBM0xpywG9ZYZpOKgzJJautrCUaaozpFE7Xb00SAxTMqRxhmlca0hy1p8PK5NkSJl/c6y0kyG10xffiiKNfrWF9NjLrheKiZAYRUbRK/GHysKgvpCiK+QjN7t85duIKV/5NmpqyjyJNrzTDrU9XxUgasoDSWh3mglJPA0gPCryJLitPkBRSKJfKQ4vIGgIJHHoQWFIokxNXlFIJz95ayakCUyKQ2pTU1FI4hBGXjMh0ZFzKjHcTq3iPUk8iU2F5GdQhSH5psKQqBoLqUxP8k3/V5D8nlS0fOs/+/eUguVbenvzQGhi+bbV6tAY3JELQmr7pmLlWxruJwAhU2MgnYKtnWKVSTHYWuzhZEsIir6hJ6M1hhROSxIWf7N7UsyUa8FE7Eg1hsRIcFs8waWQYJhVwFBGiT2JYercpFTyhfmVxzgk9hG+xiH59bNOuroA/4mavt39pNEkw0Szsg9xSD8Aehmmcb5T+Fc/7j4wvvH4NbrD+4e/WaXYj3d/RTc9fGG16+dDrFs/PLDqt98f/o5u+sI0fXtg941zfb1j6mPU8+mB6Ym1nDaMaYq3/HMZ0z3b9JDjh1rP9f0DQwkd4P4Hw/Mp4UCPLNPPpOZ9ZJhiV7C0iYuLi4uLi4vrz8lYlXhbwNOqxA//41WVb0f6V8a28KsdbBT/4XX2cdCiuAmjVXHTZfr1C9cY/nnDh/8vcZ7eP2Wwwmf/Yx+SlOMVIf/8nvYvk4GmTBP+fSj8vgOMNvleRoLP/r3o9SWbPZqD6q6cV83dL2AxW6BnmxyeDxt3C3B8S7FNZxt0sOC4Bc3R8Rq5xHTWBzd7HEiHhePqMFuD5Uh4i/ZTg5r200yT6i7cPYHXFzCdKcyRs8HO69HZsE5s/bZFuyfQZ+ioATkGzS2pKVLpsS1nZR1ce4uMhbOwnl/g7aDiFTIspKb56PfcHT5QSEhdINsybWdr75zMg0nOyj4+w/EVLCQRZFkWhWSvncyXHan+fhHsKCQ01ZFuq+DsaFNZb9FZ7zXJ2Rhoa9LTIs7GPrwwHKnaPc/n7tZCGrzsgCBzgQx4c2B1wH6bNs9pvin93nZvPAeQCNqRYLitUObBJHpmG8eYBZB0NCPBcPN3lSGVXqgpMl8DSBY6TrE/3CQ2JJcOhFcJWfRghNBjzN2yb57aHVXLMtUzSKYPaU4hwevsmBqLA0juOyQdtLUzN2ngZkKyYfULEgF9u3/zIS3YkBa/IC3A2tL+SwM3KQ5pWxoSQVN7YZ1B2hPVXVPqEqbRwE2NdlOHWM4aZkd77ui2jmdveSA5U5uO5d2ztXEkU8O7XR5IdKS8uH4AWOynTxKsZ3khWfTk/OE294cbsdxXhiNdG4RmtkqHynHm9+rFYYZeDLD29JTxIf1WO3Vf0MwA3UErpBOEjqY/BZgzILk7+kV/5yuHaA462P4UgAVpv0OuBeYBrfYLanVVCCCx3v+3fj4ieuvRD8ilgfu9uVfSeYu1jKs1RSX6biSQ5Lspqyh0V8p9J/eH228Hyb4QBTWd/Xse63n690iZ66LNyryVc1bu1j3fnX2QXip+pyIXF1dBRQLibF9NM+otJ1yz2B0rakddpWoGTVMXNhha8FZy/7MPSVerbll99OrOkOo8H3Y22jtHjF/QARmvRzp9ruZNmHUURnP/fWs+ET/NUad08mbSvM0qUw/7n9UcOSvQafYGZD1ztW2QsL0+uy6ff53JXCFbpz1pg1TN0TaOSXvWbvbkZz5c78KzxdwxLLQjNPV/Q5LpvFBOu2fKjMekf4TJfEUz6umcGKuVPbXAXs01mC4Ab7LrqlxcXFxcXFxcXFxcXFxcXFxcXFxcXFy30n8BPEecs4GbF90AAAAASUVORK5CYII=" alt="Stack Data Structure and Implementation in Python, Java and C/C++"></p>
+<h2 id="basic-OP-code"><a href="#basic-OP-code" class="headerlink" title="basic OP code"></a>basic OP code</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* &#x521D;&#x59CB;&#x5316;&#x6808; */</span></span><br><span class="line">stack&lt;<span class="type">int</span>&gt; stack;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/* &#x5143;&#x7D20;&#x5165;&#x6808; */</span></span><br><span class="line">stack.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x8BBF;&#x95EE;&#x6808;&#x9876;&#x5143;&#x7D20; */</span></span><br><span class="line">    <span class="type">int</span> top = stack.<span class="built_in">top</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x5143;&#x7D20;&#x51FA;&#x6808; */</span></span><br><span class="line">    stack.<span class="built_in">pop</span>(); <span class="comment">// &#x65E0;&#x8FD4;&#x56DE;&#x503C;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x83B7;&#x53D6;&#x6808;&#x7684;&#x957F;&#x5EA6; */</span></span><br><span class="line">    <span class="type">int</span> size = stack.<span class="built_in">size</span>();</span><br><span class="line"><span class="comment">/* &#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x7A7A; */</span></span><br><span class="line">    <span class="type">bool</span> empty = stack.<span class="built_in">empty</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Stack-Realization-Based-on-LinkList"><a href="#Stack-Realization-Based-on-LinkList" class="headerlink" title="Stack Realization Based on LinkList"></a>Stack Realization Based on LinkList</h2><h3 id="stack-structure"><a href="#stack-structure" class="headerlink" title="stack structure"></a>stack structure</h3><p>every element in this stack is a <strong>listNode</strong> which has this structure</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">listNode</span>{</span><br><span class="line"><span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">MyStack</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    listNode* next;</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">listNode</span>();</span><br><span class="line">    <span class="built_in">listNode</span>(<span class="type">int</span> nodeData, listNode* succ = <span class="literal">NULL</span>);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<p>The indispensable compositions of a stack are</p>
+<ol>
+<li>a top-pointer for keeping track of the <strong>most recently added item</strong>, the stack&#x2019;s top pointer allows you to quickly access and manipulate the top element.</li>
+<li>stackSize</li>
+</ol>
+<p>So we have</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    listNode* topNode;</span><br><span class="line">    <span class="type">int</span> stackSize;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Some-real-shit"><a href="#Some-real-shit" class="headerlink" title="Some real shit"></a>Some real shit</h1><p>&#x6D17;&#x5E72;&#x51C0;&#x7684;&#x76D8;&#x5B50;&#x603B;&#x662F;&#x9010;&#x4E2A;&#x5F80;&#x4E0A;&#x53E0;&#x653E;&#x5728;&#x5DF2;&#x7ECF;&#x6D17;&#x597D;&#x7684;&#x76D8;&#x5B50;&#x4E0A;&#x9762;&#xFF0C;&#x800C;&#x7528;&#x65F6;&#x4ECE;&#x4E0A;&#x5F80;&#x4E0B;&#x9010;&#x4E2A;&#x53D6;&#x7528; &#x3002;</p>
+<p>So In programming, if you need to use data <strong>in the reverse order</strong> of how it was saved, you can use a stack to do it.</p>
+<h2 id="&#x62EC;&#x53F7;&#x5339;&#x914D;&#x7684;&#x68C0;&#x9A8C;"><a href="#&#x62EC;&#x53F7;&#x5339;&#x914D;&#x7684;&#x68C0;&#x9A8C;" class="headerlink" title="&#x62EC;&#x53F7;&#x5339;&#x914D;&#x7684;&#x68C0;&#x9A8C;"></a>&#x62EC;&#x53F7;&#x5339;&#x914D;&#x7684;&#x68C0;&#x9A8C;</h2><p>&#x5047;&#x8BBE;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x5141;&#x8BB8;&#x5305;&#x542B;&#x4E24;&#x79CD;&#x62EC;&#x53F7;&#xFF1A;&#x5706;&#x62EC;&#x53F7;&#x548C;&#x65B9;&#x62EC;&#x53F7;&#xFF0C;&#x5176;&#x5D4C;&#x5957;&#x7684;&#x987A;&#x5E8F;&#x968F;&#x610F;&#xFF0C;&#x5373;([ ] (&#xFF09;)&#x6216;[ ([ ] [ &#xFF3D;&#xFF09;&#xFF3D;&#x7B49;&#x4E3A;&#x6B63;&#x786E;&#x7684;&#x683C;&#x5F0F;&#xFF0C;&#xFF3B;&#xFF08;&#xFF3D;&#x6216;&#xFF08;&#xFF3B;&#xFF08;&#xFF09;&#xFF09;&#x6216;&#xFF08;&#xFF08;&#xFF09;&#xFF3D;&#xFF09;&#x5747;&#x4E3A;&#x4E0D;&#x6B63;&#x786E;&#x7684;&#x683C;&#x5F0F;&#x3002;&#x68C0;&#x9A8C;&#x62EC;&#x53F7;&#x662F;&#x5426;&#x5339;&#x914D;&#x7684;&#x65B9;&#x6CD5;&#x53EF;&#x7528;&#x201D;<strong>&#x671F;&#x5F85;&#x7684;&#x6025;&#x8FEB;&#x7A0B;&#x5EA6;</strong>&#x201D;&#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#x6765;&#x63CF;&#x8FF0; &#x3002; &#x4F8B;&#x5982;&#xFF0C;&#x8003;&#x8651;&#x4E0B;&#x5217;&#x62EC;&#x53F7;&#x5E8F;&#x5217;&#xFF1A;<br>[ ([ ] [ ]) ] &#x6309;&#x4ECE; 1-8 &#x7F16;&#x53F7;</p>
+<p>&#x5F53;&#x8BA1;&#x7B97;&#x673A;&#x63A5;&#x53D7;&#x4E86;&#x7B2C;&#x4E00;&#x4E2A;&#x62EC;&#x53F7;&#x540E;,&#x5B83;&#x671F;&#x5F85;&#x7740;&#x4E0E;&#x5176;&#x5339;&#x914D;&#x7684;&#x7B2C;&#x516B;&#x4E2A;&#x62EC;&#x53F7;&#x7684;&#x51FA;&#x73B0;,&#x7136;&#x800C;&#x7B49;&#x6765;&#x7684;&#x5374;&#x662F;<br>&#x7B2C;&#x4E8C;&#x4E2A;&#x62EC;&#x53F7;,&#x663E;&#x7136;&#x7B2C;&#x4E8C;&#x4E2A;&#x62EC;&#x53F7;&#x7684;&#x671F;&#x5F85;&#x6025;&#x8FEB;&#x6027;&#x9AD8;&#x4E8E;&#x7B2C;&#x4E00;&#x4E2A;&#x62EC;&#x53F7;,&#x6B64;&#x65F6;&#x7B2C;&#x4E00;&#x4E2A;&#x62EC;&#x53F7;&#x201C;[&#x201D;&#x53EA;&#x80FD;&#x6682;&#x65F6;&#x9760;<br>&#x8FB9;,&#x800C;&#x8FEB;&#x5207;&#x7B49;&#x5F85;&#x4E0E;&#x7B2C;&#x4E8C;&#x4E2A;&#x62EC;&#x53F7;&#x76F8;&#x5339;&#x914D;&#x7684;&#x3001;&#x7B2C;&#x4E03;&#x4E2A;&#x62EC;&#x53F7;&#x201C;)&#x201D;&#x7684;&#x51FA;&#x73B0;&#x3002;&#x7C7B;&#x4F3C;&#x5730;,&#x56E0;&#x7B49;&#x6765;&#x7684;&#x662F;&#x7B2C;&#x4E09;&#x4E2A;<br>&#x62EC;&#x53F7;&#x201C;[&#x201D;,&#x5176;&#x671F;&#x5F85;&#x5339;&#x914D;&#x7684;&#x7A0B;&#x5EA6;&#x8F83;&#x7B2C;&#x4E8C;&#x4E2A;&#x62EC;&#x53F7;&#x66F4;&#x6025;&#x8FEB;,&#x5219;&#x7B2C;&#x4E8C;&#x4E2A;&#x62EC;&#x53F7;&#x4E5F;&#x53EA;&#x80FD;&#x9760;&#x8FB9;,&#x8BA9;&#x4F4D;&#x4E8E;&#x7B2C;&#x4E09;&#x4E2A;<br>&#x62EC;&#x53F7;&#x3002;&#x5728;&#x63A5;&#x53D7;&#x4E86;&#x7B2C;&#x56DB;&#x4E2A;&#x62EC;&#x53F7;&#x4E4B;&#x540E;,&#x7B2C;&#x4E09;&#x4E2A;&#x62EC;&#x53F7;&#x7684;<strong>&#x671F;&#x5F85;&#x5F97;&#x5230;&#x6EE1;&#x8DB3;</strong>,<strong>&#x6D88;&#x89E3;&#x4E4B;&#x540E;</strong>,&#x7B2C;&#x4E8C;&#x4E2A;&#x62EC;&#x53F7;&#x7684;&#x671F;&#x5F85;<br>&#x5339;&#x914D;&#x5C31;&#x6210;&#x4E3A;&#x5F53;&#x524D;&#x6700;&#x6025;&#x8FEB;&#x7684;&#x4EFB;&#x52A1;&#x4E86;, &#x2026;&#x2026; ,&#x4F9D;&#x6B21;&#x7C7B;&#x63A8;&#x3002;&#x53EF;&#x89C1;,&#x8FD9;&#x4E2A;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x6070;&#x4E0E;&#x6808;&#x7684;&#x7279;&#x70B9;&#x76F8;&#x543B;&#x5408;&#x3002;<br>&#x6BCF;&#x8BFB;&#x5165;&#x4E00;&#x4E2A;&#x62EC;&#x53F7;,&#x82E5;&#x662F;&#x53F3;&#x62EC;&#x53F7;,&#x5219;&#x6216;&#x8005;&#x4F7F;&#x7F6E;&#x4E8E;&#x6808;&#x9876;&#x7684;&#x6700;&#x6025;&#x8FEB;&#x7684;&#x671F;&#x5F85;&#x5F97;&#x4EE5;&#x6D88;&#x89E3;,&#x6216;&#x8005;&#x662F;&#x4E0D;&#x5408;&#x6CD5;&#x7684;<br>&#x60C5;&#x51B5;;&#x82E5;&#x662F;&#x5DE6;&#x62EC;&#x53F7;,&#x5219;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x66F4;&#x6025;&#x8FEB;&#x7684;&#x671F;&#x5F85;&#x538B;&#x5165;&#x6808;&#x4E2D;,&#x81EA;&#x7136;&#x4F7F;&#x539F;&#x6709;&#x7684;&#x5728;&#x6808;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x672A;&#x6D88;<br>&#x89E3;&#x7684;&#x671F;&#x5F85;&#x7684;&#x6025;&#x8FEB;&#x6027;&#x90FD;&#x964D;&#x4E86;&#x4E00;&#x7EA7;&#x3002;</p>
+<h2 id="Some-data-structures-are-Originally-recursive"><a href="#Some-data-structures-are-Originally-recursive" class="headerlink" title="Some data structures are Originally recursive"></a>Some data structures are <strong>Originally</strong> recursive</h2><p>For example ,linklist,</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class listNode</span><br><span class="line">{</span><br><span class="line">    friend class linkList;</span><br><span class="line">    friend void merge(linkList &amp;, linkList &amp;);</span><br><span class="line">    float data;</span><br><span class="line">    listNode *next;}</span><br></pre></td></tr></table></figure>
+
+<p>It uses itself inside its definition,</p>
+<h2 id="&#x4E24;&#x6808;&#x5171;&#x4EAB;&#x7A7A;&#x95F4;"><a href="#&#x4E24;&#x6808;&#x5171;&#x4EAB;&#x7A7A;&#x95F4;" class="headerlink" title="&#x4E24;&#x6808;&#x5171;&#x4EAB;&#x7A7A;&#x95F4;"></a>&#x4E24;&#x6808;&#x5171;&#x4EAB;&#x7A7A;&#x95F4;</h2><p>&#x4E24;&#x6808;&#x5171;&#x4EAB;&#x7A7A;&#x95F4;&#x6307;&#x7684;&#x662F;&#x4E24;&#x4E2A;&#x6808;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x5B58;&#x50A8;&#x6570;&#x7EC4;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5404;&#x81EA;&#x5206;&#x914D;&#x72EC;&#x7ACB;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x6808; 1 &#x4ECE;&#x6570;&#x7EC4;&#x7684;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E;&#xFF08;V[1]&#xFF09;&#x5411;&#x4E0A;&#x751F;&#x957F;&#xFF0C;&#x800C;&#x6808; 2 &#x4ECE;&#x6570;&#x7EC4;&#x7684;&#x672B;&#x5C3E;&#xFF08;V[m]&#xFF09;&#x5411;&#x4E0B;&#x751F;&#x957F;</p>
+<h3 id="&#x6808;&#x6EE1;&#x7684;&#x6761;&#x4EF6;&#xFF1A;"><a href="#&#x6808;&#x6EE1;&#x7684;&#x6761;&#x4EF6;&#xFF1A;" class="headerlink" title="&#x6808;&#x6EE1;&#x7684;&#x6761;&#x4EF6;&#xFF1A;"></a>&#x6808;&#x6EE1;&#x7684;&#x6761;&#x4EF6;&#xFF1A;</h3><ul>
+<li>&#x5982;&#x679C;&#x6808; 1 &#x7684;&#x9876;&#x7AEF;&#xFF08;<code>top[1]</code>&#xFF09;&#x4E0E;&#x6808; 2 &#x7684;&#x5E95;&#x90E8;&#xFF08;<code>top[2]</code>&#xFF09;&#x76F8;&#x9047;&#xFF0C;&#x8BF4;&#x660E;&#x6CA1;&#x6709;&#x7A7A;&#x95F4;&#x53EF;&#x7528;&#x3002;</li>
+<li>&#x6240;&#x4EE5;&#xFF0C;&#x6808;&#x6EE1;&#x7684;&#x6761;&#x4EF6;&#x662F; <code>top[1] + 1 == top[2]</code>&#x3002;</li>
+</ul>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/a9226779ad20aad9.jpg"></p>
+<h1 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h1><p>what is Queue?<br>A queue is a data structure that follows the First-In-First-Out (FIFO) principle. This means that the first element added to the queue will be the first one to be removed. Queues are commonly used in scenarios where order needs to be <strong>preserved</strong>.</p>
+<p>In a queue, you add items at the rear and remove them from the front. This creates a first-in, first-out (FIFO) structure, meaning the first item added is the first one to be removed.</p>
+<h2 id="basic-op"><a href="#basic-op" class="headerlink" title="basic op"></a>basic op</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/_ Initialize the queue _/</span><br><span class="line">queue&lt;int&gt; queue;</span><br><span class="line"></span><br><span class="line">/_ Add elements to the queue _/</span><br><span class="line">queue.push(1);</span><br><span class="line"></span><br><span class="line">/_ Access the front element of the queue _/</span><br><span class="line">int front = queue.front();</span><br><span class="line"></span><br><span class="line">/_ Remove the front element from the queue _/</span><br><span class="line">queue.pop(); // No return value</span><br><span class="line"></span><br><span class="line">/_ Get the size of the queue _/</span><br><span class="line">int size = queue.size();</span><br><span class="line"></span><br><span class="line">/_ Check if the queue is empty _/</span><br><span class="line">bool empty = queue.empty();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="senario"><a href="#senario" class="headerlink" title="senario"></a>senario</h2><p>In server environments, queues help manage incoming requests, processing them in the order they arrive to maintain fairness. Why fairness? Because the first request that arrives should be the first one to be processed.<br>I can articulate this by using server-side-code</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">processRequest</span><span class="params">(std::queue&lt;Request&gt;&amp; requests)</span> </span>{</span><br><span class="line">    <span class="keyword">while</span> (!requests.<span class="built_in">empty</span>()) {</span><br><span class="line">        Request request = requests.<span class="built_in">front</span>();</span><br><span class="line">        requests.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="built_in">process</span>(request);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h2 id="implementation"><a href="#implementation" class="headerlink" title="implementation"></a>implementation</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyQueue</span> {</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span>* queue;       <span class="comment">// Array to hold the queue elements</span></span><br><span class="line">    <span class="type">int</span> capacity;     <span class="comment">// Maximum number of elements the queue can hold</span></span><br><span class="line">    <span class="type">int</span> front;        <span class="comment">// Index of the front element</span></span><br><span class="line">    <span class="type">int</span> rear;         <span class="comment">// Index of the rear element</span></span><br><span class="line">    <span class="type">int</span> count;        <span class="comment">// Current size of the queue</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Constructor to initialize the queue</span></span><br><span class="line">    <span class="built_in">MyQueue</span>(<span class="type">const</span> <span class="type">int</span>&amp; capacity) : <span class="built_in">capacity</span>(capacity), <span class="built_in">front</span>(<span class="number">0</span>), <span class="built_in">rear</span>(<span class="number">-1</span>), <span class="built_in">count</span>(<span class="number">0</span>) {</span><br><span class="line">        queue = <span class="keyword">new</span> <span class="type">int</span>[capacity]; <span class="comment">// Allocate memory for the queue</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Destructor to free memory</span></span><br><span class="line">    ~<span class="built_in">MyQueue</span>() {</span><br><span class="line">        <span class="keyword">delete</span>[] queue; <span class="comment">// Deallocate the queue array</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Additional methods like enqueue, dequeue, etc., can be added here</span></span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<p>&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x961F;&#x5217;&#x7684; rear &#x662F;&#x6307;&#x53EF;&#x4EE5;&#x52A0;&#x5165;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15;&#x5417;&#xFF0C;&#x8FD8;&#x662F;&#x76EE;&#x524D;&#x961F;&#x5217;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15; front &#x5462;</p>
+<ol>
+<li><p>**<code>front</code>**&#xFF1A;&#x6307;&#x5411;&#x961F;&#x5217;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x3002; &#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x8FD9;&#x662F;&#x5373;&#x5C06;&#x88AB;&#x5220;&#x9664;&#x7684;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15;&#x3002;</p>
+</li>
+<li><p><strong><code>rear</code><strong>&#xFF1A;</strong>&#x6307;&#x5411;&#x53EF;&#x4EE5;&#x63D2;&#x5165;&#x5143;&#x7D20;&#x7684;&#x4F4D;&#x7F6E;</strong>&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;<code>rear</code> &#x662F;&#x4E0B;&#x4E00;&#x4E2A;&#x8981;&#x63D2;&#x5165;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x6307;&#x5411;&#x4E0B;&#x4E00;&#x4E2A;&#x53EF;&#x7528;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x800C;&#x4E0D;&#x662F;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15;&#x3002;</p>
+</li>
+<li><h3 id="&#x961F;&#x5217;&#x7684;&#x72B6;&#x6001;"><a href="#&#x961F;&#x5217;&#x7684;&#x72B6;&#x6001;" class="headerlink" title="&#x961F;&#x5217;&#x7684;&#x72B6;&#x6001;"></a>&#x961F;&#x5217;&#x7684;&#x72B6;&#x6001;</h3><ul>
+<li><strong>&#x7A7A;&#x961F;&#x5217;</strong>&#xFF1A;<code>front</code> &#x548C; <code>rear</code> &#x90FD;&#x6307;&#x5411;&#x540C;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#xFF0C;&#x4E14;&#x961F;&#x5217;&#x4E3A;&#x7A7A;&#x3002;</li>
+<li><strong>&#x6EE1;&#x961F;&#x5217;</strong>&#xFF1A;<code>rear</code> &#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x662F; <code>front</code>&#xFF0C;&#x5373; <code>(rear + 1) % capacity == front</code> &#x5FAA;&#x73AF;&#x8FC7;&#x6765;&#x7684;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x7684;"><a href="#&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x7684;" class="headerlink" title="&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x7684;"></a>&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x7684;</h2><h3 id="&#x961F;&#x5217;&#x521D;&#x59CB;&#x5316;"><a href="#&#x961F;&#x5217;&#x521D;&#x59CB;&#x5316;" class="headerlink" title="&#x961F;&#x5217;&#x521D;&#x59CB;&#x5316;"></a>&#x961F;&#x5217;&#x521D;&#x59CB;&#x5316;</h3><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x6709;&#x4E00;&#x4E2A;&#x5BB9;&#x91CF;&#x4E3A; 5 &#x7684;&#x961F;&#x5217;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">capacity = 5</span><br><span class="line">queue = [_, _, _, _, _]</span><br><span class="line">front = 0</span><br><span class="line">rear = 0</span><br><span class="line">count = 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x7A7A;&#x961F;&#x5217;&#x72B6;&#x6001;"><a href="#&#x7A7A;&#x961F;&#x5217;&#x72B6;&#x6001;" class="headerlink" title="&#x7A7A;&#x961F;&#x5217;&#x72B6;&#x6001;"></a>&#x7A7A;&#x961F;&#x5217;&#x72B6;&#x6001;</h3><p>&#x5728;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x961F;&#x5217;&#x4E3A;&#x7A7A;&#xFF0C;<code>front</code> &#x548C; <code>rear</code> &#x90FD;&#x6307;&#x5411;&#x4F4D;&#x7F6E; 0&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">queue = [_, _, _, _, _]</span><br><span class="line">front = 0</span><br><span class="line">rear = 0</span><br><span class="line">count = 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="&#x63D2;&#x5165;&#x5143;&#x7D20;"><a href="#&#x63D2;&#x5165;&#x5143;&#x7D20;" class="headerlink" title="&#x63D2;&#x5165;&#x5143;&#x7D20;"></a>&#x63D2;&#x5165;&#x5143;&#x7D20;</h3><p>&#x6211;&#x4EEC;&#x4F9D;&#x6B21;&#x63D2;&#x5165; 4 &#x4E2A;&#x5143;&#x7D20;&#xFF08;10, 20, 30, 40&#xFF09;&#xFF1A;</p>
+<ol>
+<li><p>&#x63D2;&#x5165; 10&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">queue = [10, _, _, _, _]</span><br><span class="line">front = 0</span><br><span class="line">rear = 1</span><br><span class="line">count = 1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x63D2;&#x5165; 20</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">queue = [10, 20, _, _, _]</span><br><span class="line">front = 0</span><br><span class="line">rear = 2</span><br><span class="line">count = 2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x63D2;&#x5165; 30</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">queue = [10, 20, 30, _, _]</span><br><span class="line">front = 0</span><br><span class="line">rear = 3</span><br><span class="line">count = 3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x63D2;&#x5165; 40</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">queue = [10, 20, 30, 40, _]</span><br><span class="line">front = 0</span><br><span class="line">rear = 4</span><br><span class="line">count = 4</span><br></pre></td></tr></table></figure>
+</li>
+<li><h3 id="&#x6EE1;&#x961F;&#x5217;&#x72B6;&#x6001;"><a href="#&#x6EE1;&#x961F;&#x5217;&#x72B6;&#x6001;" class="headerlink" title="&#x6EE1;&#x961F;&#x5217;&#x72B6;&#x6001;"></a>&#x6EE1;&#x961F;&#x5217;&#x72B6;&#x6001;</h3><p>&#x518D;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF08;50&#xFF09;&#xFF0C;&#x961F;&#x5217;&#x5C06;&#x6EE1;&#xFF1A;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">queue = [10, 20, 30, 40, 50]</span><br><span class="line">front = 0</span><br><span class="line">rear = 0  // rear &#x56DE;&#x5230;&#x8D77;&#x70B9;</span><br><span class="line">count = 5</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h3><ol>
+<li><p>&#x6BCF;&#x6B21;&#x63D2;&#x5165;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x540E; <code>rear</code> &#x90FD;&#x4F1A;&#x66F4;&#x65B0;&#x4E3A; <code>(rear + 1) % capacity</code>&#x3002;</p>
+</li>
+<li><p>rear &#x6C38;&#x8FDC;&#x4E0D;&#x5E94;&#x8BE5;&#x7B49;&#x4E8E;=capacity &#x6700;&#x5927;&#x503C;&#x662F; capacity-1 &#x5E94;&#x4E3A;&#x5F53; rear &#x4E3A; capacity-1 &#x7684;&#x65F6;&#x5019;&#x5C31;&#x610F;&#x5473;&#x7740;&#x4E0B;&#x4E00;&#x4E2A;&#x8981;&#x63D2;&#x5165;&#x5143;&#x7D20;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;<strong>&#x4E0B;&#x4E00;&#x4E2A;&#x53EF;&#x7528;&#x7684;&#x4F4D;&#x7F6E;&#x662F;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x7A7A;&#x4F4D;&#x4E86;</strong></p>
+</li>
+<li><p><strong>&#x66F4;&#x65B0; <code>front</code> &#x7684;&#x4F4D;&#x7F6E;</strong>&#xFF1A;&#x5728;&#x5FAA;&#x73AF;&#x4E2D;&#x9700;&#x8981;&#x79FB;&#x52A8;&#x7684;&#x5143;&#x7D20;&#x4E0D;&#x9700;&#x8981;&#x6574;&#x4E2A;&#x6570;&#x7EC4;&#x79FB;&#x52A8;&#x3002;&#x4F60;&#x5E94;&#x8BE5;&#x76F4;&#x63A5;&#x66F4;&#x65B0; <code>front</code> &#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">item = queue[front]; // &#x83B7;&#x53D6; front &#x6307;&#x5411;&#x7684;&#x5143;&#x7D20;</span><br><span class="line">    front = (front + 1) % capacity; // &#x66F4;&#x65B0; front &#x7684;&#x4F4D;&#x7F6E;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority queue"></a>priority queue</h2><p>Priority Queue is a linear data structure that has the <strong>priority associated</strong> with each element. So, the elements are served in the order of highest to lowest priority. If multiple elements have the same priority, they are served as per their original order.</p>
+<p>&#x4F18;&#x5148;&#x7EA7;&#x961F;&#x5217;&#x662F;&#x4E0D;&#x540C;&#x4E8E;&#x5148;&#x8FDB;&#x5148;&#x51FA;&#x961F;&#x5217;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x961F;&#x5217;&#xFF0C;&#x6BCF;&#x6B21;&#x4ECE;&#x961F;&#x5217;&#x4E2D;&#x53D6;&#x51FA;&#x7684;&#x662F;&#x5177;&#x6709;&#x6700;&#x9AD8;&#x4F18;&#x5148;&#x6743;&#x7684;&#x5143;&#x7D20;&#x3002;</p>
+<p>&#x5728;&#x6700;&#x5C0F;&#x4F18;&#x5148;&#x961F;&#x5217; (min priority queue) &#x4E2D;&#xFF0C;&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#x7528;&#x6765;&#x641C;&#x7D22;&#x4F18;&#x5148;&#x6743;&#x6700;&#x5C0F;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x7528;&#x6765;&#x5220;&#x9664;&#x8BE5;&#x5143;&#x7D20;&#x3002;&#x6700;&#x5C0F;&#x4F18;&#x5148;&#x961F;&#x5217;&#xFF0C;&#x65E0;&#x8BBA;&#x5165;&#x961F;&#x987A;&#x5E8F;&#xFF0C;&#x5F53;&#x524D;&#x6700;&#x5C0F;&#x7684;&#x5143;&#x7D20;&#x4F18;&#x5148;&#x51FA;&#x961F;&#x3002;<br>&#x5728;&#x6700;&#x5927;&#x4F18;&#x5148;&#x961F;&#x5217; (max priority queue) &#x4E2D;&#xFF0C;&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#x7528;&#x6765;&#x641C;&#x7D22;&#x4F18;&#x5148;&#x6743;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x7528;&#x6765;&#x5220;&#x9664;&#x8BE5;&#x5143;&#x7D20;&#x3002;&#x6700;&#x5927;&#x4F18;&#x5148;&#x961F;&#x5217;&#xFF0C;&#x65E0;&#x8BBA;&#x5165;&#x961F;&#x987A;&#x5E8F;&#xFF0C;&#x5F53;&#x524D;&#x6700;&#x5927;&#x7684;&#x5143;&#x7D20;&#x4F18;&#x5148;&#x51FA;&#x961F;&#x3002;<br>&#x5BF9;&#x4E8E;&#x4F18;&#x5148;&#x6743;&#x76F8;&#x540C;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x53EF;&#x6309;&#x5148;&#x8FDB;&#x5148;&#x51FA;&#x6B21;&#x5E8F;&#x5904;&#x7406;&#x6216;&#x6309;&#x4EFB;&#x610F;&#x4F18;&#x5148;&#x6743;&#x8FDB;&#x884C;<br><img src="https://s3.bmp.ovh/imgs/2024/10/22/021ef79506a469af.png" style="zoom:150%;"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1c843578e156da30.png"></p>
+<p>&#x4F18;&#x5148;&#x961F;&#x5217;&#x5177;&#x6709;&#x6700;&#x9AD8;&#x7EA7;&#x5148;&#x51FA; (first in, largest out) &#x7684;&#x884C;&#x4E3A;&#x7279;&#x5F81;</p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/d47df35e955ad02f.png"></p>
+<h2 id="&#x53CC;&#x7AEF;&#x961F;&#x5217;"><a href="#&#x53CC;&#x7AEF;&#x961F;&#x5217;" class="headerlink" title="&#x53CC;&#x7AEF;&#x961F;&#x5217;"></a>&#x53CC;&#x7AEF;&#x961F;&#x5217;</h2><p>&#x53CC;&#x7AEF;&#x961F;&#x5217;&#x662F;&#x666E;&#x901A;&#x961F;&#x5217;&#x7684;&#x6269;&#x5C55;&#xFF0C;&#x662F;&#x6307;&#x5141;&#x8BB8;&#x4E24;&#x7AEF;&#x90FD;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5165;&#x961F;&#x548C;&#x51FA;&#x961F;&#x64CD;&#x4F5C;&#x7684;&#x961F;&#x5217;&#xFF08;&#x5373;&#x53EF;&#x4EE5;&#x5728;&#x961F;&#x5934;&#x8FDB;&#x884C;&#x5165;&#x961F;&#x548C;&#x51FA;&#x961F;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x961F;&#x5C3E;&#x8FDB;&#x884C;&#x5165;&#x961F;&#x548C;&#x51FA;&#x961F;&#x64CD;&#x4F5C;&#x7684;&#x961F;&#x5217;&#xFF09;&#x3002;&#x5176;&#x5143;&#x7D20;&#x7684;&#x903B;&#x8F91;&#x7ED3;&#x6784;&#x4ECD;&#x7136;&#x662F;&#x7EBF;&#x6027;&#x7ED3;&#x6784;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x987A;&#x5E8F;&#x5B58;&#x50A8;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x94FE;&#x5F0F;&#x5B58;&#x50A8;&#x3002;&#x5C06;&#x961F;&#x5217;&#x7684;&#x4E24;&#x7AEF;&#x5206;&#x522B;&#x79F0;&#x4E3A;&#x524D;&#x7AEF;&#x548C;&#x540E;&#x7AEF;&#xFF0C;&#x4E24;&#x7AEF;&#x90FD;&#x53EF;&#x4EE5;&#x5165;&#x961F;&#x548C;&#x51FA;&#x961F;&#x3002;<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231839719.png"></p>
+<h2 id="&#x5FAA;&#x73AF;&#x5BF9;&#x5217;"><a href="#&#x5FAA;&#x73AF;&#x5BF9;&#x5217;" class="headerlink" title="&#x5FAA;&#x73AF;&#x5BF9;&#x5217;"></a>&#x5FAA;&#x73AF;&#x5BF9;&#x5217;</h2><p>&#x5FAA;&#x73AF;&#x961F;&#x5217;&#x7684;&#x961F;&#x5934;&#x548C;&#x961F;&#x5C3E;&#x6307;&#x9488;&#x5206;&#x522B;&#x4E3A; front &#x548C; rear&#xFF0C;&#x5219;&#x5224;&#x65AD;&#x5FAA;&#x73AF;&#x961F;&#x5217;&#x4E3A;&#x7A7A;&#x7684;&#x6761;&#x4EF6;&#x662F;&#xFF08; &#xFF09;&#x3002;<br>front==rear</p>
+<h1 id="&#x57FA;&#x4E8E;-MyStack-&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;"><a href="#&#x57FA;&#x4E8E;-MyStack-&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;" class="headerlink" title="&#x57FA;&#x4E8E; MyStack &#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;"></a>&#x57FA;&#x4E8E; MyStack &#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;</h1><p>&#x4E2D;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x5199;&#x7684;&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F;&#xFF0C;&#x6BD4;&#x5982; <code>3 + 4 * 5</code>&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#xFF0C;&#x8FD0;&#x7B97;&#x7B26;&#xFF08;&#x5982; <code>+</code> &#x548C; <code>*</code>&#xFF09;&#x4F4D;&#x4E8E;&#x64CD;&#x4F5C;&#x6570;&#x4E4B;&#x95F4;&#x3002;</p>
+<p>&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#xFF08;&#x4E5F;&#x53EB;&#x9006;&#x6CE2;&#x5170;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#x5219;&#x628A;&#x8FD0;&#x7B97;&#x7B26;&#x653E;&#x5728;&#x64CD;&#x4F5C;&#x6570;&#x540E;&#x9762;&#xFF0C;&#x6BD4;&#x5982; <code>3 4 5 * +</code>&#x3002;&#x8FD9;&#x79CD;&#x8868;&#x793A;&#x6CD5;&#x4E0D;&#x9700;&#x8981;&#x62EC;&#x53F7;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD0;&#x7B97;&#x987A;&#x5E8F;&#x662F;&#x901A;&#x8FC7;&#x8FD0;&#x7B97;&#x7B26;&#x7684;&#x4F4D;&#x7F6E;&#x6765;&#x51B3;&#x5B9A;&#x7684;&#x3002;</p>
+<p>&#x8BA1;&#x7B97;&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x7528;&#x6808;&#x6765;&#x5B9E;&#x73B0;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x4ECE;&#x5DE6;&#x5230;&#x53F3;&#x904D;&#x5386;&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#xFF1A;</span><br><span class="line">&#x5982;&#x679C;&#x662F;&#x6570;&#x5B57;&#xFF0C;&#x538B;&#x5165;&#x6808;&#x4E2D;&#x3002;</span><br><span class="line">&#x5982;&#x679C;&#x662F;&#x8FD0;&#x7B97;&#x7B26;&#xFF08;&#x5982; +&#x3001;-&#x3001;*&#x3001;/&#xFF09;&#xFF0C;&#x5219;&#xFF1A;</span><br><span class="line">&#x4ECE;&#x6808;&#x4E2D;&#x5F39;&#x51FA;&#x4E24;&#x4E2A;&#x6570;&#x5B57;&#xFF08;&#x7B2C;&#x4E00;&#x4E2A;&#x5F39;&#x51FA;&#x7684;&#x4E3A;&#x53F3;&#x64CD;&#x4F5C;&#x6570;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x5F39;&#x51FA;&#x7684;&#x4E3A;&#x5DE6;&#x64CD;&#x4F5C;&#x6570;&#xFF09;&#x3002;</span><br><span class="line">&#x8FDB;&#x884C;&#x76F8;&#x5E94;&#x7684;&#x8FD0;&#x7B97;&#xFF0C;&#x5E76;&#x5C06;&#x7ED3;&#x679C;&#x538B;&#x56DE;&#x6808;&#x4E2D;&#x3002;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Stack</tag>
+        <tag>Data structure</tag>
       </tags>
   </entry>
   <entry>
@@ -763,6 +868,10 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 <li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
 </ul>
 <p><img src="https://imgur.com/wHlFmqj.png"></p>
+<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
+</ol>
 ]]></content>
       <tags>
         <tag>计算机组成原理</tag>
@@ -855,5 +964,97 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
         <tag>计算机组成原理</tag>
         <tag>cs app</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="1-&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;"><a href="#1-&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;" class="headerlink" title="1.&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;"></a>1.&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;</h1><p>1.&#x5B9E;&#x73B0;&#x65E0;&#x8868;&#x5934;&#x8282;&#x70B9;&#x7684;&#x94FE;&#x6808;&#x7C7B;MyStack</p>
+<p>l &#x6808;&#x521D;&#x59CB;&#x5316;, MyStack();//&#x521B;&#x5EFA;&#x6808;</p>
+<p>l &#x9500;&#x6BC1;&#x6808;,~MyStack();//&#x6E05;&#x9664;&#x6808;&#x5185;&#x5143;&#x7D20;,&#x9500;&#x6BC1;&#x6808;</p>
+<p>l &#x5165;&#x6808;, bool push(const int&amp;);//&#x5165;&#x6808;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false</p>
+<p>l &#x51FA;&#x6808;, bool pop(int&amp; item); //&#x51FA;&#x6808;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false,&#x51FA;&#x6808;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
+<p>l &#x8FD4;&#x56DE;&#x6808;&#x9876;&#x5143;&#x7D20;bool getTop(int&amp; item);//&#x83B7;&#x53D6;&#x6808;&#x9876;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false,&#x6808;&#x9876;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
+<p>l &#x8F93;&#x51FA;&#x6808;&#x5185;&#x5143;&#x7D20;,void printStack();//&#x6309;&#x7167;&#x6808;&#x9876;&#x5230;&#x6808;&#x5E95;&#x7684;&#x987A;&#x5E8F;&#x8F93;&#x51FA;&#x6808;&#x5185;&#x6240;&#x6709;&#x5143;&#x7D20;</p>
+<p>2.&#x5B9E;&#x73B0;&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x961F;&#x5217;&#x7C7B;MyQueue</p>
+<p>l &#x961F;&#x5217;&#x521D;&#x59CB;&#x5316;, MyQueue(const int&amp; capacity);//&#x521B;&#x5EFA;&#x961F;&#x5217;,&#x5BB9;&#x91CF;&#x4E3A;capacity</p>
+<p>l &#x9500;&#x6BC1;&#x961F;&#x5217;,~ MyQueue();//&#x9500;&#x6BC1;&#x961F;&#x5217;</p>
+<p>l &#x5165;&#x961F;,bool enQueue(const int&amp;);//&#x5165;&#x961F;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false</p>
+<p>l &#x51FA;&#x961F;,bool deQueue(int&amp; item); //&#x51FA;&#x6808;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false, &#x51FA;&#x961F;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
+<p>l &#x8FD4;&#x56DE;&#x961F;&#x5934;&#x5143;&#x7D20;,bool getFront(int&amp; item); //&#x83B7;&#x53D6;&#x961F;&#x9996;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false,&#x6808;&#x9876;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
+<p>l &#x8F93;&#x51FA;&#x961F;&#x5217;&#x5185;&#x5143;&#x7D20;, void printQueue();//&#x6309;&#x7167;&#x961F;&#x5934;&#x5230;&#x961F;&#x5C3E;&#x7684;&#x987A;&#x5E8F;&#x8F93;&#x51FA;&#x6808;&#x5185;&#x6240;&#x6709;&#x5143;&#x7D20;</p>
+<p>3.&#x57FA;&#x4E8E;MyStack&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;(&#x5982;&#x6539;&#x53D8;&#x6808;&#x5185;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x3001;&#x5BF9;&#x7B26;&#x53F7;&#x8FDB;&#x884C;&#x5408;&#x7406;&#x6570;&#x503C;&#x6620;&#x5C04;)&#xFF0C;&#x5B9E;&#x73B0;&#x4E2D;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x8868;&#x8FBE;&#x5F0F;&#x6C42;&#x503C;&#xFF0C;&#x652F;&#x6301;&#x5C0F;&#x62EC;&#x53F7;&#x3001;&#x52A0;&#x51CF;&#x4E58;&#x9664;&#x56DB;&#x5219;&#x8FD0;&#x7B97;,&#x4E00;&#x4F4D;&#x6B63;&#x6574;&#x6570;(0-9)&#x8FD0;&#x7B97;,&#x4E0D;&#x6D89;&#x53CA;&#x591A;&#x4F4D;&#x6570;&#x3001;&#x8D1F;&#x6570;&#x53CA;&#x5C0F;&#x6570;</p>
+<p>l bool postfixExpression(const string&amp;, string&amp; result); //&#x4E2D;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;,&#x8F6C;&#x5316;&#x6210;&#x529F;&#x8FD4;&#x56DE;true, &#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x653E;&#x5728;result&#x4E2D;,&#x8868;&#x8FBE;&#x5F0F;&#x9519;&#x8BEF;&#x8FD4;&#x56DE;false, &#x9519;&#x8BEF;&#x5B57;&#x7B26;&#x4E32;Expression is wrong!&#x653E;&#x5728;result&#x4E2D;</p>
+<p>l bool expressionVal(const string&amp;, int&amp; result);//&#x8868;&#x8FBE;&#x5F0F;&#x6C42;&#x503C;,&#x8868;&#x8FBE;&#x5F0F;&#x6B63;&#x786E;&#x6210;&#x529F;&#x8BA1;&#x7B97;&#x8FD4;&#x56DE;true,&#x7ED3;&#x679C;&#x653E;&#x5728;result&#x4E2D;,&#x8868;&#x8FBE;&#x5F0F;&#x9519;&#x8BEF;&#x8BA1;&#x7B97;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x8FD4;&#x56DE;false, result&#x4E2D;&#x653E;0</p>
+<p>4.&#x57FA;&#x4E8E;MyQueue&#xFF0C;&#x5B9E;&#x73B0;&#x8F93;&#x51FA;&#x6768;&#x8F89;&#x4E09;&#x89D2;</p>
+<p>l void yanghui(const int&amp;);//&#x8F93;&#x51FA;&#x6768;&#x8F89;&#x4E09;&#x89D2;</p>
+<h1 id="2-&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;"><a href="#2-&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;" class="headerlink" title="2.&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;"></a>2.&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;</h1><p><em>// MyStack printStack &#x51FD;&#x6570;&#x5B9E;&#x73B0;</em></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215600358.png" alt="image-20241121215600358"></p>
+<p><em>listNode &#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</em><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/../../../Cplus/DataStructure/stackAndQueue/image-20241121215624633.png" alt="image-20241121215624633"></p>
+<p><em>MyStack &#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</em></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215649136.png" alt="image-20241121215649136"></p>
+<p><em>MyStack &#x6790;&#x6784;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</em><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215707792.png" alt="image-20241121215707792"></p>
+<p><em>MyStack push &#x51FD;&#x6570;&#x5B9E;&#x73B0;</em></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215721608.png" alt="image-20241121215721608"></p>
+<p><em>MyStack</em>::pop</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215743029.png" alt="image-20241121215743029"></p>
+<p><em>MyStack</em>::empty</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215801817.png" alt="image-20241121215801817"></p>
+<p><em>MyStack</em>::getTop</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215818826.png" alt="image-20241121215818826"></p>
+<p><em>&#x5B9E;&#x73B0;&#x987A;&#x5E8F;&#x961F;&#x5217;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;</em></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215838944.png" alt="image-20241121215838944"></p>
+<p>*~*MyQueue</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215856627.png" alt="image-20241121215856627"></p>
+<p><em>MyQueue</em>::enQueue</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215914833.png" alt="image-20241121215914833"></p>
+<p><em>MyQueue</em>::printQueue()<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215938595.png" alt="image-20241121215938595"></p>
+<p><em>MyQueue</em>::isFul<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215957919.png" alt="image-20241121215957919"></p>
+<p><em>MyQueue</em>::getFront(<em>int</em> *&amp;*<em>e</em>)<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220011557.png" alt="image-20241121220011557"></p>
+<p><em>MyQueue</em>::deQueue(<em>int</em> *&amp;*<em>e</em>) <img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220032956.png" alt="image-20241121220032956"></p>
+<p><em>MyQueue</em>::getCount()</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220047561.png" alt="image-20241121220047561"></p>
+<p><em>&#x57FA;&#x4E8E;MyStack&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;</em><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220108306.png" alt="image-20241121220108306"></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220124036.png" alt="image-20241121220124036"></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220153453.png" alt="image-20241121220153453"></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220236876.png" alt="image-20241121220236876"></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220249337.png" alt="image-20241121220249337"></p>
+<p>&#x6768;&#x8F89;&#x4E09;&#x89D2;</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220311230.png" alt="image-20241121220311230"></p>
+<h1 id="3-&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;"><a href="#3-&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;" class="headerlink" title="3.&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;"></a>3.&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;</h1><p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215433771.png" alt="image-20241121215433771"></p>
+<h1 id="4-&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"><a href="#4-&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;" class="headerlink" title="4.&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"></a>4.&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</h1><ol>
+<li><p>MyStack(listNode ***<em>top</em>); <em>// &#x6DFB;&#x52A0;&#x8FD9;&#x4E2A;&#x58F0;&#x660E;</em> &#x91CD;&#x8F7D;&#x5199;&#x4E86;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x6DFB;&#x52A0;&#x5230;.h<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241020000824032.png" alt="image-20241020000824032"></p>
+</li>
+<li><p>pop&#x6CA1;&#x6709;delete&#x5F39;&#x51FA;&#x7684;&#x8282;&#x70B9; &#x867D;&#x7136;&#x4E0D;&#x5C5E;&#x4E8E;&#x6808;&#x7ED3;&#x6784;&#x4E86; &#x4F46;&#x662F;&#x6CA1;&#x6709;&#x88AB;reference &#x6240;&#x4EE5;&#x5E94;&#x8BE5;&#x88AB;&#x91CA;&#x653E;&#x5185;&#x5B58;</p>
+</li>
+<li><p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022014058900.png" alt="image-20241022014058900"></p>
+</li>
+</ol>
+<p>&#x8FD9;&#x662F;&#x6709;&#x70B9;&#x611A;&#x8822;&#x4E86;&#xFF0C;&#x753B;&#x86C7;&#x6DFB;&#x8DB3;</p>
+<ol start="4">
+<li><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022015143762.png" alt="image-20241022015143762"></li>
+</ol>
+<p>&#x51FA;&#x9519;&#x4E86; &#x6709;&#x4E00;&#x4E2A;&#x731C;&#x60F3; &#x9700;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;getCount&#x6765;&#x83B7;&#x53D6;&#x79C1;&#x6709;&#x53D8;&#x91CF;<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022015321843.png" alt="image-20241022015321843"></p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022015705209.png" alt="image-20241022015705209"></p>
+<p>&#x6211;&#x7684;&#x731C;&#x60F3;&#x9519;&#x4E86; &#x4F46;&#x662F;&#x8FD9;&#x6837;&#x5C31;&#x8BF4;&#x660E;&#x662F;&#x7684;queue&#x6709;&#x9519;</p>
+<p>&#x53D1;&#x73B0;&#x628A;<em>item</em> = front; front&#x662F;&#x6307;&#x9488;&#x4E0D;&#x662F;&#x5143;&#x7D20;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410281022750.png"></p>
+<ol start="5">
+<li></li>
+</ol>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/assets/image-20241029093719148.png" alt="image-20241029093719148"></p>
+<p>getTop&#x6CA1;&#x6709;&#x68C0;&#x67E5;</p>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/assets/image-20241029093804919.png" alt="image-20241029093804919"></p>
+<ol start="5">
+<li></li>
+</ol>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241031231501435.png" alt="image-20241031231501435"></p>
+<p>&#x5728;&#x5904;&#x7406;&#x975E;&#x6CD5;&#x5165;&#x961F;&#x65F6;&#x6709;&#x95EE;&#x9898;</p>
+<p>&#x4F7F;&#x7528;rear = (rear + 1) % capacity; &#x786E;&#x4FDD; <code>rear</code> &#x5728;&#x961F;&#x5217;&#x5BB9;&#x91CF;&#x8303;&#x56F4;&#x5185;&#x5FAA;&#x73AF;&#xFF0C;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x6570;&#x7EC4;&#x8D8A;&#x754C;&#x7684;&#x95EE;&#x9898;</p>
+<ol start="6">
+<li></li>
+</ol>
+<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241031233343911.png" alt="image-20241031233343911"></p>
+<p>&#x6362;&#x4E86;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x5316;</p>
+]]></content>
   </entry>
 </search>
