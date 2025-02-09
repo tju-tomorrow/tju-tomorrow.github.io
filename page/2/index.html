@@ -332,7 +332,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/20/Virtual%20Memory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/mbappe.webp">
@@ -346,7 +346,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2024/10/20/Virtual%20Memory/" class="post-title-link" itemprop="url">Virtual Memory</a>
         </h2>
 
         <div class="post-meta">
@@ -356,14 +356,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-10-20 00:06:52" itemprop="dateCreated datePublished" datetime="2024-10-20T00:06:52+08:00">2024-10-20</time>
+              <time title="创建时间：2024-10-20 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-20T00:00:00+08:00">2024-10-20</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-21 22:06:41" itemprop="dateModified" datetime="2024-11-21T22:06:41+08:00">2024-11-21</time>
+                <time title="修改时间：2024-11-13 21:08:29" itemprop="dateModified" datetime="2024-11-13T21:08:29+08:00">2024-11-13</time>
               </span>
 
           
@@ -377,94 +377,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="1-&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;"><a href="#1-&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;" class="headerlink" title="1.&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;"></a>1.&#x5B9E;&#x9A8C;&#x5185;&#x5BB9;</h1><p>1.&#x5B9E;&#x73B0;&#x65E0;&#x8868;&#x5934;&#x8282;&#x70B9;&#x7684;&#x94FE;&#x6808;&#x7C7B;MyStack</p>
-<p>l &#x6808;&#x521D;&#x59CB;&#x5316;, MyStack();//&#x521B;&#x5EFA;&#x6808;</p>
-<p>l &#x9500;&#x6BC1;&#x6808;,~MyStack();//&#x6E05;&#x9664;&#x6808;&#x5185;&#x5143;&#x7D20;,&#x9500;&#x6BC1;&#x6808;</p>
-<p>l &#x5165;&#x6808;, bool push(const int&amp;);//&#x5165;&#x6808;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false</p>
-<p>l &#x51FA;&#x6808;, bool pop(int&amp; item); //&#x51FA;&#x6808;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false,&#x51FA;&#x6808;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
-<p>l &#x8FD4;&#x56DE;&#x6808;&#x9876;&#x5143;&#x7D20;bool getTop(int&amp; item);//&#x83B7;&#x53D6;&#x6808;&#x9876;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false,&#x6808;&#x9876;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
-<p>l &#x8F93;&#x51FA;&#x6808;&#x5185;&#x5143;&#x7D20;,void printStack();//&#x6309;&#x7167;&#x6808;&#x9876;&#x5230;&#x6808;&#x5E95;&#x7684;&#x987A;&#x5E8F;&#x8F93;&#x51FA;&#x6808;&#x5185;&#x6240;&#x6709;&#x5143;&#x7D20;</p>
-<p>2.&#x5B9E;&#x73B0;&#x987A;&#x5E8F;&#x5FAA;&#x73AF;&#x961F;&#x5217;&#x7C7B;MyQueue</p>
-<p>l &#x961F;&#x5217;&#x521D;&#x59CB;&#x5316;, MyQueue(const int&amp; capacity);//&#x521B;&#x5EFA;&#x961F;&#x5217;,&#x5BB9;&#x91CF;&#x4E3A;capacity</p>
-<p>l &#x9500;&#x6BC1;&#x961F;&#x5217;,~ MyQueue();//&#x9500;&#x6BC1;&#x961F;&#x5217;</p>
-<p>l &#x5165;&#x961F;,bool enQueue(const int&amp;);//&#x5165;&#x961F;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false</p>
-<p>l &#x51FA;&#x961F;,bool deQueue(int&amp; item); //&#x51FA;&#x6808;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false, &#x51FA;&#x961F;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
-<p>l &#x8FD4;&#x56DE;&#x961F;&#x5934;&#x5143;&#x7D20;,bool getFront(int&amp; item); //&#x83B7;&#x53D6;&#x961F;&#x9996;,&#x6210;&#x529F;&#x8FD4;&#x56DE;true,&#x5931;&#x8D25;&#x8FD4;&#x56DE;false,&#x6808;&#x9876;&#x5143;&#x7D20;&#x653E;&#x5728;item</p>
-<p>l &#x8F93;&#x51FA;&#x961F;&#x5217;&#x5185;&#x5143;&#x7D20;, void printQueue();//&#x6309;&#x7167;&#x961F;&#x5934;&#x5230;&#x961F;&#x5C3E;&#x7684;&#x987A;&#x5E8F;&#x8F93;&#x51FA;&#x6808;&#x5185;&#x6240;&#x6709;&#x5143;&#x7D20;</p>
-<p>3.&#x57FA;&#x4E8E;MyStack&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;(&#x5982;&#x6539;&#x53D8;&#x6808;&#x5185;&#x5143;&#x7D20;&#x7C7B;&#x578B;&#x3001;&#x5BF9;&#x7B26;&#x53F7;&#x8FDB;&#x884C;&#x5408;&#x7406;&#x6570;&#x503C;&#x6620;&#x5C04;)&#xFF0C;&#x5B9E;&#x73B0;&#x4E2D;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x548C;&#x8868;&#x8FBE;&#x5F0F;&#x6C42;&#x503C;&#xFF0C;&#x652F;&#x6301;&#x5C0F;&#x62EC;&#x53F7;&#x3001;&#x52A0;&#x51CF;&#x4E58;&#x9664;&#x56DB;&#x5219;&#x8FD0;&#x7B97;,&#x4E00;&#x4F4D;&#x6B63;&#x6574;&#x6570;(0-9)&#x8FD0;&#x7B97;,&#x4E0D;&#x6D89;&#x53CA;&#x591A;&#x4F4D;&#x6570;&#x3001;&#x8D1F;&#x6570;&#x53CA;&#x5C0F;&#x6570;</p>
-<p>l bool postfixExpression(const string&amp;, string&amp; result); //&#x4E2D;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x8F6C;&#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;,&#x8F6C;&#x5316;&#x6210;&#x529F;&#x8FD4;&#x56DE;true, &#x540E;&#x7F00;&#x8868;&#x8FBE;&#x5F0F;&#x653E;&#x5728;result&#x4E2D;,&#x8868;&#x8FBE;&#x5F0F;&#x9519;&#x8BEF;&#x8FD4;&#x56DE;false, &#x9519;&#x8BEF;&#x5B57;&#x7B26;&#x4E32;Expression is wrong!&#x653E;&#x5728;result&#x4E2D;</p>
-<p>l bool expressionVal(const string&amp;, int&amp; result);//&#x8868;&#x8FBE;&#x5F0F;&#x6C42;&#x503C;,&#x8868;&#x8FBE;&#x5F0F;&#x6B63;&#x786E;&#x6210;&#x529F;&#x8BA1;&#x7B97;&#x8FD4;&#x56DE;true,&#x7ED3;&#x679C;&#x653E;&#x5728;result&#x4E2D;,&#x8868;&#x8FBE;&#x5F0F;&#x9519;&#x8BEF;&#x8BA1;&#x7B97;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x8FD4;&#x56DE;false, result&#x4E2D;&#x653E;0</p>
-<p>4.&#x57FA;&#x4E8E;MyQueue&#xFF0C;&#x5B9E;&#x73B0;&#x8F93;&#x51FA;&#x6768;&#x8F89;&#x4E09;&#x89D2;</p>
-<p>l void yanghui(const int&amp;);//&#x8F93;&#x51FA;&#x6768;&#x8F89;&#x4E09;&#x89D2;</p>
-<h1 id="2-&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;"><a href="#2-&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;" class="headerlink" title="2.&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;"></a>2.&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;</h1><p><em>// MyStack printStack &#x51FD;&#x6570;&#x5B9E;&#x73B0;</em></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215600358.png" alt="image-20241121215600358"></p>
-<p><em>listNode &#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</em><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/../../../Cplus/DataStructure/stackAndQueue/image-20241121215624633.png" alt="image-20241121215624633"></p>
-<p><em>MyStack &#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</em></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215649136.png" alt="image-20241121215649136"></p>
-<p><em>MyStack &#x6790;&#x6784;&#x51FD;&#x6570;&#x5B9E;&#x73B0;</em><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215707792.png" alt="image-20241121215707792"></p>
-<p><em>MyStack push &#x51FD;&#x6570;&#x5B9E;&#x73B0;</em></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215721608.png" alt="image-20241121215721608"></p>
-<p><em>MyStack</em>::pop</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215743029.png" alt="image-20241121215743029"></p>
-<p><em>MyStack</em>::empty</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215801817.png" alt="image-20241121215801817"></p>
-<p><em>MyStack</em>::getTop</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215818826.png" alt="image-20241121215818826"></p>
-<p><em>&#x5B9E;&#x73B0;&#x987A;&#x5E8F;&#x961F;&#x5217;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;</em></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215838944.png" alt="image-20241121215838944"></p>
-<p>*~*MyQueue</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215856627.png" alt="image-20241121215856627"></p>
-<p><em>MyQueue</em>::enQueue</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215914833.png" alt="image-20241121215914833"></p>
-<p><em>MyQueue</em>::printQueue()<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215938595.png" alt="image-20241121215938595"></p>
-<p><em>MyQueue</em>::isFul<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215957919.png" alt="image-20241121215957919"></p>
-<p><em>MyQueue</em>::getFront(<em>int</em> *&amp;*<em>e</em>)<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220011557.png" alt="image-20241121220011557"></p>
-<p><em>MyQueue</em>::deQueue(<em>int</em> *&amp;*<em>e</em>) <img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220032956.png" alt="image-20241121220032956"></p>
-<p><em>MyQueue</em>::getCount()</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220047561.png" alt="image-20241121220047561"></p>
-<p><em>&#x57FA;&#x4E8E;MyStack&#x8FDB;&#x884C;&#x6269;&#x5C55;&#x6539;&#x8FDB;</em><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220108306.png" alt="image-20241121220108306"></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220124036.png" alt="image-20241121220124036"></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220153453.png" alt="image-20241121220153453"></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220236876.png" alt="image-20241121220236876"></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220249337.png" alt="image-20241121220249337"></p>
-<p>&#x6768;&#x8F89;&#x4E09;&#x89D2;</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121220311230.png" alt="image-20241121220311230"></p>
-<h1 id="3-&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;"><a href="#3-&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;" class="headerlink" title="3.&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;"></a>3.&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;</h1><p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241121215433771.png" alt="image-20241121215433771"></p>
-<h1 id="4-&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"><a href="#4-&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;" class="headerlink" title="4.&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"></a>4.&#x5B9E;&#x9A8C;&#x4E2D;&#x9047;&#x5230;&#x7684;&#x95EE;&#x9898;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</h1><ol>
-<li><p>MyStack(listNode ***<em>top</em>); <em>// &#x6DFB;&#x52A0;&#x8FD9;&#x4E2A;&#x58F0;&#x660E;</em> &#x91CD;&#x8F7D;&#x5199;&#x4E86;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x6DFB;&#x52A0;&#x5230;.h<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241020000824032.png" alt="image-20241020000824032"></p>
-</li>
-<li><p>pop&#x6CA1;&#x6709;delete&#x5F39;&#x51FA;&#x7684;&#x8282;&#x70B9; &#x867D;&#x7136;&#x4E0D;&#x5C5E;&#x4E8E;&#x6808;&#x7ED3;&#x6784;&#x4E86; &#x4F46;&#x662F;&#x6CA1;&#x6709;&#x88AB;reference &#x6240;&#x4EE5;&#x5E94;&#x8BE5;&#x88AB;&#x91CA;&#x653E;&#x5185;&#x5B58;</p>
-</li>
-<li><p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022014058900.png" alt="image-20241022014058900"></p>
-</li>
-</ol>
-<p>&#x8FD9;&#x662F;&#x6709;&#x70B9;&#x611A;&#x8822;&#x4E86;&#xFF0C;&#x753B;&#x86C7;&#x6DFB;&#x8DB3;</p>
-<ol start="4">
-<li><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022015143762.png" alt="image-20241022015143762"></li>
-</ol>
-<p>&#x51FA;&#x9519;&#x4E86; &#x6709;&#x4E00;&#x4E2A;&#x731C;&#x60F3; &#x9700;&#x8981;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;getCount&#x6765;&#x83B7;&#x53D6;&#x79C1;&#x6709;&#x53D8;&#x91CF;<img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022015321843.png" alt="image-20241022015321843"></p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/%E5%AE%9E%E9%AA%8C2.assets/image-20241022015705209.png" alt="image-20241022015705209"></p>
-<p>&#x6211;&#x7684;&#x731C;&#x60F3;&#x9519;&#x4E86; &#x4F46;&#x662F;&#x8FD9;&#x6837;&#x5C31;&#x8BF4;&#x660E;&#x662F;&#x7684;queue&#x6709;&#x9519;</p>
-<p>&#x53D1;&#x73B0;&#x628A;<em>item</em> = front; front&#x662F;&#x6307;&#x9488;&#x4E0D;&#x662F;&#x5143;&#x7D20;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410281022750.png"></p>
-<ol start="5">
-<li></li>
-</ol>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/assets/image-20241029093719148.png" alt="image-20241029093719148"></p>
-<p>getTop&#x6CA1;&#x6709;&#x68C0;&#x67E5;</p>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/assets/image-20241029093804919.png" alt="image-20241029093804919"></p>
-<ol start="5">
-<li></li>
-</ol>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241031231501435.png" alt="image-20241031231501435"></p>
-<p>&#x5728;&#x5904;&#x7406;&#x975E;&#x6CD5;&#x5165;&#x961F;&#x65F6;&#x6709;&#x95EE;&#x9898;</p>
-<p>&#x4F7F;&#x7528;rear = (rear + 1) % capacity; &#x786E;&#x4FDD; <code>rear</code> &#x5728;&#x961F;&#x5217;&#x5BB9;&#x91CF;&#x8303;&#x56F4;&#x5185;&#x5FAA;&#x73AF;&#xFF0C;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x6570;&#x7EC4;&#x8D8A;&#x754C;&#x7684;&#x95EE;&#x9898;</p>
-<ol start="6">
-<li></li>
-</ol>
-<p><img src="/2024/10/20/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A-%E5%AE%9E%E9%AA%8C%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97-3023244015-%E9%99%88%E5%87%AF%E6%97%8B%20/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20241031233343911.png" alt="image-20241031233343911"></p>
-<p>&#x6362;&#x4E86;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x5316;</p>
-
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/10/20/Virtual%20Memory/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -550,7 +471,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
