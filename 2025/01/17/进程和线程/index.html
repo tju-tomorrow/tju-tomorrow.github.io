@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/dog-solid-24.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Georgia,Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Process &amp; Thread">
+<meta property="og:url" content="https://tju-tomorrow.github.io/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101615249.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101617689.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101618857.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101619662.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101623153.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101626126.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101629677.png">
+<meta property="og:image" content="https://tju-tomorrow.github.io/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20250210163005387.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101631353.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101633832.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101634407.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101635020.png">
+<meta property="article:published_time" content="2025-01-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-10T08:39:37.848Z">
+<meta property="article:author" content="Victor Chen">
+<meta property="article:tag" content="计算机组成原理">
+<meta property="article:tag" content="cs app">
+<meta property="article:tag" content="Process">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png">
+
+<link rel="canonical" href="https://tju-tomorrow.github.io/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Process & Thread | Chenkaixuan's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Chenkaixuan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Embrace The Grind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-personal">
+
+    <a href="/personal/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Come on! ..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/mbappe.webp">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Process & Thread
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-17T00:00:00+08:00">2025-01-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-10 16:39:37" itemprop="dateModified" datetime="2025-02-10T16:39:37+08:00">2025-02-10</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
+<span id="more"></span>
+
+<p>After a programmer finishes writing a program, it is saved permanently on the hard drive. Just as a chef needs a cutting board and a countertop to prepare food, the CPU needs to load the program from the hard drive to memory to execute it.</p>
+<p>What&#x2019;s loaded into memory is a process, which is an <strong>executable instance</strong> of the program</p>
+<p>When we run a program, what happens internally is that its executable file is loaded into memory. At this point, our program becomes a process.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101615249.png"></p>
+<p>The memory assigned to it has a special name: the address space of the process.</p>
+<p><strong>A process, however, is more than just its address space.</strong>  </p>
+<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101617689.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101618857.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101619662.png"></p>
+<p><strong>When a process gains access to the CPU</strong></p>
+<h2 id="Context-Switching"><a href="#Context-Switching" class="headerlink" title="Context Switching"></a>Context Switching</h2><p>&#x4F46;&#x662F;&#x5207;&#x6362;&#x8FDB;&#x7A0B;&#x5E76;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x8BF4;&#x7684;&#x90A3;&#x4E48;&#x7B80;&#x5355; &#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x7528;&#x4E86; &#x53BB;&#x6392;&#x961F; &#x4E0B;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7528;&#x5C31;&#x53EF;&#x4EE5; &#x5982;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x8BDD; &#x5F53;&#x5207;&#x6362;&#x8FDB;&#x7A0B;&#x540E; &#x540E;&#x4F7F;&#x7528;cpu&#x7684;&#x8FDB;&#x7A0B;&#x5C31;&#x4F1A;&#x53D1;&#x73B0;&#x81EA;&#x5DF1;&#x5904;&#x4E8E;&#x7684;cpu&#x73AF;&#x5883;&#xFF08;&#x5404;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x6570;&#x636E;&#xFF09;&#x662F;&#x4E4B;&#x524D;&#x90A3;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;</p>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x6709;&#x4E24;&#x4E2A;&#x5927;&#x95EE;&#x9898; &#xFF1A; 1. &#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x654F;&#x611F;&#x4FE1;&#x606F; &#x4E5F;&#x5C31;&#x662F;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x8981;&#x662F;&#x5B58;&#x50A8;&#x6709;&#x5BC6;&#x7801; &#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x53EF;&#x4EE5;&#x963B;&#x6B62;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x8BFB;&#x53D6;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x5BC6;&#x7801;</p>
+<p><strong>So, the first concern here is security.</strong></p>
+<p>Now, let&#x2019;s assume that all processes are honest and won&#x2019;t use the information  from a previous process.Does that solve all the problems? </p>
+<ol start="2">
+<li>Even if the current process has no intention of using that information,  it still needs to manipulate the registers to carry out its own tasks.</li>
+</ol>
+<p>&#x4E3A;&#x4E86;&#x505A;&#x5230;&#x8FD9;&#x4E00;&#x70B9;it <strong>alters the CPU state</strong> of the previous process But <strong>&#x5728;&#x5C06; CPU &#x5206;&#x914D;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5C06;&#x8BE5;&#x5730;&#x5740;&#x5B58;&#x50A8;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#xFF0C;&#x56E0;&#x6B64;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x65E0;&#x6CD5;&#x6062;&#x590D;&#x7B2C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x3002;</strong></p>
+<p> So, when the previous process regains CPU access  later, the CPU state it had when it was interrupted would <strong>be lost.</strong> </p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101623153.png"></p>
+<p>&#x5F53;CPU&#x5FC5;&#x987B;&#x5206;&#x914D;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#x3002;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5E76;&#x4E0D;&#x662F;&#x7B80;&#x5355;&#x5730;&#x8986;&#x76D6;&#x5730;&#x5740;&#x5BC4;&#x5B58;&#x5668;&#x6765;&#x4F7F;CPU&#x8DF3;&#x8F6C;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x53EF;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x800C;&#x662F;&#x9996;&#x5148;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x4F8B;&#x7A0B;&#x6765;&#x6355;&#x83B7;CPU&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x2014;&#x2014;&#x5C31;&#x50CF;&#x62CD;&#x6444;&#x5FEB;&#x7167;&#x4E00;&#x6837;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x76EE;&#x7684;&#x662F;&#x590D;&#x5236;&#x5185;&#x5BB9;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101626126.png">&#x901A;&#x8FC7;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x6BCF;&#x6B21;&#x8FDB;&#x7A0B;&#x91CD;&#x65B0;&#x83B7;&#x5F97;&#x5BF9; CPU &#x7684;&#x63A7;&#x5236;&#x65F6;&#xFF0C;&#x5B83;&#x90FD;&#x4F1A;&#x627E;&#x5230;&#x4E0E;&#x4E2D;&#x65AD;&#x65F6;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x6B64;&#x8FC7;&#x7A0B;&#x89E3;&#x51B3;&#x4E86;&#x8FD9;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x8FDB;&#x7A0B;&#x65E0;&#x6CD5;&#x518D;&#x8BBF;&#x95EE;&#x524D;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x7531;&#x4E8E;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x72B6;&#x6001;&#x5C1A;&#x672A;&#x88AB;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x66F4;&#x6539;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x786E;&#x4FE1;&#x5B83;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x6B63;&#x786E;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<blockquote>
+<p>&#x5728;switch&#x524D;OS&#x4F1A;&#x770B;&#x6709;&#x65E0; &#x5373;&#x5C06;&#x8981;&#x5207;&#x6362;&#x5230;&#x7684;&#x76EE;&#x6807;&#x8FDB;&#x7A0B;&#x7684;PCB &#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BF4;&#x660E;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B; &#x6240;&#x4EE5;&#x4F1A;&#x628A;&#x76F8;&#x5173;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x8BBE;&#x4E3A;0</p>
+</blockquote>
+<p>&#x8FD9;&#x79CD;&#x6355;&#x83B7;&#x8FDB;&#x7A0B;&#x7684; CPU &#x72B6;&#x6001;&#x5E76;&#x6062;&#x590D;&#x4E0D;&#x540C;&#x8FDB;&#x7A0B;&#x7684;&#x72B6;&#x6001;&#x4EE5;&#x4FBF;&#x5176;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x79F0;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x3002;</p>
+<h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><p>&#x4F46;&#x662F;&#x8FDB;&#x7A0B;&#x8FD8;&#x6709;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x53EF;&#x80FD;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x4EE5;&#x53CA;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x7684; IO &#x8BBE;&#x5907;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101629677.png"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20250210163005387.png" alt="image-20250210163005387"></p>
+<p>&#x8FDB;&#x7A0B;&#x4E0D;&#x53EA;&#x662F;&#x5355;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x800C;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4E0E;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101631353.png"></p>
+<h2 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h2><p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5C31;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4ECE;&#x5BC4;&#x5B58;&#x5668;&#x7B49;&#x4F4E;&#x7EA7;&#x7EC4;&#x4EF6;&#x5230;&#x6587;&#x4EF6;&#x5217;&#x8868;&#x7B49;&#x9AD8;&#x7EA7;&#x7EC4;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x4F55;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5165;&#x961F;&#x5217;&#x4E2D;&#xFF1F;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x8FDB;&#x7A0B;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5730;&#x7528;&#x4F5C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x7684;&#x5BF9;&#x8C61;.</p>
+<p>PCB:&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7528;&#x6765;&#x8DDF;&#x8E2A;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x7279;&#x6B8A;&#x7ED3;&#x6784;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101633832.png"></p>
+<p><strong>&#x8FDB;&#x7A0B;&#x63A7;&#x5236;&#x5757;&#x4E0D;&#x662F;&#x8FDB;&#x7A0B;&#x672C;&#x8EAB;&#xFF0C;&#x800C;&#x662F;&#x8FDB;&#x7A0B;&#x7684;&#x8868;&#x793A;&#x3002;&#x5B83;&#x5145;&#x5F53;&#x542F;&#x52A8;&#x6216;&#x6062;&#x590D;&#x6D41;&#x7A0B;&#x6240;&#x9700;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x4F1A;&#x8BA1;&#x4FE1;&#x606F;&#x7684;&#x5B58;&#x50A8;&#x5E93;&#x3002;&#x8FD9;&#x4E2A;&#x8868;&#x793A;&#x5C31;&#x662F;&#x5B9E;&#x9645;&#x653E;&#x7F6E;&#x5728;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x3002;</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101634407.png"></p>
+<p>&#x8FD9;&#x662F;Linux&#x91CC;&#x7684;PCB</p>
+<h2 id="&#x591A;&#x6838;CPU"><a href="#&#x591A;&#x6838;CPU" class="headerlink" title="&#x591A;&#x6838;CPU"></a>&#x591A;&#x6838;CPU</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101635020.png"></p>
+<p>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x4E2D;&#xFF0C;pipeline&#xFF08;&#x6D41;&#x6C34;&#x7EBF;&#xFF09;&#x662F;&#x6307;&#x5C06;&#x6307;&#x4EE4;&#x5904;&#x7406;&#x5206;&#x89E3;&#x4E3A;&#x591A;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x6280;&#x672F;&#x3002;</p>
+<h1 id="What&#x2019;s-in-each-process-&#xFF1A;Thread"><a href="#What&#x2019;s-in-each-process-&#xFF1A;Thread" class="headerlink" title="What&#x2019;s in each process &#xFF1A;Thread"></a>What&#x2019;s in each process &#xFF1A;Thread</h1><p>&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;<br>It&#x2019;s going to compute based on the program-flow<br>one of the program-flow or <strong>execution streams</strong> here is one thread<br>if there are multiple threads<br>You need multiple <strong>program counters</strong></p>
+<h1 id="So-why-do-we-need-a-design-thread"><a href="#So-why-do-we-need-a-design-thread" class="headerlink" title="So why do we need a design thread"></a>So why do we need a design thread</h1><p>we look at it through <strong>a document editor</strong> Like a notepad</p>
+<p>This notepad holds some text-data and some document which makes it a <strong>process</strong></p>
+<p>Imagine:now the user uses the keyboard to type a return at the end of the second line</p>
+<p>There needs to be <strong>an interactive program</strong> that knows about keyboard <strong>press events</strong> and then the process that manages the layout recalculates the text and renders it</p>
+<p>and every once in a while the writing-program needs to save the document to the hard disk</p>
+<p><strong>Three programs</strong> need to execute <strong>concurrently</strong>, but they must access and modify the <strong>same</strong> document. Since processes have their own <strong>independent memory spaces</strong>, they must operate within the same process to access shared resources. Therefore, three lighter-weight constructs&#x2014;threads&#x2014;are necessary for this scenario.</p>
+<p>Threads allow these programs to run in parallel while sharing the same memory space for document access and modification.</p>
+<hr>
+
+<p>Threads are the smallest unit of <strong>parallel execution</strong>.</p>
+<p>However, if there is only a single-core CPU, it can execute only one thread at a time. In this case, threads must take turns to run, effectively sharing the CPU. This sharing is managed through <strong>time slicing</strong>, where each thread is allocated a specific time slice to execute.</p>
+<p>This mechanism allows multiple threads to make progress by switching between them rapidly, <strong>creating the illusion of concurrent execution even on a single-core system.</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
+              <a href="/tags/cs-app/" rel="tag"># cs app</a>
+              <a href="/tags/Process/" rel="tag"># Process</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/10/23/2024-08-19-Proxy-2024/" rel="prev" title="Proxy">
+      <i class="fa fa-chevron-left"></i> Proxy
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/02/02/IsolationForest/" rel="next" title="Isolation Forest">
+      Isolation Forest <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Process"><span class="nav-number">1.</span> <span class="nav-text">Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-Switching"><span class="nav-number">1.1.</span> <span class="nav-text">Context Switching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#supplement"><span class="nav-number">1.2.</span> <span class="nav-text">supplement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">1.3.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCB"><span class="nav-number">1.4.</span> <span class="nav-text">PCB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%A0%B8CPU"><span class="nav-number">1.5.</span> <span class="nav-text">多核CPU</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What%E2%80%99s-in-each-process-%EF%BC%9AThread"><span class="nav-number">2.</span> <span class="nav-text">What’s in each process ：Thread</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#So-why-do-we-need-a-design-thread"><span class="nav-number">3.</span> <span class="nav-text">So why do we need a design thread</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Victor Chen"
+      src="/images/mbappe.webp">
+  <p class="site-author-name" itemprop="name">Victor Chen</p>
+  <div class="site-description" itemprop="description">Victor Chen's English Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tju-tomorrow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tju-tomorrow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chendasd33@gmail.com" title="E-Mail → chendasd33@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:yourname?call|chat" title="Weixin → skype:yourname?call|chat" rel="noopener" target="_blank"><i class="fab fa-weixin fa-fw"></i>Weixin</a>
+      </span>
+  </div>
+
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">3</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Victor Chen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
