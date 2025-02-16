@@ -605,6 +605,69 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Bubbling and capturing</title>
+    <url>/2024/10/22/Bubbling%20and%20capturing/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
+<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
+<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
+<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
+<p>Note the differences from</p>
+<ol>
+<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
+</li>
+<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
+</li>
+</ol>
+<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
+<p>In form.onclick handler:</p>
+<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
+<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
+<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
+<p>The method for it is <code>event.stopPropagation()</code>.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
+<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
+<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
+<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
+<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
+<p>For example:</p>
+<ul>
+<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
+<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
+<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
+</ul>
+<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
+<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
+<ol>
+<li>Capturing phase &#x2013; the event goes down to the element.</li>
+<li>Target phase &#x2013; the event reached the target element.</li>
+<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
+</ol>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
+<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>Its third parameter is a Boolean value. By setting true/false, the listener is designed in different stages. True means in the capture stage, and false means in the bubbling stage.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
+<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>There are both bubbling and capturing, but according to the previous roller coaster, capturing takes precedence over bubbling. When you trigger an event, the browser first checks if there is a listener in your capture phase, then the listener on your element, and then checks if there is a listener in your bubbling phase.</p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
+<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
+]]></content>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Isolation Forest</title>
     <url>/2025/02/02/IsolationForest/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x60F3;&#x8C61;&#x4F60;&#x5728;&#x4E00;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x4ED3;&#x5E93;&#x91CC;&#x5806;&#x6EE1;&#x4E86;&#x82F9;&#x679C;&#xFF0C;&#x4F46;&#x6709;&#x4EBA;&#x5077;&#x5077;&#x6DF7;&#x8FDB;&#x4E86;&#x51E0;&#x4E2A;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x8FD9;&#x4E9B;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x4F1A;&#x600E;&#x4E48;&#x505A;&#xFF1F;</p>
@@ -709,69 +772,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>ML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bubbling and capturing</title>
-    <url>/2024/10/22/Bubbling%20and%20capturing/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
-<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
-<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
-<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
-<p>Note the differences from</p>
-<ol>
-<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
-</li>
-<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
-</li>
-</ol>
-<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
-<p>In form.onclick handler:</p>
-<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
-<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
-<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
-<p>The method for it is <code>event.stopPropagation()</code>.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
-<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
-<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
-<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
-<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
-<p>For example:</p>
-<ul>
-<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
-<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
-<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
-</ul>
-<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
-<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
-<ol>
-<li>Capturing phase &#x2013; the event goes down to the element.</li>
-<li>Target phase &#x2013; the event reached the target element.</li>
-<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
-<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>Its third parameter is a Boolean value. By setting true/false, the listener is designed in different stages. True means in the capture stage, and false means in the bubbling stage.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-
-<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
-<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>There are both bubbling and capturing, but according to the previous roller coaster, capturing takes precedence over bubbling. When you trigger an event, the browser first checks if there is a listener in your capture phase, then the listener on your element, and then checks if there is a listener in your bubbling phase.</p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
-<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
-]]></content>
-      <tags>
-        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -908,59 +908,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>webpack基础</title>
-    <url>/2025/02/04/Webpack%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. &#x5165;&#x53E3; (entry): &apos;./extension.js&apos; // &#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x6253;&#x5305;&#x7684;&#x8D77;&#x70B9;</span><br><span class="line">2. &#x8F93;&#x51FA; (output): dist/extension.js // &#x6700;&#x7EC8;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4F4D;&#x7F6E;</span><br><span class="line">3. &#x6392;&#x9664;&#x9879; (externals): vscode &#x6A21;&#x5757; // &#x4E0D;&#x6253;&#x5305;&#x8FDB;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x7684;&#x5916;&#x90E8;&#x4F9D;&#x8D56;</span><br></pre></td></tr></table></figure>
-
-<h1 id="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"><a href="#&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;" class="headerlink" title="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"></a>&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;</h1><ol>
-<li>&#x6253;&#x5305;&#x547D;&#x4EE4; (package.json &#x4E2D;):</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;webpack&quot;: &quot;webpack --mode production&quot;,    // &#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6253;&#x5305;</span><br><span class="line">  &quot;webpack-dev&quot;: &quot;webpack --mode development --watch&quot; // &#x5F00;&#x53D1;&#x6A21;&#x5F0F; + &#x76D1;&#x542C;&#x6587;&#x4EF6;&#x53D8;&#x5316;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>&#x8C03;&#x8BD5;&#x914D;&#x7F6E; (.vscode/launch.json):</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;preLaunchTask&quot;: &quot;npm: webpack-dev&quot; // &#x8C03;&#x8BD5;&#x524D;&#x81EA;&#x52A8;&#x6267;&#x884C; webpack-dev</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x6253;&#x5305;</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;watch&quot;: &quot;webpack --mode development --watch&quot;,</span><br><span class="line">  &quot;vscode:prepublish&quot;: &quot;npm run webpack&quot; // &#x53D1;&#x5E03;&#x6269;&#x5C55;&#x524D;&#x81EA;&#x52A8;&#x6253;&#x5305;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><strong>&#x5F00;&#x53D1;&#x6A21;&#x5F0F; vs &#x751F;&#x4EA7;&#x6A21;&#x5F0F;</strong>&#xFF1A;</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>&#x6A21;&#x5F0F;</th>
-<th>&#x4EE3;&#x7801;&#x538B;&#x7F29;</th>
-<th>&#x8C03;&#x8BD5;&#x4FE1;&#x606F;</th>
-<th>&#x9002;&#x7528;&#x573A;&#x666F;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>production</td>
-<td>&#x2705;</td>
-<td>&#x274C;</td>
-<td>&#x6B63;&#x5F0F;&#x53D1;&#x5E03;</td>
-</tr>
-<tr>
-<td>development</td>
-<td>&#x274C;</td>
-<td>&#x2705;</td>
-<td>&#x672C;&#x5730;&#x8C03;&#x8BD5;</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Virtual Memory</title>
     <url>/2024/10/20/Virtual%20Memory/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
@@ -1039,6 +986,59 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>webpack基础</title>
+    <url>/2025/02/04/Webpack%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. &#x5165;&#x53E3; (entry): &apos;./extension.js&apos; // &#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x6253;&#x5305;&#x7684;&#x8D77;&#x70B9;</span><br><span class="line">2. &#x8F93;&#x51FA; (output): dist/extension.js // &#x6700;&#x7EC8;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4F4D;&#x7F6E;</span><br><span class="line">3. &#x6392;&#x9664;&#x9879; (externals): vscode &#x6A21;&#x5757; // &#x4E0D;&#x6253;&#x5305;&#x8FDB;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x7684;&#x5916;&#x90E8;&#x4F9D;&#x8D56;</span><br></pre></td></tr></table></figure>
+
+<h1 id="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"><a href="#&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;" class="headerlink" title="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"></a>&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;</h1><ol>
+<li>&#x6253;&#x5305;&#x547D;&#x4EE4; (package.json &#x4E2D;):</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;webpack&quot;: &quot;webpack --mode production&quot;,    // &#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6253;&#x5305;</span><br><span class="line">  &quot;webpack-dev&quot;: &quot;webpack --mode development --watch&quot; // &#x5F00;&#x53D1;&#x6A21;&#x5F0F; + &#x76D1;&#x542C;&#x6587;&#x4EF6;&#x53D8;&#x5316;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>&#x8C03;&#x8BD5;&#x914D;&#x7F6E; (.vscode/launch.json):</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;preLaunchTask&quot;: &quot;npm: webpack-dev&quot; // &#x8C03;&#x8BD5;&#x524D;&#x81EA;&#x52A8;&#x6267;&#x884C; webpack-dev</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x6253;&#x5305;</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;watch&quot;: &quot;webpack --mode development --watch&quot;,</span><br><span class="line">  &quot;vscode:prepublish&quot;: &quot;npm run webpack&quot; // &#x53D1;&#x5E03;&#x6269;&#x5C55;&#x524D;&#x81EA;&#x52A8;&#x6253;&#x5305;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>&#x5F00;&#x53D1;&#x6A21;&#x5F0F; vs &#x751F;&#x4EA7;&#x6A21;&#x5F0F;</strong>&#xFF1A;</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>&#x6A21;&#x5F0F;</th>
+<th>&#x4EE3;&#x7801;&#x538B;&#x7F29;</th>
+<th>&#x8C03;&#x8BD5;&#x4FE1;&#x606F;</th>
+<th>&#x9002;&#x7528;&#x573A;&#x666F;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>production</td>
+<td>&#x2705;</td>
+<td>&#x274C;</td>
+<td>&#x6B63;&#x5F0F;&#x53D1;&#x5E03;</td>
+</tr>
+<tr>
+<td>development</td>
+<td>&#x274C;</td>
+<td>&#x2705;</td>
+<td>&#x672C;&#x5730;&#x8C03;&#x8BD5;</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>What’s the Difference Between localhost and 127.0.0.1</title>
     <url>/2024/09/22/What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
@@ -1055,6 +1055,40 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       <tags>
         <tag>Server</tag>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Philosophy</title>
+    <url>/2025/02/16/philosophy/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
+</blockquote>
+<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
+<li>break down a complex computational tasks into simple, clear linguistic components</li>
+<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
+</ul>
+<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
+<li>Allowing simple tools to be connected through pipes and redirections</li>
+<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
+<li>Promoting modularity and flexibility in system design</li>
+</ul>
+<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
+<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
+<li>Achieving complex operations through the intelligent combination of simple tools</li>
+</ul>
+<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
+<li>Lone wolves in computer science are an endangered species.</li>
+<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
+</ul>
+<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
+<li><strong>Each tool does one specific task</strong></li>
+<li><strong>Tools are connected through pipes</strong></li>
+<li><strong>Complex functionality emerges from simple tool composition</strong></li>
+<li><strong>Convey ideas</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Jottings</tag>
       </tags>
   </entry>
   <entry>
@@ -1126,6 +1160,65 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>跨域</title>
+    <url>/2024/11/02/%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="&#x540C;&#x6E90;&#x7B56;&#x7565;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;</h1><h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x4E2A; URL &#x7684;&#x534F;&#x8BAE;&#x3001;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x90FD;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x5176;&#x8D44;&#x6E90;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x68C0;&#x67E5;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x5426;&#x76F8;&#x540C;&#xFF1A;</p>
+<ol>
+<li><strong>&#x534F;&#x8BAE;</strong>&#xFF08;&#x5982; <code>http</code>&#x3001;<code>https</code>&#xFF09;</li>
+<li><strong>&#x57DF;&#x540D;</strong>&#xFF08;&#x5982; <code>example.com</code>&#x3001;<code>sub.example.com</code>&#xFF09;</li>
+<li><strong>&#x7AEF;&#x53E3;</strong>&#xFF08;&#x5982; <code>80</code>&#x3001;<code>443</code>&#xFF09;</li>
+</ol>
+<h3 id="&#x793A;&#x4F8B;"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</h3><ul>
+<li><code>http://example.com/page1</code> &#x548C; <code>http://example.com/page2</code> &#x662F;&#x540C;&#x6E90;&#x7684;&#x3002;</li>
+<li><code>http://example.com</code> &#x548C; <code>https://example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x534F;&#x8BAE;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+<li><code>http://example.com</code> &#x548C; <code>http://api.example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x57DF;&#x540D;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+<li><code>http://example.com:80</code> &#x548C; <code>http://example.com:8080</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x7AEF;&#x53E3;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+</ul>
+<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x8DE8;&#x57DF;&#x8BBF;&#x95EE;&#xFF1A;</p>
+<ol>
+<li><strong>DOM &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x6216;&#x64CD;&#x4F5C;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; DOM&#x3002;</li>
+<li><strong>Cookie &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; Cookie&#x3002;</li>
+<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x53D1;&#x8D77; AJAX &#x8BF7;&#x6C42;&#xFF0C;&#x9664;&#x975E;&#x76EE;&#x6807;&#x6E90;&#x5141;&#x8BB8;&#xFF08;&#x901A;&#x8FC7; CORS&#xFF09;&#x3002;</li>
+<li><strong>LocalStorage &#x548C; SessionStorage &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x3002;</li>
+</ol>
+<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ol>
+<li><strong>Cookie</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; Cookie&#x3002;</li>
+<li><strong>DOM</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x64CD;&#x4F5C;&#x6216;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; DOM&#x3002;</li>
+<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x901A;&#x8FC7; AJAX &#x8BF7;&#x6C42;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x6570;&#x636E;&#x3002;</li>
+</ol>
+<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;</h3><p>&#x867D;&#x7136;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x5B89;&#x5168;&#x673A;&#x5236;&#xFF0C;&#x4F46;&#x6709;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7ED5;&#x8FC7;&#x6216;&#x653E;&#x5BBD;&#x540C;&#x6E90;&#x7B56;&#x7565;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF1A;</p>
+<ol>
+<li><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong>&#xFF1A;&#x670D;&#x52A1;&#x5668;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
+<li><strong>JSONP</strong>&#xFF1A;&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
+<li><strong>PostMessage</strong>&#xFF1A;&#x4F7F;&#x7528; <code>window.postMessage</code> &#x65B9;&#x6CD5;&#x5728;&#x4E0D;&#x540C;&#x6E90;&#x7684;&#x7A97;&#x53E3;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x901A;&#x4FE1;&#x3002;</li>
+<li><strong>&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</strong>&#xFF1A;&#x901A;&#x8FC7;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4EE3;&#x7406;&#x8BF7;&#x6C42;&#x76EE;&#x6807;&#x8D44;&#x6E90;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</li>
+</ol>
+<h1 id="JSONP-&#x793A;&#x4F8B;"><a href="#JSONP-&#x793A;&#x4F8B;" class="headerlink" title="JSONP &#x793A;&#x4F8B;"></a>JSONP &#x793A;&#x4F8B;</h1><ul>
+<li>&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
+<li>&#x53EA;&#x80FD;&#x7528;&#x4E8E; GET &#x8BF7;&#x6C42;&#x3002;</li>
+</ul>
+<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">const callback = req.query.callback;</span><br><span class="line">const data = { message: &apos;Hello, JSONP!&apos; };</span><br><span class="line">res.send(`${callback}(${JSON.stringify(data)})`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;JSONP Example&lt;/title&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function handleResponse(data) {</span><br><span class="line">      console.log(data.message);</span><br><span class="line">    }</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script src=&quot;http://localhost:3000/data?callback=handleResponse&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"><a href="#CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;" class="headerlink" title="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"></a><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong></h1><ul>
+<li>&#x670D;&#x52A1;&#x5668;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#x6DFB;&#x52A0;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
+<li>&#x652F;&#x6301; GET&#x3001;POST&#x3001;PUT&#x3001;DELETE &#x7B49;&#x591A;&#x79CD; HTTP &#x65B9;&#x6CD5;&#x3002;</li>
+</ul>
+<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.use((req, res, next) =&gt; {</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Methods&apos;, &apos;GET, POST, PUT, DELETE&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type&apos;);</span><br><span class="line">  next();</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">  res.json({ message: &apos;Hello, CORS!&apos; });</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">  console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CORS Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">fetch</span>(<span class="string">&quot;http://localhost:3000/data&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">message</span>))</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error:&quot;</span>, error));</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Process &amp; Thread</title>
     <url>/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
@@ -1188,99 +1281,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
         <tag>计算机组成原理</tag>
         <tag>cs app</tag>
         <tag>Process</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Philosophy</title>
-    <url>/2025/02/16/philosophy/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
-</blockquote>
-<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
-<li>break down a complex computational tasks into simple, clear linguistic components</li>
-<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
-</ul>
-<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
-<li>Allowing simple tools to be connected through pipes and redirections</li>
-<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
-<li>Promoting modularity and flexibility in system design</li>
-</ul>
-<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
-<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
-<li>Achieving complex operations through the intelligent combination of simple tools</li>
-</ul>
-<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
-<li>Lone wolves in computer science are an endangered species.</li>
-<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
-</ul>
-<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
-<li><strong>Each tool does one specific task</strong></li>
-<li><strong>Tools are connected through pipes</strong></li>
-<li><strong>Complex functionality emerges from simple tool composition</strong></li>
-<li><strong>Convey ideas</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Jottings</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跨域</title>
-    <url>/2024/11/02/%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="&#x540C;&#x6E90;&#x7B56;&#x7565;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;</h1><h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x4E2A; URL &#x7684;&#x534F;&#x8BAE;&#x3001;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x90FD;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x5176;&#x8D44;&#x6E90;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x68C0;&#x67E5;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x5426;&#x76F8;&#x540C;&#xFF1A;</p>
-<ol>
-<li><strong>&#x534F;&#x8BAE;</strong>&#xFF08;&#x5982; <code>http</code>&#x3001;<code>https</code>&#xFF09;</li>
-<li><strong>&#x57DF;&#x540D;</strong>&#xFF08;&#x5982; <code>example.com</code>&#x3001;<code>sub.example.com</code>&#xFF09;</li>
-<li><strong>&#x7AEF;&#x53E3;</strong>&#xFF08;&#x5982; <code>80</code>&#x3001;<code>443</code>&#xFF09;</li>
-</ol>
-<h3 id="&#x793A;&#x4F8B;"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</h3><ul>
-<li><code>http://example.com/page1</code> &#x548C; <code>http://example.com/page2</code> &#x662F;&#x540C;&#x6E90;&#x7684;&#x3002;</li>
-<li><code>http://example.com</code> &#x548C; <code>https://example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x534F;&#x8BAE;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
-<li><code>http://example.com</code> &#x548C; <code>http://api.example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x57DF;&#x540D;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
-<li><code>http://example.com:80</code> &#x548C; <code>http://example.com:8080</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x7AEF;&#x53E3;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
-</ul>
-<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x8DE8;&#x57DF;&#x8BBF;&#x95EE;&#xFF1A;</p>
-<ol>
-<li><strong>DOM &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x6216;&#x64CD;&#x4F5C;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; DOM&#x3002;</li>
-<li><strong>Cookie &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; Cookie&#x3002;</li>
-<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x53D1;&#x8D77; AJAX &#x8BF7;&#x6C42;&#xFF0C;&#x9664;&#x975E;&#x76EE;&#x6807;&#x6E90;&#x5141;&#x8BB8;&#xFF08;&#x901A;&#x8FC7; CORS&#xFF09;&#x3002;</li>
-<li><strong>LocalStorage &#x548C; SessionStorage &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x3002;</li>
-</ol>
-<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
-<ol>
-<li><strong>Cookie</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; Cookie&#x3002;</li>
-<li><strong>DOM</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x64CD;&#x4F5C;&#x6216;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; DOM&#x3002;</li>
-<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x901A;&#x8FC7; AJAX &#x8BF7;&#x6C42;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x6570;&#x636E;&#x3002;</li>
-</ol>
-<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;</h3><p>&#x867D;&#x7136;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x5B89;&#x5168;&#x673A;&#x5236;&#xFF0C;&#x4F46;&#x6709;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7ED5;&#x8FC7;&#x6216;&#x653E;&#x5BBD;&#x540C;&#x6E90;&#x7B56;&#x7565;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF1A;</p>
-<ol>
-<li><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong>&#xFF1A;&#x670D;&#x52A1;&#x5668;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
-<li><strong>JSONP</strong>&#xFF1A;&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
-<li><strong>PostMessage</strong>&#xFF1A;&#x4F7F;&#x7528; <code>window.postMessage</code> &#x65B9;&#x6CD5;&#x5728;&#x4E0D;&#x540C;&#x6E90;&#x7684;&#x7A97;&#x53E3;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x901A;&#x4FE1;&#x3002;</li>
-<li><strong>&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</strong>&#xFF1A;&#x901A;&#x8FC7;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4EE3;&#x7406;&#x8BF7;&#x6C42;&#x76EE;&#x6807;&#x8D44;&#x6E90;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</li>
-</ol>
-<h1 id="JSONP-&#x793A;&#x4F8B;"><a href="#JSONP-&#x793A;&#x4F8B;" class="headerlink" title="JSONP &#x793A;&#x4F8B;"></a>JSONP &#x793A;&#x4F8B;</h1><ul>
-<li>&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
-<li>&#x53EA;&#x80FD;&#x7528;&#x4E8E; GET &#x8BF7;&#x6C42;&#x3002;</li>
-</ul>
-<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">const callback = req.query.callback;</span><br><span class="line">const data = { message: &apos;Hello, JSONP!&apos; };</span><br><span class="line">res.send(`${callback}(${JSON.stringify(data)})`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>&#x5BA2;&#x6237;&#x7AEF;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;JSONP Example&lt;/title&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function handleResponse(data) {</span><br><span class="line">      console.log(data.message);</span><br><span class="line">    }</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script src=&quot;http://localhost:3000/data?callback=handleResponse&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"><a href="#CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;" class="headerlink" title="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"></a><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong></h1><ul>
-<li>&#x670D;&#x52A1;&#x5668;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#x6DFB;&#x52A0;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
-<li>&#x652F;&#x6301; GET&#x3001;POST&#x3001;PUT&#x3001;DELETE &#x7B49;&#x591A;&#x79CD; HTTP &#x65B9;&#x6CD5;&#x3002;</li>
-</ul>
-<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.use((req, res, next) =&gt; {</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Methods&apos;, &apos;GET, POST, PUT, DELETE&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type&apos;);</span><br><span class="line">  next();</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">  res.json({ message: &apos;Hello, CORS!&apos; });</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">  console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>&#x5BA2;&#x6237;&#x7AEF;</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CORS Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">fetch</span>(<span class="string">&quot;http://localhost:3000/data&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">message</span>))</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error:&quot;</span>, error));</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>前端</tag>
       </tags>
   </entry>
 </search>
