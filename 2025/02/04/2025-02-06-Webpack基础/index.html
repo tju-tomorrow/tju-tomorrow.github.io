@@ -308,8 +308,8 @@
       <i class="fa fa-chevron-left"></i> Isolation Forest
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/02/16/2025-02-16-philosophy/" rel="next" title="Philosophy">
-      Philosophy <i class="fa fa-chevron-right"></i>
+    <a href="/2025/02/16/2025-02-16-Transformer-2024/" rel="next" title="Transformer">
+      Transformer <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -533,6 +533,19 @@
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
