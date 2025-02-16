@@ -1052,7 +1052,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 <p>&#x8FD9;&#x79CD;&#x6355;&#x83B7;&#x8FDB;&#x7A0B;&#x7684; CPU &#x72B6;&#x6001;&#x5E76;&#x6062;&#x590D;&#x4E0D;&#x540C;&#x8FDB;&#x7A0B;&#x7684;&#x72B6;&#x6001;&#x4EE5;&#x4FBF;&#x5176;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x79F0;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x3002;</p>
 <h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><p>&#x4F46;&#x662F;&#x8FDB;&#x7A0B;&#x8FD8;&#x6709;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x53EF;&#x80FD;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x4EE5;&#x53CA;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x7684; IO &#x8BBE;&#x5907;</p>
 <p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101629677.png"></p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="/2025/01/17/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/Users/ckx/AppData/Roaming/Typora/typora-user-images/image-20250210163005387.png" alt="image-20250210163005387"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101646984.png" alt="image-20250210163005387"></p>
 <p>&#x8FDB;&#x7A0B;&#x4E0D;&#x53EA;&#x662F;&#x5355;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x800C;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4E0E;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#x3002;</p>
 <p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101631353.png"></p>
 <h2 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h2><p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5C31;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4ECE;&#x5BC4;&#x5B58;&#x5668;&#x7B49;&#x4F4E;&#x7EA7;&#x7EC4;&#x4EF6;&#x5230;&#x6587;&#x4EF6;&#x5217;&#x8868;&#x7B49;&#x9AD8;&#x7EA7;&#x7EC4;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x4F55;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5165;&#x961F;&#x5217;&#x4E2D;&#xFF1F;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x8FDB;&#x7A0B;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5730;&#x7528;&#x4F5C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x7684;&#x5BF9;&#x8C61;.</p>
@@ -1188,6 +1188,52 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>ML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2025/02/11/WriteTests/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In <strong>simple terms</strong>:</p>
+<ol>
+<li><strong>Write a test</strong> for what you want to implement.</li>
+<li><strong>Run the test</strong> (it should fail since you haven&#x2019;t written the code yet).</li>
+<li><strong>Write the code</strong> to make the test pass.</li>
+<li><strong>Refactor</strong> the code and tests as necessary.</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>Philosophy</title>
+    <url>/2025/02/16/Unix-philosophy%20/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
+</blockquote>
+<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
+<li>break down a complex computational tasks into simple, clear linguistic components</li>
+<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
+</ul>
+<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
+<li>Allowing simple tools to be connected through pipes and redirections</li>
+<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
+<li>Promoting modularity and flexibility in system design</li>
+</ul>
+<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
+<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
+<li>Achieving complex operations through the intelligent combination of simple tools</li>
+</ul>
+<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
+<li>Lone wolves in computer science are an endangered species.</li>
+<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
+</ul>
+<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
+<li><strong>Each tool does one specific task</strong></li>
+<li><strong>Tools are connected through pipes</strong></li>
+<li><strong>Complex functionality emerges from simple tool composition</strong></li>
+<li><strong>Convey ideas</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Jottings</tag>
       </tags>
   </entry>
 </search>
