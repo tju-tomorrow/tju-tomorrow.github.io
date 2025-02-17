@@ -1,5 +1,35 @@
 /* global NexT, CONFIG */
 
+// 添加博客展示图片
+function addBlogShowImage() {
+  const indexContent = document.querySelector('.content.index.posts-expand');
+
+  if (indexContent) {
+    const img = document.createElement('img');
+    img.src = '/images/25.png';
+    img.alt = 'Blog Show Image';
+    img.style.cssText = `
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    `;
+
+    // 添加hover效果
+    img.addEventListener('mouseenter', () => {
+      img.style.transform = 'scale(1.02)';
+    });
+    img.addEventListener('mouseleave', () => {
+      img.style.transform = 'scale(1)';
+    });
+
+    // 将图片插入到index content之前
+    indexContent.parentNode.insertBefore(img, indexContent);
+  }
+}
+
 var Affix = {
   init: function(element, options) {
     this.element = element;
@@ -81,6 +111,6 @@ NexT.utils.getAffixParam = function() {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-
+  addBlogShowImage();
   Affix.init(document.querySelector('.sidebar-inner'), NexT.utils.getAffixParam());
 });
