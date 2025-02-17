@@ -1,5 +1,5 @@
 :root {
-  --body-bg-color: #c4c0b9;
+  --body-bg-color: #b3c3cf;
   --content-bg-color: #fff;
   --card-bg-color: #f5f5f5;
   --text-color: #555;
@@ -859,53 +859,65 @@ pre .javascript .function {
 .pagination .page-number,
 .pagination .space {
   display: inline-block;
-  margin: 0 10px;
-  padding: 0 11px;
+  margin: 0 15px;
+  padding: 8px 12px;
   position: relative;
-  top: -1px;
+  color: #666;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 @media (max-width: 767px) {
   .pagination .prev,
   .pagination .next,
   .pagination .page-number,
   .pagination .space {
-    margin: 0 5px;
+    margin: 0 8px;
   }
 }
 .pagination {
-  border-top: 1px solid #eee;
-  margin: 120px 0 0;
+  margin: 80px 0 0;
   text-align: center;
+  border: none;
 }
 .pagination .prev,
 .pagination .next,
 .pagination .page-number {
-  border-bottom: 0;
-  border-top: 1px solid #eee;
-  transition-property: border-color;
-  transition-delay: 0s;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
+  background: none;
+  border: none;
 }
 .pagination .prev:hover,
 .pagination .next:hover,
 .pagination .page-number:hover {
-  border-top-color: #222;
+  color: #cc3538;
+  border: 3px;
+  transform: translateY(-3px);
 }
 .pagination .space {
-  margin: 0;
+  margin: 0 5px;
   padding: 0;
+}
+.pagination .page-number.current {
+  color: #333;
+  font-weight: bold;
+  position: relative;
+}
+.pagination .page-number.current:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: #333;
+  border-radius: 1px;
 }
 .pagination .prev {
   margin-left: 0;
 }
 .pagination .next {
   margin-right: 0;
-}
-.pagination .page-number.current {
-  background: #ccc;
-  border-top-color: #ccc;
-  color: #fff;
 }
 @media (max-width: 767px) {
   .pagination {
@@ -1219,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #0faa66;
+  background: #ed70bf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1592,6 +1604,14 @@ pre .javascript .function {
 .post-button {
   margin-top: 40px;
   text-align: center;
+}
+.post-button .btn {
+  display: inline-block;
+  transition: all 0.7s ease;
+}
+.post-button .btn:hover {
+  border-bottom-color: var(--btn-default-hover-border-color);
+  transform: scale(1.2);
 }
 .use-motion .post-block,
 .use-motion .pagination,
@@ -2355,7 +2375,7 @@ ul.breadcrumb li + li:last-child {
 }
 .header-inner {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 0px 0px 10px 10px;
   box-shadow: initial;
   overflow: hidden;
   padding: 0;
@@ -2387,12 +2407,12 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .content-wrap {
-  background: #d1c3c3;
-  border-radius: initial;
+  background: #fff;
+  border-radius: 15px;
   box-shadow: initial;
   box-sizing: border-box;
   padding: 40px;
-  width: calc(100% - 252px);
+  width: calc(100% - 322px);
 }
 @media (max-width: 991px) {
   .content-wrap {
@@ -2546,6 +2566,7 @@ ul.breadcrumb li + li:last-child {
   margin-top: 100%;
   position: static;
   width: 240px;
+  min-height: 95vh;
 }
 @media (max-width: 991px) {
   .sidebar {
@@ -2557,11 +2578,12 @@ ul.breadcrumb li + li:last-child {
 }
 .sidebar-inner {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 10px;
   box-shadow: initial;
   box-sizing: border-box;
   color: var(--text-color);
   width: 240px;
+  animation: gentle-float 2.4s ease-in-out infinite;
   opacity: 0;
 }
 .sidebar-inner.affix {
@@ -2641,4 +2663,48 @@ ul.breadcrumb li + li:last-child {
 }
 .links-of-blogroll-item {
   padding: 0;
+}
+@-moz-keyframes gentle-float {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes gentle-float {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-o-keyframes gentle-float {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes gentle-float {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
