@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ed70bf;
+  background: #ff9847;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2412,7 +2412,8 @@ ul.breadcrumb li + li:last-child {
   box-shadow: initial;
   box-sizing: border-box;
   padding: 40px;
-  width: calc(100% - 322px);
+  width: calc(100% - 452px);
+  transform: translateX(-176px);
 }
 @media (max-width: 991px) {
   .content-wrap {
@@ -2433,6 +2434,9 @@ ul.breadcrumb li + li:last-child {
     right: 20px;
   }
 }
+.footer-inner {
+  transform: translateX(-80px);
+}
 @media (max-width: 991px) {
   .footer-inner {
     padding-left: 0;
@@ -2441,7 +2445,6 @@ ul.breadcrumb li + li:last-child {
   }
 }
 .footer-inner .busuanzi-count {
-  background-color: #be5757;
   color: #000;
 }
 #busuanzi_container_site_uv,
