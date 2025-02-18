@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffbdb6;
+  background: #42ff13;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2305,6 +2305,14 @@ ul.breadcrumb li + li:last-child {
   backdrop-filter: blur(25px);
   color: #be5757 !important; /* 悬停时的颜色 */
   transform: scale(1.2);
+}
+.gt-header a,
+.gt-comments a,
+.gt-popup a {
+  border-bottom: none;
+}
+.gt-container .gt-popup .gt-action.is--active::before {
+  top: 0.7em;
 }
 .search-pop-overlay {
   background: rgba(0,0,0,0);
