@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/dog-solid-24.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Georgia,Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Entry to Transformer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer">
+<meta property="og:url" content="https://tju-tomorrow.github.io/2025/02/16/2025-02-16-Transformer-2024/index.html">
+<meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
+<meta property="og:description" content="Entry to Transformer">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162156993.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162202929.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170023326.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162207013.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162232003.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162234738.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162239819.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170030041.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170032772.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052799.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170051060.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170102556.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052126.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170125004.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170130380.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170134409.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170139461.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png">
+<meta property="article:published_time" content="2025-02-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-16T18:38:29.473Z">
+<meta property="article:author" content="Victor Chen">
+<meta property="article:tag" content="ML">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png">
+
+<link rel="canonical" href="https://tju-tomorrow.github.io/2025/02/16/2025-02-16-Transformer-2024/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Transformer | Chenkaixuan's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script>
+    NexT.CONFIG.blog_show_image = '/images/meditate.jpg';
+  </script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Chenkaixuan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Embrace The Grind</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-personal">
+
+    <a href="/personal/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a>
+
+  </li>
+        <li class="menu-item menu-item-jottings">
+
+    <a href="/Jottings/" rel="section"><i class="fa fa-book fa-fw"></i>随笔</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook/" rel="section"><i class="fa fa-comments fa-fw"></i>留言板</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Come on! ..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2025/02/16/2025-02-16-Transformer-2024/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/mbappe.webp">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Transformer
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-16T00:00:00+08:00">2025-02-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-17 02:38:29" itemprop="dateModified" datetime="2025-02-17T02:38:29+08:00">2025-02-17</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
+<h1 id="GPT-intro"><a href="#GPT-intro" class="headerlink" title="GPT intro"></a>GPT intro</h1><p>GPT &#x7684;&#x5168;&#x540D;&#x5C31;&#x662F; generative pre-trained transformer<br>&#x9884;&#x8BAD;&#x7EC3;&#x662F;&#x6307;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4ECE;&#x5927;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x524D;&#x7F00; Pre &#x6697;&#x793A;&#x6709;&#x66F4;&#x591A;&#x7A7A;&#x95F4;&#x901A;&#x8FC7;&#x989D;&#x5916;&#x7684;&#x8BAD;&#x7EC3;&#x6765;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;&#x3002;</p>
+<p>The last piece that&#x2019;s the real key, a transformer is a specific kind of neural network, a machine learning model, and it&#x2019;s the core invention underlying current boom in AI</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x5C31;&#x662F; transformer &#x521B;&#x9020;&#x5F88;&#x591A;&#x7C7B;&#x578B;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4; voice to text what text to voice, text to image These are based on transformer</p>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x7528; transformer &#x8FD9;&#x79CD;&#x9884;&#x6D4B;&#x6A21;&#x578B;&#x6765;&#x751F;&#x6210;&#x4E00;&#x6BB5;&#x65B0;&#x6587;&#x672C;&#x662F;&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x4EE5;&#x7ED9;&#x4ED6;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x7247;&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x4ED6; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x3002;&#x7136;&#x540E;&#x4F60;&#x518D;&#x628A;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x53C8;&#x4E22;&#x8FDB;&#x53BB;&#xFF0C;&#x53BB; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x5C31;&#x8FD9;&#x6837;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162156993.png"></p>
+<h1 id="How-Data-flows-in-Transformer-Generally"><a href="#How-Data-flows-in-Transformer-Generally" class="headerlink" title="How Data flows in Transformer (Generally)"></a>How Data flows in Transformer (Generally)</h1><pre class="mermaid" style="text-align: center;">
+            
+            flowchart TD
+subgraph Input[&quot;&#x8F93;&#x5165;&#x5C42; (Raw Tokens)&quot;]
+A[(&quot;Token &#x5E8F;&#x5217;&quot;)]
+end
+
+    subgraph Embedding[&quot;Embedding&#x5C42;&quot;]
+        B1[&quot;Embeddings Matrix&#x67E5;&#x627E;&quot;]
+        B2[&quot;&#x5411;&#x91CF;&#x6620;&#x5C04; (12800&#x7EF4;)&quot;]
+    end
+
+    subgraph TransformerFlow[&quot;Transformer&#x6838;&#x5FC3;&quot;]
+        subgraph AttentionBlock[&quot;Attention Block&quot;]
+            D1[&quot;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&quot;] --&gt; D2[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
+            D2 --&gt; D3[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
+            D3 --&gt; D4[&quot;MLP&quot;]
+            D4 --&gt; D5[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
+            D5 --&gt; D6[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
+        end
+
+        C[&quot;&#x5411;&#x91CF;&#x5E8F;&#x5217;&quot;] --&gt; D1
+        D6 --&gt; E[&quot;&#x4E0B;&#x4E00;&#x4E2A;Attention Block&quot;]
+    end
+
+    subgraph Output[&quot;&#x8F93;&#x51FA;&#x5C42;&#x5904;&#x7406;&quot;]
+        F1[&quot;Unembedding Matrix&quot;]
+        F2[&quot;50000&#x7EF4;&#x8BCD;&#x8868;&#x6620;&#x5C04;&quot;]
+        G1[&quot;Softmax&#x6E29;&#x5EA6;&#x8C03;&#x8282;&quot;]
+        G2[&quot;&#x6982;&#x7387;&#x5206;&#x5E03;&#x8F93;&#x51FA;&quot;]
+    end
+
+    A --&gt; B1
+    B1 --&gt; B2
+    B2 --&gt; C
+    E --&gt; F1
+    F1 --&gt; F2
+    F2 --&gt; G1
+    G1 --&gt; G2
+
+    %% &#x6DFB;&#x52A0;&#x8BF4;&#x660E;&#x6CE8;&#x91CA;
+    classDef process fill:#f9f,stroke:#333,stroke-width:2px
+    class D1,D4 process
+
+    %% &#x6DFB;&#x52A0;&#x5173;&#x952E;&#x6B65;&#x9AA4;&#x8BF4;&#x660E;
+    note1[/&quot;&#x8F93;&#x5165;token&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x91CF;&quot;/]
+    note2[/&quot;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&quot;/]
+    note3[/&quot;&#x751F;&#x6210;&#x9884;&#x6D4B;&#x6982;&#x7387;&quot;/]
+
+    B2 -.-&gt; note1
+    D1 -.-&gt; note2
+    G2 -.-&gt; note3
+
+          </pre>
+
+<h2 id="tokens"><a href="#tokens" class="headerlink" title="tokens"></a>tokens</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162202929.png"></p>
+<p>&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x9891;&#xFF0C;&#x6587;&#x672C;&#x7684;&#x201D;a piece&#x201D;&#x90FD;&#x53EF;&#x4EE5;&#x662F; token<br><strong>A token doesn&#x2019;t align with a word</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170023326.png" style="zoom:50%;">the first time I met token</p>
+<p>&#x6BCF;&#x4E00;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector, &#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E00;&#x4E32;&#x6570;&#x5B57;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x662F;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8868;&#x8FBE;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x542B;&#x4E49;</p>
+<p><strong>this vector somehow encode the information a token contain</strong></p>
+<p>if you think of these vectors as giving coordinates in some very high dimensional space.You will find words with similar meaning tend to land on vectors that close to each other in that space &#x5411;&#x91CF;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E00;&#x4E2A; token &#x5728; high dimensional space &#x90FD;&#x53EF;&#x4EE5;&#x8868;&#x73B0;&#x4E3A;&#x4E00;&#x4E2A; informational &#x7684;&#x5411;&#x91CF;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162207013.png" alt="1739714827253_d"></p>
+<p>&#x8FD9;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x5207;&#x7247;</p>
+<p>Transformer &#x7684; tokens &#x5E94;&#x8BE5;&#x8981;&#x8F6C;&#x5316;&#x6210; vectors,&#x4E00;&#x4E2A; token &#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector &#x4ECE; embeddings matrix &#x91CC;&#x53D6;&#x51FA;&#x5BF9;&#x5E94; token &#x7684;&#x5411;&#x91CF; vector&#xFF0C;&#x5C31;&#x5B8C;&#x6210;&#x4E86; tokens-&gt;vectors,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x5F53; input data &#x5728; Transformer &#x4E2D;&#x6D41;&#x52A8;&#x7684;&#x65F6;&#x5019; &#x4ED6;&#x5C31;&#x957F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A; vectors &#x6784;&#x6210;&#x7684; sequence &#x7684;&#x6837;&#x5B50;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># &#x5047;&#x8BBE;&#x7684;&#x4F2A;&#x4EE3;&#x7801;</span><br><span class="line">embeddings_matrix = ...  # &#x9884;&#x8BAD;&#x7EC3;&#x7684;embedding&#x77E9;&#x9635;</span><br><span class="line">tokens = [&quot;I&quot;, &quot;love&quot;, &quot;machine&quot;, &quot;learning&quot;]</span><br><span class="line"></span><br><span class="line"># &#x5C06;&#x6BCF;&#x4E2A;token&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;vector</span><br><span class="line">token_vectors = [</span><br><span class="line">    embeddings_matrix[&quot;I&quot;],</span><br><span class="line">    embeddings_matrix[&quot;love&quot;],</span><br><span class="line">    embeddings_matrix[&quot;machine&quot;],</span><br><span class="line">    embeddings_matrix[&quot;learning&quot;]</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>&#x7136;&#x540E;&#x521A;&#x521A;&#x751F;&#x6210;&#x7684;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E00;&#x5806; vectors &#x4F1A;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EB;&#x505A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h2 id="Attention-Block"><a href="#Attention-Block" class="headerlink" title="Attention Block"></a>Attention Block</h2><p>WHY need attention block.</p>
+<p>A token is not supposed to be just the exact original meaning(in embeddings matrix) &#x6BD4;&#x5982; model &#x8FD9;&#x4E2A;&#x8BCD;&#xFF0C;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x4ED6;&#x662F;&#x4E00;&#x4E2A; token&#xFF0C;machine learning model &#x548C; fashion model &#x7684;&#x610F;&#x601D;&#x80AF;&#x5B9A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x4ED6;&#x4EEC;&#x7684; Pre-trained embeddings matrix &#x91CC;&#x7684;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x6837;,&#x4F46;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x4ED6;&#x4EEC;&#x7684;&#x610F;&#x601D;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x5B66;&#x4E60;&#x5230;&#x8FD9;&#x4E2A;&#x610F;&#x4E49;<br>The vector in embeddings matrix encoded the original information which should change into the meaning it is supposed to be in THE CONTEXT<br>&#x5728; attention block &#x8FD9;&#x4E9B; Vector &#x4F1A;&#x4E92;&#x76F8;&#x4F5C;&#x7528;</p>
+<p>&#x63A5;&#x7740;&#x521A;&#x521A;&#x8BF4;&#x7684;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6709; vectors &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x5728;&#x8FD9;&#x4E2A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x91CC;&#xFF0C;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x4EA4;&#x6D41;&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5; pass information back and forth</p>
+<h2 id="Multilayer-Perceptron"><a href="#Multilayer-Perceptron" class="headerlink" title="Multilayer Perceptron"></a>Multilayer Perceptron</h2><p>&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</p>
+<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x63D0;&#x51FA;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x95EE;&#x9898;&#xFF0C; &#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x7B54;&#x6848;&#x6765;&#x66F4;&#x65B0;&#x5411;&#x91CF;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162232003.png"></p>
+<p>&#x8FD9;&#x6837;&#x91CD;&#x590D;&#x8FD9;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162234738.png"></p>
+<h2 id="Final-Processing-vectors"><a href="#Final-Processing-vectors" class="headerlink" title="Final Processing vectors"></a>Final Processing vectors</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162239819.png"></p>
+<h1 id="Dive-into"><a href="#Dive-into" class="headerlink" title="Dive into"></a>Dive into</h1><h2 id="Premise-What-is-Weight"><a href="#Premise-What-is-Weight" class="headerlink" title="Premise:What is Weight"></a>Premise:What is Weight</h2><p>We start with the simplest machine-learning model: <strong>linear model</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170030041.png"></p>
+<p>&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F; y = wx + b</p>
+<ul>
+<li>y: &#x9884;&#x6D4B;&#x503C;</li>
+<li>x: &#x8F93;&#x5165;&#x7279;&#x5F81;</li>
+<li>w: &#x6743;&#x91CD;(weight)</li>
+<li>b: &#x504F;&#x7F6E;(bias)</li>
+</ul>
+<p>We see x as a vector and by processing(computing) x with weight and bias,in the high semantic dimensional space we have changed the meaning x originally represents.</p>
+<h2 id="About-Input-tokens"><a href="#About-Input-tokens" class="headerlink" title="About Input tokens"></a>About Input tokens</h2><p>Input is just what the model processes,the actual brain of Transformer is WEIGHTS.</p>
+<p>&#x6A21;&#x578B;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x9884;&#x8BBE;&#x7684;&#x8BCD;&#x6C47;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x5355;&#x8BCD;&#xFF0C; &#x6BD4;&#x5982;&#x8BF4;&#x6709; 50,000 &#x4E2A;</p>
+<p>&#x8FD9;&#x4E2A;&#x8BCD;&#x6C47;&#x8868;&#x4EE5; Embedding matrix &#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170032772.png"><br>this is pre-trained which somehow encoded the information a single token should represent!<br>Which is to say : these columns are what determines what vector each word(token) turns into <strong>IN THE FIRST STEP</strong></p>
+<p>And &#x4E0D;&#x7BA1;&#x4F60;&#x6784;&#x5EFA;&#x7684;&#x662F;&#x54EA;&#x79CD;&#x6A21;&#x578B;&#xFF0C;&#x8F93;&#x5165;&#x90FD;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x6570;&#x6570;&#x7EC4;&#x8FD9;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x5217;&#x8868;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;&#xFF0C;&#x6216;&#x8005;&#x66F4;&#x5E38;&#x89C1;&#x7684;&#x662F;&#x66F4;&#x9AD8;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x7528;&#x7684;&#x672F;&#x8BED;&#x6211;&#x4EEC;&#x79F0;&#x4E4B;&#x4E3A;&#x5F20;&#x91CF;<br>So &#x2B07;&#xFE0F;</p>
+<h3 id="How-many-dimensions-can-x-be"><a href="#How-many-dimensions-can-x-be" class="headerlink" title="How many dimensions can x be"></a>How many dimensions can x be</h3><p>As we already know:In the perception of Transformer,Input data is sequence of vectors (high dimensional vector)</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
+<p>So how many numbers are in a vector ?&#x1F928;</p>
+<p>take GPT-3 for example :12800 dimension,which means 12800 rows for a vector</p>
+<h3 id="review-key-concept"><a href="#review-key-concept" class="headerlink" title="review key concept"></a>review key concept</h3><p>&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#xFF0C; &#x4EE5;&#x786E;&#x5B9A;&#x8BCD;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x88AB;&#x5D4C;&#x5165;&#x4E3A; final &#x5411;&#x91CF;<br><strong>how exactly words get embedded as vectors during training</strong></p>
+<h2 id="What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"><a href="#What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;" class="headerlink" title="What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"></a>What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</h2><p>we&#x2019;ve said that &#x201C;&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#x201D;<br>So In the Attention block that&#x2019;s what happened.<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052799.png"></p>
+<p>And it does that by what we have mentioned:Weights</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Attention block&#x6838;&#x5FC3;&#x8FC7;&#x7A0B;</span><br><span class="line">Vectors &#x2192; &#x76F8;&#x4E92;&#x4F20;&#x9012;&#x4FE1;&#x606F; &#x2192; &#x8C03;&#x6574;&#x77E9;&#x9635;&#x503C;</span><br></pre></td></tr></table></figure>
+
+<p>&#x200B; &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
+<ul>
+<li>&#x4E0E;&#x5176;&#x4ED6; vectors &#x4EA4;&#x4E92;</li>
+<li>&#x4EA4;&#x6362;&#x4FE1;&#x606F;</li>
+<li>&#x6839;&#x636E;&#x4EA4;&#x4E92;&#x7ED3;&#x679C;&#x8C03;&#x6574;&#x81EA;&#x8EAB;&#x8868;&#x5F81;</li>
+</ul>
+<p>In GPT-3</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170051060.png"></p>
+<p>these weights constantly changed during the process of training</p>
+<h3 id="How-do-we-get-weights"><a href="#How-do-we-get-weights" class="headerlink" title="How do we get weights"></a>How do we get weights</h3><p>&#x9884;&#x6D4B;&#x9636;&#x6BB5;(Inference)</p>
+<ul>
+<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;input vectors matrix</li>
+<li>&#x52A8;&#x6001;&#x8C03;&#x6574; tokens &#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</li>
+<li>&#x4E0D;&#x6539;&#x53D8;&#x6A21;&#x578B;&#x6743;&#x91CD;</li>
+</ul>
+<p>&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;(Training)</p>
+<ul>
+<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;&#x6A21;&#x578B;&#x7684; weights</li>
+<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;</li>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x66F4;&#x597D;&#x5730;&#x6355;&#x6349; tokens &#x95F4;&#x5173;&#x7CFB;</li>
+</ul>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x5F97;&#x5230;&#x4E00;&#x4E2A; reasonable weights</p>
+<h4 id="WHY-do-they-weights-change"><a href="#WHY-do-they-weights-change" class="headerlink" title="WHY do they (weights) change"></a>WHY do they (weights) change</h4><p>The ULTIMATE Goal &#x662F;&#x6700;&#x5C0F;&#x5316;&#x6574;&#x4F53;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x8F93;&#x5165;x &#x2192; &#x6A21;&#x578B;&#x9884;&#x6D4B; &#x2192; &#x8BA1;&#x7B97;&#x8BEF;&#x5DEE; &#x2192; &#x8C03;&#x6574;weights</span><br></pre></td></tr></table></figure>
+
+<h4 id="How-they-change"><a href="#How-they-change" class="headerlink" title="How they change"></a>How they change</h4><ul>
+<li>&#x635F;&#x5931;&#x51FD;&#x6570;(Loss Function)&#x8861;&#x91CF;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</li>
+<li>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8BA1;&#x7B97;&#x6743;&#x91CD;&#x8C03;&#x6574;&#x65B9;&#x5411;</li>
+<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;(Backpropagation)&#x66F4;&#x65B0;&#x6743;&#x91CD;</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170102556.png"></p>
+<p>The most popular algorithm today&#x2019;s models are mostly using</p>
+<p>The model is given an <strong>input vector</strong>, makes a prediction, compares that prediction to the <strong>expected output</strong>, and then uses the error (quantified by the loss function) and the gradient of that error to adjust its weights.</p>
+<p><strong>This adjustment process is what we call &#x201C;learning.&#x201D;</strong></p>
+<h3 id="The-results-of-learning-of-adjusting-weights"><a href="#The-results-of-learning-of-adjusting-weights" class="headerlink" title="The results of learning ,of adjusting weights"></a>The results of learning ,of adjusting weights</h3><p>&#x5047;&#x8BBE;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x8868;&#x793A;&#x201C;&#x5973;&#x6027;&#x541B;&#x4E3B;&#x201D;&#x7684;&#x8BCD; &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5411;&#x201C;&#x56FD;&#x738B;&#x201D;&#x5411;&#x91CF;&#x6DFB;&#x52A0;&#x201C;&#x5973;&#x4EBA;&#x51CF;&#x7537;&#x4EBA;&#x201D;&#x7684;&#x65B9;&#x5411; &#x5E76;&#x641C;&#x7D22;&#x6700;&#x63A5;&#x8FD1;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x6765;&#x627E;&#x5230;&#x5B83;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052126.png"></p>
+<p>&#x5173;&#x952E;&#x5728;&#x4E8E;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x6A21;&#x578B;&#x53D1;&#x73B0;&#x91C7;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x5D4C;&#x5165;&#x65B9;&#x5F0F;&#x66F4;&#x4E3A;&#x6709;&#x5229; &#x5373;&#x4ED6;&#x5B66;&#x4F1A;&#x4E86;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x80FD;&#x591F;&#x7F16;&#x7801;&#x6027;&#x522B;&#x4FE1;&#x606F;</p>
+<p>And it has found a proper vector to encode the information the token represents! Not just its original meaning,But IN THE CONTEXT</p>
+<h2 id="In-this-step-What-does-a-well-trained-vector-mean"><a href="#In-this-step-What-does-a-well-trained-vector-mean" class="headerlink" title="In this step,What does a well-trained vector mean"></a>In this step,What does a well-trained vector mean</h2><p>we have got processed vectors by filtering with weights<br>Which means What we are asking right now is (In Y=WX+B)<br><strong>What does WX mean now</strong></p>
+<p>It means <strong>it&#x2019;s context-encoded</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170125004.png"></p>
+<p>Let&#x2019;s summarize it:<br>&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x610F;&#x4E49;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x7531;&#x5176;&#x6240;&#x5904;&#x7684;&#x73AF;&#x5883;&#x51B3;&#x5B9A;&#x7684; &#x6709;&#x65F6;&#x8FD9;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x6765;&#x81EA;&#x5F88;&#x8FDC;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x80FD;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x6C47;&#x7684;&#x6A21;&#x578B;&#x65F6; &#x5173;&#x952E;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x8BA9;&#x5B83;&#x80FD;&#x591F;&#x9AD8;&#x6548;&#x5730;&#x878D;&#x5408;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x6839;&#x636E;&#x8F93;&#x5165;&#x6587;&#x672C;&#x521B;&#x5EFA;&#x5411;&#x91CF;&#x6570;&#x7EC4;&#x65F6;&#xFF0C; &#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x4ECE;&#x5D4C;&#x5165;&#x77E9;&#x9635;&#x4E2D;&#x9009;&#x53D6;&#x7684;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x8D77;&#x521D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x4EC5;&#x80FD;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x542B;&#x4E49;&#xFF0C; &#x800C;&#x4E0D;&#x6D89;&#x53CA;&#x5176;&#x5468;&#x8FB9;&#x73AF;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x9012;&#xFF0C;&#x4F7F;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x80FD;&#x83B7;&#x5F97;&#x6BD4;&#x5355;&#x4E2A;&#x8BCD;&#x66F4;&#x4E30;&#x5BCC;&#x3001;&#x66F4;&#x5177;&#x4F53;&#x7684;&#x542B;&#x4E49;&#x3002;</p>
+<p>Which is A token has the capacity to absorb its context-meaning</p>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x6BCF;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x5411;&#x91CF;&#x8FD9;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5927;&#x5C0F;&#x3002;<br>&#x610F;&#x5473;&#x7740;&#x6570;&#x636E;&#x5728; Transformer &#x7F51;&#x7EDC;&#x4E2D;&#x6D41;&#x52A8;&#x65F6;&#xFF0C; &#x603B;&#x662F;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E00;&#x4E32; 2048 &#x5217;&#x7684;&#x6570;&#x7EC4;&#x3002;</p>
+<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170130380.png" style="zoom:200%;">
+
+<p>:smile:</p>
+<h2 id="In-the-final"><a href="#In-the-final" class="headerlink" title="In the final"></a>In the final</h2><p>End should look like this:</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170134409.png" alt="1739727248332_d"></p>
+<p>Its final goal is to have a distribution of probability Because Transformer is a prediction model in the end.<br>So We have our processed vectors-composed Sequence&#xFF08;&#x4E0A;&#x4E0B;&#x6587;&#xFF09;,We just need its last column</p>
+<p>&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x77E9;&#x9635; Unembedding matrix&#xFF0C; &#x5C06;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6620;&#x5C04;&#x5230; to a list of 50,000 values, one for each token in the vocabulary.&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x63A5;&#x7740;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x8FD9;&#x4E9B;&#x503C;&#x8F6C;&#x6362;&#x6210;&#x6982;&#x7387;&#x5206;&#x5E03;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x53EB; softmax&#xFF0C;&#x4EC5;&#x4EC5;&#x57FA;&#x4E8E;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x6765;&#x505A;&#x51FA;&#x9884;&#x6D4B;&#x4F3C;&#x4E4E;&#x6709;&#x4E9B;&#x5947;&#x602A;&#xFF0C; &#x6BD5;&#x7ADF;&#x5728;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x4E2D;&#x8FD8;&#x6709;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x7684;&#x5176;&#x4ED6;&#x5411;&#x91CF;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x5982;&#x679C;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x6700;&#x7EC8;&#x5C42;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6765;&#x9884;&#x6D4B;&#x5176;&#x540E;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x88AB;&#x8BC1;&#x660E;&#x662F;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170139461.png" alt="1739727579409_d"></p>
+<h3 id="&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values"><a href="#&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values" class="headerlink" title="&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values"></a>&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values</h3><p>&#x5173;&#x4E8E;&#x53C2;&#x6570;&#x603B;&#x6570;&#x7684;&#x7EDF;&#x8BA1;&#xFF0C; &#x8FD9;&#x4E2A; unembedding &#x77E9;&#x9635;&#x4E3A;&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x5206;&#x914D;&#x4E86;&#x4E00;&#x884C;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x5305;&#x542B;&#x4E0E;&#x5D4C;&#x5165;&#x7EF4;&#x5EA6;&#x76F8;&#x540C;&#x6570;&#x91CF;&#x7684;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E0E;&#x5D4C;&#x5165;&#xFF08;embedding&#xFF09;&#x77E9;&#x9635;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x628A;&#x987A;&#x5E8F;&#x5012;&#x8FC7;&#x6765;&#x4E86;&#xFF0C; &#x56E0;&#x6B64;&#x5B83;&#x4E3A;&#x7F51;&#x7EDC;&#x589E;&#x52A0;&#x4E86;&#x53E6;&#x5916; 6.17 &#x4EBF;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h3><p>&#x6211;&#x4EEC;&#x7684;&#x6700;&#x540E;&#x8BA1;&#x7B97;&#x90FD;&#x662F;&#x77E9;&#x9635;&#x548C; vector &#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x4E0D;&#x5230;&#x4E00;&#x4E2A;&#x6982;&#x7387;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5F52;&#x4E00;&#x5316;&#x51FD;&#x6570; &#x8F93;&#x5165;&#x662F; logits &#x8F93;&#x51FA;&#x662F; Probabilities</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png"></p>
+<p>&#x73B0;&#x5728;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x6E29;&#x5EA6;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png" alt="1739727981548_d"></p>
+<p>&#x5B83;&#x7684;&#x6548;&#x679C;&#x662F;&#xFF0C;&#x5F53; t &#x503C;&#x8F83;&#x5927;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x503C;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x7684;&#x6743;&#x91CD;&#xFF0C; &#x4F7F;&#x5F97;&#x5206;&#x5E03;&#x7A0D;&#x5FAE;&#x5747;&#x5300;&#x4E00;&#x4E9B;&#x3002;&#x800C;&#x5982;&#x679C; t &#x503C;&#x8F83;&#x5C0F;&#x5219;&#x8F83;&#x5927;&#x7684;&#x6570;&#x503C;&#x5219;&#x4F1A;&#x66F4;&#x52A0;&#x660E;&#x663E;&#x5730;&#x5360;&#x636E;&#x4E3B;&#x5BFC;&#xFF0C;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;0 &#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD; &#x90A3;&#x4E48;&#x6240;&#x6709;&#x7684;&#x6743;&#x91CD;&#x90FD;&#x4F1A;&#x96C6;&#x4E2D;&#x5728;&#x6700;&#x5927;&#x7684;&#x503C;&#x4E0A;&#x3002;</p>
+<p>&#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD;,&#x800C;&#x4F60;&#x6240;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x9648;&#x8BCD;&#x6EE5;&#x8C03;&#x7684;&#x91D1;&#x53D1;&#x59D1;&#x5A18;&#x6545;&#x4E8B;&#x3002;&#x8F83;&#x9AD8;&#x7684;&#x6E29;&#x5EA6;&#x7ED9;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x9009;&#x62E9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x8BCD;&#x7684;&#x673A;&#x4F1A;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x4F34;&#x968F;&#x7740;&#x98CE;&#x9669;&#x3002;&#x4F46;&#x5F88;&#x5FEB;&#x5C31;&#x53D8;&#x5F97;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x3002;API &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x4E0D;&#x5141;&#x8BB8;&#x4F60;&#x9009;&#x62E9;&#x5927;&#x4E8E; 2 &#x7684;&#x6E29;&#x5EA6;&#x3002;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x5E76;&#x6CA1;&#x6709;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x6839;&#x636E;&#xFF0C; &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x6211;&#x731C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4ED6;&#x4EEC;&#x7684;&#x5DE5;&#x5177;&#x4EA7;&#x751F;&#x592A;&#x8FC7;&#x8352;&#x8BDE;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"># ML</a>
+              <a href="/tags/Transformer/" rel="tag"># Transformer</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/02/16/Jottings/2025-02-18-first-journal/" rel="prev" title="Unix Philosophy">
+      <i class="fa fa-chevron-left"></i> Unix Philosophy
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2025/02/17/2025-02-17-Mirror_Cognitive/" rel="next" title="Do LLMs Mirror Cognitive Language Processing">
+      Do LLMs Mirror Cognitive Language Processing <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GPT-intro"><span class="nav-number">1.</span> <span class="nav-text">GPT intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-Data-flows-in-Transformer-Generally"><span class="nav-number">2.</span> <span class="nav-text">How Data flows in Transformer (Generally)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tokens"><span class="nav-number">2.1.</span> <span class="nav-text">tokens</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-Block"><span class="nav-number">2.2.</span> <span class="nav-text">Attention Block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multilayer-Perceptron"><span class="nav-number">2.3.</span> <span class="nav-text">Multilayer Perceptron</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Final-Processing-vectors"><span class="nav-number">2.4.</span> <span class="nav-text">Final Processing vectors</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dive-into"><span class="nav-number">3.</span> <span class="nav-text">Dive into</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Premise-What-is-Weight"><span class="nav-number">3.1.</span> <span class="nav-text">Premise:What is Weight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-Input-tokens"><span class="nav-number">3.2.</span> <span class="nav-text">About Input tokens</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-many-dimensions-can-x-be"><span class="nav-number">3.2.1.</span> <span class="nav-text">How many dimensions can x be</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#review-key-concept"><span class="nav-number">3.2.2.</span> <span class="nav-text">review key concept</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-happens-in-the-Attention-block-and-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E6%9C%BA"><span class="nav-number">3.3.</span> <span class="nav-text">What happens in the Attention block and 多层感知机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-do-we-get-weights"><span class="nav-number">3.3.1.</span> <span class="nav-text">How do we get weights</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WHY-do-they-weights-change"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">WHY do they (weights) change</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-they-change"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">How they change</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-results-of-learning-of-adjusting-weights"><span class="nav-number">3.3.2.</span> <span class="nav-text">The results of learning ,of adjusting weights</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#In-this-step-What-does-a-well-trained-vector-mean"><span class="nav-number">3.4.</span> <span class="nav-text">In this step,What does a well-trained vector mean</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Context"><span class="nav-number">3.4.1.</span> <span class="nav-text">Context</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#In-the-final"><span class="nav-number">3.5.</span> <span class="nav-text">In the final</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%A1%AE%E5%AE%9A-50-000-values"><span class="nav-number">3.5.1.</span> <span class="nav-text">怎么确定 50,000 values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax"><span class="nav-number">3.5.2.</span> <span class="nav-text">Softmax</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Victor Chen"
+      src="/images/mbappe.webp">
+  <p class="site-author-name" itemprop="name">Victor Chen</p>
+  <div class="site-description" itemprop="description">Victor Chen's English Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tju-tomorrow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tju-tomorrow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chendasd33@gmail.com" title="E-Mail → chendasd33@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tju-tomorrow.github.io/guestbook/" title="Weixin → https:&#x2F;&#x2F;tju-tomorrow.github.io&#x2F;guestbook&#x2F;"><i class="fab fa-weixin fa-fw"></i>Weixin</a>
+      </span>
+  </div>
+
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jottings/" rel="tag">Jottings</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thesis/" rel="tag">Thesis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/" rel="tag">Transformer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">3</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Victor Chen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline-block !important;" >
+      <span class="post-meta-item-icon" style="display: inline-block !important;">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量" style="display: inline-block !important;">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider" style="display: inline-block !important;">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline-block !important;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv">0</span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'Ov23liJsZlMAkl4LjqlF',
+      clientSecret: 'decc50a11696ace1c117ace7d17f42ebf90ae5a2',
+      repo        : 'tju-tomorrow.github.io',
+      owner       : 'tju-tomorrow',
+      admin       : ['tju-tomorrow'],
+      id          : '22c4a380647e85e1a5be334a4d520492',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
