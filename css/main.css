@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #b0ff03;
+  background: #f9ff79;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1662,29 +1662,14 @@ pre .javascript .function {
   z-index: 2;
   padding: 6px 16px;
   border-radius: 10px;
-  background: #f5f5f5;
-}
-.post-block .btn[rel="contents"]:hover {
-  background: #eee;
-}
-.post-block:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background: #dcd1d1;
 }
 .post-block:hover::after {
   opacity: 1;
 }
 .post-block:hover .btn[rel="contents"] {
   transform: scale(1.05);
-  background: #eee;
-}
-.post-block .btn[rel="contents"]:hover ~ .post-body,
-.post-block .btn[rel="contents"]:hover ~ .post-header,
-.post-block .btn[rel="contents"]:hover ~ .post-meta,
-.post-block .btn[rel="contents"]:hover,
-.post-block .btn[rel="contents"]:hover .post-block {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  background: #696363;
 }
 .tag-cloud {
   text-align: center;
@@ -1902,7 +1887,7 @@ pre .javascript .function {
   width: 100%;
 }
 .post-body {
-  background: #eaf1f4;
+  background: #95c5d9;
   color: #060606;
 }
 .post-gallery {
@@ -2116,6 +2101,18 @@ pre .javascript .function {
 }
 #qr p {
   text-align: center;
+}
+.post-block .post-body.post-body-excerpt {
+  transition: all 0.3s ease !important;
+}
+.post-block .post-body.post-body-excerpt:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 1px 1px 15px 2px #000 !important;
+}
+.post-body-full {
+/* Styles for full post view */
+/* For example: */
+  background: #fff;
 }
 .category-all-page .category-all-title {
   text-align: center;
