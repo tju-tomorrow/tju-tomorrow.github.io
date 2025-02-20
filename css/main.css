@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffa188;
+  background: #28207d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2429,7 +2429,8 @@ ul.breadcrumb li + li:last-child {
 }
 @media (max-width: 991px) {
   .header {
-    width: auto;
+    margin: 0 20px;
+    width: calc(100% - 40px);
   }
 }
 .header-inner {
@@ -2449,9 +2450,9 @@ ul.breadcrumb li + li:last-child {
 }
 @media (max-width: 991px) {
   .header-inner {
-    border-radius: initial;
-    position: relative;
-    width: auto;
+    border-radius: 0px 0px 10px 10px;
+    position: absolute;
+    width: 300px;
   }
 }
 .main-inner {
@@ -2462,7 +2463,7 @@ ul.breadcrumb li + li:last-child {
 }
 @media (max-width: 991px) {
   .main-inner {
-    width: auto;
+    flex-direction: row;
   }
 }
 .content-wrap {
@@ -2476,9 +2477,10 @@ ul.breadcrumb li + li:last-child {
 }
 @media (max-width: 991px) {
   .content-wrap {
-    border-radius: initial;
-    padding: 20px;
-    width: 100%;
+    border-radius: 15px;
+    padding: 40px;
+    width: calc(100% - 300px);
+    transform: translateX(0);
   }
 }
 .footer-inner {
@@ -2501,6 +2503,7 @@ ul.breadcrumb li + li:last-child {
     padding-left: 0;
     padding-right: 0;
     width: auto;
+    transform: translateX(0);
   }
 }
 .footer-inner .busuanzi-count {
