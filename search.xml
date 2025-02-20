@@ -548,6 +548,31 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Server</title>
+    <url>/2024/09/02/2024-09-02-Server-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
+<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
+<span id="more"></span>
+
+<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
+<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
+<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
+<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
+<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
+<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
+<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
+<hr>
+
+<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>What happens when you type a URL into your browser?</title>
     <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
@@ -580,50 +605,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Server</title>
-    <url>/2024/09/02/2024-09-02-Server-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
-<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
-<span id="more"></span>
-
-<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
-<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
-<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
-<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
-<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
-<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
-<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
-<hr>
-
-<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What’s the Difference Between localhost and 127.0.0.1</title>
-    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
-<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
-<p>The scope of localhost is limited to the local machine</p>
-<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
-<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
-<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
-<p>localhost is a domain name</p>
-<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
-<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
-<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ref and Reactive in Vue</title>
     <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
@@ -649,6 +630,25 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What’s the Difference Between localhost and 127.0.0.1</title>
+    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
+<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
+<p>The scope of localhost is limited to the local machine</p>
+<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
+<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
+<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
+<p>localhost is a domain name</p>
+<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
+<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
+<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -1090,235 +1090,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>webpack基础</title>
-    <url>/2025/02/04/2025-02-06-Webpack%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. &#x5165;&#x53E3; (entry): &apos;./extension.js&apos; // &#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x6253;&#x5305;&#x7684;&#x8D77;&#x70B9;</span><br><span class="line">2. &#x8F93;&#x51FA; (output): dist/extension.js // &#x6700;&#x7EC8;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4F4D;&#x7F6E;</span><br><span class="line">3. &#x6392;&#x9664;&#x9879; (externals): vscode &#x6A21;&#x5757; // &#x4E0D;&#x6253;&#x5305;&#x8FDB;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x7684;&#x5916;&#x90E8;&#x4F9D;&#x8D56;</span><br></pre></td></tr></table></figure>
-
-<h1 id="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"><a href="#&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;" class="headerlink" title="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"></a>&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;</h1><ol>
-<li>&#x6253;&#x5305;&#x547D;&#x4EE4; (package.json &#x4E2D;):</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;webpack&quot;: &quot;webpack --mode production&quot;,    // &#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6253;&#x5305;</span><br><span class="line">  &quot;webpack-dev&quot;: &quot;webpack --mode development --watch&quot; // &#x5F00;&#x53D1;&#x6A21;&#x5F0F; + &#x76D1;&#x542C;&#x6587;&#x4EF6;&#x53D8;&#x5316;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>&#x8C03;&#x8BD5;&#x914D;&#x7F6E; (.vscode/launch.json):</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;preLaunchTask&quot;: &quot;npm: webpack-dev&quot; // &#x8C03;&#x8BD5;&#x524D;&#x81EA;&#x52A8;&#x6267;&#x884C; webpack-dev</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x6253;&#x5305;</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;watch&quot;: &quot;webpack --mode development --watch&quot;,</span><br><span class="line">  &quot;vscode:prepublish&quot;: &quot;npm run webpack&quot; // &#x53D1;&#x5E03;&#x6269;&#x5C55;&#x524D;&#x81EA;&#x52A8;&#x6253;&#x5305;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><strong>&#x5F00;&#x53D1;&#x6A21;&#x5F0F; vs &#x751F;&#x4EA7;&#x6A21;&#x5F0F;</strong>&#xFF1A;</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>&#x6A21;&#x5F0F;</th>
-<th>&#x4EE3;&#x7801;&#x538B;&#x7F29;</th>
-<th>&#x8C03;&#x8BD5;&#x4FE1;&#x606F;</th>
-<th>&#x9002;&#x7528;&#x573A;&#x666F;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>production</td>
-<td>&#x2705;</td>
-<td>&#x274C;</td>
-<td>&#x6B63;&#x5F0F;&#x53D1;&#x5E03;</td>
-</tr>
-<tr>
-<td>development</td>
-<td>&#x274C;</td>
-<td>&#x2705;</td>
-<td>&#x672C;&#x5730;&#x8C03;&#x8BD5;</td>
-</tr>
-</tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Transformer</title>
-    <url>/2025/02/16/2025-02-16-Transformer-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
-<h1 id="GPT-intro"><a href="#GPT-intro" class="headerlink" title="GPT intro"></a>GPT intro</h1><p>GPT &#x7684;&#x5168;&#x540D;&#x5C31;&#x662F; generative pre-trained transformer<br>&#x9884;&#x8BAD;&#x7EC3;&#x662F;&#x6307;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4ECE;&#x5927;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x524D;&#x7F00; Pre &#x6697;&#x793A;&#x6709;&#x66F4;&#x591A;&#x7A7A;&#x95F4;&#x901A;&#x8FC7;&#x989D;&#x5916;&#x7684;&#x8BAD;&#x7EC3;&#x6765;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;&#x3002;</p>
-<p>The last piece that&#x2019;s the real key, a transformer is a specific kind of neural network, a machine learning model, and it&#x2019;s the core invention underlying current boom in AI</p>
-<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x5C31;&#x662F; transformer &#x521B;&#x9020;&#x5F88;&#x591A;&#x7C7B;&#x578B;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4; voice to text what text to voice, text to image These are based on transformer</p>
-<p>&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x7528; transformer &#x8FD9;&#x79CD;&#x9884;&#x6D4B;&#x6A21;&#x578B;&#x6765;&#x751F;&#x6210;&#x4E00;&#x6BB5;&#x65B0;&#x6587;&#x672C;&#x662F;&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x4EE5;&#x7ED9;&#x4ED6;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x7247;&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x4ED6; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x3002;&#x7136;&#x540E;&#x4F60;&#x518D;&#x628A;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x53C8;&#x4E22;&#x8FDB;&#x53BB;&#xFF0C;&#x53BB; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x5C31;&#x8FD9;&#x6837;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162156993.png"></p>
-<h1 id="How-Data-flows-in-Transformer-Generally"><a href="#How-Data-flows-in-Transformer-Generally" class="headerlink" title="How Data flows in Transformer (Generally)"></a>How Data flows in Transformer (Generally)</h1><pre class="mermaid" style="text-align: center;">
-            
-            flowchart TD
-subgraph Input[&quot;&#x8F93;&#x5165;&#x5C42; (Raw Tokens)&quot;]
-A[(&quot;Token &#x5E8F;&#x5217;&quot;)]
-end
-
-    subgraph Embedding[&quot;Embedding&#x5C42;&quot;]
-        B1[&quot;Embeddings Matrix&#x67E5;&#x627E;&quot;]
-        B2[&quot;&#x5411;&#x91CF;&#x6620;&#x5C04; (12800&#x7EF4;)&quot;]
-    end
-
-    subgraph TransformerFlow[&quot;Transformer&#x6838;&#x5FC3;&quot;]
-        subgraph AttentionBlock[&quot;Attention Block&quot;]
-            D1[&quot;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&quot;] --&gt; D2[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
-            D2 --&gt; D3[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
-            D3 --&gt; D4[&quot;MLP&quot;]
-            D4 --&gt; D5[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
-            D5 --&gt; D6[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
-        end
-
-        C[&quot;&#x5411;&#x91CF;&#x5E8F;&#x5217;&quot;] --&gt; D1
-        D6 --&gt; E[&quot;&#x4E0B;&#x4E00;&#x4E2A;Attention Block&quot;]
-    end
-
-    subgraph Output[&quot;&#x8F93;&#x51FA;&#x5C42;&#x5904;&#x7406;&quot;]
-        F1[&quot;Unembedding Matrix&quot;]
-        F2[&quot;50000&#x7EF4;&#x8BCD;&#x8868;&#x6620;&#x5C04;&quot;]
-        G1[&quot;Softmax&#x6E29;&#x5EA6;&#x8C03;&#x8282;&quot;]
-        G2[&quot;&#x6982;&#x7387;&#x5206;&#x5E03;&#x8F93;&#x51FA;&quot;]
-    end
-
-    A --&gt; B1
-    B1 --&gt; B2
-    B2 --&gt; C
-    E --&gt; F1
-    F1 --&gt; F2
-    F2 --&gt; G1
-    G1 --&gt; G2
-
-    %% &#x6DFB;&#x52A0;&#x8BF4;&#x660E;&#x6CE8;&#x91CA;
-    classDef process fill:#f9f,stroke:#333,stroke-width:2px
-    class D1,D4 process
-
-    %% &#x6DFB;&#x52A0;&#x5173;&#x952E;&#x6B65;&#x9AA4;&#x8BF4;&#x660E;
-    note1[/&quot;&#x8F93;&#x5165;token&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x91CF;&quot;/]
-    note2[/&quot;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&quot;/]
-    note3[/&quot;&#x751F;&#x6210;&#x9884;&#x6D4B;&#x6982;&#x7387;&quot;/]
-
-    B2 -.-&gt; note1
-    D1 -.-&gt; note2
-    G2 -.-&gt; note3
-
-          </pre>
-
-<h2 id="tokens"><a href="#tokens" class="headerlink" title="tokens"></a>tokens</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162202929.png"></p>
-<p>&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x9891;&#xFF0C;&#x6587;&#x672C;&#x7684;&#x201D;a piece&#x201D;&#x90FD;&#x53EF;&#x4EE5;&#x662F; token<br><strong>A token doesn&#x2019;t align with a word</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170023326.png" style="zoom:50%;">the first time I met token</p>
-<p>&#x6BCF;&#x4E00;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector, &#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E00;&#x4E32;&#x6570;&#x5B57;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x662F;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8868;&#x8FBE;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x542B;&#x4E49;</p>
-<p><strong>this vector somehow encode the information a token contain</strong></p>
-<p>if you think of these vectors as giving coordinates in some very high dimensional space.You will find words with similar meaning tend to land on vectors that close to each other in that space &#x5411;&#x91CF;</p>
-<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E00;&#x4E2A; token &#x5728; high dimensional space &#x90FD;&#x53EF;&#x4EE5;&#x8868;&#x73B0;&#x4E3A;&#x4E00;&#x4E2A; informational &#x7684;&#x5411;&#x91CF;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162207013.png" alt="1739714827253_d"></p>
-<p>&#x8FD9;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x5207;&#x7247;</p>
-<p>Transformer &#x7684; tokens &#x5E94;&#x8BE5;&#x8981;&#x8F6C;&#x5316;&#x6210; vectors,&#x4E00;&#x4E2A; token &#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector &#x4ECE; embeddings matrix &#x91CC;&#x53D6;&#x51FA;&#x5BF9;&#x5E94; token &#x7684;&#x5411;&#x91CF; vector&#xFF0C;&#x5C31;&#x5B8C;&#x6210;&#x4E86; tokens-&gt;vectors,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x5F53; input data &#x5728; Transformer &#x4E2D;&#x6D41;&#x52A8;&#x7684;&#x65F6;&#x5019; &#x4ED6;&#x5C31;&#x957F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A; vectors &#x6784;&#x6210;&#x7684; sequence &#x7684;&#x6837;&#x5B50;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># &#x5047;&#x8BBE;&#x7684;&#x4F2A;&#x4EE3;&#x7801;</span><br><span class="line">embeddings_matrix = ...  # &#x9884;&#x8BAD;&#x7EC3;&#x7684;embedding&#x77E9;&#x9635;</span><br><span class="line">tokens = [&quot;I&quot;, &quot;love&quot;, &quot;machine&quot;, &quot;learning&quot;]</span><br><span class="line"></span><br><span class="line"># &#x5C06;&#x6BCF;&#x4E2A;token&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;vector</span><br><span class="line">token_vectors = [</span><br><span class="line">    embeddings_matrix[&quot;I&quot;],</span><br><span class="line">    embeddings_matrix[&quot;love&quot;],</span><br><span class="line">    embeddings_matrix[&quot;machine&quot;],</span><br><span class="line">    embeddings_matrix[&quot;learning&quot;]</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>&#x7136;&#x540E;&#x521A;&#x521A;&#x751F;&#x6210;&#x7684;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E00;&#x5806; vectors &#x4F1A;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EB;&#x505A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x3002;</p>
-<h2 id="Attention-Block"><a href="#Attention-Block" class="headerlink" title="Attention Block"></a>Attention Block</h2><p>WHY need attention block.</p>
-<p>A token is not supposed to be just the exact original meaning(in embeddings matrix) &#x6BD4;&#x5982; model &#x8FD9;&#x4E2A;&#x8BCD;&#xFF0C;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x4ED6;&#x662F;&#x4E00;&#x4E2A; token&#xFF0C;machine learning model &#x548C; fashion model &#x7684;&#x610F;&#x601D;&#x80AF;&#x5B9A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x4ED6;&#x4EEC;&#x7684; Pre-trained embeddings matrix &#x91CC;&#x7684;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x6837;,&#x4F46;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x4ED6;&#x4EEC;&#x7684;&#x610F;&#x601D;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x5B66;&#x4E60;&#x5230;&#x8FD9;&#x4E2A;&#x610F;&#x4E49;<br>The vector in embeddings matrix encoded the original information which should change into the meaning it is supposed to be in THE CONTEXT<br>&#x5728; attention block &#x8FD9;&#x4E9B; Vector &#x4F1A;&#x4E92;&#x76F8;&#x4F5C;&#x7528;</p>
-<p>&#x63A5;&#x7740;&#x521A;&#x521A;&#x8BF4;&#x7684;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6709; vectors &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x5728;&#x8FD9;&#x4E2A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x91CC;&#xFF0C;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x4EA4;&#x6D41;&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5; pass information back and forth</p>
-<h2 id="Multilayer-Perceptron"><a href="#Multilayer-Perceptron" class="headerlink" title="Multilayer Perceptron"></a>Multilayer Perceptron</h2><p>&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</p>
-<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x63D0;&#x51FA;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x95EE;&#x9898;&#xFF0C; &#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x7B54;&#x6848;&#x6765;&#x66F4;&#x65B0;&#x5411;&#x91CF;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162232003.png"></p>
-<p>&#x8FD9;&#x6837;&#x91CD;&#x590D;&#x8FD9;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162234738.png"></p>
-<h2 id="Final-Processing-vectors"><a href="#Final-Processing-vectors" class="headerlink" title="Final Processing vectors"></a>Final Processing vectors</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162239819.png"></p>
-<h1 id="Dive-into"><a href="#Dive-into" class="headerlink" title="Dive into"></a>Dive into</h1><h2 id="Premise-What-is-Weight"><a href="#Premise-What-is-Weight" class="headerlink" title="Premise:What is Weight"></a>Premise:What is Weight</h2><p>We start with the simplest machine-learning model: <strong>linear model</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170030041.png"></p>
-<p>&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F; y = wx + b</p>
-<ul>
-<li>y: &#x9884;&#x6D4B;&#x503C;</li>
-<li>x: &#x8F93;&#x5165;&#x7279;&#x5F81;</li>
-<li>w: &#x6743;&#x91CD;(weight)</li>
-<li>b: &#x504F;&#x7F6E;(bias)</li>
-</ul>
-<p>We see x as a vector and by processing(computing) x with weight and bias,in the high semantic dimensional space we have changed the meaning x originally represents.</p>
-<h2 id="About-Input-tokens"><a href="#About-Input-tokens" class="headerlink" title="About Input tokens"></a>About Input tokens</h2><p>Input is just what the model processes,the actual brain of Transformer is WEIGHTS.</p>
-<p>&#x6A21;&#x578B;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x9884;&#x8BBE;&#x7684;&#x8BCD;&#x6C47;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x5355;&#x8BCD;&#xFF0C; &#x6BD4;&#x5982;&#x8BF4;&#x6709; 50,000 &#x4E2A;</p>
-<p>&#x8FD9;&#x4E2A;&#x8BCD;&#x6C47;&#x8868;&#x4EE5; Embedding matrix &#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170032772.png"><br>this is pre-trained which somehow encoded the information a single token should represent!<br>Which is to say : these columns are what determines what vector each word(token) turns into <strong>IN THE FIRST STEP</strong></p>
-<p>And &#x4E0D;&#x7BA1;&#x4F60;&#x6784;&#x5EFA;&#x7684;&#x662F;&#x54EA;&#x79CD;&#x6A21;&#x578B;&#xFF0C;&#x8F93;&#x5165;&#x90FD;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x6570;&#x6570;&#x7EC4;&#x8FD9;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x5217;&#x8868;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;&#xFF0C;&#x6216;&#x8005;&#x66F4;&#x5E38;&#x89C1;&#x7684;&#x662F;&#x66F4;&#x9AD8;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x7528;&#x7684;&#x672F;&#x8BED;&#x6211;&#x4EEC;&#x79F0;&#x4E4B;&#x4E3A;&#x5F20;&#x91CF;<br>So &#x2B07;&#xFE0F;</p>
-<h3 id="How-many-dimensions-can-x-be"><a href="#How-many-dimensions-can-x-be" class="headerlink" title="How many dimensions can x be"></a>How many dimensions can x be</h3><p>As we already know:In the perception of Transformer,Input data is sequence of vectors (high dimensional vector)</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
-<p>So how many numbers are in a vector ?&#x1F928;</p>
-<p>take GPT-3 for example :12800 dimension,which means 12800 rows for a vector</p>
-<h3 id="review-key-concept"><a href="#review-key-concept" class="headerlink" title="review key concept"></a>review key concept</h3><p>&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#xFF0C; &#x4EE5;&#x786E;&#x5B9A;&#x8BCD;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x88AB;&#x5D4C;&#x5165;&#x4E3A; final &#x5411;&#x91CF;<br><strong>how exactly words get embedded as vectors during training</strong></p>
-<h2 id="What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"><a href="#What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;" class="headerlink" title="What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"></a>What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</h2><p>we&#x2019;ve said that &#x201C;&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#x201D;<br>So In the Attention block that&#x2019;s what happened.<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052799.png"></p>
-<p>And it does that by what we have mentioned:Weights</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Attention block&#x6838;&#x5FC3;&#x8FC7;&#x7A0B;</span><br><span class="line">Vectors &#x2192; &#x76F8;&#x4E92;&#x4F20;&#x9012;&#x4FE1;&#x606F; &#x2192; &#x8C03;&#x6574;&#x77E9;&#x9635;&#x503C;</span><br></pre></td></tr></table></figure>
-
-<p>&#x200B; &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
-<ul>
-<li>&#x4E0E;&#x5176;&#x4ED6; vectors &#x4EA4;&#x4E92;</li>
-<li>&#x4EA4;&#x6362;&#x4FE1;&#x606F;</li>
-<li>&#x6839;&#x636E;&#x4EA4;&#x4E92;&#x7ED3;&#x679C;&#x8C03;&#x6574;&#x81EA;&#x8EAB;&#x8868;&#x5F81;</li>
-</ul>
-<p>In GPT-3</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170051060.png"></p>
-<p>these weights constantly changed during the process of training</p>
-<h3 id="How-do-we-get-weights"><a href="#How-do-we-get-weights" class="headerlink" title="How do we get weights"></a>How do we get weights</h3><p>&#x9884;&#x6D4B;&#x9636;&#x6BB5;(Inference)</p>
-<ul>
-<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;input vectors matrix</li>
-<li>&#x52A8;&#x6001;&#x8C03;&#x6574; tokens &#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</li>
-<li>&#x4E0D;&#x6539;&#x53D8;&#x6A21;&#x578B;&#x6743;&#x91CD;</li>
-</ul>
-<p>&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;(Training)</p>
-<ul>
-<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;&#x6A21;&#x578B;&#x7684; weights</li>
-<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;</li>
-<li>&#x76EE;&#x7684;&#xFF1A;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x66F4;&#x597D;&#x5730;&#x6355;&#x6349; tokens &#x95F4;&#x5173;&#x7CFB;</li>
-</ul>
-<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x5F97;&#x5230;&#x4E00;&#x4E2A; reasonable weights</p>
-<h4 id="WHY-do-they-weights-change"><a href="#WHY-do-they-weights-change" class="headerlink" title="WHY do they (weights) change"></a>WHY do they (weights) change</h4><p>The ULTIMATE Goal &#x662F;&#x6700;&#x5C0F;&#x5316;&#x6574;&#x4F53;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x8F93;&#x5165;x &#x2192; &#x6A21;&#x578B;&#x9884;&#x6D4B; &#x2192; &#x8BA1;&#x7B97;&#x8BEF;&#x5DEE; &#x2192; &#x8C03;&#x6574;weights</span><br></pre></td></tr></table></figure>
-
-<h4 id="How-they-change"><a href="#How-they-change" class="headerlink" title="How they change"></a>How they change</h4><ul>
-<li>&#x635F;&#x5931;&#x51FD;&#x6570;(Loss Function)&#x8861;&#x91CF;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</li>
-<li>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8BA1;&#x7B97;&#x6743;&#x91CD;&#x8C03;&#x6574;&#x65B9;&#x5411;</li>
-<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;(Backpropagation)&#x66F4;&#x65B0;&#x6743;&#x91CD;</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170102556.png"></p>
-<p>The most popular algorithm today&#x2019;s models are mostly using</p>
-<p>The model is given an <strong>input vector</strong>, makes a prediction, compares that prediction to the <strong>expected output</strong>, and then uses the error (quantified by the loss function) and the gradient of that error to adjust its weights.</p>
-<p><strong>This adjustment process is what we call &#x201C;learning.&#x201D;</strong></p>
-<h3 id="The-results-of-learning-of-adjusting-weights"><a href="#The-results-of-learning-of-adjusting-weights" class="headerlink" title="The results of learning ,of adjusting weights"></a>The results of learning ,of adjusting weights</h3><p>&#x5047;&#x8BBE;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x8868;&#x793A;&#x201C;&#x5973;&#x6027;&#x541B;&#x4E3B;&#x201D;&#x7684;&#x8BCD; &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5411;&#x201C;&#x56FD;&#x738B;&#x201D;&#x5411;&#x91CF;&#x6DFB;&#x52A0;&#x201C;&#x5973;&#x4EBA;&#x51CF;&#x7537;&#x4EBA;&#x201D;&#x7684;&#x65B9;&#x5411; &#x5E76;&#x641C;&#x7D22;&#x6700;&#x63A5;&#x8FD1;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x6765;&#x627E;&#x5230;&#x5B83;&#x3002;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052126.png"></p>
-<p>&#x5173;&#x952E;&#x5728;&#x4E8E;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x6A21;&#x578B;&#x53D1;&#x73B0;&#x91C7;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x5D4C;&#x5165;&#x65B9;&#x5F0F;&#x66F4;&#x4E3A;&#x6709;&#x5229; &#x5373;&#x4ED6;&#x5B66;&#x4F1A;&#x4E86;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x80FD;&#x591F;&#x7F16;&#x7801;&#x6027;&#x522B;&#x4FE1;&#x606F;</p>
-<p>And it has found a proper vector to encode the information the token represents! Not just its original meaning,But IN THE CONTEXT</p>
-<h2 id="In-this-step-What-does-a-well-trained-vector-mean"><a href="#In-this-step-What-does-a-well-trained-vector-mean" class="headerlink" title="In this step,What does a well-trained vector mean"></a>In this step,What does a well-trained vector mean</h2><p>we have got processed vectors by filtering with weights<br>Which means What we are asking right now is (In Y=WX+B)<br><strong>What does WX mean now</strong></p>
-<p>It means <strong>it&#x2019;s context-encoded</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170125004.png"></p>
-<p>Let&#x2019;s summarize it:<br>&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x610F;&#x4E49;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x7531;&#x5176;&#x6240;&#x5904;&#x7684;&#x73AF;&#x5883;&#x51B3;&#x5B9A;&#x7684; &#x6709;&#x65F6;&#x8FD9;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x6765;&#x81EA;&#x5F88;&#x8FDC;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x80FD;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x6C47;&#x7684;&#x6A21;&#x578B;&#x65F6; &#x5173;&#x952E;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x8BA9;&#x5B83;&#x80FD;&#x591F;&#x9AD8;&#x6548;&#x5730;&#x878D;&#x5408;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x6839;&#x636E;&#x8F93;&#x5165;&#x6587;&#x672C;&#x521B;&#x5EFA;&#x5411;&#x91CF;&#x6570;&#x7EC4;&#x65F6;&#xFF0C; &#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x4ECE;&#x5D4C;&#x5165;&#x77E9;&#x9635;&#x4E2D;&#x9009;&#x53D6;&#x7684;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x8D77;&#x521D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x4EC5;&#x80FD;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x542B;&#x4E49;&#xFF0C; &#x800C;&#x4E0D;&#x6D89;&#x53CA;&#x5176;&#x5468;&#x8FB9;&#x73AF;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x9012;&#xFF0C;&#x4F7F;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x80FD;&#x83B7;&#x5F97;&#x6BD4;&#x5355;&#x4E2A;&#x8BCD;&#x66F4;&#x4E30;&#x5BCC;&#x3001;&#x66F4;&#x5177;&#x4F53;&#x7684;&#x542B;&#x4E49;&#x3002;</p>
-<p>Which is A token has the capacity to absorb its context-meaning</p>
-<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x6BCF;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x5411;&#x91CF;&#x8FD9;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5927;&#x5C0F;&#x3002;<br>&#x610F;&#x5473;&#x7740;&#x6570;&#x636E;&#x5728; Transformer &#x7F51;&#x7EDC;&#x4E2D;&#x6D41;&#x52A8;&#x65F6;&#xFF0C; &#x603B;&#x662F;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E00;&#x4E32; 2048 &#x5217;&#x7684;&#x6570;&#x7EC4;&#x3002;</p>
-<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170130380.png" style="zoom:200%;">
-
-<p>:smile:</p>
-<h2 id="In-the-final"><a href="#In-the-final" class="headerlink" title="In the final"></a>In the final</h2><p>End should look like this:</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170134409.png" alt="1739727248332_d"></p>
-<p>Its final goal is to have a distribution of probability Because Transformer is a prediction model in the end.<br>So We have our processed vectors-composed Sequence&#xFF08;&#x4E0A;&#x4E0B;&#x6587;&#xFF09;,We just need its last column</p>
-<p>&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x77E9;&#x9635; Unembedding matrix&#xFF0C; &#x5C06;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6620;&#x5C04;&#x5230; to a list of 50,000 values, one for each token in the vocabulary.&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x63A5;&#x7740;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x8FD9;&#x4E9B;&#x503C;&#x8F6C;&#x6362;&#x6210;&#x6982;&#x7387;&#x5206;&#x5E03;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x53EB; softmax&#xFF0C;&#x4EC5;&#x4EC5;&#x57FA;&#x4E8E;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x6765;&#x505A;&#x51FA;&#x9884;&#x6D4B;&#x4F3C;&#x4E4E;&#x6709;&#x4E9B;&#x5947;&#x602A;&#xFF0C; &#x6BD5;&#x7ADF;&#x5728;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x4E2D;&#x8FD8;&#x6709;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x7684;&#x5176;&#x4ED6;&#x5411;&#x91CF;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x5982;&#x679C;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x6700;&#x7EC8;&#x5C42;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6765;&#x9884;&#x6D4B;&#x5176;&#x540E;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x88AB;&#x8BC1;&#x660E;&#x662F;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170139461.png" alt="1739727579409_d"></p>
-<h3 id="&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values"><a href="#&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values" class="headerlink" title="&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values"></a>&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values</h3><p>&#x5173;&#x4E8E;&#x53C2;&#x6570;&#x603B;&#x6570;&#x7684;&#x7EDF;&#x8BA1;&#xFF0C; &#x8FD9;&#x4E2A; unembedding &#x77E9;&#x9635;&#x4E3A;&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x5206;&#x914D;&#x4E86;&#x4E00;&#x884C;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x5305;&#x542B;&#x4E0E;&#x5D4C;&#x5165;&#x7EF4;&#x5EA6;&#x76F8;&#x540C;&#x6570;&#x91CF;&#x7684;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E0E;&#x5D4C;&#x5165;&#xFF08;embedding&#xFF09;&#x77E9;&#x9635;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x628A;&#x987A;&#x5E8F;&#x5012;&#x8FC7;&#x6765;&#x4E86;&#xFF0C; &#x56E0;&#x6B64;&#x5B83;&#x4E3A;&#x7F51;&#x7EDC;&#x589E;&#x52A0;&#x4E86;&#x53E6;&#x5916; 6.17 &#x4EBF;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
-<h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h3><p>&#x6211;&#x4EEC;&#x7684;&#x6700;&#x540E;&#x8BA1;&#x7B97;&#x90FD;&#x662F;&#x77E9;&#x9635;&#x548C; vector &#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x4E0D;&#x5230;&#x4E00;&#x4E2A;&#x6982;&#x7387;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5F52;&#x4E00;&#x5316;&#x51FD;&#x6570; &#x8F93;&#x5165;&#x662F; logits &#x8F93;&#x51FA;&#x662F; Probabilities</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png"></p>
-<p>&#x73B0;&#x5728;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x6E29;&#x5EA6;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png" alt="1739727981548_d"></p>
-<p>&#x5B83;&#x7684;&#x6548;&#x679C;&#x662F;&#xFF0C;&#x5F53; t &#x503C;&#x8F83;&#x5927;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x503C;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x7684;&#x6743;&#x91CD;&#xFF0C; &#x4F7F;&#x5F97;&#x5206;&#x5E03;&#x7A0D;&#x5FAE;&#x5747;&#x5300;&#x4E00;&#x4E9B;&#x3002;&#x800C;&#x5982;&#x679C; t &#x503C;&#x8F83;&#x5C0F;&#x5219;&#x8F83;&#x5927;&#x7684;&#x6570;&#x503C;&#x5219;&#x4F1A;&#x66F4;&#x52A0;&#x660E;&#x663E;&#x5730;&#x5360;&#x636E;&#x4E3B;&#x5BFC;&#xFF0C;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;0 &#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD; &#x90A3;&#x4E48;&#x6240;&#x6709;&#x7684;&#x6743;&#x91CD;&#x90FD;&#x4F1A;&#x96C6;&#x4E2D;&#x5728;&#x6700;&#x5927;&#x7684;&#x503C;&#x4E0A;&#x3002;</p>
-<p>&#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD;,&#x800C;&#x4F60;&#x6240;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x9648;&#x8BCD;&#x6EE5;&#x8C03;&#x7684;&#x91D1;&#x53D1;&#x59D1;&#x5A18;&#x6545;&#x4E8B;&#x3002;&#x8F83;&#x9AD8;&#x7684;&#x6E29;&#x5EA6;&#x7ED9;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x9009;&#x62E9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x8BCD;&#x7684;&#x673A;&#x4F1A;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x4F34;&#x968F;&#x7740;&#x98CE;&#x9669;&#x3002;&#x4F46;&#x5F88;&#x5FEB;&#x5C31;&#x53D8;&#x5F97;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x3002;API &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x4E0D;&#x5141;&#x8BB8;&#x4F60;&#x9009;&#x62E9;&#x5927;&#x4E8E; 2 &#x7684;&#x6E29;&#x5EA6;&#x3002;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x5E76;&#x6CA1;&#x6709;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x6839;&#x636E;&#xFF0C; &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x6211;&#x731C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4ED6;&#x4EEC;&#x7684;&#x5DE5;&#x5177;&#x4EA7;&#x751F;&#x592A;&#x8FC7;&#x8352;&#x8BDE;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
-]]></content>
-      <tags>
-        <tag>ML</tag>
-        <tag>Transformer</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Isolation Forest</title>
     <url>/2025/02/02/2025-02-04-IsolationForest/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x60F3;&#x8C61;&#x4F60;&#x5728;&#x4E00;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x4ED3;&#x5E93;&#x91CC;&#x5806;&#x6EE1;&#x4E86;&#x82F9;&#x679C;&#xFF0C;&#x4F46;&#x6709;&#x4EBA;&#x5077;&#x5077;&#x6DF7;&#x8FDB;&#x4E86;&#x51E0;&#x4E2A;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x8FD9;&#x4E9B;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x4F1A;&#x600E;&#x4E48;&#x505A;&#xFF1F;</p>
@@ -1426,6 +1197,459 @@ end
       </tags>
   </entry>
   <entry>
+    <title>webpack基础</title>
+    <url>/2025/02/04/2025-02-06-Webpack%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. &#x5165;&#x53E3; (entry): &apos;./extension.js&apos; // &#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x6253;&#x5305;&#x7684;&#x8D77;&#x70B9;</span><br><span class="line">2. &#x8F93;&#x51FA; (output): dist/extension.js // &#x6700;&#x7EC8;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4F4D;&#x7F6E;</span><br><span class="line">3. &#x6392;&#x9664;&#x9879; (externals): vscode &#x6A21;&#x5757; // &#x4E0D;&#x6253;&#x5305;&#x8FDB;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x7684;&#x5916;&#x90E8;&#x4F9D;&#x8D56;</span><br></pre></td></tr></table></figure>
+
+<h1 id="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"><a href="#&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;" class="headerlink" title="&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;"></a>&#x5728;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;&#x4E2D;</h1><ol>
+<li>&#x6253;&#x5305;&#x547D;&#x4EE4; (package.json &#x4E2D;):</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;webpack&quot;: &quot;webpack --mode production&quot;,    // &#x751F;&#x4EA7;&#x73AF;&#x5883;&#x6253;&#x5305;</span><br><span class="line">  &quot;webpack-dev&quot;: &quot;webpack --mode development --watch&quot; // &#x5F00;&#x53D1;&#x6A21;&#x5F0F; + &#x76D1;&#x542C;&#x6587;&#x4EF6;&#x53D8;&#x5316;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>&#x8C03;&#x8BD5;&#x914D;&#x7F6E; (.vscode/launch.json):</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;preLaunchTask&quot;: &quot;npm: webpack-dev&quot; // &#x8C03;&#x8BD5;&#x524D;&#x81EA;&#x52A8;&#x6267;&#x884C; webpack-dev</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x6253;&#x5305;</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: {</span><br><span class="line">  &quot;watch&quot;: &quot;webpack --mode development --watch&quot;,</span><br><span class="line">  &quot;vscode:prepublish&quot;: &quot;npm run webpack&quot; // &#x53D1;&#x5E03;&#x6269;&#x5C55;&#x524D;&#x81EA;&#x52A8;&#x6253;&#x5305;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>&#x5F00;&#x53D1;&#x6A21;&#x5F0F; vs &#x751F;&#x4EA7;&#x6A21;&#x5F0F;</strong>&#xFF1A;</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>&#x6A21;&#x5F0F;</th>
+<th>&#x4EE3;&#x7801;&#x538B;&#x7F29;</th>
+<th>&#x8C03;&#x8BD5;&#x4FE1;&#x606F;</th>
+<th>&#x9002;&#x7528;&#x573A;&#x666F;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>production</td>
+<td>&#x2705;</td>
+<td>&#x274C;</td>
+<td>&#x6B63;&#x5F0F;&#x53D1;&#x5E03;</td>
+</tr>
+<tr>
+<td>development</td>
+<td>&#x274C;</td>
+<td>&#x2705;</td>
+<td>&#x672C;&#x5730;&#x8C03;&#x8BD5;</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Transformer</title>
+    <url>/2025/02/16/2025-02-16-Transformer-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
+<h1 id="GPT-intro"><a href="#GPT-intro" class="headerlink" title="GPT intro"></a>GPT intro</h1><p>GPT &#x7684;&#x5168;&#x540D;&#x5C31;&#x662F; generative pre-trained transformer<br>&#x9884;&#x8BAD;&#x7EC3;&#x662F;&#x6307;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4ECE;&#x5927;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x524D;&#x7F00; Pre &#x6697;&#x793A;&#x6709;&#x66F4;&#x591A;&#x7A7A;&#x95F4;&#x901A;&#x8FC7;&#x989D;&#x5916;&#x7684;&#x8BAD;&#x7EC3;&#x6765;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;&#x3002;</p>
+<p>The last piece that&#x2019;s the real key, a transformer is a specific kind of neural network, a machine learning model, and it&#x2019;s the core invention underlying current boom in AI</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x5C31;&#x662F; transformer &#x521B;&#x9020;&#x5F88;&#x591A;&#x7C7B;&#x578B;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4; voice to text what text to voice, text to image These are based on transformer</p>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x7528; transformer &#x8FD9;&#x79CD;&#x9884;&#x6D4B;&#x6A21;&#x578B;&#x6765;&#x751F;&#x6210;&#x4E00;&#x6BB5;&#x65B0;&#x6587;&#x672C;&#x662F;&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x4EE5;&#x7ED9;&#x4ED6;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x7247;&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x4ED6; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x3002;&#x7136;&#x540E;&#x4F60;&#x518D;&#x628A;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x53C8;&#x4E22;&#x8FDB;&#x53BB;&#xFF0C;&#x53BB; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x5C31;&#x8FD9;&#x6837;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162156993.png"></p>
+<h1 id="How-Data-flows-in-Transformer-Generally"><a href="#How-Data-flows-in-Transformer-Generally" class="headerlink" title="How Data flows in Transformer (Generally)"></a>How Data flows in Transformer (Generally)</h1><pre class="mermaid" style="text-align: center;">
+            
+            flowchart TD
+subgraph Input[&quot;&#x8F93;&#x5165;&#x5C42; (Raw Tokens)&quot;]
+A[(&quot;Token &#x5E8F;&#x5217;&quot;)]
+end
+
+    subgraph Embedding[&quot;Embedding&#x5C42;&quot;]
+        B1[&quot;Embeddings Matrix&#x67E5;&#x627E;&quot;]
+        B2[&quot;&#x5411;&#x91CF;&#x6620;&#x5C04; (12800&#x7EF4;)&quot;]
+    end
+    
+    subgraph TransformerFlow[&quot;Transformer&#x6838;&#x5FC3;&quot;]
+        subgraph AttentionBlock[&quot;Attention Block&quot;]
+            D1[&quot;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&quot;] --&gt; D2[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
+            D2 --&gt; D3[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
+            D3 --&gt; D4[&quot;MLP&quot;]
+            D4 --&gt; D5[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
+            D5 --&gt; D6[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
+        end
+    
+        C[&quot;&#x5411;&#x91CF;&#x5E8F;&#x5217;&quot;] --&gt; D1
+        D6 --&gt; E[&quot;&#x4E0B;&#x4E00;&#x4E2A;Attention Block&quot;]
+    end
+    
+    subgraph Output[&quot;&#x8F93;&#x51FA;&#x5C42;&#x5904;&#x7406;&quot;]
+        F1[&quot;Unembedding Matrix&quot;]
+        F2[&quot;50000&#x7EF4;&#x8BCD;&#x8868;&#x6620;&#x5C04;&quot;]
+        G1[&quot;Softmax&#x6E29;&#x5EA6;&#x8C03;&#x8282;&quot;]
+        G2[&quot;&#x6982;&#x7387;&#x5206;&#x5E03;&#x8F93;&#x51FA;&quot;]
+    end
+    
+    A --&gt; B1
+    B1 --&gt; B2
+    B2 --&gt; C
+    E --&gt; F1
+    F1 --&gt; F2
+    F2 --&gt; G1
+    G1 --&gt; G2
+    
+    %% &#x6DFB;&#x52A0;&#x8BF4;&#x660E;&#x6CE8;&#x91CA;
+    classDef process fill:#f9f,stroke:#333,stroke-width:2px
+    class D1,D4 process
+    
+    %% &#x6DFB;&#x52A0;&#x5173;&#x952E;&#x6B65;&#x9AA4;&#x8BF4;&#x660E;
+    note1[/&quot;&#x8F93;&#x5165;token&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x91CF;&quot;/]
+    note2[/&quot;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&quot;/]
+    note3[/&quot;&#x751F;&#x6210;&#x9884;&#x6D4B;&#x6982;&#x7387;&quot;/]
+    
+    B2 -.-&gt; note1
+    D1 -.-&gt; note2
+    G2 -.-&gt; note3
+
+          </pre>
+
+<h2 id="tokens"><a href="#tokens" class="headerlink" title="tokens"></a>tokens</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162202929.png"></p>
+<p>&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x9891;&#xFF0C;&#x6587;&#x672C;&#x7684;&#x201D;a piece&#x201D;&#x90FD;&#x53EF;&#x4EE5;&#x662F; token<br><strong>A token doesn&#x2019;t align with a word</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170023326.png" style="zoom:50%;">the first time I met token</p>
+<p>&#x6BCF;&#x4E00;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector, &#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E00;&#x4E32;&#x6570;&#x5B57;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x662F;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8868;&#x8FBE;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x542B;&#x4E49;</p>
+<p><strong>this vector somehow encode the information a token contain</strong></p>
+<p>if you think of these vectors as giving coordinates in some very high dimensional space.You will find words with similar meaning tend to land on vectors that close to each other in that space &#x5411;&#x91CF;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E00;&#x4E2A; token &#x5728; high dimensional space &#x90FD;&#x53EF;&#x4EE5;&#x8868;&#x73B0;&#x4E3A;&#x4E00;&#x4E2A; informational &#x7684;&#x5411;&#x91CF;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162207013.png" alt="1739714827253_d"></p>
+<p>&#x8FD9;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x5207;&#x7247;</p>
+<p>Transformer &#x7684; tokens &#x5E94;&#x8BE5;&#x8981;&#x8F6C;&#x5316;&#x6210; vectors,&#x4E00;&#x4E2A; token &#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector &#x4ECE; embeddings matrix &#x91CC;&#x53D6;&#x51FA;&#x5BF9;&#x5E94; token &#x7684;&#x5411;&#x91CF; vector&#xFF0C;&#x5C31;&#x5B8C;&#x6210;&#x4E86; tokens-&gt;vectors,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x5F53; input data &#x5728; Transformer &#x4E2D;&#x6D41;&#x52A8;&#x7684;&#x65F6;&#x5019; &#x4ED6;&#x5C31;&#x957F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A; vectors &#x6784;&#x6210;&#x7684; sequence &#x7684;&#x6837;&#x5B50;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># &#x5047;&#x8BBE;&#x7684;&#x4F2A;&#x4EE3;&#x7801;</span><br><span class="line">embeddings_matrix = ...  # &#x9884;&#x8BAD;&#x7EC3;&#x7684;embedding&#x77E9;&#x9635;</span><br><span class="line">tokens = [&quot;I&quot;, &quot;love&quot;, &quot;machine&quot;, &quot;learning&quot;]</span><br><span class="line"></span><br><span class="line"># &#x5C06;&#x6BCF;&#x4E2A;token&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;vector</span><br><span class="line">token_vectors = [</span><br><span class="line">    embeddings_matrix[&quot;I&quot;],</span><br><span class="line">    embeddings_matrix[&quot;love&quot;],</span><br><span class="line">    embeddings_matrix[&quot;machine&quot;],</span><br><span class="line">    embeddings_matrix[&quot;learning&quot;]</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>&#x7136;&#x540E;&#x521A;&#x521A;&#x751F;&#x6210;&#x7684;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E00;&#x5806; vectors &#x4F1A;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EB;&#x505A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h2 id="Attention-Block"><a href="#Attention-Block" class="headerlink" title="Attention Block"></a>Attention Block</h2><p>WHY need attention block.</p>
+<p>A token is not supposed to be just the exact original meaning(in embeddings matrix) &#x6BD4;&#x5982; model &#x8FD9;&#x4E2A;&#x8BCD;&#xFF0C;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x4ED6;&#x662F;&#x4E00;&#x4E2A; token&#xFF0C;machine learning model &#x548C; fashion model &#x7684;&#x610F;&#x601D;&#x80AF;&#x5B9A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x4ED6;&#x4EEC;&#x7684; Pre-trained embeddings matrix &#x91CC;&#x7684;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x6837;,&#x4F46;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x4ED6;&#x4EEC;&#x7684;&#x610F;&#x601D;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x5B66;&#x4E60;&#x5230;&#x8FD9;&#x4E2A;&#x610F;&#x4E49;<br>The vector in embeddings matrix encoded the original information which should change into the meaning it is supposed to be in THE CONTEXT<br>&#x5728; attention block &#x8FD9;&#x4E9B; Vector &#x4F1A;&#x4E92;&#x76F8;&#x4F5C;&#x7528;</p>
+<p>&#x63A5;&#x7740;&#x521A;&#x521A;&#x8BF4;&#x7684;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6709; vectors &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x5728;&#x8FD9;&#x4E2A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x91CC;&#xFF0C;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x4EA4;&#x6D41;&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5; pass information back and forth</p>
+<h2 id="Multilayer-Perceptron"><a href="#Multilayer-Perceptron" class="headerlink" title="Multilayer Perceptron"></a>Multilayer Perceptron</h2><p>&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</p>
+<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x63D0;&#x51FA;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x95EE;&#x9898;&#xFF0C; &#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x7B54;&#x6848;&#x6765;&#x66F4;&#x65B0;&#x5411;&#x91CF;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162232003.png"></p>
+<p>&#x8FD9;&#x6837;&#x91CD;&#x590D;&#x8FD9;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162234738.png"></p>
+<h2 id="Final-Processing-vectors"><a href="#Final-Processing-vectors" class="headerlink" title="Final Processing vectors"></a>Final Processing vectors</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162239819.png"></p>
+<h1 id="Dive-into"><a href="#Dive-into" class="headerlink" title="Dive into"></a>Dive into</h1><h2 id="Premise-What-is-Weight"><a href="#Premise-What-is-Weight" class="headerlink" title="Premise:What is Weight"></a>Premise:What is Weight</h2><p>We start with the simplest machine-learning model: <strong>linear model</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170030041.png"></p>
+<p>&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F; y = wx + b</p>
+<ul>
+<li>y: &#x9884;&#x6D4B;&#x503C;</li>
+<li>x: &#x8F93;&#x5165;&#x7279;&#x5F81;</li>
+<li>w: &#x6743;&#x91CD;(weight)</li>
+<li>b: &#x504F;&#x7F6E;(bias)</li>
+</ul>
+<p>We see x as a vector and by processing(computing) x with weight and bias,in the high semantic dimensional space we have changed the meaning x originally represents.</p>
+<h2 id="About-Input-tokens"><a href="#About-Input-tokens" class="headerlink" title="About Input tokens"></a>About Input tokens</h2><p>Input is just what the model processes,the actual brain of Transformer is WEIGHTS.</p>
+<p>&#x6A21;&#x578B;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x9884;&#x8BBE;&#x7684;&#x8BCD;&#x6C47;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x5355;&#x8BCD;&#xFF0C; &#x6BD4;&#x5982;&#x8BF4;&#x6709; 50,000 &#x4E2A;</p>
+<p>&#x8FD9;&#x4E2A;&#x8BCD;&#x6C47;&#x8868;&#x4EE5; Embedding matrix &#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170032772.png"><br>this is pre-trained which somehow encoded the information a single token should represent!<br>Which is to say : these columns are what determines what vector each word(token) turns into <strong>IN THE FIRST STEP</strong></p>
+<p>And &#x4E0D;&#x7BA1;&#x4F60;&#x6784;&#x5EFA;&#x7684;&#x662F;&#x54EA;&#x79CD;&#x6A21;&#x578B;&#xFF0C;&#x8F93;&#x5165;&#x90FD;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x6570;&#x6570;&#x7EC4;&#x8FD9;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x5217;&#x8868;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;&#xFF0C;&#x6216;&#x8005;&#x66F4;&#x5E38;&#x89C1;&#x7684;&#x662F;&#x66F4;&#x9AD8;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x7528;&#x7684;&#x672F;&#x8BED;&#x6211;&#x4EEC;&#x79F0;&#x4E4B;&#x4E3A;&#x5F20;&#x91CF;<br>So &#x2B07;&#xFE0F;</p>
+<h3 id="How-many-dimensions-can-x-be"><a href="#How-many-dimensions-can-x-be" class="headerlink" title="How many dimensions can x be"></a>How many dimensions can x be</h3><p>As we already know:In the perception of Transformer,Input data is sequence of vectors (high dimensional vector)</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
+<p>So how many numbers are in a vector ?&#x1F928;</p>
+<p>take GPT-3 for example :12800 dimension,which means 12800 rows for a vector</p>
+<h3 id="review-key-concept"><a href="#review-key-concept" class="headerlink" title="review key concept"></a>review key concept</h3><p>&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#xFF0C; &#x4EE5;&#x786E;&#x5B9A;&#x8BCD;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x88AB;&#x5D4C;&#x5165;&#x4E3A; final &#x5411;&#x91CF;<br><strong>how exactly words get embedded as vectors during training</strong></p>
+<h2 id="What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"><a href="#What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;" class="headerlink" title="What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"></a>What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</h2><p>we&#x2019;ve said that &#x201C;&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#x201D;<br>So In the Attention block that&#x2019;s what happened.<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052799.png"></p>
+<p>And it does that by what we have mentioned:Weights</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Attention block&#x6838;&#x5FC3;&#x8FC7;&#x7A0B;</span><br><span class="line">Vectors &#x2192; &#x76F8;&#x4E92;&#x4F20;&#x9012;&#x4FE1;&#x606F; &#x2192; &#x8C03;&#x6574;&#x77E9;&#x9635;&#x503C;</span><br></pre></td></tr></table></figure>
+
+<p> &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
+<ul>
+<li>&#x4E0E;&#x5176;&#x4ED6; vectors &#x4EA4;&#x4E92;</li>
+<li>&#x4EA4;&#x6362;&#x4FE1;&#x606F;</li>
+<li>&#x6839;&#x636E;&#x4EA4;&#x4E92;&#x7ED3;&#x679C;&#x8C03;&#x6574;&#x81EA;&#x8EAB;&#x8868;&#x5F81;</li>
+</ul>
+<p>In GPT-3</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170051060.png"></p>
+<p>these weights constantly changed during the process of training</p>
+<h3 id="How-do-we-get-weights"><a href="#How-do-we-get-weights" class="headerlink" title="How do we get weights"></a>How do we get weights</h3><p>&#x9884;&#x6D4B;&#x9636;&#x6BB5;(Inference)</p>
+<ul>
+<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;input vectors matrix</li>
+<li>&#x52A8;&#x6001;&#x8C03;&#x6574; tokens &#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</li>
+<li>&#x4E0D;&#x6539;&#x53D8;&#x6A21;&#x578B;&#x6743;&#x91CD;</li>
+</ul>
+<p>&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;(Training)</p>
+<ul>
+<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;&#x6A21;&#x578B;&#x7684; weights</li>
+<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;</li>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x66F4;&#x597D;&#x5730;&#x6355;&#x6349; tokens &#x95F4;&#x5173;&#x7CFB;</li>
+</ul>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x5F97;&#x5230;&#x4E00;&#x4E2A; reasonable weights</p>
+<h4 id="WHY-do-they-weights-change"><a href="#WHY-do-they-weights-change" class="headerlink" title="WHY do they (weights) change"></a>WHY do they (weights) change</h4><p>The ULTIMATE Goal &#x662F;&#x6700;&#x5C0F;&#x5316;&#x6574;&#x4F53;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x8F93;&#x5165;x &#x2192; &#x6A21;&#x578B;&#x9884;&#x6D4B; &#x2192; &#x8BA1;&#x7B97;&#x8BEF;&#x5DEE; &#x2192; &#x8C03;&#x6574;weights</span><br></pre></td></tr></table></figure>
+
+<h4 id="How-they-change"><a href="#How-they-change" class="headerlink" title="How they change"></a>How they change</h4><ul>
+<li>&#x635F;&#x5931;&#x51FD;&#x6570;(Loss Function)&#x8861;&#x91CF;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</li>
+<li>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8BA1;&#x7B97;&#x6743;&#x91CD;&#x8C03;&#x6574;&#x65B9;&#x5411;</li>
+<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;(Backpropagation)&#x66F4;&#x65B0;&#x6743;&#x91CD;</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170102556.png"></p>
+<p>The most popular algorithm today&#x2019;s models are mostly using</p>
+<p>The model is given an <strong>input vector</strong>, makes a prediction, compares that prediction to the <strong>expected output</strong>, and then uses the error (quantified by the loss function) and the gradient of that error to adjust its weights.</p>
+<p><strong>This adjustment process is what we call &#x201C;learning.&#x201D;</strong></p>
+<h3 id="The-results-of-learning-of-adjusting-weights"><a href="#The-results-of-learning-of-adjusting-weights" class="headerlink" title="The results of learning ,of adjusting weights"></a>The results of learning ,of adjusting weights</h3><p>&#x5047;&#x8BBE;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x8868;&#x793A;&#x201C;&#x5973;&#x6027;&#x541B;&#x4E3B;&#x201D;&#x7684;&#x8BCD; &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5411;&#x201C;&#x56FD;&#x738B;&#x201D;&#x5411;&#x91CF;&#x6DFB;&#x52A0;&#x201C;&#x5973;&#x4EBA;&#x51CF;&#x7537;&#x4EBA;&#x201D;&#x7684;&#x65B9;&#x5411; &#x5E76;&#x641C;&#x7D22;&#x6700;&#x63A5;&#x8FD1;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x6765;&#x627E;&#x5230;&#x5B83;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052126.png"></p>
+<p>&#x5173;&#x952E;&#x5728;&#x4E8E;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x6A21;&#x578B;&#x53D1;&#x73B0;&#x91C7;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x5D4C;&#x5165;&#x65B9;&#x5F0F;&#x66F4;&#x4E3A;&#x6709;&#x5229; &#x5373;&#x4ED6;&#x5B66;&#x4F1A;&#x4E86;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x80FD;&#x591F;&#x7F16;&#x7801;&#x6027;&#x522B;&#x4FE1;&#x606F;</p>
+<p>And it has found a proper vector to encode the information the token represents! Not just its original meaning,But IN THE CONTEXT</p>
+<h2 id="In-this-step-What-does-a-well-trained-vector-mean"><a href="#In-this-step-What-does-a-well-trained-vector-mean" class="headerlink" title="In this step,What does a well-trained vector mean"></a>In this step,What does a well-trained vector mean</h2><p>we have got processed vectors by filtering with weights<br>Which means What we are asking right now is (In Y=WX+B)<br><strong>What does WX mean now</strong></p>
+<p>It means <strong>it&#x2019;s context-encoded</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170125004.png"></p>
+<p>Let&#x2019;s summarize it:<br>&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x610F;&#x4E49;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x7531;&#x5176;&#x6240;&#x5904;&#x7684;&#x73AF;&#x5883;&#x51B3;&#x5B9A;&#x7684; &#x6709;&#x65F6;&#x8FD9;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x6765;&#x81EA;&#x5F88;&#x8FDC;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x80FD;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x6C47;&#x7684;&#x6A21;&#x578B;&#x65F6; &#x5173;&#x952E;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x8BA9;&#x5B83;&#x80FD;&#x591F;&#x9AD8;&#x6548;&#x5730;&#x878D;&#x5408;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x6839;&#x636E;&#x8F93;&#x5165;&#x6587;&#x672C;&#x521B;&#x5EFA;&#x5411;&#x91CF;&#x6570;&#x7EC4;&#x65F6;&#xFF0C; &#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x4ECE;&#x5D4C;&#x5165;&#x77E9;&#x9635;&#x4E2D;&#x9009;&#x53D6;&#x7684;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x8D77;&#x521D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x4EC5;&#x80FD;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x542B;&#x4E49;&#xFF0C; &#x800C;&#x4E0D;&#x6D89;&#x53CA;&#x5176;&#x5468;&#x8FB9;&#x73AF;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x9012;&#xFF0C;&#x4F7F;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x80FD;&#x83B7;&#x5F97;&#x6BD4;&#x5355;&#x4E2A;&#x8BCD;&#x66F4;&#x4E30;&#x5BCC;&#x3001;&#x66F4;&#x5177;&#x4F53;&#x7684;&#x542B;&#x4E49;&#x3002;</p>
+<p>Which is A token has the capacity to absorb its context-meaning</p>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x6BCF;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x5411;&#x91CF;&#x8FD9;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5927;&#x5C0F;&#x3002;<br>&#x610F;&#x5473;&#x7740;&#x6570;&#x636E;&#x5728; Transformer &#x7F51;&#x7EDC;&#x4E2D;&#x6D41;&#x52A8;&#x65F6;&#xFF0C; &#x603B;&#x662F;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E00;&#x4E32; 2048 &#x5217;&#x7684;&#x6570;&#x7EC4;&#x3002;</p>
+<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170130380.png" style="zoom:200%;">
+
+<p>:smile:</p>
+<h2 id="In-the-final"><a href="#In-the-final" class="headerlink" title="In the final"></a>In the final</h2><p>End should look like this:</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170134409.png" alt="1739727248332_d"></p>
+<p>Its final goal is to have a distribution of probability Because Transformer is a prediction model in the end.<br>So We have our processed vectors-composed Sequence&#xFF08;&#x4E0A;&#x4E0B;&#x6587;&#xFF09;,We just need its last column</p>
+<p>&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x77E9;&#x9635; Unembedding matrix&#xFF0C; &#x5C06;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6620;&#x5C04;&#x5230; to a list of 50,000 values, one for each token in the vocabulary.&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x63A5;&#x7740;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x8FD9;&#x4E9B;&#x503C;&#x8F6C;&#x6362;&#x6210;&#x6982;&#x7387;&#x5206;&#x5E03;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x53EB; softmax&#xFF0C;&#x4EC5;&#x4EC5;&#x57FA;&#x4E8E;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x6765;&#x505A;&#x51FA;&#x9884;&#x6D4B;&#x4F3C;&#x4E4E;&#x6709;&#x4E9B;&#x5947;&#x602A;&#xFF0C; &#x6BD5;&#x7ADF;&#x5728;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x4E2D;&#x8FD8;&#x6709;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x7684;&#x5176;&#x4ED6;&#x5411;&#x91CF;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x5982;&#x679C;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x6700;&#x7EC8;&#x5C42;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6765;&#x9884;&#x6D4B;&#x5176;&#x540E;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x88AB;&#x8BC1;&#x660E;&#x662F;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170139461.png" alt="1739727579409_d"></p>
+<h3 id="&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values"><a href="#&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values" class="headerlink" title="&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values"></a>&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values</h3><p>&#x5173;&#x4E8E;&#x53C2;&#x6570;&#x603B;&#x6570;&#x7684;&#x7EDF;&#x8BA1;&#xFF0C; &#x8FD9;&#x4E2A; unembedding &#x77E9;&#x9635;&#x4E3A;&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x5206;&#x914D;&#x4E86;&#x4E00;&#x884C;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x5305;&#x542B;&#x4E0E;&#x5D4C;&#x5165;&#x7EF4;&#x5EA6;&#x76F8;&#x540C;&#x6570;&#x91CF;&#x7684;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E0E;&#x5D4C;&#x5165;&#xFF08;embedding&#xFF09;&#x77E9;&#x9635;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x628A;&#x987A;&#x5E8F;&#x5012;&#x8FC7;&#x6765;&#x4E86;&#xFF0C; &#x56E0;&#x6B64;&#x5B83;&#x4E3A;&#x7F51;&#x7EDC;&#x589E;&#x52A0;&#x4E86;&#x53E6;&#x5916; 6.17 &#x4EBF;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h3><p>&#x6211;&#x4EEC;&#x7684;&#x6700;&#x540E;&#x8BA1;&#x7B97;&#x90FD;&#x662F;&#x77E9;&#x9635;&#x548C; vector &#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x4E0D;&#x5230;&#x4E00;&#x4E2A;&#x6982;&#x7387;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5F52;&#x4E00;&#x5316;&#x51FD;&#x6570; &#x8F93;&#x5165;&#x662F; logits &#x8F93;&#x51FA;&#x662F; Probabilities</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png"></p>
+<p>&#x73B0;&#x5728;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x6E29;&#x5EA6;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png" alt="1739727981548_d"></p>
+<p>&#x5B83;&#x7684;&#x6548;&#x679C;&#x662F;&#xFF0C;&#x5F53; t &#x503C;&#x8F83;&#x5927;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x503C;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x7684;&#x6743;&#x91CD;&#xFF0C; &#x4F7F;&#x5F97;&#x5206;&#x5E03;&#x7A0D;&#x5FAE;&#x5747;&#x5300;&#x4E00;&#x4E9B;&#x3002;&#x800C;&#x5982;&#x679C; t &#x503C;&#x8F83;&#x5C0F;&#x5219;&#x8F83;&#x5927;&#x7684;&#x6570;&#x503C;&#x5219;&#x4F1A;&#x66F4;&#x52A0;&#x660E;&#x663E;&#x5730;&#x5360;&#x636E;&#x4E3B;&#x5BFC;&#xFF0C;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;0 &#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD; &#x90A3;&#x4E48;&#x6240;&#x6709;&#x7684;&#x6743;&#x91CD;&#x90FD;&#x4F1A;&#x96C6;&#x4E2D;&#x5728;&#x6700;&#x5927;&#x7684;&#x503C;&#x4E0A;&#x3002;</p>
+<p>&#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD;,&#x800C;&#x4F60;&#x6240;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x9648;&#x8BCD;&#x6EE5;&#x8C03;&#x7684;&#x91D1;&#x53D1;&#x59D1;&#x5A18;&#x6545;&#x4E8B;&#x3002;&#x8F83;&#x9AD8;&#x7684;&#x6E29;&#x5EA6;&#x7ED9;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x9009;&#x62E9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x8BCD;&#x7684;&#x673A;&#x4F1A;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x4F34;&#x968F;&#x7740;&#x98CE;&#x9669;&#x3002;&#x4F46;&#x5F88;&#x5FEB;&#x5C31;&#x53D8;&#x5F97;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x3002;API &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x4E0D;&#x5141;&#x8BB8;&#x4F60;&#x9009;&#x62E9;&#x5927;&#x4E8E; 2 &#x7684;&#x6E29;&#x5EA6;&#x3002;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x5E76;&#x6CA1;&#x6709;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x6839;&#x636E;&#xFF0C; &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x6211;&#x731C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4ED6;&#x4EEC;&#x7684;&#x5DE5;&#x5177;&#x4EA7;&#x751F;&#x592A;&#x8FC7;&#x8352;&#x8BDE;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+]]></content>
+      <tags>
+        <tag>ML</tag>
+        <tag>Transformer</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Do LLMs Mirror Cognitive Language Processing</title>
+    <url>/2025/02/17/2025-02-17-Mirror_Cognitive/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>The key words are &#x201C;brain-LLMs alignment&#x201D;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x8FD9;&#x7BC7;&#x8BBA;&#x6587;&#x7684;&#x6838;&#x5FC3;&#x95EE;&#x9898;&#x662F;&#xFF1A;&#x6211;&#x4EEC;&#x521B;&#x9020;&#x51FA;&#x7684;&#x5927;&#x578B;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#xFF0C;&#x5B83;&#x4EEC;&#x7406;&#x89E3;&#x548C;&#x5904;&#x7406;&#x8BED;&#x8A00;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x8DDF;&#x6211;&#x4EEC;&#x4EBA;&#x7C7B;&#x5927;&#x8111;&#x7406;&#x89E3;&#x548C;&#x5904;&#x7406;&#x8BED;&#x8A00;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6709;&#x591A;&#x50CF;&#xFF1F;</p>
+<p>&#x6211;&#x4EEC;&#x5148;&#x60F3;&#x8C61;&#x4E00;&#x4E0B;&#x3002;&#x4F60;&#x73B0;&#x5728;&#x8BFB;&#x5230;&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;&#x4F60;&#x7684;&#x5927;&#x8111;&#x4F1A;&#x8FDB;&#x884C;&#x4E00;&#x7CFB;&#x5217;&#x590D;&#x6742;&#x7684;&#x6D3B;&#x52A8;&#x6765;&#x7406;&#x89E3;&#x5B83;&#x7684;&#x610F;&#x601D;&#x3002;&#x4E0E;&#x6B64;&#x540C;&#x65F6;&#xFF0C;&#x4E00;&#x4E2A;&#x5927;&#x578B;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;GPT&#x4E5F;&#x5728;&#x5904;&#x7406;&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#xFF0C;&#x5C1D;&#x8BD5;&#x7406;&#x89E3;&#x95EE;&#x9898;&#x3002;&#x867D;&#x7136;&#x6211;&#x4EEC;&#x90FD;&#x5728;&#x201C;&#x7406;&#x89E3;&#x201D;&#x8BED;&#x8A00;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x201C;&#x7406;&#x89E3;&#x201D;&#x7684;&#x65B9;&#x5F0F;&#x4E00;&#x6837;&#x5417;&#xFF1F;</p>
+<p>&#x8FD9;&#x7BC7;&#x8BBA;&#x6587;&#x60F3;&#x641E;&#x6E05;&#x695A;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x6211;&#x4EEC;&#x60F3;&#x77E5;&#x9053;&#xFF0C;LLM &#x5728;&#x7406;&#x89E3;&#x8BED;&#x8A00;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x5728;&#x67D0;&#x79CD;&#x7A0B;&#x5EA6;&#x4E0A;&#x201C;simulate&#x201D;&#x4E86;&#x6211;&#x4EEC;&#x5927;&#x8111;&#x7684;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x3002;</p>
+<h1 id="&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7;-Cognitive-Language-Processing-Signals"><a href="#&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7;-Cognitive-Language-Processing-Signals" class="headerlink" title="&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7; (Cognitive Language Processing Signals)"></a><strong>&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7; (Cognitive Language Processing Signals)</strong></h1><p>&#x9996;&#x5148;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;&#x201C;&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7;&#x201D;&#xFF1F;  &#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x5F53;&#x6211;&#x4EEC;&#x4EBA;&#x7C7B;&#x601D;&#x8003;&#x3001;&#x7406;&#x89E3;&#x8BED;&#x8A00;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x5927;&#x8111;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E9B;&#x6D3B;&#x52A8;&#x4FE1;&#x53F7;&#xFF08;Cognitive Language Processing Signals&#xFF09;&#x3002;&#x79D1;&#x5B66;&#x5BB6;&#x4EEC;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x4E9B;&#x6280;&#x672F;&#x6765;&#x6355;&#x6349;&#x8FD9;&#x4E9B;&#x4FE1;&#x53F7;&#x3002;&#x8BBA;&#x6587;&#x91CC;&#x7528;&#x7684;&#x662F; <strong>fMRI</strong>&#xFF0C;&#x4E5F;&#x5C31;&#x662F; <strong>&#x529F;&#x80FD;&#x6027;&#x78C1;&#x5171;&#x632F;&#x6210;&#x50CF;</strong>&#x3002;</p>
+<ul>
+<li><strong>&#x60F3;&#x8C61;&#x4E00;&#x4E0B;&#x5927;&#x8111;&#x7684;&#x6837;&#x5B50;&#xFF1A;</strong> &#x6211;&#x4EEC;&#x7684;&#x5927;&#x8111;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5747;&#x5300;&#x7684;&#x6574;&#x4F53;&#xFF0C;&#x5B83;&#x6709;&#x5F88;&#x591A;&#x4E0D;&#x540C;&#x7684;&#x533A;&#x57DF;&#xFF0C;&#x6BCF;&#x4E2A;&#x533A;&#x57DF;&#x8D1F;&#x8D23;&#x4E0D;&#x540C;&#x7684;&#x529F;&#x80FD;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x8BED;&#x8A00;&#x7406;&#x89E3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5927;&#x8111;&#x4E2D;&#x8D1F;&#x8D23;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x533A;&#x57DF;&#x4F1A;&#x53D8;&#x5F97;&#x66F4;&#x52A0;&#x6D3B;&#x8DC3;&#x3002;</li>
+<li><strong>fMRI &#x7684;&#x4F5C;&#x7528;&#xFF1A;</strong> fMRI &#x5C31;&#x50CF;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;snapshot&#x7684;&#x76F8;&#x673A;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;detect&#x5230;&#x5927;&#x8111;&#x4E2D;&#x54EA;&#x4E9B;&#x533A;&#x57DF;&#x5728;&#x6D3B;&#x52A8;&#x3002;&#x5F53;&#x5927;&#x8111;&#x7684;&#x67D0;&#x4E2A;&#x533A;&#x57DF;&#x6D3B;&#x52A8;&#x66F4;&#x6D3B;&#x8DC3;&#x65F6;&#xFF0C;&#x90A3;&#x91CC;&#x7684;&#x8840;&#x6D41;&#x91CF;&#x4F1A;&#x589E;&#x52A0;&#x3002;fMRI&#x6355;&#x6349;&#x8FD9;&#x4E9B;&#x8840;&#x6D41;&#x53D8;&#x5316;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x663E;&#x793A;&#x54EA;&#x4E9B;&#x8111;&#x533A;&#x5728;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;(&#x5982;&#x9605;&#x8BFB;)&#x4E2D;&#x6D3B;&#x8DC3;&#x7684;&#x4E09;&#x7EF4;&#x56FE;&#x50CF;&#x3002;&#x6BCF;&#x4E2A;&#x5C0F;&#x7ACB;&#x65B9;&#x4F53;&#x79F0;&#x4E3A;&#x201D;&#x4F53;&#x7D20;&#x201D;(&#x7C7B;&#x4F3C;3D&#x50CF;&#x7D20;)&#xFF0C;&#x4EE3;&#x8868;&#x4E00;&#x5C0F;&#x5757;&#x8111;&#x7EC4;&#x7EC7;&#x7684;&#x6D3B;&#x52A8;&#x3002;</li>
+</ul>
+<p><strong>&#x8FD9;&#x662F;&#x5728;&#x7ED9;&#x4E00;&#x4E2A;&#x524D;&#x63D0;&#xFF1A;The human cognitive processing of language could be represented by EEG, fMRI signals</strong></p>
+<p><strong>&#x6211;&#x4EEC;&#x77E5;&#x9053;&#x4E86;what happens&#x5F53;&#x4EBA;&#x7C7B;&#x7406;&#x89E3;&#x8BED;&#x8A00;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x76EE;&#x7684;&#x60F3;&#x8981;&#x6BD4;&#x8F83;&#x201C;&#x7406;&#x89E3;&#x201D;&#x7684;&#x65B9;&#x5F0F;&#x201D;brain-LLMs alignment&#x201D; &#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x77E5;&#x9053;what happens when LLM are trying to &#x201C;comprehend&#x201D;</strong> &#x5176;&#x5B9E;<a href="https://tju-tomorrow.github.io/2025/02/16/2025-02-16-Transformer-2024/#more">Transformer</a>&#x7684;&#x6587;&#x7AE0;&#x4E5F;&#x5DF2;&#x7ECF;&#x7406;&#x89E3;&#x4E86;</p>
+<p>Through Text Representation</p>
+<h1 id="Text-Representation"><a href="#Text-Representation" class="headerlink" title="Text Representation"></a>Text Representation</h1><p>LLM &#x662F;&#x5982;&#x4F55;&#x201C;&#x7406;&#x89E3;&#x201D;&#x8BED;&#x8A00;&#x7684;  <strong>&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x76EE;&#x6807;&#xFF1A;</strong> LLM &#x7684;&#x76EE;&#x6807;&#x662F;&#x7406;&#x89E3;&#x548C;&#x751F;&#x6210;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x3002;&#x4E3A;&#x4E86;&#x505A;&#x5230;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x5B83;&#x4EEC;&#x9700;&#x8981;&#x5C06;&#x6587;&#x5B57;&#x8F6C;&#x6362;&#x6210;&#x8BA1;&#x7B97;&#x673A;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x7684;&#x5F62;&#x5F0F;&#x3002;</p>
+<ul>
+<li><strong>&#x6587;&#x672C;&#x8868;&#x793A;&#xFF1A;</strong> LLM &#x901A;&#x8FC7;&#x4E00;&#x79CD;&#x53EB;&#x505A;&#x201C;&#x5D4C;&#x5165; (embedding)&#x201D;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x5C06;&#x6BCF;&#x4E2A;&#x8BCD;&#x3001;&#x6BCF;&#x4E2A;&#x53E5;&#x5B50;&#x90FD;&#x53D8;&#x6210;&#x4E00;&#x4E32;&#x6570;&#x5B57;&#xFF0C;&#x5C31;&#x50CF;&#x7ED9;&#x6BCF;&#x4E2A;&#x8BCD;&#x8BED;&#x90FD;&#x8D4B;&#x4E88;&#x4E00;&#x4E2A;&#x72EC;&#x7279;&#x7684;&#x201C;&#x5750;&#x6807;&#x201D;&#x3002; &#x8FD9;&#x4E32;&#x6570;&#x5B57;&#x5C31;&#x53EB;&#x505A;&#x201C;&#x6587;&#x672C;&#x8868;&#x793A;&#x201D;&#x3002; &#x76F8;&#x4F3C;&#x7684;&#x8BCD;&#x8BED;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x201C;&#x5750;&#x6807;&#x201D;&#x5728;&#x7A7A;&#x95F4;&#x4E2D;&#x4F1A;&#x66F4;&#x63A5;&#x8FD1;&#xFF1B;&#x4E0D;&#x76F8;&#x5173;&#x7684;&#x8BCD;&#x8BED;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x201C;&#x5750;&#x6807;&#x201D;&#x4F1A;&#x79BB;&#x5F97;&#x66F4;&#x8FDC;&#x3002;</li>
+<li><strong>&#x9AD8;&#x7EF4;&#x8BED;&#x4E49;&#x7A7A;&#x95F4;&#xFF1A;</strong> &#x4F60;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#xFF0C;&#x8FD9;&#x4E9B;&#x201C;&#x5750;&#x6807;&#x201D;&#x4E0D;&#x662F;&#x5728;&#x666E;&#x901A;&#x7684;&#x4E8C;&#x7EF4;&#x6216;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#x91CC;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x9AD8;&#x7EF4;&#x7684;&#x7A7A;&#x95F4;&#x91CC;&#xFF0C;&#x53EB;&#x505A;&#x201C;&#x8BED;&#x4E49;&#x7A7A;&#x95F4;&#x201D;&#x3002;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x91CC;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x8BCD;&#x8BED;&#x7684;&#x8BED;&#x4E49;&#x4FE1;&#x606F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BCD;&#x8BED;&#x7684;&#x610F;&#x4E49;&#x3002;</li>
+</ul>
+<p>&#x6587;&#x672C;&#x8868;&#x5F81;&#xFF08;Text Representation&#xFF09;&#x7684;&#x672C;&#x8D28;&#x662F;<strong>&#x5C06;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x8F6C;&#x5316;&#x4E3A;&#x8BA1;&#x7B97;&#x673A;&#x53EF;&#x5904;&#x7406;&#x7684;&#x6570;&#x5B66;&#x5F62;&#x5F0F;</strong>&#xFF0C;&#x4ECE;&#x800C;&#x4E3A;&#x8BED;&#x8A00;&#x7406;&#x89E3;&#x548C;&#x751F;&#x6210;&#x4EFB;&#x52A1;&#x63D0;&#x4F9B;&#x7ED3;&#x6784;&#x5316;&#x57FA;&#x7840;&#x3002;</p>
+<p>&#x4EBA;&#x662F;&#x901A;&#x8FC7;&#x795E;&#x7ECF;&#x5143;&#x548C;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x6765;&#x5BF9;&#x8BED;&#x8A00;&#x8F93;&#x5165;&#x7684;&#x8BED;&#x8A00;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x4F46;&#x662F;&#x7535;&#x8111;&#x8BA1;&#x7B97;&#x673A;&#x5E76;&#x4E0D;&#x80FD;&#x591F;&#x76F4;&#x63A5;&#x5904;&#x7406;&#x81EA;&#x7136;&#x8BED;&#x8A00; &#x6240;&#x4EE5;&#x8BF4;&#x4ED6;&#x5C31;&#x8981;&#x628A;&#x8F93;&#x5165;&#x7684;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x53D8;&#x6210;&#x4E00;&#x79CD;&#x6570;&#x5B66;&#x5411;&#x91CF;&#x7684;&#x5F62;&#x5F0F;&#x6BD4;&#x5982;&#x8BF4;&#x732B;cat&#x5C31;&#x53EF;&#x80FD;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;300&#x7EF4;&#x7684;&#x6570;&#x5B66;&#x5411;&#x91CF;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x8FD9;&#x79CD;&#x6570;&#x5B66;&#x5411;&#x91CF;&#x5C31;&#x662F;&#x539F;&#x672C;&#x7684;&#x81EA;&#x7136;text&#x7684;representation</p>
+<h1 id="Why-this-paper-is-necessary"><a href="#Why-this-paper-is-necessary" class="headerlink" title="Why this paper is necessary"></a>Why this paper is necessary</h1><blockquote>
+<p>Previous studies have explored the assessment of consistency between representations learned by pre-trained language models and cognitive process- ing signals (Xu et al., 2016; Hollenstein et al., 2019; Abnar et al., 2019). Along this research line, recent studies compare human neuroimaging data with representations learned by 43 pre-trained language models that are smaller than 1B-sized LLMs, re- vealing that language models with stronger predic- tive abilities for the next word exhibit greater align- ment with the human brain (Schrimpf et al., 2021).</p>
+</blockquote>
+<p>&#x4EE5;&#x524D;&#x7684;&#x7814;&#x7A76;&#xFF08;2021&#x5E74;&#x524D;&#xFF09;&#x53D1;&#x73B0;&#xFF0C;&#x5C0F;&#x6A21;&#x578B;&#xFF08;&lt;10&#x4EBF;&#x53C2;&#x6570;&#xFF09;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x80FD;&#x529B;&#x8D8A;&#x5F3A;&#xFF0C;&#x548C;&#x4EBA;&#x8111;&#x5904;&#x7406;&#x8BED;&#x8A00;&#x7684;&#x6A21;&#x5F0F;&#x8D8A;&#x50CF;&#x3002;</p>
+<p><strong>&#x95EE;&#x9898;</strong>&#xFF1A;</p>
+<ol>
+<li>&#x73B0;&#x5728;&#x7684;LLaMA3&#x7B49;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x66B4;&#x6DA8;&#xFF08;4000&#x4EBF;+&#xFF09;&#x4F46;&#x6CA1;&#x4EBA;&#x77E5;&#x9053;&#x5728;&#x8FD9;&#x79CD;&#x5347;&#x7EA7;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF1A;&#x6A21;&#x578B;&#x5904;&#x7406;&#x8BED;&#x8A00;&#x66F4;&#x63A5;&#x8FD1;&#x4EBA;&#x8111;&#xFF0C;&#x8FD8;&#x662F;&#x53CD;&#x800C;&#x201C;&#x504F;&#x79BB;&#x8F68;&#x9053;&#x201D;&#x3002;&#x9884;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x4ECE;1TB&#x589E;&#x52A0;&#x5230;100TB&#x540E;&#xFF0C;&#x6A21;&#x578B;&#x662F;&#x66F4;&#x201C;&#x50CF;&#x4EBA;&#x201D;&#x8FD8;&#x662F;&#x66F4;&#x201C;&#x50CF;&#x6570;&#x636E;&#x5E93;&#x201D;&#xFF1F;</li>
+<li><strong>&#x63D0;&#x793A;&#x8BCD;&#xFF08;Prompt&#xFF09;</strong>&#xFF1A;&#x540C;&#x4E00;&#x6A21;&#x578B;&#x7528;&#x4E0D;&#x540C;&#x6307;&#x4EE4;&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x201C;&#x8111;&#x6D3B;&#x52A8;&#x201D;&#x4F1A;&#x53D8;&#x5316;&#x5417;&#xFF1F;</li>
+<li><strong>&#x8BAD;&#x7EC3;&#x7B56;&#x7565;</strong>&#x5BF9;brain-LLMs alignment&#x7684;impact</li>
+</ol>
+<h2 id="&#x601D;&#x8DEF;"><a href="#&#x601D;&#x8DEF;" class="headerlink" title="&#x601D;&#x8DEF;"></a>&#x601D;&#x8DEF;</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502202107131.png"></p>
+<p> &#x2018;H&#x2019; denotes sentence representations from different modalities. &#x2018;&#x3C1;&#x2019; denotes the pearson correlation coefficient. &#x2018;S&#x2019; denotes similarity measurement method.</p>
+<p>&#x5B9E;&#x9A8C;&#x8BBE;&#x8BA1;&#x6D89;&#x53CA;&#x5BF9;23&#x79CD;LLMs&#x8FDB;&#x884C;&#x8BC4;&#x4F30;&#xFF0C;&#x4F7F;&#x7528;fMRI&#x4FE1;&#x53F7;&#x4F5C;&#x4E3A;&#x4EBA;&#x7C7B;&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x4EE3;&#x8868;&#x4FE1;&#x53F7;&#xFF0C;&#x901A;&#x8FC7;RSA&#x8BA1;&#x7B97;LLM&#x8868;&#x793A;&#x4E0E;&#x8111;&#x4FE1;&#x53F7;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x3002;</p>
+<h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x6709;&#x4E86;&#x4E24;&#x79CD;&#x201C;&#x8BED;&#x8A00;&#x8868;&#x793A;&#x201D;&#xFF1A;&#x5927;&#x8111;&#x7684;&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7; (fMRI &#x4FE1;&#x53F7;) &#x548C; LLM &#x7684;&#x6587;&#x672C;&#x8868;&#x793A; (&#x8BCD;&#x5D4C;&#x5165;)&#x3002;  &#x8BBA;&#x6587;&#x8981;&#x6BD4;&#x8F83;&#x8FD9;&#x4E24;&#x79CD;&#x8868;&#x793A;&#x6709;&#x591A;&#x201C;&#x76F8;&#x4F3C;&#x201D;&#xFF0C;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x662F; **&#x8868;&#x5F81;&#x76F8;&#x4F3C;&#x6027;&#x5206;&#x6790; (RSA)**&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x4F1A;natually ask&#xFF1A;&#x8FD9;&#x4E24;&#x79CD;&#x8868;&#x793A;&#x770B;&#x8D77;&#x6765;&#x5B8C;&#x5168;&#x4E0D;&#x540C; (&#x6BD4;&#x5982; fMRI &#x4FE1;&#x53F7;&#x662F;&#x4E00;&#x5806;&#x8111;&#x6D3B;&#x52A8;&#x6570;&#x636E;&#xFF0C;LLM &#x8868;&#x793A;&#x662F;&#x4E00;&#x4E32;&#x6570;&#x5B57;)&#xFF0C;RSA &#x4E3A;&#x4EC0;&#x4E48;&#x4E5F;&#x80FD;&#x627E;&#x5230;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x9690;&#x85CF;&#x7684;&#x76F8;&#x4F3C;&#x4E4B;&#x5904;&#x3002;</p>
+<p>RSA&#x7684;<strong>&#x6838;&#x5FC3;&#x601D;&#x60F3;&#xFF1A;</strong> &#x5982;&#x679C;&#x4E24;&#x4E2A;&#x7CFB;&#x7EDF; (&#x6BD4;&#x5982;&#x5927;&#x8111;&#x548C; LLM) &#x5728;&#x5904;&#x7406;&#x540C;&#x4E00;&#x7EC4;&#x523A;&#x6FC0; (&#x6BD4;&#x5982;&#x76F8;&#x540C;&#x7684;&#x53E5;&#x5B50;) &#x65F6;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x5185;&#x90E8;&#x8868;&#x793A;&#x6A21;&#x5F0F;&#x662F;&#x76F8;&#x4F3C;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8BF4;&#x8FD9;&#x4E24;&#x4E2A;&#x7CFB;&#x7EDF;&#x5728;&#x67D0;&#x79CD;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x201C;&#x5BF9;&#x9F50;&#x201D;&#x7684;&#xFF0C;&#x6216;&#x8005;&#x8BF4;&#x5B83;&#x4EEC;&#x7684;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x6709;&#x76F8;&#x4F3C;&#x4E4B;&#x5904;&#x3002;</p>
+<p><strong>&#x4E3A;&#x4E86;&#x66F4;&#x5177;&#x4F53;&#x5730;&#x89E3;&#x91CA; RSA &#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5F15;&#x5165;&#x201C;&#x8868;&#x5F81;&#x5DEE;&#x5F02;&#x77E9;&#x9635; (RDM - Representational Dissimilarity Matrix)&#x201D; &#x8FD9;&#x4E2A;&#x6982;&#x5FF5;&#x3002;</strong></p>
+<h2 id="RDM"><a href="#RDM" class="headerlink" title="RDM"></a><strong>RDM</strong></h2><p>&#x5B83;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x91CF;&#x5316;&#x201C;&#x5DEE;&#x5F02;&#x6027;&#x201D;</p>
+<p>&#x8868;&#x5F81;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x7684;&#x6570;&#x5B66;&#x5411;&#x91CF;&#xFF0C;&#x7EF4;&#x6570;&#x7684;&#x8868;&#x793A;&#x5C31;&#x4E00;&#x4E2A;&#x6570;&#x5B66;&#x5411;&#x91CF;&#x3002;&#x7531;&#x4E8E;&#x4EBA;&#x8111;&#x548C;&#x673A;&#x5668;&#x7684;&#x5BF9;&#x4E00;&#x4E2A;&#x540C;&#x6837;&#x7684;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#xFF0C;&#x4F46;&#x4ED6;&#x89E3;&#x6790;&#x51FA;&#x6765;&#x7684;&#x7EF4;&#x6570;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x6240;&#x4EE5;&#x4ED6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x6BD4;&#x8F83;&#x3002;&#x6240;&#x4EE5;&#x4F60;&#x5C31;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#xFF0C;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x4E24;&#x4E2A;&#x7CFB;&#x7EDF;&#x5BF9;&#x540C;&#x4E00;&#x4E2A;&#x53E5;&#x5B50;&#x662F;&#x5426;&#x7406;&#x89E3;&#x4E00;&#x6837;&#xFF0C;&#x6765;&#x5224;&#x65AD;&#x8FD9;&#x4E24;&#x4E2A;&#x7CFB;&#x7EDF;&#x7684;&#x601D;&#x8003;&#x65B9;&#x5F0F;&#x662F;&#x5426;&#x4E00;&#x6837;&#x3002;&#x800C;&#x662F;&#x7528;&#x53E5;&#x5B50;123&#xFF0C;&#x7136;&#x540E;&#xFF0C;&#x53E5;&#x5B50;123&#x5728;&#x5404;&#x81EA;&#x7CFB;&#x7EDF;&#x5728;&#x4E24;&#x4E2A;&#x7CFB;&#x7EDF;&#x5404;&#x81EA;&#x7CFB;&#x7EDF;&#x4E0B;&#x5206;&#x522B;&#x53BB;&#x6784;&#x5EFA;&#x51FA;&#x4ED6;&#x7684;&#x4E00;&#x4E2A;RBM&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x4E0B;&#x5BF9;&#x53E5;&#x5B50;&#x89E3;&#x6784;&#x51FA;&#x6765;&#x7684;&#x8868;&#x5F81;&#x7684;&#x7EF4;&#x6570;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x6BD4;&#x5982;&#x8BF4;&#xFF0C;&#x4EBA;&#x8111;&#x5BF9;S1S2 &#x89E3;&#x6784;&#x51FA;&#x90FD;&#x662F;300&#x7EF4;300V&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#x77E9;&#x9635;&#x7684;&#x6784;&#x5EFA;&#xFF0C;&#x6240;&#x4EE5;&#x4E24;&#x4E2A;&#x7CFB;&#x7EDF;&#x7684;RBM &#x683C;&#x5F0F;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x5C31;&#x662F;&#x51E0;&#x4E58;&#x51E0;&#x662F;&#x76F8;&#x540C;&#x7684;&#x3002;&#x56E0;&#x4E3A;&#x4F60;&#x7528;&#x6765;&#x8BC4;&#x5224;&#x7684;&#x53E5;&#x5B50;&#x6807;&#x51C6;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x4E09;&#x4E2A;&#x53E5;&#x5B50;&#xFF0C;&#x90A3;&#x5C31;&#x662F;3&#xD7;3&#xFF0C;&#x548C;&#x53E5;&#x5B50;&#x88AB;&#x89E3;&#x6784;&#x6210;&#x591A;&#x5C11;&#x7EF4;&#x6CA1;&#x6709;&#x5173;&#x7CFB;</p>
+<p><strong>&#x5177;&#x4F53;&#x5982;&#x4F55;&#x6784;&#x5EFA; RDM&#xFF1A;</strong></p>
+<ol>
+<li><p><strong>&#x9009;&#x62E9;&#x523A;&#x6FC0;&#x6587;&#x672C;&#xFF1A;</strong> &#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E00;&#x4E9B;&#x523A;&#x6FC0;&#x6587;&#x672C;&#xFF0C;&#x6BD4;&#x5982;&#x4E00;&#x4E9B;&#x53E5;&#x5B50;&#x3002;&#x8BBA;&#x6587;&#x91CC;&#x7528;&#x7684;&#x662F;&#x4E00;&#x4E9B;&#x6982;&#x5FF5;&#x548C;&#x53E5;&#x5B50;&#x3002;</p>
+</li>
+<li><p><strong>&#x83B7;&#x53D6;&#x8868;&#x793A;&#xFF1A;</strong> &#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x5BF9;&#x523A;&#x6FC0;&#x6587;&#x672C;&#xFF0C;&#x6211;&#x4EEC;&#x5206;&#x522B;&#x83B7;&#x53D6;&#x5B83;&#x4EEC;&#x5728;&#x5927;&#x8111;&#x4E2D;&#x7684;&#x8BA4;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x4FE1;&#x53F7; (fMRI) &#x548C;&#x5728; LLM &#x4E2D;&#x7684;&#x6587;&#x672C;&#x8868;&#x793A; (&#x8BCD;&#x5D4C;&#x5165;)&#x3002;</p>
+</li>
+<li><p>&#x8BA1;&#x7B97;&#x5DEE;&#x5F02;&#x6027;&#xFF1A;</p>
+</li>
+</ol>
+<p>&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x5BF9;&#x523A;&#x6FC0;&#x6587;&#x672C;&#x7684;&#x8868;&#x793A;&#xFF0C;&#x6211;&#x4EEC;&#x8BA1;&#x7B97;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x201C;&#x5DEE;&#x5F02;&#x6027;&#x201D;&#x3002;&#x8BBA;&#x6587;&#x91CC;&#x7528;&#x7684;&#x662F;<br><strong>&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570; (Pearson correlation coefficient)&#xFF1A;</strong> &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x8861;&#x91CF;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x4E4B;&#x95F4;&#x7EBF;&#x6027;&#x76F8;&#x5173;&#x7A0B;&#x5EA6;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x53D6;&#x503C;&#x8303;&#x56F4;&#x5728; -1 &#x5230; +1 &#x4E4B;&#x95F4;&#x3002; +1 &#x8868;&#x793A;&#x5B8C;&#x5168;&#x6B63;&#x76F8;&#x5173;&#xFF0C;-1 &#x8868;&#x793A;&#x5B8C;&#x5168;&#x8D1F;&#x76F8;&#x5173;&#xFF0C;0 &#x8868;&#x793A;&#x4E0D;&#x76F8;&#x5173;&#x3002; &#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8868;&#x793A;&#x5F88;&#x76F8;&#x4F3C;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x4F1A;&#x63A5;&#x8FD1; +1&#xFF0C;&#x90A3;&#x4E48; 1 - &#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x5C31;&#x4F1A;&#x63A5;&#x8FD1; 0&#xFF0C;&#x8868;&#x793A;&#x5DEE;&#x5F02;&#x6027;&#x5F88;&#x5C0F;&#x3002;&#x53CD;&#x4E4B;&#xFF0C;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8868;&#x793A;&#x5F88;&#x4E0D;&#x76F8;&#x4F3C;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x4F1A;&#x63A5;&#x8FD1; 0 &#x751A;&#x81F3;&#x8D1F;&#x6570;&#xFF0C;&#x90A3;&#x4E48; 1 - &#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x5C31;&#x4F1A;&#x63A5;&#x8FD1; 1 &#x751A;&#x81F3;&#x5927;&#x4E8E; 1&#xFF0C;&#x8868;&#x793A;&#x5DEE;&#x5F02;&#x6027;&#x5F88;&#x5927;&#x3002;</p>
+<ol start="4">
+<li><strong>&#x6784;&#x5EFA;&#x77E9;&#x9635;&#xFF1A;</strong> &#x628A;&#x6240;&#x6709;&#x523A;&#x6FC0;&#x6587;&#x672C;&#x5BF9;&#x7684;&#x5DEE;&#x5F02;&#x6027;&#x503C;&#x653E;&#x5728;&#x4E00;&#x4E2A;&#x77E9;&#x9635;&#x91CC;&#xFF0C;&#x5C31;&#x5F97;&#x5230;&#x4E86; RDM&#x3002; &#x5BF9;&#x4E8E;&#x5927;&#x8111;&#x7684;&#x4FE1;&#x53F7;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x5230; **RDMh (Human brain RDM)**&#xFF1B;&#x5BF9;&#x4E8E; LLM &#x7684;&#x8868;&#x793A;&#xFF0C;&#x6211;&#x4EEC;&#x5F97;&#x5230; **RDMm (LLM RDM)**&#x3002; RDM &#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x79F0;&#x77E9;&#x9635;&#xFF0C;&#x5BF9;&#x89D2;&#x7EBF;&#x4E0A;&#x7684;&#x503C;&#x90FD;&#x662F; 0 (&#x56E0;&#x4E3A;&#x4E00;&#x4E2A;&#x523A;&#x6FC0;&#x6587;&#x672C;&#x548C;&#x81EA;&#x8EAB;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x5DEE;&#x5F02;&#x6027;&#x4E3A; 0)&#x3002;</li>
+</ol>
+<p><strong>&#x8BA1;&#x7B97; LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027; (LLM-brain similarity)&#xFF1A;</strong>  &#x6709;&#x4E86; RDMh &#x548C; RDMm &#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x7528; RSA &#x6765;&#x8BA1;&#x7B97;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x4E86;&#x3002;  &#x8BBA;&#x6587;&#x91CC;&#x7528;&#x4E86;&#x51E0;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x8BA1;&#x7B97; RDMh &#x548C; RDMm &#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF0C;&#x5305;&#x62EC;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x3001;&#x6B27;&#x51E0;&#x91CC;&#x5F97;&#x8DDD;&#x79BB;&#x3001;&#x4F59;&#x5F26;&#x8DDD;&#x79BB;&#x548C;&#x65AF;&#x76AE;&#x5C14;&#x66FC;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x3002;  <strong>&#x91CD;&#x70B9;&#x662F;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;</strong>&#x3002;  &#x5982;&#x679C; RDMh &#x548C; RDMm &#x7684;&#x76AE;&#x5C14;&#x900A;&#x76F8;&#x5173;&#x7CFB;&#x6570;&#x5F88;&#x9AD8;&#xFF0C;&#x5C31;&#x8BF4;&#x660E;&#x5927;&#x8111;&#x548C; LLM &#x7684;&#x8868;&#x793A;&#x6A21;&#x5F0F;&#x5F88;&#x76F8;&#x4F3C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; <strong>LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;</strong> &#x5F88;&#x9AD8;&#x3002;</p>
+<h1 id="&#x5B9E;&#x9A8C;&#x8BBE;&#x8BA1;-Experiment-Design"><a href="#&#x5B9E;&#x9A8C;&#x8BBE;&#x8BA1;-Experiment-Design" class="headerlink" title="&#x5B9E;&#x9A8C;&#x8BBE;&#x8BA1; (Experiment Design)"></a><strong>&#x5B9E;&#x9A8C;&#x8BBE;&#x8BA1; (Experiment Design)</strong></h1><h2 id="&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x4F53;&#x7D20;&#x201D;-voxel-&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x7814;&#x7A76;&#x8005;&#x53EA;&#x9009;&#x62E9;&#x4E86;1000&#x4E2A;&#xFF1F;"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x4F53;&#x7D20;&#x201D;-voxel-&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x7814;&#x7A76;&#x8005;&#x53EA;&#x9009;&#x62E9;&#x4E86;1000&#x4E2A;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x4F53;&#x7D20;&#x201D;(voxel)&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x7814;&#x7A76;&#x8005;&#x53EA;&#x9009;&#x62E9;&#x4E86;1000&#x4E2A;&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x4F53;&#x7D20;&#x201D;(voxel)&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x7814;&#x7A76;&#x8005;&#x53EA;&#x9009;&#x62E9;&#x4E86;1000&#x4E2A;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x4F53;&#x7D20;&#x662F;&#x4E09;&#x7EF4;&#x56FE;&#x50CF;&#x7684;&#x6700;&#x5C0F;&#x5355;&#x4F4D;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x4E8C;&#x7EF4;&#x56FE;&#x50CF;&#x4E2D;&#x7684;&#x50CF;&#x7D20;&#x3002;&#x4E00;&#x6B21;&#x5B8C;&#x6574;&#x7684;fMRI&#x626B;&#x63CF;&#x53EF;&#x80FD;&#x5305;&#x542B;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x4E2A;&#x4F53;&#x7D20;&#x3002;&#x7814;&#x7A76;&#x8005;&#x9009;&#x62E9;1000&#x4E2A;&#x4F53;&#x7D20;&#x662F;&#x56E0;&#x4E3A;&#xFF1A;</p>
+<ol>
+<li>&#x6570;&#x636E;&#x964D;&#x7EF4;&#xFF1A;&#x5168;&#x90E8;&#x4F53;&#x7D20;&#x4F1A;&#x5BFC;&#x81F4;&#x8BA1;&#x7B97;&#x590D;&#x6742;&#x5EA6;&#x8FC7;&#x9AD8;</li>
+<li>&#x4FE1;&#x566A;&#x6BD4;&#xFF1A;&#x5E76;&#x975E;&#x6240;&#x6709;&#x4F53;&#x7D20;&#x90FD;&#x5305;&#x542B;&#x4E0E;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x76F8;&#x5173;&#x7684;&#x4FE1;&#x53F7;</li>
+<li>&#x7EDF;&#x8BA1;&#x7A33;&#x5B9A;&#x6027;&#xFF1A;&#x9009;&#x62E9;&#x76F8;&#x540C;&#x6570;&#x91CF;&#x7684;&#x4F53;&#x7D20;&#x786E;&#x4FDD;&#x8DE8;&#x53D7;&#x8BD5;&#x8005;&#x6BD4;&#x8F83;&#x7684;&#x516C;&#x5E73;&#x6027;</li>
+<li>&#x805A;&#x7126;&#x76F8;&#x5173;&#x533A;&#x57DF;&#xFF1A;&#x53EF;&#x80FD;&#x4F18;&#x5148;&#x9009;&#x62E9;&#x4E0E;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x76F8;&#x5173;&#x7684;&#x8111;&#x533A;&#x4F53;&#x7D20;</li>
+</ol>
+<h2 id="&#x201C;&#x5FAE;&#x8C03;&#x201D;-fine-tuning-&#x5982;&#x4F55;&#x5F71;&#x54CD;LLM&#x4E0E;&#x5927;&#x8111;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF1F;"><a href="#&#x201C;&#x5FAE;&#x8C03;&#x201D;-fine-tuning-&#x5982;&#x4F55;&#x5F71;&#x54CD;LLM&#x4E0E;&#x5927;&#x8111;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF1F;" class="headerlink" title="&#x201C;&#x5FAE;&#x8C03;&#x201D;(fine-tuning)&#x5982;&#x4F55;&#x5F71;&#x54CD;LLM&#x4E0E;&#x5927;&#x8111;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF1F;"></a>&#x201C;&#x5FAE;&#x8C03;&#x201D;(fine-tuning)&#x5982;&#x4F55;&#x5F71;&#x54CD;LLM&#x4E0E;&#x5927;&#x8111;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x5FAE;&#x8C03;&#x662F;&#x5728;&#x9884;&#x8BAD;&#x7EC3;&#x540E;&#x7528;&#x7279;&#x5B9A;&#x6570;&#x636E;&#x8FDB;&#x4E00;&#x6B65;&#x8BAD;&#x7EC3;LLM&#x7684;&#x8FC7;&#x7A0B;&#x3002;&#x5B83;&#x5BF9;LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#x7684;&#x5F71;&#x54CD;&#x4F53;&#x73B0;&#x5728;&#xFF1A;</p>
+<ol>
+<li><strong>&#x4EFB;&#x52A1;&#x76F8;&#x5173;&#x6027;</strong>&#xFF1A;&#x5982;&#x679C;&#x6A21;&#x578B;&#x5FAE;&#x8C03;&#x4E8E;&#x5BF9;&#x8BDD;&#x4EFB;&#x52A1;(&#x5982;Vicuna&#x3001;Mistral-sft)&#xFF0C;&#x5B83;&#x53EF;&#x80FD;&#x66F4;&#x63A5;&#x8FD1;&#x4EBA;&#x7C7B;&#x5904;&#x7406;&#x5BF9;&#x8BDD;&#x7684;&#x65B9;&#x5F0F;</li>
+<li><strong>&#x77E5;&#x8BC6;&#x91CD;&#x7EC4;</strong>&#xFF1A;&#x5FAE;&#x8C03;&#x53EF;&#x80FD;&#x91CD;&#x65B0;&#x7EC4;&#x7EC7;&#x6A21;&#x578B;&#x7684;&#x77E5;&#x8BC6;&#x8868;&#x793A;&#xFF0C;&#x4F7F;&#x5176;&#x66F4;&#x63A5;&#x8FD1;&#x6216;&#x8FDC;&#x79BB;&#x4EBA;&#x8111;&#x8868;&#x793A;&#x65B9;&#x5F0F;</li>
+<li><strong>&#x6CE8;&#x610F;&#x529B;&#x8F6C;&#x79FB;</strong>&#xFF1A;&#x5FAE;&#x8C03;&#x6539;&#x53D8;&#x6A21;&#x578B;&#x5173;&#x6CE8;&#x6587;&#x672C;&#x4E0D;&#x540C;&#x65B9;&#x9762;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;&#x53EF;&#x80FD;&#x5411;&#x4EBA;&#x7C7B;&#x6CE8;&#x610F;&#x6A21;&#x5F0F;&#x9760;&#x62E2;&#x6216;&#x8FDC;&#x79BB;</li>
+<li><strong>&#x63A8;&#x7406;&#x6A21;&#x5F0F;</strong>&#xFF1A;&#x4EBA;&#x7C7B;&#x504F;&#x597D;&#x5BF9;&#x9F50;(&#x5982;Zephyr-7B&#x7684;dDPO)&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x63A8;&#x7406;&#x6A21;&#x5F0F;&#x66F4;&#x63A5;&#x8FD1;&#x4EBA;&#x7C7B;&#x601D;&#x7EF4;</li>
+</ol>
+<p>&#x7814;&#x7A76;&#x8FD9;&#x4E00;&#x5F71;&#x54CD;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7406;&#x89E3;&#xFF1A;&#x8BA9;AI&#x201D;&#x66F4;&#x597D;&#x7528;&#x201D;&#x7684;&#x8C03;&#x6574;&#x662F;&#x5426;&#x4E5F;&#x8BA9;&#x5B83;&#x201D;&#x66F4;&#x50CF;&#x4EBA;&#x8111;&#x201D;&#x3002;</p>
+<h2 id="&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x7F29;&#x653E;&#x5B9A;&#x5F8B;&#x201D;-Scaling-Law-&#xFF0C;&#x5B83;&#x4E3A;&#x4EC0;&#x4E48;&#x91CD;&#x8981;&#xFF1F;"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x7F29;&#x653E;&#x5B9A;&#x5F8B;&#x201D;-Scaling-Law-&#xFF0C;&#x5B83;&#x4E3A;&#x4EC0;&#x4E48;&#x91CD;&#x8981;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x7F29;&#x653E;&#x5B9A;&#x5F8B;&#x201D;(Scaling Law)&#xFF0C;&#x5B83;&#x4E3A;&#x4EC0;&#x4E48;&#x91CD;&#x8981;&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x662F;&#x201D;&#x7F29;&#x653E;&#x5B9A;&#x5F8B;&#x201D;(Scaling Law)&#xFF0C;&#x5B83;&#x4E3A;&#x4EC0;&#x4E48;&#x91CD;&#x8981;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x7F29;&#x653E;&#x5B9A;&#x5F8B;&#x63CF;&#x8FF0;&#x4E86;&#x968F;&#x7740;&#x6A21;&#x578B;&#x89C4;&#x6A21;(&#x53C2;&#x6570;&#x6570;&#x91CF;)&#x548C;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x91CF;&#x589E;&#x52A0;&#xFF0C;LLM&#x6027;&#x80FD;&#x5982;&#x4F55;&#x53D8;&#x5316;&#x7684;&#x6570;&#x5B66;&#x5173;&#x7CFB;&#x3002;&#x5B83;&#x5F88;&#x91CD;&#x8981;&#x56E0;&#x4E3A;&#xFF1A;</p>
+<ol>
+<li><strong>&#x9884;&#x6D4B;&#x6027;</strong>&#xFF1A;&#x53EF;&#x4EE5;&#x9884;&#x6D4B;&#x6295;&#x5165;&#x66F4;&#x591A;&#x8D44;&#x6E90;&#x4F1A;&#x5E26;&#x6765;&#x591A;&#x5927;&#x6539;&#x8FDB;</li>
+<li><strong>&#x6548;&#x7387;&#x6743;&#x8861;</strong>&#xFF1A;&#x5E2E;&#x52A9;&#x7814;&#x7A76;&#x8005;&#x51B3;&#x5B9A;&#x662F;&#x589E;&#x52A0;&#x6A21;&#x578B;&#x5927;&#x5C0F;&#x8FD8;&#x662F;&#x589E;&#x52A0;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x66F4;&#x6709;&#x6548;</li>
+<li><strong>&#x9650;&#x5236;&#x7406;&#x89E3;</strong>&#xFF1A;&#x63ED;&#x793A;&#x6A21;&#x578B;&#x6027;&#x80FD;&#x63D0;&#x5347;&#x662F;&#x5426;&#x4F1A;&#x8D8B;&#x4E8E;&#x5E73;&#x7F13;</li>
+<li><strong>&#x4E0E;&#x8BA4;&#x77E5;&#x6BD4;&#x8F83;</strong>&#xFF1A;&#x7814;&#x7A76;&#x5927;&#x8111;&#x662F;&#x5426;&#x9075;&#x5FAA;&#x7C7B;&#x4F3C;&#x7684;&#x201D;&#x7F29;&#x653E;&#x201D;&#x89C4;&#x5F8B;</li>
+</ol>
+<p>&#x5BF9;&#x6BD4;LLM&#x4E0E;&#x5927;&#x8111;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x968F;&#x7F29;&#x653E;&#x53D8;&#x5316;&#xFF0C;&#x53EF;&#x80FD;&#x63ED;&#x793A;&#x4EBA;&#x8111;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x662F;&#x5426;&#x6709;&#x7C7B;&#x4F3C;&#x7684;&#x201D;&#x89C4;&#x6A21;&#x6548;&#x5E94;&#x201D;&#xFF0C;&#x6216;&#x8005;&#x4EBA;&#x8111;&#x662F;&#x5426;&#x4F7F;&#x7528;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x3001;&#x53EF;&#x80FD;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x5904;&#x7406;&#x7B56;&#x7565;&#x3002;</p>
+<h2 id="LLaMA&#x3001;LLaMA2&#x548C;LLaMA3&#x7684;&#x4E3B;&#x8981;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"><a href="#LLaMA&#x3001;LLaMA2&#x548C;LLaMA3&#x7684;&#x4E3B;&#x8981;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;" class="headerlink" title="LLaMA&#x3001;LLaMA2&#x548C;LLaMA3&#x7684;&#x4E3B;&#x8981;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;"></a>LLaMA&#x3001;LLaMA2&#x548C;LLaMA3&#x7684;&#x4E3B;&#x8981;&#x533A;&#x522B;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x8FD9;&#x4E09;&#x4EE3;&#x6A21;&#x578B;&#x5C55;&#x793A;&#x4E86;LLM&#x5FEB;&#x901F;&#x6F14;&#x8FDB;&#x7684;&#x8F68;&#x8FF9;&#xFF1A;</p>
+<p><strong>LLaMA</strong>:</p>
+<ul>
+<li>&#x9996;&#x4E2A;&#x5F00;&#x6E90;&#x7248;&#x672C;</li>
+<li>&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#x7EA6;2K&#x6807;&#x8BB0;</li>
+<li>&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x89C4;&#x6A21;&#x8F83;&#x5C0F;</li>
+</ul>
+<p><strong>LLaMA2</strong>(&#x76F8;&#x6BD4;LLaMA):</p>
+<ul>
+<li>&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x589E;&#x52A0;40%</li>
+<li>&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#x6269;&#x5C55;&#x5230;4K</li>
+<li>&#x5F15;&#x5165;&#x4E86;&#x7ECF;&#x8FC7;RLHF(&#x4EBA;&#x7C7B;&#x53CD;&#x9988;&#x5F3A;&#x5316;&#x5B66;&#x4E60;)&#x7684;Chat&#x7248;&#x672C;</li>
+<li>&#x5B89;&#x5168;&#x6027;&#x589E;&#x5F3A;</li>
+</ul>
+<p><strong>LLaMA3</strong>(&#x76F8;&#x6BD4;LLaMA2):</p>
+<ul>
+<li>&#x8BAD;&#x7EC3;&#x6807;&#x8BB0;&#x4ECE;2&#x4E07;&#x4EBF;&#x98D9;&#x5347;&#x81F3;15&#x4E07;&#x4EBF;(&#x589E;&#x957F;7.5&#x500D;)</li>
+<li>&#x4E0A;&#x4E0B;&#x6587;&#x7A97;&#x53E3;&#x7FFB;&#x500D;&#x81F3;8192</li>
+<li>&#x8BCD;&#x6C47;&#x91CF;&#x4ECE;32,000&#x6269;&#x5927;&#x5230;128,000(&#x589E;&#x957F;4&#x500D;)</li>
+<li>&#x7ED3;&#x5408;&#x4E86;&#x591A;&#x79CD;&#x4F18;&#x5316;&#x6280;&#x672F;(SFT&#x3001;PPO&#x3001;DPO&#x7B49;)</li>
+<li>&#x663E;&#x8457;&#x63D0;&#x5347;&#x4E86;&#x4EE3;&#x7801;&#x751F;&#x6210;&#x548C;&#x6307;&#x4EE4;&#x8DDF;&#x968F;&#x80FD;&#x529B;</li>
+</ul>
+<p>&#x8FD9;&#x4E9B;&#x53D8;&#x5316;&#x8BA9;&#x7814;&#x7A76;&#x8005;&#x80FD;&#x63A2;&#x7D22;&#xFF1A;&#x968F;&#x7740;&#x6A21;&#x578B;&#x67B6;&#x6784;&#x548C;&#x8BAD;&#x7EC3;&#x65B9;&#x6CD5;&#x6F14;&#x8FDB;&#xFF0C;LLM&#x4E0E;&#x4EBA;&#x8111;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#x662F;&#x589E;&#x52A0;&#x8FD8;&#x662F;&#x51CF;&#x5C11;&#xFF1F;</p>
+<h2 id="&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x786E;&#x4FDD;&#x4E0D;&#x540C;&#x53D7;&#x8BD5;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x8111;&#x90E8;&#x6570;&#x636E;&#x53EF;&#x6BD4;&#xFF1F;"><a href="#&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x786E;&#x4FDD;&#x4E0D;&#x540C;&#x53D7;&#x8BD5;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x8111;&#x90E8;&#x6570;&#x636E;&#x53EF;&#x6BD4;&#xFF1F;" class="headerlink" title="&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x786E;&#x4FDD;&#x4E0D;&#x540C;&#x53D7;&#x8BD5;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x8111;&#x90E8;&#x6570;&#x636E;&#x53EF;&#x6BD4;&#xFF1F;"></a>&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x786E;&#x4FDD;&#x4E0D;&#x540C;&#x53D7;&#x8BD5;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x8111;&#x90E8;&#x6570;&#x636E;&#x53EF;&#x6BD4;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x7814;&#x7A76;&#x8005;&#x91C7;&#x53D6;&#x4EE5;&#x4E0B;&#x63AA;&#x65BD;&#x786E;&#x4FDD;&#x8111;&#x90E8;&#x6570;&#x636E;&#x7684;&#x53EF;&#x6BD4;&#x6027;&#xFF1A;</p>
+<ol>
+<li><strong>&#x4E00;&#x81F4;&#x53C2;&#x4E0E;&#x8005;&#x9009;&#x62E9;</strong>&#xFF1A;&#x4EC5;&#x9009;&#x62E9;&#x53C2;&#x4E0E;&#x5168;&#x90E8;&#x4E09;&#x4E2A;&#x5B9E;&#x9A8C;&#x7684;5&#x540D;&#x53D7;&#x8BD5;&#x8005;</li>
+<li><strong>&#x6807;&#x51C6;&#x5316;&#x7684;&#x6570;&#x636E;&#x6536;&#x96C6;</strong>&#xFF1A;&#x6240;&#x6709;&#x4EBA;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;fMRI&#x8BBE;&#x5907;&#x548C;&#x53C2;&#x6570;</li>
+<li><strong>&#x4E00;&#x81F4;&#x7684;&#x4F53;&#x7D20;&#x6570;&#x91CF;</strong>&#xFF1A;&#x4E3A;&#x6BCF;&#x4EBA;&#x9009;&#x62E9;&#x76F8;&#x540C;&#x6570;&#x91CF;(1000&#x4E2A;)&#x4F53;&#x7D20;</li>
+<li><strong>&#x72EC;&#x7ACB;&#x76F8;&#x4F3C;&#x5EA6;&#x8BA1;&#x7B97;</strong>&#xFF1A;&#x5148;&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x4EBA;&#x4E0E;LLM&#x7684;&#x76F8;&#x4F3C;&#x5EA6;</li>
+<li><strong>&#x5E73;&#x5747;&#x5316;&#x7ED3;&#x679C;</strong>&#xFF1A;&#x6700;&#x7EC8;&#x53D6;&#x6240;&#x6709;&#x4EBA;&#x7684;&#x5E73;&#x5747;&#x503C;&#x4F5C;&#x4E3A;&#x6574;&#x4F53;&#x76F8;&#x4F3C;&#x5EA6;</li>
+</ol>
+<p>&#x8FD9;&#x786E;&#x4FDD;&#x4E86;&#x7814;&#x7A76;&#x53D1;&#x73B0;&#x4E0D;&#x4F1A;&#x88AB;&#x4E2A;&#x4F53;&#x5DEE;&#x5F02;&#x6240;&#x5DE6;&#x53F3;&#xFF0C;&#x5E76;&#x4E14;&#x53CD;&#x6620;&#x4E86;&#x66F4;&#x666E;&#x904D;&#x7684;&#x4EBA;&#x8111;-LLM&#x5173;&#x7CFB;&#x3002;</p>
+<h2 id="&#x8FD9;&#x9879;&#x7814;&#x7A76;&#x5982;&#x4F55;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7406;&#x89E3;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF1F;"><a href="#&#x8FD9;&#x9879;&#x7814;&#x7A76;&#x5982;&#x4F55;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7406;&#x89E3;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF1F;" class="headerlink" title="&#x8FD9;&#x9879;&#x7814;&#x7A76;&#x5982;&#x4F55;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7406;&#x89E3;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF1F;"></a>&#x8FD9;&#x9879;&#x7814;&#x7A76;&#x5982;&#x4F55;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x7406;&#x89E3;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x8FD9;&#x9879;&#x7814;&#x7A76;&#x4EE5;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;&#x589E;&#x8FDB;&#x4E86;&#x6211;&#x4EEC;&#x5BF9;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x7406;&#x89E3;&#xFF1A;</p>
+<ol>
+<li><strong>&#x5171;&#x540C;&#x673A;&#x5236;&#x8BC6;&#x522B;</strong>&#xFF1A;&#x53D1;&#x73B0;LLM&#x4E0E;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x7684;&#x5904;&#x7406;&#x6A21;&#x5F0F;&#xFF0C;&#x53EF;&#x80FD;&#x6307;&#x5411;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x57FA;&#x672C;&#x673A;&#x5236;</li>
+<li><strong>&#x5DEE;&#x5F02;&#x70B9;&#x5206;&#x6790;</strong>&#xFF1A;LLM&#x4E0E;&#x5927;&#x8111;&#x8868;&#x793A;&#x5DEE;&#x5F02;&#x6700;&#x5927;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x53EF;&#x80FD;&#x63ED;&#x793A;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x72EC;&#x7279;&#x65B9;&#x9762;</li>
+<li><strong>&#x8BA1;&#x7B97;&#x6A21;&#x578B;&#x9A8C;&#x8BC1;</strong>&#xFF1A;LLM&#x4F5C;&#x4E3A;&#x4EBA;&#x7C7B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x8BA1;&#x7B97;&#x6A21;&#x578B;&#xFF0C;&#x5176;&#x51C6;&#x786E;&#x6027;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8FD9;&#x7C7B;&#x6BD4;&#x8F83;&#x8BC4;&#x4F30;</li>
+<li><strong>&#x8FDB;&#x5316;&#x89C6;&#x89D2;</strong>&#xFF1A;&#x4E86;&#x89E3;&#x4EBA;&#x8111;&#x5982;&#x4F55;&#x53EF;&#x80FD;&#x201D;&#x4F18;&#x5316;&#x201D;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x65B9;&#x9762;AI&#x5C1A;&#x672A;&#x590D;&#x5236;</li>
+<li><strong>&#x591A;&#x6A21;&#x6001;&#x5904;&#x7406;</strong>&#xFF1A;&#x6BD4;&#x8F83;&#x53EF;&#x80FD;&#x63ED;&#x793A;&#x4EBA;&#x7C7B;&#x5982;&#x4F55;&#x6574;&#x5408;&#x8BED;&#x4E49;&#x3001;&#x60C5;&#x611F;&#x3001;&#x793E;&#x4F1A;&#x80CC;&#x666F;&#x7B49;&#x591A;&#x7EF4;&#x5EA6;&#x4FE1;&#x606F;</li>
+</ol>
+<p>&#x8FD9;&#x9879;&#x7814;&#x7A76;&#x5B9E;&#x8D28;&#x4E0A;&#x662F;&#x7528;&#x53EF;&#x89E3;&#x91CA;&#x7684;&#x4EBA;&#x5DE5;&#x7CFB;&#x7EDF;&#x6765;&#x5E2E;&#x52A9;&#x7406;&#x89E3;&#x96BE;&#x4EE5;&#x76F4;&#x63A5;&#x7814;&#x7A76;&#x7684;&#x4EBA;&#x8111;&#x8BED;&#x8A00;&#x7CFB;&#x7EDF;&#x3002;</p>
+<h2 id="&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x201D;LLM&#x4E0E;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x201D;&#xFF1F;"><a href="#&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x201D;LLM&#x4E0E;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x201D;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x201D;LLM&#x4E0E;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x201D;&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x7ED3;&#x679C;&#x4F1A;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x201D;LLM&#x4E0E;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x201D;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x5224;&#x65AD;LLM&#x4E0E;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x7684;&#x6807;&#x51C6;&#x5305;&#x62EC;&#xFF1A;</p>
+<ol>
+<li><strong>&#x7EDF;&#x8BA1;&#x663E;&#x8457;&#x6027;</strong>&#xFF1A;&#x76F8;&#x4F3C;&#x5EA6;&#x5206;&#x6570;&#x5FC5;&#x987B;&#x663E;&#x8457;&#x9AD8;&#x4E8E;&#x968F;&#x673A;&#x57FA;&#x51C6;</li>
+<li><strong>&#x76F8;&#x5BF9;&#x6392;&#x540D;</strong>&#xFF1A;&#x66F4;&#x201D;&#x4EBA;&#x7C7B;&#x5316;&#x201D;&#x7684;&#x6A21;&#x578B;&#x5E94;&#x6709;&#x66F4;&#x9AD8;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#x5206;&#x6570;</li>
+<li><strong>&#x6A21;&#x5F0F;&#x4E00;&#x81F4;&#x6027;</strong>&#xFF1A;&#x76F8;&#x4F3C;&#x5EA6;&#x5E94;&#x5728;&#x4E0D;&#x540C;&#x6D4B;&#x91CF;&#x65B9;&#x6CD5;&#x4E0B;&#x4FDD;&#x6301;&#x4E00;&#x81F4;</li>
+<li><strong>&#x533A;&#x57DF;&#x7279;&#x5F02;&#x6027;</strong>&#xFF1A;&#x4E0E;&#x5DF2;&#x77E5;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x533A;&#x57DF;(&#x5982;Broca&#x533A;&#x3001;Wernicke&#x533A;)&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#x5E94;&#x66F4;&#x9AD8;</li>
+<li><strong>&#x4EFB;&#x52A1;&#x76F8;&#x5173;&#x6027;</strong>&#xFF1A;&#x5728;&#x8BED;&#x8A00;&#x4EFB;&#x52A1;&#x4E2D;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#x5E94;&#x9AD8;&#x4E8E;&#x975E;&#x8BED;&#x8A00;&#x4EFB;&#x52A1;</li>
+<li><strong>&#x8868;&#x793A;&#x5C42;&#x7EA7;</strong>&#xFF1A;&#x76F8;&#x4F3C;&#x6027;&#x6A21;&#x5F0F;&#x5E94;&#x53CD;&#x6620;&#x8BED;&#x8A00;&#x5904;&#x7406;&#x7684;&#x4E0D;&#x540C;&#x5C42;&#x7EA7;(&#x8BCD;&#x6C47;&#x3001;&#x53E5;&#x6CD5;&#x3001;&#x8BED;&#x4E49;)</li>
+</ol>
+<p>&#x9AD8;&#x76F8;&#x4F3C;&#x5EA6;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;LLM&#x6A21;&#x62DF;&#x4E86;&#x4EBA;&#x8111;&#x7684;&#x786E;&#x5207;&#x673A;&#x5236;&#xFF0C;&#x800C;&#x662F;&#x8868;&#x660E;&#x5B83;&#x4EEC;&#x53EF;&#x80FD;&#x53D1;&#x73B0;&#x4E86;&#x5904;&#x7406;&#x8BED;&#x8A00;&#x7684;&#x76F8;&#x4F3C;&#x6570;&#x5B66;&#x8868;&#x793A;&#x3002;&#x8FD9;&#x5C31;&#x50CF;&#x4E24;&#x6761;&#x4E0D;&#x540C;&#x7684;&#x8DEF;&#x53EF;&#x80FD;&#x901A;&#x5411;&#x540C;&#x4E00;&#x76EE;&#x7684;&#x5730;&#x2014;&#x2014;LLM&#x548C;&#x4EBA;&#x8111;&#x53EF;&#x80FD;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x5185;&#x90E8;&#x8FC7;&#x7A0B;&#x8FBE;&#x5230;&#x7C7B;&#x4F3C;&#x7684;&#x8BED;&#x8A00;&#x7406;&#x89E3;&#x8868;&#x793A;&#x3002;</p>
+<h2 id="&#x4EC0;&#x4E48;&#x662F;LLM&#x7684;&#x201D;&#x53C2;&#x6570;&#x201D;&#xFF0C;7B&#x548C;70B&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;"><a href="#&#x4EC0;&#x4E48;&#x662F;LLM&#x7684;&#x201D;&#x53C2;&#x6570;&#x201D;&#xFF0C;7B&#x548C;70B&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;LLM&#x7684;&#x201D;&#x53C2;&#x6570;&#x201D;&#xFF0C;7B&#x548C;70B&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;"></a>&#x4EC0;&#x4E48;&#x662F;LLM&#x7684;&#x201D;&#x53C2;&#x6570;&#x201D;&#xFF0C;7B&#x548C;70B&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;LLM&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x662F;&#x6A21;&#x578B;&#x5B66;&#x4E60;&#x8C03;&#x6574;&#x7684;&#x6570;&#x503C;&#xFF0C;&#x51B3;&#x5B9A;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x5904;&#x7406;&#x548C;&#x751F;&#x6210;&#x6587;&#x672C;&#x3002;&#x53EF;&#x4EE5;&#x628A;&#x5B83;&#x4EEC;&#x60F3;&#x8C61;&#x6210;&#x6A21;&#x578B;&#x7684;&#x201D;&#x77E5;&#x8BC6;&#x70B9;&#x201D;&#xFF1A;</p>
+<ul>
+<li>7B&#x6A21;&#x578B;&#x6709;70&#x4EBF;&#x4E2A;&#x53C2;&#x6570;</li>
+<li>70B&#x6A21;&#x578B;&#x6709;700&#x4EBF;&#x4E2A;&#x53C2;&#x6570;</li>
+</ul>
+<p>&#x533A;&#x522B;&#x5728;&#x4E8E;&#xFF1A;</p>
+<ol>
+<li><strong>&#x5BB9;&#x91CF;&#x5DEE;&#x5F02;</strong>&#xFF1A;70B&#x6A21;&#x578B;&#x80FD;&#x5B58;&#x50A8;&#x66F4;&#x591A;&#x77E5;&#x8BC6;&#x548C;&#x8BED;&#x8A00;&#x6A21;&#x5F0F;</li>
+<li><strong>&#x7406;&#x89E3;&#x80FD;&#x529B;</strong>&#xFF1A;&#x901A;&#x5E38;&#x53C2;&#x6570;&#x8D8A;&#x591A;&#xFF0C;&#x7406;&#x89E3;&#x590D;&#x6742;&#x6982;&#x5FF5;&#x548C;&#x4E0A;&#x4E0B;&#x6587;&#x7684;&#x80FD;&#x529B;&#x8D8A;&#x5F3A;</li>
+<li><strong>&#x8D44;&#x6E90;&#x9700;&#x6C42;</strong>&#xFF1A;&#x66F4;&#x5927;&#x6A21;&#x578B;&#x9700;&#x8981;&#x66F4;&#x591A;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#x548C;&#x5185;&#x5B58;</li>
+<li><strong>&#x6CDB;&#x5316;&#x80FD;&#x529B;</strong>&#xFF1A;&#x66F4;&#x5927;&#x6A21;&#x578B;&#x901A;&#x5E38;&#x5728;&#x672A;&#x89C1;&#x8FC7;&#x7684;&#x4EFB;&#x52A1;&#x4E0A;&#x8868;&#x73B0;&#x66F4;&#x597D;</li>
+</ol>
+<p>&#x5C31;&#x50CF;&#x4E00;&#x4E2A;&#x62E5;&#x6709;&#x66F4;&#x591A;&#x795E;&#x7ECF;&#x5143;&#x548C;&#x7A81;&#x89E6;&#x7684;&#x5927;&#x8111;&#xFF0C;70B&#x6A21;&#x578B;&#x6709;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x5185;&#x90E8;&#x8FDE;&#x63A5;&#x7F51;&#x7EDC;&#x3002;</p>
+<h2 id="&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x4ECE;LLM&#x4E2D;&#x63D0;&#x53D6;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF1F;"><a href="#&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x4ECE;LLM&#x4E2D;&#x63D0;&#x53D6;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF1F;" class="headerlink" title="&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x4ECE;LLM&#x4E2D;&#x63D0;&#x53D6;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF1F;"></a>&#x7814;&#x7A76;&#x8005;&#x5982;&#x4F55;&#x4ECE;LLM&#x4E2D;&#x63D0;&#x53D6;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF1F;</h2><p><strong>&#x89E3;&#x7B54;</strong>&#xFF1A;&#x7814;&#x7A76;&#x8005;&#x4ECE;LLM&#x63D0;&#x53D6;&#x6570;&#x636E;&#x7684;&#x5177;&#x4F53;&#x6B65;&#x9AA4;&#x662F;&#xFF1A;</p>
+<ol>
+<li>&#x8F93;&#x5165;&#x76F8;&#x540C;&#x6587;&#x672C;&#xFF1A;&#x8BA9;LLM&#x5904;&#x7406;&#x4E0E;&#x4EBA;&#x7C7B;&#x53D7;&#x8BD5;&#x8005;&#x9605;&#x8BFB;&#x7684;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x6587;&#x672C;</li>
+<li>&#x6355;&#x83B7;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x8868;&#x793A;&#xFF1A;&#x6536;&#x96C6;&#x6A21;&#x578B;&#x6700;&#x540E;&#x4E00;&#x5C42;(&#x901A;&#x5E38;&#x662F;&#x77E5;&#x8BC6;&#x6700;&#x4E30;&#x5BCC;&#x7684;&#x5C42;)&#x7684;&#x6FC0;&#x6D3B;&#x6A21;&#x5F0F;</li>
+<li>&#x5E73;&#x5747;&#x5D4C;&#x5165;&#x5411;&#x91CF;&#xFF1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x8F93;&#x5165;&#x6587;&#x672C;&#x7684;&#x6240;&#x6709;&#x6807;&#x8BB0;(token)&#x7684;&#x5D4C;&#x5165;&#x5411;&#x91CF;&#x53D6;&#x5E73;&#x5747;&#x503C;</li>
+<li>&#x521B;&#x5EFA;&#x8868;&#x793A;&#x5411;&#x91CF;&#xFF1A;&#x8FD9;&#x6837;&#x6BCF;&#x4E2A;&#x53E5;&#x5B50;/&#x6982;&#x5FF5;&#x5C31;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x9AD8;&#x7EF4;&#x5411;&#x91CF;&#x8868;&#x793A;&#xFF0C;&#x53CD;&#x6620;LLM&#x5BF9;&#x8BE5;&#x5185;&#x5BB9;&#x7684;&#x201D;&#x7406;&#x89E3;&#x201D;</li>
+</ol>
+<p>&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x7C7B;&#x4F3C;&#x4E8E;&#x6355;&#x6349;LLM&#x7684;&#x201D;&#x601D;&#x7EF4;&#x5FEB;&#x7167;&#x201D;&#xFF0C;&#x5373;&#x5B83;&#x5728;&#x5904;&#x7406;&#x7279;&#x5B9A;&#x6587;&#x672C;&#x65F6;&#x7684;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x3002;</p>
+<ul>
+<li><p><strong>&#x9884;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x91CF; (Pre-training data size)&#xFF1A;</strong> LLM &#x662F;&#x901A;&#x8FC7;&#x5927;&#x91CF;&#x7684;&#x6587;&#x672C;&#x6570;&#x636E;&#x9884;&#x8BAD;&#x7EC3;&#x51FA;&#x6765;&#x7684;&#x3002;&#x9884;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x91CF;&#x8D8A;&#x5927;&#xFF0C;&#x6A21;&#x578B;&#x5B66;&#x5230;&#x7684;&#x8BED;&#x8A00;&#x77E5;&#x8BC6;&#x5C31;&#x8D8A;&#x591A;&#x5417;&#xFF1F; &#x4E3A;&#x4E86;&#x7814;&#x7A76;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4F5C;&#x8005;&#x4EEC;&#x4F7F;&#x7528;&#x4E86; <strong>Amber</strong> &#x6A21;&#x578B;&#x3002; Amber &#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6BCF;&#x8BAD;&#x7EC3;&#x5B8C;&#x4E00;&#x90E8;&#x5206;&#x6570;&#x636E;&#x5C31;&#x4F1A;&#x4FDD;&#x5B58;&#x4E00;&#x4E2A;&#x201C;&#x68C0;&#x67E5;&#x70B9; (checkpoint)&#x201D;&#x3002;&#x4F5C;&#x8005;&#x4EEC;&#x9009;&#x53D6;&#x4E86; Amber &#x6A21;&#x578B;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684; 10 &#x4E2A;&#x68C0;&#x67E5;&#x70B9;&#xFF0C;&#x6BCF;&#x4E2A;&#x68C0;&#x67E5;&#x70B9;&#x4EE3;&#x8868;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x9884;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x91CF;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x8BA1;&#x7B97;&#x8FD9;&#x4E9B;&#x68C0;&#x67E5;&#x70B9;&#x7684; LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#xFF0C;&#x770B;&#x770B;&#x9884;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#x91CF;&#x548C;&#x76F8;&#x4F3C;&#x6027;&#x4E4B;&#x95F4;&#x6709;&#x4EC0;&#x4E48;&#x5173;&#x7CFB;&#x3002;</p>
+</li>
+<li><p><strong>&#x6A21;&#x578B;&#x89C4;&#x6A21; (Model scaling)&#xFF1A;</strong> &#x6A21;&#x578B;&#x8D8A;&#x5927;&#xFF0C;&#x53C2;&#x6570;&#x8D8A;&#x591A;&#xFF0C;&#x6A21;&#x578B;&#x80FD;&#x529B;&#x8D8A;&#x5F3A;&#x5417;&#xFF1F; &#x4F5C;&#x8005;&#x4EEC;&#x4F7F;&#x7528;&#x4E86; <strong>LLaMA, LLaMA2, LLaMA3</strong> &#x7B49;&#x4E0D;&#x540C;&#x89C4;&#x6A21;&#x7684;&#x6A21;&#x578B; (7B, 8B, 13B, 70B)&#xFF0C;&#x6BD4;&#x8F83;&#x4E86;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x7684; LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#x3002;</p>
+</li>
+<li><p><strong>&#x5BF9;&#x9F50;&#x8BAD;&#x7EC3; (Alignment training)&#xFF1A;</strong> &#x4E3A;&#x4E86;&#x8BA9; LLM &#x66F4;&#x597D;&#x5730;&#x670D;&#x52A1;&#x4EBA;&#x7C7B;&#xFF0C;&#x7814;&#x7A76;&#x4EBA;&#x5458;&#x4F1A;&#x5BF9; LLM &#x8FDB;&#x884C;&#x201C;&#x5BF9;&#x9F50;&#x8BAD;&#x7EC3;&#x201D;&#xFF0C;&#x6BD4;&#x5982; <strong>&#x76D1;&#x7763;&#x5FAE;&#x8C03; (SFT - Supervised Fine-Tuning)</strong> &#x548C; **&#x57FA;&#x4E8E;&#x4EBA;&#x7C7B;&#x53CD;&#x9988;&#x7684;&#x5F3A;&#x5316;&#x5B66;&#x4E60; (RLHF - Reinforcement Learning with Human Feedback)**&#x3002; &#x4F5C;&#x8005;&#x4EEC;&#x6BD4;&#x8F83;&#x4E86;&#x9884;&#x8BAD;&#x7EC3;&#x6A21;&#x578B;&#x3001;SFT &#x6A21;&#x578B;&#x548C; RLHF &#x6A21;&#x578B;&#x7684; LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#xFF0C;&#x770B;&#x770B;&#x5BF9;&#x9F50;&#x8BAD;&#x7EC3;&#x662F;&#x5426;&#x4F1A;&#x5F71;&#x54CD;&#x76F8;&#x4F3C;&#x6027;&#x3002; &#x4ED6;&#x4EEC;&#x4F7F;&#x7528;&#x4E86; <strong>Amber, LLaMA2, LLaMA3, Vicuna, Mistral, Zephyr</strong> &#x7B49;&#x4E0D;&#x540C;&#x6A21;&#x578B;&#x7684;&#x4E0D;&#x540C;&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;&#x7248;&#x672C;&#x3002;</p>
+</li>
+<li><p>&#x63D0;&#x793A;&#x7B56;&#x7565; (Prompt strategy)&#xFF1A;</p>
+<p> &#x63D0;&#x793A; (prompt) &#x662F;&#x7528;&#x6237;&#x7ED9; LLM &#x7684;&#x6307;&#x4EE4;&#x6216;&#x5F15;&#x5BFC;&#x3002;&#x4E0D;&#x540C;&#x7684;&#x63D0;&#x793A;&#x65B9;&#x5F0F;&#x4F1A;&#x5F71;&#x54CD; LLM &#x7684;&#x8F93;&#x51FA;&#x5417;&#xFF1F; &#x4F5C;&#x8005;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;&#x4E09;&#x79CD;&#x63D0;&#x793A;&#x7B56;&#x7565;&#xFF1A;</p>
+<ul>
+<li><strong>&#x65E0;&#x63D0;&#x793A; (No prompts)&#xFF1A;</strong> &#x76F4;&#x63A5;&#x8F93;&#x5165;&#x6587;&#x672C;&#xFF0C;&#x4E0D;&#x52A0;&#x4EFB;&#x4F55;&#x63D0;&#x793A;&#x3002;</li>
+<li><strong>&#x663E;&#x5F0F;&#x63D0;&#x793A; (Explicit prompts)&#xFF1A;</strong> &#x5728;&#x6587;&#x672C;&#x524D;&#x9762;&#x52A0;&#x4E0A;&#x660E;&#x786E;&#x7684;&#x6307;&#x4EE4;&#xFF0C;&#x6BD4;&#x5982; &#x201C;&#x8BF7;&#x5B8C;&#x6210;&#x4EE5;&#x4E0B;&#x6587;&#x672C;:&#x201D;&#x3002;</li>
+<li><strong>&#x566A;&#x58F0;&#x63D0;&#x793A; (Noisy prompts)&#xFF1A;</strong> &#x5728;&#x6587;&#x672C;&#x524D;&#x9762;&#x52A0;&#x4E0A;&#x4E00;&#x4E9B;&#x968F;&#x673A;&#x7684;&#x3001;&#x6CA1;&#x6709;&#x610F;&#x4E49;&#x7684;&#x8BCD;&#x8BED;&#x3002; &#x6BD4;&#x8F83;&#x8FD9;&#x4E09;&#x79CD;&#x63D0;&#x793A;&#x7B56;&#x7565;&#x4E0B;&#x7684; LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#xFF0C;&#x53EF;&#x4EE5;&#x7814;&#x7A76;&#x63D0;&#x793A;&#x5BF9; LLM &#x7406;&#x89E3;&#x4EBA;&#x7C7B;&#x610F;&#x56FE;&#x7684;&#x5F71;&#x54CD;&#x3002;</li>
+</ul>
+<p>&#x8FD9;&#x4E2A;&#x63D0;&#x793A;&#x8BCD;&#x7B56;&#x7565;&#x5BF9;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x548C;&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#x4E4B;&#x95F4;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x4ED6;&#x4E4B;&#x6240;&#x4EE5;&#x505A;&#x8FD9;&#x4E2A;&#x7814;&#x7A76;&#xFF0C;&#x5C31;&#x662F;&#x6765;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x589E;&#x52A0;&#xFF0C;&#x5C31;&#x662F;&#x5B8C;&#x5584;refine&#x63D0;&#x793A;&#x8BCD;&#xFF0C;&#x80FD;&#x591F;&#x5728;&#x4E00;&#x5B9A;&#x7A0B;&#x5EA6;&#x4E0A;&#x63D0;&#x5347;large language model&#x548C;&#x5927;&#x8111;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x7A0B;&#x5EA6;&#x3002;&#x4ED6;&#x6BD4;&#x8F83;&#x4E86;&#x4E09;&#x79CD;&#x4E09;&#x79CD;&#x6761;&#x4EF6;&#xFF0C;&#x65E0;&#x6587;&#x672C;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x6587;&#x672C;&#x8F93;&#x5165;&#x5230;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x4F1A;&#x81EA;&#x52A8;&#x7EE7;&#x7EED;&#x751F;&#x6210;&#x6587;&#x672C;&#xFF0C;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5176;&#x4ED6;&#x7684;&#x63D0;&#x793A;&#x3002;&#x7B2C;&#x4E8C;&#x79CD;&#x6761;&#x4EF6;&#x662F;&#x7ED9;&#x4ED6;&#x660E;&#x786E;&#x7684;&#x63D0;&#x793A;&#xFF0C;&#x5728;&#x8F93;&#x5165;&#x6587;&#x672C;&#x4E4B;&#x524D;&#x5148;&#x9884;&#x5148;&#x52A0;&#x4E0A;&#x4E00;&#x4E2A;&#x660E;&#x786E;&#x7684;&#x63D0;&#x793A;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x8BF7;&#x5B8C;&#x6210;&#x4E0B;&#x9762;&#x7248;&#x6587;&#x672C;&#x3002;&#x7B2C;&#x4E09;&#x79CD;&#x662F;&#x566A;&#x97F3;&#x63D0;&#x793A;&#x7ED9;&#x4ED6;&#xFF0C;&#x5148;&#x7ED9;&#x4ED6;5&#x4E2A;&#x968F;&#x673A;&#x7684;&#x82F1;&#x6587;&#x5355;&#x8BCD;&#xFF0C;&#x770B;&#x8FD9;&#x4E9B;&#x968F;&#x673A;&#x7684;&#x5355;&#x8BCD;&#x80FD;&#x5426;&#x5F71;&#x54CD;&#x4ED6;&#xFF0C;&#x80FD;&#x5426;&#x5F71;&#x54CD;&#x4ED6;&#x7684;&#x8868;&#x73B0;&#xFF1F;</p>
+</li>
+<li><p><strong>&#x60C5;&#x611F;&#x6781;&#x6027; (Sentimental polarities)&#xFF1A;</strong> LLM &#x4F1A;&#x8868;&#x8FBE;&#x60C5;&#x611F;&#x5417;&#xFF1F; LLM &#x7684;&#x60C5;&#x611F;&#x8868;&#x8FBE;&#x548C;&#x4EBA;&#x7C7B;&#x7684;&#x60C5;&#x611F;&#x8868;&#x8FBE;&#x4E00;&#x81F4;&#x5417;&#xFF1F; &#x4F5C;&#x8005;&#x4EEC;&#x9009;&#x62E9;&#x4E86;&#x79EF;&#x6781;&#x548C;&#x6D88;&#x6781;&#x4E24;&#x79CD;&#x60C5;&#x611F;&#x6781;&#x6027;&#x7684;&#x8BCD;&#x8BED; (&#x6BD4;&#x5982; &#x201C;&#x5FEB;&#x4E50;&#x201D; vs &#x201C;&#x60B2;&#x4F24;&#x201D;)&#xFF0C;&#x8BA1;&#x7B97;&#x4E86; LLM &#x5728;&#x5904;&#x7406;&#x8FD9;&#x4E9B;&#x8BCD;&#x8BED;&#x65F6;&#x7684; LLM-&#x5927;&#x8111;&#x76F8;&#x4F3C;&#x6027;&#xFF0C;&#x770B;&#x770B; LLM &#x5728;&#x4E0D;&#x540C;&#x60C5;&#x611F;&#x6781;&#x6027;&#x4E0A;&#x7684;&#x8868;&#x73B0;&#x662F;&#x5426;&#x6709;&#x5DEE;&#x5F02;&#x3002;</p>
+<p>&#x610F;&#x601D;&#x662F;&#x5FC3;&#x7406;&#x91CF;&#x8868;&#x73B0;&#x6709;&#x7814;&#x7A76;&#x73B0;&#x72B6;&#xFF0C;&#x5FC3;&#x7406;&#x91CF;&#x8868;&#x4EC5;&#x5173;&#x6CE8;&#x8868;&#x9762;&#x8868;&#x73B0;&#xFF0C;&#x6CA1;&#x6709;&#x6DF1;&#x5165;&#x5185;&#x90E8;&#x673A;&#x5236;&#x3002;&#x7136;&#x540E;&#x4ED6;&#x73B0;&#x5728;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4EC0;&#x4E48;&#x5462;&#x9996;&#x5148;&#x4F7F;&#x7528; vader&#x7ED9;&#x6240;&#x6709;&#x7684;180&#x4E2A;&#x6837;&#x672C;&#x7684;&#x8BCD;&#x8FDB;&#x884C;&#x8FD9;&#x4E2A;&#x60C5;&#x611F;&#x8BC4;&#x5206;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x53EF;&#x80FD;&#x7528;&#x4EBA;&#x6765;&#x8FDB;&#x884C;&#x4E3B;&#x89C2;&#x5224;&#x65AD;&#x6765;&#x7ED9;&#x4ED6;&#x4E00;&#x4E2A;&#x60C5;&#x611F;&#x7F24;&#x7EB7;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x4ED6;&#x7528;&#x56FA;&#x5B9A;&#x4E00;&#x4E2A;&#x6A21;&#x677F;&#x3002;&#x6A21;&#x677F;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#xFF1A;</p>
+<p>&#x9996;&#x5148;&#x4F60;&#x8981;&#x8BA9;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x77E5;&#x9053;&#x4F60;&#x73B0;&#x4ED6;&#x73B0;&#x5728;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x8FDB;&#x884C;&#x60C5;&#x611F;&#x5224;&#x65AD;&#x3002;&#x521B;&#x9020;&#x4E00;&#x4E2A;&#x60C5;&#x611F;&#x5224;&#x65AD;&#x7684;&#x8BED;&#x5883;&#x7ED9;&#x4ED6;&#xFF0C;&#x5C31;&#x80FD;&#x8BA9;&#x4ED6;&#x6FC0;&#x6D3B;&#x4E0E;&#x60C5;&#x611F;&#x76F8;&#x5173;&#x7684;&#x8868;&#x793A;the&#x5185;&#x90A3;&#x4E2A;representation&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x6A21;&#x677F;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;180&#x4E2A;&#x8BCD;&#xFF0C;&#x8FD9;180&#x4E2A;&#x6982;&#x5FF5;&#xFF0C;&#x4ED6;&#x4EEC;&#x7684;&#x8F93;&#x5165;&#x683C;&#x5F0F;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x6709;&#x70B9;&#x50CF;&#x63A7;&#x5236;&#x53D8;&#x91CF;&#x7684;&#x610F;&#x601D;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x5B83;&#x63D0;&#x53D6;&#x51FA;the sentiment of the world&#x8FD9;&#x91CC;&#x8FD9;&#x4E2A;&#x6A21;&#x677F;&#x8BCD;&#xFF0C;&#x63D0;&#x53D6;&#x51FA;&#x5B83;&#x5728;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x5185;&#x90E8;&#x5BF9;&#x4ED6;&#x7684;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x5411;&#x91CF;&#xFF0C;&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x5B83;&#x5185;&#x90E8;&#x7684;representation&#x3002;&#x8FD9;&#x4E2A;&#x5411;&#x91CF;&#x5C31;&#x5305;&#x542B;&#x4E86;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x4ED6;&#x5B66;&#x5230;&#x7684;&#x8BED;&#x4E49;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x662F;&#x7528;&#x5B83;&#x7684;&#x8BED;&#x97F3;&#x4FE1;&#x606F;&#x6765;&#x5224;&#x65AD;&#x51FA;&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x7136;&#x540E;&#x4F60;&#x518D;&#x8BA9;&#x4EBA;&#x53BB;&#x770B;great&#x8FD9;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x518D;&#x4ECE;great&#x90A3;&#x91CC;&#x518D;&#x4ECE;&#x4EBA;&#x90A3;&#x91CC;&#x83B7;&#x53D6;&#x4E00;&#x7EC4;&#x4FE1;&#x53F7;&#x3002;&#x7136;&#x540E;&#x4F60;&#x5BF9;&#x6BD4;&#x8FD9;&#x4E24;&#x4E2A;&#x6765;&#x8861;&#x91CF;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#xFF0C;&#x5B83;&#x7684;&#x60C5;&#x611F;&#x7406;&#x89E3;&#x662F;&#x5426;&#x63A5;&#x8FD1;&#x4E8E;&#x4EBA;&#x7684;&#x5927;&#x8111;&#xFF0C;&#x5C31;&#x662F;&#x4ED6;&#x4EEC;&#x5BF9;&#x540C;&#x4E00;&#x4E2A;&#x6982;&#x5FF5;&#x7684;&#x7406;&#x89E3;</p>
+</li>
+</ul>
+<h1 id="&#x56DB;&#x5927;&#x53D1;&#x73B0;-contribution"><a href="#&#x56DB;&#x5927;&#x53D1;&#x73B0;-contribution" class="headerlink" title="&#x56DB;&#x5927;&#x53D1;&#x73B0;/contribution"></a>&#x56DB;&#x5927;&#x53D1;&#x73B0;/contribution</h1><ol>
+<li>By analyzing the similarity of 23 LLMs to human cognitive language processing, we investigate the <strong>impact of various factors</strong></li>
+<li>explicit prompts can enhance the alignment of LLMs with human intentions.</li>
+<li>LLMs may encode more positive sentimental text during training.<br>&#x4E24;&#x4E2A;&#x7CFB;The representations&#x5728;&#x8F93;&#x5165;&#x7684;&#x6587;&#x672C;&#x662F;&#x79EF;&#x6781;&#x6587;&#x672C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x201D;brain-LLMs alignment&#x201D;&#x2B06;&#xFE0F;&#x5F88;&#x76F8;&#x4F3C;<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502202138377.png"></li>
+<li>the LLM-brain similarity holds substantial potential to evaluate the capabilities of LLMs.<br>   LLM-brain similarity &#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x8BC4;&#x4F30;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x80FD;&#x529B;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x6307;&#x6807;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x56E0;&#x4E3A;&#x53D1;&#x73B0;&#x73B0;&#x5728;&#x7684;&#x5927;&#x8BED;&#x8A00;&#x6A21;&#x578B;&#x7684;&#x4E00;&#x4E9B;&#x8BC4;&#x4F30;&#x6307;&#x6807;&#xFF0C;&#x548C;LLM-brain similarity&#x8FD9;&#x4E2A;&#x6307;&#x6807;&#x5176;&#x5B9E;&#x662F;&#x6709;&#x5F88;&#x9AD8;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x7684;<br>   <img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502202139636.png"><br>   &#x753B;&#x7EBF;&#x5373;&#x7EBF;&#x6027;&#x8D8B;&#x52BF;&#x7EBF;&#x8868;&#x660E;&#x4E86;&#xFF0C;&#x5F53; LLMs &#x5728;&#x5404;&#x9879;&#x8BC4;&#x4F30;&#x6307;&#x6807;&#x4E0A;&#x7684;&#x8868;&#x73B0;&#x8F83;&#x9AD8;&#x65F6;&#xFF0C;LLM &#x4E0E;&#x4EBA;&#x8111;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x6027;&#xFF08;brain-LLMs alignment)&#x4E5F;&#x76F8;&#x5E94;&#x8F83;&#x9AD8; &#x5C31;&#x4E3A;&#x4E86;&#x8BF4;&#x660E;&#x90A3;&#x4E2A;consistency</li>
+</ol>
+<h1 id="&#x5B9E;&#x4F8B;&#x6F14;&#x7B97;&#xFF1A;&#x5904;&#x7406;&#x53D7;&#x8BD5;&#x8005;-001-&#x7684;&#x6570;&#x636E;"><a href="#&#x5B9E;&#x4F8B;&#x6F14;&#x7B97;&#xFF1A;&#x5904;&#x7406;&#x53D7;&#x8BD5;&#x8005;-001-&#x7684;&#x6570;&#x636E;" class="headerlink" title="&#x5B9E;&#x4F8B;&#x6F14;&#x7B97;&#xFF1A;&#x5904;&#x7406;&#x53D7;&#x8BD5;&#x8005; #001 &#x7684;&#x6570;&#x636E;"></a><strong>&#x5B9E;&#x4F8B;&#x6F14;&#x7B97;&#xFF1A;&#x5904;&#x7406;&#x53D7;&#x8BD5;&#x8005; #001 &#x7684;&#x6570;&#x636E;</strong></h1><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x8981;&#x5904;&#x7406;&#x53D7;&#x8BD5;&#x8005; #001 &#x7684;&#x6570;&#x636E;&#xFF1A;</p>
+<ol>
+<li><p><strong>&#x539F;&#x59CB;&#x626B;&#x63CF;&#x6570;&#x636E;&#xFF1A;</strong> &#x53D7;&#x8BD5;&#x8005; #001 &#x5B8C;&#x6210;&#x5B9E;&#x9A8C;&#xFF0C;fMRI &#x626B;&#x63CF;&#x4EEA;&#x8BB0;&#x5F55;&#x4E0B;&#x4ED6;&#x5728;&#x770B; 180 &#x4E2A;&#x6982;&#x5FF5;&#x548C; 627 &#x4E2A;&#x53E5;&#x5B50;&#x65F6;&#x7684;&#x5927;&#x8111;&#x6D3B;&#x52A8;&#xFF0C;&#x5F97;&#x5230;&#x4E00;&#x4E2A; <strong>&#x56DB;&#x7EF4;&#x77E9;&#x9635;</strong>&#xFF1A; 61 &#xD7; 73 &#xD7; 61 &#xD7; 807&#x3002; &#x524D;&#x4E09;&#x7EF4; (61&#xD7;73&#xD7;61) &#x662F;&#x5927;&#x8111;&#x7684;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x7EF4; (807) &#x662F;&#x65F6;&#x95F4;&#x70B9; (&#x6BCF;&#x4E2A;&#x523A;&#x6FC0;&#x6587;&#x672C;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x70B9;)&#x3002;</p>
+</li>
+<li><p><strong>&#x5C55;&#x5E73;&#x64CD;&#x4F5C;&#xFF1A;</strong> &#x628A;&#x6BCF;&#x4E2A;&#x65F6;&#x95F4;&#x70B9;&#x7684;&#x4E09;&#x7EF4;&#x8111;&#x56FE; (61&#xD7;73&#xD7;61) &#x5C55;&#x5E73;&#x6210;&#x4E00;&#x4E2A;&#x957F;&#x5EA6;&#x4E3A; 272,317 &#x7684; <strong>&#x5411;&#x91CF;</strong>&#x3002; &#x8FD9;&#x6837;&#xFF0C;&#x56DB;&#x7EF4;&#x77E9;&#x9635;&#x5C31;&#x53D8;&#x6210;&#x4E86; 807 &#x4E2A;&#x957F;&#x5EA6;&#x4E3A; 272,317 &#x7684;&#x5411;&#x91CF;&#x3002;</p>
+</li>
+<li><p><strong>&#x968F;&#x673A;&#x91C7;&#x6837;&#xFF1A;</strong> &#x751F;&#x6210;&#x4E00;&#x4E2A; <strong>&#x968F;&#x673A;&#x6570;&#x79CD;&#x5B50;</strong>&#xFF0C;&#x7528;&#x8FD9;&#x4E2A;&#x79CD;&#x5B50;&#x968F;&#x673A;&#x9009;&#x62E9; 1000 &#x4E2A;&#x4F53;&#x7D20;&#x7684;&#x4F4D;&#x7F6E;&#x7D22;&#x5F15; (&#x5728; 272,317 &#x4E2A;&#x4F53;&#x7D20;&#x4E2D;&#x9009;&#x62E9; 1000 &#x4E2A;)&#x3002; &#x8FD9;&#x4E2A;&#x968F;&#x673A;&#x6570;&#x79CD;&#x5B50;&#x4FDD;&#x8BC1;&#x4E86;&#x6BCF;&#x6B21;&#x968F;&#x673A;&#x9009;&#x62E9;&#x7684;&#x4F53;&#x7D20;&#x4F4D;&#x7F6E;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x65B9;&#x4FBF;&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#x7684;&#x91CD;&#x590D;&#x6027;&#x3002;</p>
+</li>
+<li><p>&#x6784;&#x5EFA;&#x6570;&#x636E;&#x77E9;&#x9635;&#xFF1A;</p>
+<p>&#x6839;&#x636E;&#x968F;&#x673A;&#x9009;&#x62E9;&#x7684; 1000 &#x4E2A;&#x4F53;&#x7D20;&#x4F4D;&#x7F6E;&#x7D22;&#x5F15;&#xFF0C;&#x4ECE;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x4E2D;&#x63D0;&#x53D6;&#x51FA;&#x8FD9; 1000 &#x4E2A;&#x4F4D;&#x7F6E;&#x7684; BOLD &#x4FE1;&#x53F7;&#x503C;&#xFF0C;&#x6784;&#x5EFA;&#x6210;&#x4E00;&#x4E2A;807 &#xD7; 1000 &#x7684;&#x6570;&#x636E;&#x77E9;&#x9635;</p>
+<ul>
+<li><strong>&#x7B2C; 50 &#x884C;&#xFF1A;</strong> &#x77E9;&#x9635;&#x7684;&#x7B2C; 50 &#x884C;&#xFF0C;&#x5C31;&#x5BF9;&#x5E94; <strong>&#x7B2C; 50 &#x4E2A;&#x523A;&#x6FC0;&#x6587;&#x672C;</strong> (&#x53EF;&#x80FD;&#x662F; &#x201C;&#x5496;&#x5561;&#x201D; &#x8FD9;&#x4E2A;&#x8BCD;&#x8BED;)&#xFF0C;&#x8FD9;&#x884C;&#x91CC;&#x7684; 1000 &#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5C31;&#x662F;&#x8FD9; 1000 &#x4E2A;&#x968F;&#x673A;&#x4F53;&#x7D20;&#x5728;&#x53D7;&#x8BD5;&#x8005; #001 &#x770B; &#x201C;&#x5496;&#x5561;&#x201D; &#x8FD9;&#x4E2A;&#x8BCD;&#x8BED;&#x65F6;&#x7684; BOLD &#x4FE1;&#x53F7;&#x54CD;&#x5E94;&#x5F3A;&#x5EA6;&#x3002;</li>
+<li><strong>&#x7B2C; 300 &#x5217;&#xFF1A;</strong> &#x77E9;&#x9635;&#x7684;&#x7B2C; 300 &#x5217;&#xFF0C;&#x5C31;&#x4EE3;&#x8868; <strong>&#x7B2C; 300 &#x4E2A;&#x968F;&#x673A;&#x4F53;&#x7D20;</strong>&#x3002; &#x8FD9;&#x5217;&#x91CC;&#x7684; 807 &#x4E2A;&#x6570;&#x5B57;&#xFF0C;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x4F53;&#x7D20;&#x5728;&#x53D7;&#x8BD5;&#x8005; #001 &#x770B; <strong>&#x6240;&#x6709; 807 &#x4E2A;&#x523A;&#x6FC0;&#x6587;&#x672C;</strong> &#x65F6;&#x7684; BOLD &#x4FE1;&#x53F7;&#x6FC0;&#x6D3B;&#x6A21;&#x5F0F;&#x3002; &#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5206;&#x6790;&#x8FD9;&#x4E00;&#x5217;&#x7684;&#x6570;&#x5B57;&#xFF0C;&#x6765;&#x4E86;&#x89E3;&#x8FD9;&#x4E2A;&#x4F53;&#x7D20;&#x5BF9;&#x4E0D;&#x540C;&#x523A;&#x6FC0;&#x6587;&#x672C;&#x7684;&#x53CD;&#x5E94;&#x6709;&#x4EC0;&#x4E48;&#x7279;&#x70B9;&#x3002;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x4E0E;LLM&#x7684;&#x6BD4;&#x5BF9;&#x8FC7;&#x7A0B;"><a href="#&#x4E0E;LLM&#x7684;&#x6BD4;&#x5BF9;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x4E0E;LLM&#x7684;&#x6BD4;&#x5BF9;&#x8FC7;&#x7A0B;"></a>&#x4E0E;LLM&#x7684;&#x6BD4;&#x5BF9;&#x8FC7;&#x7A0B;</h2><p>&#x5F53;&#x8FD9;&#x4E2A;807&#xD7;1000&#x7684;&#x8111;&#x6D3B;&#x52A8;&#x77E9;&#x9635;&#x51C6;&#x5907;&#x597D;&#x540E;&#xFF0C;&#x7814;&#x7A76;&#x8005;&#x4F1A;&#xFF1A;</p>
+<ol>
+<li><p>&#x63D0;&#x53D6;LLM&#x8868;&#x5F81;</p>
+<ul>
+<li>&#x5C06;&#x76F8;&#x540C;&#x7684;807&#x4E2A;&#x523A;&#x6FC0;&#x6587;&#x672C;&#x8F93;&#x5165;&#x5230;LLM</li>
+<li>&#x4ECE;LLM&#x6700;&#x540E;&#x4E00;&#x5C42;&#x63D0;&#x53D6;&#x6BCF;&#x4E2A;&#x6587;&#x672C;&#x7684;&#x5D4C;&#x5165;&#x5411;&#x91CF;&#xFF08;&#x5047;&#x8BBE;&#x7EF4;&#x5EA6;&#x4E3A;768&#xFF09;</li>
+<li>&#x5F97;&#x5230;&#x4E00;&#x4E2A;807&#xD7;768&#x7684;LLM&#x6FC0;&#x6D3B;&#x77E9;&#x9635;</li>
+</ul>
+</li>
+<li><p>&#x8BA1;&#x7B97;&#x76F8;&#x4F3C;&#x5EA6;</p>
+<ul>
+<li>&#x4F7F;&#x7528;&#x5404;&#x79CD;&#x76F8;&#x4F3C;&#x5EA6;&#x5EA6;&#x91CF;&#xFF08;&#x5982;CKA&#x3001;RSA&#x7B49;&#xFF09;</li>
+<li>&#x8BA1;&#x7B97;&#x8111;&#x6D3B;&#x52A8;&#x77E9;&#x9635;&#x4E0E;LLM&#x6FC0;&#x6D3B;&#x77E9;&#x9635;&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4F3C;&#x7A0B;&#x5EA6;</li>
+<li>&#x8FD9;&#x79CD;&#x76F8;&#x4F3C;&#x5EA6;&#x53CD;&#x6620;&#x4E86;LLM&#x4E0E;&#x4EBA;&#x8111;&#x5904;&#x7406;&#x8BED;&#x8A00;&#x65B9;&#x5F0F;&#x7684;&#x76F8;&#x4F3C;&#x7A0B;&#x5EA6;</li>
+</ul>
+</li>
+</ol>
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5F88;&#x91CD;&#x8981;"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5F88;&#x91CD;&#x8981;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5F88;&#x91CD;&#x8981;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x5F88;&#x91CD;&#x8981;</h2><p>&#x8FD9;&#x79CD;&#x7CBE;&#x786E;&#x7684;&#x6570;&#x636E;&#x5904;&#x7406;&#x65B9;&#x6CD5;&#x8BA9;&#x7814;&#x7A76;&#x8005;&#x80FD;&#x591F;&#xFF1A;</p>
+<ol>
+<li>&#x5C06;&#x590D;&#x6742;&#x7684;&#x8111;&#x6210;&#x50CF;&#x6570;&#x636E;&#x8F6C;&#x5316;&#x4E3A;&#x53EF;&#x6BD4;&#x8F83;&#x7684;&#x6570;&#x5B57;&#x77E9;&#x9635;</li>
+<li>&#x5728;&#x4FDD;&#x7559;&#x5173;&#x952E;&#x4FE1;&#x606F;&#x7684;&#x540C;&#x65F6;&#x51CF;&#x5C11;&#x8BA1;&#x7B97;&#x8D1F;&#x62C5;</li>
+<li>&#x521B;&#x5EFA;&#x6807;&#x51C6;&#x5316;&#x683C;&#x5F0F;&#xFF0C;&#x4FBF;&#x4E8E;&#x4E0E;AI&#x6A21;&#x578B;&#x7684;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x8FDB;&#x884C;&#x76F4;&#x63A5;&#x6BD4;&#x8F83;</li>
+</ol>
+<p>&#x8FD9;&#x79CD;&#x201D;&#x6FC0;&#x6D3B;&#x6A21;&#x5F0F;&#x6BD4;&#x5BF9;&#x201D;&#x65B9;&#x6CD5;&#x672C;&#x8D28;&#x4E0A;&#x662F;&#x5728;&#x95EE;&#xFF1A;&#x5F53;&#x4EBA;&#x7C7B;&#x548C;AI&#x201D;&#x770B;&#x5230;&#x201D;&#x76F8;&#x540C;&#x7684;&#x8BCD;&#x8BED;&#x65F6;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x201D;&#x601D;&#x8003;&#x65B9;&#x5F0F;&#x201D;&#xFF08;&#x5185;&#x90E8;&#x795E;&#x7ECF;&#x6FC0;&#x6D3B;&#x6A21;&#x5F0F;&#xFF09;&#x6709;&#x591A;&#x76F8;&#x4F3C;&#xFF1F;</p>
+]]></content>
+      <tags>
+        <tag>ML</tag>
+        <tag>Thesis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unix Philosophy</title>
     <url>/2025/02/16/Jottings/2025-02-18-first-journal/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1457,20 +1681,6 @@ end
 ]]></content>
       <tags>
         <tag>Jottings</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Do LLMs Mirror Cognitive Language Processing</title>
-    <url>/2025/02/17/2025-02-17-Mirror_Cognitive/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p> The text representations learned by LLMs can facilitate their language processing capabilities.</p>
-</blockquote>
-<h1 id="&#x6587;&#x672C;&#x8868;&#x5F81;text-representation&#x5230;&#x5E95;&#x662F;&#x4E00;&#x4E2A;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x5462;&#xFF1F;"><a href="#&#x6587;&#x672C;&#x8868;&#x5F81;text-representation&#x5230;&#x5E95;&#x662F;&#x4E00;&#x4E2A;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x5462;&#xFF1F;" class="headerlink" title="&#x6587;&#x672C;&#x8868;&#x5F81;text representation&#x5230;&#x5E95;&#x662F;&#x4E00;&#x4E2A;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x5462;&#xFF1F;"></a>&#x6587;&#x672C;&#x8868;&#x5F81;text representation&#x5230;&#x5E95;&#x662F;&#x4E00;&#x4E2A;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x5462;&#xFF1F;</h1><p>text representation&#x6307;&#x7684;&#x662F;&#x4E00;&#x79CD;&#x8F6C;&#x6362;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x4EBA;&#x662F;&#x901A;&#x8FC7;&#x795E;&#x7ECF;&#x5143;&#x548C;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x6765;&#x5BF9;&#x8BED;&#x8A00;&#x8F93;&#x5165;&#x7684;&#x8BED;&#x8A00;&#x8FDB;&#x884C;&#x4E00;&#x79CD;&#x5904;&#x7406;&#x4F46;&#x662F;&#x7535;&#x8111;&#x8BA1;&#x7B97;&#x673A;&#x5E76;&#x4E0D;&#x80FD;&#x591F;&#x76F4;&#x63A5;&#x5904;&#x7406;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x6240;&#x4EE5;&#x8BF4;&#x4ED6;&#x5C31;&#x5FC5;&#x987B;&#x8981;&#x5427;&#x8F93;&#x5165;&#x7684;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x53D8;&#x6210;&#x4E00;&#x79CD;&#x6570;&#x5B66;&#x5411;&#x91CF;&#x7684;&#x5F62;&#x5F0F;&#x6BD4;&#x5982;&#x8BF4;&#x732B;cat&#x5C31;&#x53EF;&#x80FD;&#x8F6C;&#x6362;&#x6210;&#x4E00;&#x4E2A;300&#x7EF4;&#x7684;&#x6570;&#x5B66;&#x5411;&#x91CF;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x8FD9;&#x79CD;&#x6570;&#x5B66;&#x5411;&#x91CF;&#x5C31;&#x662F;&#x539F;&#x672C;&#x7684;&#x81EA;&#x7136;text&#x7684;representation</p>
-<p>&#x5728;&#x6211;&#x4EEC;&#x8BFB;&#x4E86;<a href="https://tju-tomorrow.github.io/2025/02/16/2025-02-16-Transformer-2024/">Transformer</a>&#x4E4B;&#x540E; &#x6211;&#x4EEC;&#x77E5;&#x9053; The text representations learned by LLMs &#x5C31;&#x662F;&#x6700;&#x540E;&#x7684;&#x9AD8;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x90A3;&#x4E9B;vectors</p>
-]]></content>
-      <tags>
-        <tag>ML</tag>
-        <tag>Thesis</tag>
       </tags>
   </entry>
 </search>

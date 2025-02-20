@@ -50,7 +50,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png">
 <meta property="article:published_time" content="2025-02-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-02-16T18:38:29.473Z">
+<meta property="article:modified_time" content="2025-02-20T16:14:43.376Z">
 <meta property="article:author" content="Victor Chen">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="Transformer">
@@ -257,7 +257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-17 02:38:29" itemprop="dateModified" datetime="2025-02-17T02:38:29+08:00">2025-02-17</time>
+                <time title="修改时间：2025-02-21 00:14:43" itemprop="dateModified" datetime="2025-02-21T00:14:43+08:00">2025-02-21</time>
               </span>
 
           
@@ -296,7 +296,7 @@ end
         B1[&quot;Embeddings Matrix&#x67E5;&#x627E;&quot;]
         B2[&quot;&#x5411;&#x91CF;&#x6620;&#x5C04; (12800&#x7EF4;)&quot;]
     end
-
+    
     subgraph TransformerFlow[&quot;Transformer&#x6838;&#x5FC3;&quot;]
         subgraph AttentionBlock[&quot;Attention Block&quot;]
             D1[&quot;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&quot;] --&gt; D2[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
@@ -305,18 +305,18 @@ end
             D4 --&gt; D5[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
             D5 --&gt; D6[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
         end
-
+    
         C[&quot;&#x5411;&#x91CF;&#x5E8F;&#x5217;&quot;] --&gt; D1
         D6 --&gt; E[&quot;&#x4E0B;&#x4E00;&#x4E2A;Attention Block&quot;]
     end
-
+    
     subgraph Output[&quot;&#x8F93;&#x51FA;&#x5C42;&#x5904;&#x7406;&quot;]
         F1[&quot;Unembedding Matrix&quot;]
         F2[&quot;50000&#x7EF4;&#x8BCD;&#x8868;&#x6620;&#x5C04;&quot;]
         G1[&quot;Softmax&#x6E29;&#x5EA6;&#x8C03;&#x8282;&quot;]
         G2[&quot;&#x6982;&#x7387;&#x5206;&#x5E03;&#x8F93;&#x51FA;&quot;]
     end
-
+    
     A --&gt; B1
     B1 --&gt; B2
     B2 --&gt; C
@@ -324,16 +324,16 @@ end
     F1 --&gt; F2
     F2 --&gt; G1
     G1 --&gt; G2
-
+    
     %% &#x6DFB;&#x52A0;&#x8BF4;&#x660E;&#x6CE8;&#x91CA;
     classDef process fill:#f9f,stroke:#333,stroke-width:2px
     class D1,D4 process
-
+    
     %% &#x6DFB;&#x52A0;&#x5173;&#x952E;&#x6B65;&#x9AA4;&#x8BF4;&#x660E;
     note1[/&quot;&#x8F93;&#x5165;token&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x91CF;&quot;/]
     note2[/&quot;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&quot;/]
     note3[/&quot;&#x751F;&#x6210;&#x9884;&#x6D4B;&#x6982;&#x7387;&quot;/]
-
+    
     B2 -.-&gt; note1
     D1 -.-&gt; note2
     G2 -.-&gt; note3
@@ -386,7 +386,7 @@ end
 <p>And it does that by what we have mentioned:Weights</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Attention block&#x6838;&#x5FC3;&#x8FC7;&#x7A0B;</span><br><span class="line">Vectors &#x2192; &#x76F8;&#x4E92;&#x4F20;&#x9012;&#x4FE1;&#x606F; &#x2192; &#x8C03;&#x6574;&#x77E9;&#x9635;&#x503C;</span><br></pre></td></tr></table></figure>
 
-<p>&#x200B; &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
+<p> &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
 <ul>
 <li>&#x4E0E;&#x5176;&#x4ED6; vectors &#x4EA4;&#x4E92;</li>
 <li>&#x4EA4;&#x6362;&#x4FE1;&#x606F;</li>
