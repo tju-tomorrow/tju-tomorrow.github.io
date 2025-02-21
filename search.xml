@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>My First Post</title>
+    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
+<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
+</blockquote>
+<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
+<span id="more"></span>
+
+<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
+<hr>
+
+<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
+<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
+<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
+<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
+<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
+<p>we also want to keep primitives lightweight In the meantime.</p>
+<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
+<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
+<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
+<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
+<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
+</ol>
+<p>Which means something besides the simple and standalone value is actually created!</p>
+<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
+<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
+</li>
+<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
+<p>For example, this is entirely valid:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
+
+<p>the result will be</p>
+<ol>
+<li><code>undefined</code> (no strict mode)</li>
+<li>An error (strict mode).</li>
+</ol>
+<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
+<ol>
+<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
+<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>data types</tag>
+        <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Promise</title>
     <url>/2024/07/27/2024-07-27-Promise-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
@@ -55,8 +118,8 @@
 <li><code>state</code> &#x2014; initially <code>&quot;pending&quot;</code>, then changes to either <code>&quot;fulfilled&quot;</code> when <code>resolve</code> is called or <code>&quot;rejected&quot;</code> when <code>reject</code> is called.</li>
 <li><code>result</code> &#x2014; initially <code>undefined</code>, then changes to <code>value</code> when <code>resolve(value)</code> is called or <code>error</code> when <code>reject(error)</code> is called.</li>
 </ul>
-<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
-<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
+<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
+<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
 <p>A promise that is either fulfilled or rejected is called &#x201C;settled&#x201D;, as opposed to an initially &#x201C;pending&#x201D; promise.</p>
 <h2 id="To-be-noted-fundamental"><a href="#To-be-noted-fundamental" class="headerlink" title="To be noted (fundamental)"></a>To be noted (fundamental)</h2><ol>
 <li><strong>There can be only a single result or an error</strong></li>
@@ -201,69 +264,6 @@
       </tags>
   </entry>
   <entry>
-    <title>My First Post</title>
-    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
-<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
-</blockquote>
-<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
-<span id="more"></span>
-
-<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
-<hr>
-
-<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
-<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
-<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
-<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
-<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
-<p>we also want to keep primitives lightweight In the meantime.</p>
-<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
-<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
-<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
-<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
-<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
-</ol>
-<p>Which means something besides the simple and standalone value is actually created!</p>
-<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
-<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
-</li>
-<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
-<p>For example, this is entirely valid:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
-
-<p>the result will be</p>
-<ol>
-<li><code>undefined</code> (no strict mode)</li>
-<li>An error (strict mode).</li>
-</ol>
-<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
-<ol>
-<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
-<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>data types</tag>
-        <tag>数据类型</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Promise chainning</title>
     <url>/2024/07/28/2024-07-28-Promise-chainning-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
@@ -351,66 +351,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       <tags>
         <tag>Javascript</tag>
         <tag>Promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What happens when you type a URL into your browser?</title>
-    <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
-<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
-<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
-<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
-<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
-<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
-<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
-<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
-<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
-<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
-<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
-<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
-<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
-<hr>
-
-<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
-]]></content>
-      <categories>
-        <category>Internet</category>
-      </categories>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-        <tag>Browser</tag>
-        <tag>URL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ref and Reactive in Vue</title>
-    <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
-
-<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
-<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
-<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
-<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
-<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
-<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
-<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
-<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -608,6 +548,38 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>What happens when you type a URL into your browser?</title>
+    <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
+<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
+<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
+<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
+<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
+<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
+<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
+<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
+<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
+<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
+<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
+<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
+<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
+<hr>
+
+<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
+]]></content>
+      <categories>
+        <category>Internet</category>
+      </categories>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+        <tag>Browser</tag>
+        <tag>URL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Server</title>
     <url>/2024/09/02/2024-09-02-Server-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
@@ -649,6 +621,112 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       <tags>
         <tag>Server</tag>
         <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ref and Reactive in Vue</title>
+    <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
+
+<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
+<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
+<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
+<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
+<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
+<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
+<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
+<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Virtual Memory</title>
+    <url>/2024/10/20/2024-10-20Virtual%20Memory/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+<span id="more"></span>
+
+<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
+<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OS load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
+<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
+<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000  this instruction loads a value from the virtual address 1000 into a register</span><br></pre></td></tr></table></figure>
+
+<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
+<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
+<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
+<pre><code>      +---------------------+
+      |         CPU         |
+      |                     |
+      |   MOV REG, 1000    |
+      +----------+----------+
+                 |
+                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
+                 v
+      +---------------------+
+      |         MMU         |
+      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
+      +----------+----------+
+                 |
+                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
+                 v
+      +---------------------+
+      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
+      |                     |
+      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
+      +----------+----------+
+</code></pre>
+<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
+<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
+<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
+</li>
+<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
+<p>If the entry exists, the physical address is retrieved.</p>
+</li>
+<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
+<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
+</li>
+<li><p>Page Fault Handling (if needed)</p>
+</li>
+</ol>
+<p>If the virtual address isn&#x2019;t mapped which means a page fault occurs, the OS handles it by performing the following steps:</p>
+<ul>
+<li>Check if there are any free frames in memory.</li>
+<li>If there are free frames, allocate one for the page.</li>
+<li>If there are no free frames, select a victim page to evict from memory.</li>
+<li>The OS retrieves the required data from <strong>disk storage</strong>. Load the required page from disk into the selected frame.</li>
+<li>Update the page table with the new mapping.</li>
+<li>Resume the interrupted instruction that caused the page fault.Which is Returns to step 3 to complete the address translation.</li>
+</ul>
+<p><img src="https://imgur.com/zjbcuyG.png"></p>
+<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
+<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
+<ul>
+<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;whether the page is currently loaded in memory</li>
+<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
+<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
+</ul>
+<p><img src="https://imgur.com/wHlFmqj.png"></p>
+<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>计算机组成原理</tag>
+        <tag>cs app</tag>
       </tags>
   </entry>
   <entry>
@@ -757,146 +835,66 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Virtual Memory</title>
-    <url>/2024/10/20/2024-10-20Virtual%20Memory/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
-<span id="more"></span>
+    <title>Bubbling and capturing</title>
+    <url>/2024/10/22/2024-10-22-Bubbling%20and%20capturing/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
-<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
-<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OS load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
-<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
-<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000  this instruction loads a value from the virtual address 1000 into a register</span><br></pre></td></tr></table></figure>
-
-<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
-<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
-<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
-<pre><code>      +---------------------+
-      |         CPU         |
-      |                     |
-      |   MOV REG, 1000    |
-      +----------+----------+
-                 |
-                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
-                 v
-      +---------------------+
-      |         MMU         |
-      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
-      +----------+----------+
-                 |
-                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
-                 v
-      +---------------------+
-      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
-      |                     |
-      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
-      +----------+----------+
-</code></pre>
-<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
-<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
-<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
+<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
+<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
+<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
+<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
+<p>Note the differences from</p>
+<ol>
+<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
 </li>
-<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
-<p>If the entry exists, the physical address is retrieved.</p>
-</li>
-<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
-<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
-</li>
-<li><p>Page Fault Handling (if needed)</p>
+<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
 </li>
 </ol>
-<p>If the virtual address isn&#x2019;t mapped which means a page fault occurs, the OS handles it by performing the following steps:</p>
+<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
+<p>In form.onclick handler:</p>
+<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
+<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
+<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
+<p>The method for it is <code>event.stopPropagation()</code>.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
+<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
+<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
+<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
+<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
+<p>For example:</p>
 <ul>
-<li>Check if there are any free frames in memory.</li>
-<li>If there are free frames, allocate one for the page.</li>
-<li>If there are no free frames, select a victim page to evict from memory.</li>
-<li>The OS retrieves the required data from <strong>disk storage</strong>. Load the required page from disk into the selected frame.</li>
-<li>Update the page table with the new mapping.</li>
-<li>Resume the interrupted instruction that caused the page fault.Which is Returns to step 3 to complete the address translation.</li>
+<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
+<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
+<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
 </ul>
-<p><img src="https://imgur.com/zjbcuyG.png"></p>
-<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
-<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
-<ul>
-<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;whether the page is currently loaded in memory</li>
-<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
-<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
-</ul>
-<p><img src="https://imgur.com/wHlFmqj.png"></p>
-<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
-<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
-<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
+<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
+<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
+<ol>
+<li>Capturing phase &#x2013; the event goes down to the element.</li>
+<li>Target phase &#x2013; the event reached the target element.</li>
+<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
 </ol>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
+<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>Its third parameter is a Boolean value. By setting true/false, the listener is designed in different stages. True means in the capture stage, and false means in the bubbling stage.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
+<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>There are both bubbling and capturing, but according to the previous roller coaster, capturing takes precedence over bubbling. When you trigger an event, the browser first checks if there is a listener in your capture phase, then the listener on your element, and then checks if there is a listener in your bubbling phase.</p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
+<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
 ]]></content>
       <tags>
-        <tag>计算机组成原理</tag>
-        <tag>cs app</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Process &amp; Thread</title>
-    <url>/2025/01/17/2025-01-17-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
-<span id="more"></span>
-
-<p>After a programmer finishes writing a program, it is saved permanently on the hard drive. Just as a chef needs a cutting board and a countertop to prepare food, the CPU needs to load the program from the hard drive to memory to execute it.</p>
-<p>What&#x2019;s loaded into memory is a process, which is an <strong>executable instance</strong> of the program</p>
-<p>When we run a program, what happens internally is that its executable file is loaded into memory. At this point, our program becomes a process.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101615249.png"></p>
-<p>The memory assigned to it has a special name: the address space of the process.</p>
-<p><strong>A process, however, is more than just its address space.</strong>  </p>
-<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101617689.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101618857.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101619662.png"></p>
-<p><strong>When a process gains access to the CPU</strong></p>
-<h2 id="Context-Switching"><a href="#Context-Switching" class="headerlink" title="Context Switching"></a>Context Switching</h2><p>&#x4F46;&#x662F;&#x5207;&#x6362;&#x8FDB;&#x7A0B;&#x5E76;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x8BF4;&#x7684;&#x90A3;&#x4E48;&#x7B80;&#x5355; &#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x7528;&#x4E86; &#x53BB;&#x6392;&#x961F; &#x4E0B;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7528;&#x5C31;&#x53EF;&#x4EE5; &#x5982;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x8BDD; &#x5F53;&#x5207;&#x6362;&#x8FDB;&#x7A0B;&#x540E; &#x540E;&#x4F7F;&#x7528;cpu&#x7684;&#x8FDB;&#x7A0B;&#x5C31;&#x4F1A;&#x53D1;&#x73B0;&#x81EA;&#x5DF1;&#x5904;&#x4E8E;&#x7684;cpu&#x73AF;&#x5883;&#xFF08;&#x5404;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x6570;&#x636E;&#xFF09;&#x662F;&#x4E4B;&#x524D;&#x90A3;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;</p>
-<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x6709;&#x4E24;&#x4E2A;&#x5927;&#x95EE;&#x9898; &#xFF1A; 1. &#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x654F;&#x611F;&#x4FE1;&#x606F; &#x4E5F;&#x5C31;&#x662F;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x8981;&#x662F;&#x5B58;&#x50A8;&#x6709;&#x5BC6;&#x7801; &#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x53EF;&#x4EE5;&#x963B;&#x6B62;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x8BFB;&#x53D6;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x5BC6;&#x7801;</p>
-<p><strong>So, the first concern here is security.</strong></p>
-<p>Now, let&#x2019;s assume that all processes are honest and won&#x2019;t use the information  from a previous process.Does that solve all the problems? </p>
-<ol start="2">
-<li>Even if the current process has no intention of using that information,  it still needs to manipulate the registers to carry out its own tasks.</li>
-</ol>
-<p>&#x4E3A;&#x4E86;&#x505A;&#x5230;&#x8FD9;&#x4E00;&#x70B9;it <strong>alters the CPU state</strong> of the previous process But <strong>&#x5728;&#x5C06; CPU &#x5206;&#x914D;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5C06;&#x8BE5;&#x5730;&#x5740;&#x5B58;&#x50A8;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#xFF0C;&#x56E0;&#x6B64;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x65E0;&#x6CD5;&#x6062;&#x590D;&#x7B2C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x3002;</strong></p>
-<p> So, when the previous process regains CPU access  later, the CPU state it had when it was interrupted would <strong>be lost.</strong> </p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101623153.png"></p>
-<p>&#x5F53;CPU&#x5FC5;&#x987B;&#x5206;&#x914D;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#x3002;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5E76;&#x4E0D;&#x662F;&#x7B80;&#x5355;&#x5730;&#x8986;&#x76D6;&#x5730;&#x5740;&#x5BC4;&#x5B58;&#x5668;&#x6765;&#x4F7F;CPU&#x8DF3;&#x8F6C;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x53EF;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x800C;&#x662F;&#x9996;&#x5148;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x4F8B;&#x7A0B;&#x6765;&#x6355;&#x83B7;CPU&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x2014;&#x2014;&#x5C31;&#x50CF;&#x62CD;&#x6444;&#x5FEB;&#x7167;&#x4E00;&#x6837;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x76EE;&#x7684;&#x662F;&#x590D;&#x5236;&#x5185;&#x5BB9;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101626126.png">&#x901A;&#x8FC7;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x6BCF;&#x6B21;&#x8FDB;&#x7A0B;&#x91CD;&#x65B0;&#x83B7;&#x5F97;&#x5BF9; CPU &#x7684;&#x63A7;&#x5236;&#x65F6;&#xFF0C;&#x5B83;&#x90FD;&#x4F1A;&#x627E;&#x5230;&#x4E0E;&#x4E2D;&#x65AD;&#x65F6;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x6B64;&#x8FC7;&#x7A0B;&#x89E3;&#x51B3;&#x4E86;&#x8FD9;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x8FDB;&#x7A0B;&#x65E0;&#x6CD5;&#x518D;&#x8BBF;&#x95EE;&#x524D;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x7531;&#x4E8E;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x72B6;&#x6001;&#x5C1A;&#x672A;&#x88AB;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x66F4;&#x6539;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x786E;&#x4FE1;&#x5B83;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x6B63;&#x786E;&#x7684;&#x6570;&#x636E;&#x3002;</p>
-<blockquote>
-<p>&#x5728;switch&#x524D;OS&#x4F1A;&#x770B;&#x6709;&#x65E0; &#x5373;&#x5C06;&#x8981;&#x5207;&#x6362;&#x5230;&#x7684;&#x76EE;&#x6807;&#x8FDB;&#x7A0B;&#x7684;PCB &#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BF4;&#x660E;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B; &#x6240;&#x4EE5;&#x4F1A;&#x628A;&#x76F8;&#x5173;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x8BBE;&#x4E3A;0</p>
-</blockquote>
-<p>&#x8FD9;&#x79CD;&#x6355;&#x83B7;&#x8FDB;&#x7A0B;&#x7684; CPU &#x72B6;&#x6001;&#x5E76;&#x6062;&#x590D;&#x4E0D;&#x540C;&#x8FDB;&#x7A0B;&#x7684;&#x72B6;&#x6001;&#x4EE5;&#x4FBF;&#x5176;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x79F0;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x3002;</p>
-<h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><p>&#x4F46;&#x662F;&#x8FDB;&#x7A0B;&#x8FD8;&#x6709;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x53EF;&#x80FD;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x4EE5;&#x53CA;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x7684; IO &#x8BBE;&#x5907;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101629677.png"></p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101646984.png" alt="image-20250210163005387"></p>
-<p>&#x8FDB;&#x7A0B;&#x4E0D;&#x53EA;&#x662F;&#x5355;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x800C;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4E0E;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#x3002;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101631353.png"></p>
-<h2 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h2><p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5C31;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4ECE;&#x5BC4;&#x5B58;&#x5668;&#x7B49;&#x4F4E;&#x7EA7;&#x7EC4;&#x4EF6;&#x5230;&#x6587;&#x4EF6;&#x5217;&#x8868;&#x7B49;&#x9AD8;&#x7EA7;&#x7EC4;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x4F55;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5165;&#x961F;&#x5217;&#x4E2D;&#xFF1F;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x8FDB;&#x7A0B;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5730;&#x7528;&#x4F5C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x7684;&#x5BF9;&#x8C61;.</p>
-<p>PCB:&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7528;&#x6765;&#x8DDF;&#x8E2A;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x7279;&#x6B8A;&#x7ED3;&#x6784;&#x3002;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101633832.png"></p>
-<p><strong>&#x8FDB;&#x7A0B;&#x63A7;&#x5236;&#x5757;&#x4E0D;&#x662F;&#x8FDB;&#x7A0B;&#x672C;&#x8EAB;&#xFF0C;&#x800C;&#x662F;&#x8FDB;&#x7A0B;&#x7684;&#x8868;&#x793A;&#x3002;&#x5B83;&#x5145;&#x5F53;&#x542F;&#x52A8;&#x6216;&#x6062;&#x590D;&#x6D41;&#x7A0B;&#x6240;&#x9700;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x4F1A;&#x8BA1;&#x4FE1;&#x606F;&#x7684;&#x5B58;&#x50A8;&#x5E93;&#x3002;&#x8FD9;&#x4E2A;&#x8868;&#x793A;&#x5C31;&#x662F;&#x5B9E;&#x9645;&#x653E;&#x7F6E;&#x5728;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x3002;</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101634407.png"></p>
-<p>&#x8FD9;&#x662F;Linux&#x91CC;&#x7684;PCB</p>
-<h2 id="&#x591A;&#x6838;CPU"><a href="#&#x591A;&#x6838;CPU" class="headerlink" title="&#x591A;&#x6838;CPU"></a>&#x591A;&#x6838;CPU</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101635020.png"></p>
-<p>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x4E2D;&#xFF0C;pipeline&#xFF08;&#x6D41;&#x6C34;&#x7EBF;&#xFF09;&#x662F;&#x6307;&#x5C06;&#x6307;&#x4EE4;&#x5904;&#x7406;&#x5206;&#x89E3;&#x4E3A;&#x591A;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x6280;&#x672F;&#x3002;</p>
-<h1 id="What&#x2019;s-in-each-process-&#xFF1A;Thread"><a href="#What&#x2019;s-in-each-process-&#xFF1A;Thread" class="headerlink" title="What&#x2019;s in each process &#xFF1A;Thread"></a>What&#x2019;s in each process &#xFF1A;Thread</h1><p>&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;<br>It&#x2019;s going to compute based on the program-flow<br>one of the program-flow or <strong>execution streams</strong> here is one thread<br>if there are multiple threads<br>You need multiple <strong>program counters</strong></p>
-<h1 id="So-why-do-we-need-a-design-thread"><a href="#So-why-do-we-need-a-design-thread" class="headerlink" title="So why do we need a design thread"></a>So why do we need a design thread</h1><p>we look at it through <strong>a document editor</strong> Like a notepad</p>
-<p>This notepad holds some text-data and some document which makes it a <strong>process</strong></p>
-<p>Imagine:now the user uses the keyboard to type a return at the end of the second line</p>
-<p>There needs to be <strong>an interactive program</strong> that knows about keyboard <strong>press events</strong> and then the process that manages the layout recalculates the text and renders it</p>
-<p>and every once in a while the writing-program needs to save the document to the hard disk</p>
-<p><strong>Three programs</strong> need to execute <strong>concurrently</strong>, but they must access and modify the <strong>same</strong> document. Since processes have their own <strong>independent memory spaces</strong>, they must operate within the same process to access shared resources. Therefore, three lighter-weight constructs&#x2014;threads&#x2014;are necessary for this scenario.</p>
-<p>Threads allow these programs to run in parallel while sharing the same memory space for document access and modification.</p>
-<hr>
-
-<p>Threads are the smallest unit of <strong>parallel execution</strong>.</p>
-<p>However, if there is only a single-core CPU, it can execute only one thread at a time. In this case, threads must take turns to run, effectively sharing the CPU. This sharing is managed through <strong>time slicing</strong>, where each thread is allocated a specific time slice to execute.</p>
-<p>This mechanism allows multiple threads to make progress by switching between them rapidly, <strong>creating the illusion of concurrent execution even on a single-core system.</strong></p>
-]]></content>
-      <tags>
-        <tag>计算机组成原理</tag>
-        <tag>cs app</tag>
-        <tag>Process</tag>
+        <tag>Javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -1027,69 +1025,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Bubbling and capturing</title>
-    <url>/2024/10/22/2024-10-22-Bubbling%20and%20capturing/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
-<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
-<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
-<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
-<p>Note the differences from</p>
-<ol>
-<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
-</li>
-<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
-</li>
-</ol>
-<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
-<p>In form.onclick handler:</p>
-<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
-<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
-<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
-<p>The method for it is <code>event.stopPropagation()</code>.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
-<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
-<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
-<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
-<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
-<p>For example:</p>
-<ul>
-<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
-<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
-<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
-</ul>
-<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
-<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
-<ol>
-<li>Capturing phase &#x2013; the event goes down to the element.</li>
-<li>Target phase &#x2013; the event reached the target element.</li>
-<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
-<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>Its third parameter is a Boolean value. By setting true/false, the listener is designed in different stages. True means in the capture stage, and false means in the bubbling stage.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-
-<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
-<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>There are both bubbling and capturing, but according to the previous roller coaster, capturing takes precedence over bubbling. When you trigger an event, the browser first checks if there is a listener in your capture phase, then the listener on your element, and then checks if there is a listener in your bubbling phase.</p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
-<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
-]]></content>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Isolation Forest</title>
     <url>/2025/02/02/2025-02-04-IsolationForest/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x60F3;&#x8C61;&#x4F60;&#x5728;&#x4E00;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x4ED3;&#x5E93;&#x91CC;&#x5806;&#x6EE1;&#x4E86;&#x82F9;&#x679C;&#xFF0C;&#x4F46;&#x6709;&#x4EBA;&#x5077;&#x5077;&#x6DF7;&#x8FDB;&#x4E86;&#x51E0;&#x4E2A;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x8FD9;&#x4E9B;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x4F1A;&#x600E;&#x4E48;&#x505A;&#xFF1F;</p>
@@ -1197,179 +1132,68 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Transformer</title>
-    <url>/2025/02/16/2025-02-16-Transformer-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
-<h1 id="GPT-intro"><a href="#GPT-intro" class="headerlink" title="GPT intro"></a>GPT intro</h1><p>GPT &#x7684;&#x5168;&#x540D;&#x5C31;&#x662F; generative pre-trained transformer<br>&#x9884;&#x8BAD;&#x7EC3;&#x662F;&#x6307;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4ECE;&#x5927;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x524D;&#x7F00; Pre &#x6697;&#x793A;&#x6709;&#x66F4;&#x591A;&#x7A7A;&#x95F4;&#x901A;&#x8FC7;&#x989D;&#x5916;&#x7684;&#x8BAD;&#x7EC3;&#x6765;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;&#x3002;</p>
-<p>The last piece that&#x2019;s the real key, a transformer is a specific kind of neural network, a machine learning model, and it&#x2019;s the core invention underlying current boom in AI</p>
-<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x5C31;&#x662F; transformer &#x521B;&#x9020;&#x5F88;&#x591A;&#x7C7B;&#x578B;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4; voice to text what text to voice, text to image These are based on transformer</p>
-<p>&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x7528; transformer &#x8FD9;&#x79CD;&#x9884;&#x6D4B;&#x6A21;&#x578B;&#x6765;&#x751F;&#x6210;&#x4E00;&#x6BB5;&#x65B0;&#x6587;&#x672C;&#x662F;&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x4EE5;&#x7ED9;&#x4ED6;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x7247;&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x4ED6; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x3002;&#x7136;&#x540E;&#x4F60;&#x518D;&#x628A;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x53C8;&#x4E22;&#x8FDB;&#x53BB;&#xFF0C;&#x53BB; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x5C31;&#x8FD9;&#x6837;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162156993.png"></p>
-<h1 id="How-Data-flows-in-Transformer-Generally"><a href="#How-Data-flows-in-Transformer-Generally" class="headerlink" title="How Data flows in Transformer (Generally)"></a>How Data flows in Transformer (Generally)</h1><pre class="mermaid" style="text-align: center;">
-            
-            flowchart TD
-subgraph Input[&quot;&#x8F93;&#x5165;&#x5C42; (Raw Tokens)&quot;]
-A[(&quot;Token &#x5E8F;&#x5217;&quot;)]
-end
+    <title>Process &amp; Thread</title>
+    <url>/2025/01/17/2025-01-17-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
+<span id="more"></span>
 
-    subgraph Embedding[&quot;Embedding&#x5C42;&quot;]
-        B1[&quot;Embeddings Matrix&#x67E5;&#x627E;&quot;]
-        B2[&quot;&#x5411;&#x91CF;&#x6620;&#x5C04; (12800&#x7EF4;)&quot;]
-    end
-    
-    subgraph TransformerFlow[&quot;Transformer&#x6838;&#x5FC3;&quot;]
-        subgraph AttentionBlock[&quot;Attention Block&quot;]
-            D1[&quot;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&quot;] --&gt; D2[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
-            D2 --&gt; D3[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
-            D3 --&gt; D4[&quot;MLP&quot;]
-            D4 --&gt; D5[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
-            D5 --&gt; D6[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
-        end
-    
-        C[&quot;&#x5411;&#x91CF;&#x5E8F;&#x5217;&quot;] --&gt; D1
-        D6 --&gt; E[&quot;&#x4E0B;&#x4E00;&#x4E2A;Attention Block&quot;]
-    end
-    
-    subgraph Output[&quot;&#x8F93;&#x51FA;&#x5C42;&#x5904;&#x7406;&quot;]
-        F1[&quot;Unembedding Matrix&quot;]
-        F2[&quot;50000&#x7EF4;&#x8BCD;&#x8868;&#x6620;&#x5C04;&quot;]
-        G1[&quot;Softmax&#x6E29;&#x5EA6;&#x8C03;&#x8282;&quot;]
-        G2[&quot;&#x6982;&#x7387;&#x5206;&#x5E03;&#x8F93;&#x51FA;&quot;]
-    end
-    
-    A --&gt; B1
-    B1 --&gt; B2
-    B2 --&gt; C
-    E --&gt; F1
-    F1 --&gt; F2
-    F2 --&gt; G1
-    G1 --&gt; G2
-    
-    %% &#x6DFB;&#x52A0;&#x8BF4;&#x660E;&#x6CE8;&#x91CA;
-    classDef process fill:#f9f,stroke:#333,stroke-width:2px
-    class D1,D4 process
-    
-    %% &#x6DFB;&#x52A0;&#x5173;&#x952E;&#x6B65;&#x9AA4;&#x8BF4;&#x660E;
-    note1[/&quot;&#x8F93;&#x5165;token&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x91CF;&quot;/]
-    note2[/&quot;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&quot;/]
-    note3[/&quot;&#x751F;&#x6210;&#x9884;&#x6D4B;&#x6982;&#x7387;&quot;/]
-    
-    B2 -.-&gt; note1
-    D1 -.-&gt; note2
-    G2 -.-&gt; note3
+<p>After a programmer finishes writing a program, it is saved permanently on the hard drive. Just as a chef needs a cutting board and a countertop to prepare food, the CPU needs to load the program from the hard drive to memory to execute it.</p>
+<p>What&#x2019;s loaded into memory is a process, which is an <strong>executable instance</strong> of the program</p>
+<p>When we run a program, what happens internally is that its executable file is loaded into memory. At this point, our program becomes a process.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101615249.png"></p>
+<p>The memory assigned to it has a special name: the address space of the process.</p>
+<p><strong>A process, however, is more than just its address space.</strong>  </p>
+<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101617689.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101618857.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101619662.png"></p>
+<p><strong>When a process gains access to the CPU</strong></p>
+<h2 id="Context-Switching"><a href="#Context-Switching" class="headerlink" title="Context Switching"></a>Context Switching</h2><p>&#x4F46;&#x662F;&#x5207;&#x6362;&#x8FDB;&#x7A0B;&#x5E76;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x8BF4;&#x7684;&#x90A3;&#x4E48;&#x7B80;&#x5355; &#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x7528;&#x4E86; &#x53BB;&#x6392;&#x961F; &#x4E0B;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x7528;&#x5C31;&#x53EF;&#x4EE5; &#x5982;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x8BDD; &#x5F53;&#x5207;&#x6362;&#x8FDB;&#x7A0B;&#x540E; &#x540E;&#x4F7F;&#x7528;cpu&#x7684;&#x8FDB;&#x7A0B;&#x5C31;&#x4F1A;&#x53D1;&#x73B0;&#x81EA;&#x5DF1;&#x5904;&#x4E8E;&#x7684;cpu&#x73AF;&#x5883;&#xFF08;&#x5404;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x6570;&#x636E;&#xFF09;&#x662F;&#x4E4B;&#x524D;&#x90A3;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;</p>
+<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x6709;&#x4E24;&#x4E2A;&#x5927;&#x95EE;&#x9898; &#xFF1A; 1. &#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x654F;&#x611F;&#x4FE1;&#x606F; &#x4E5F;&#x5C31;&#x662F;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x8981;&#x662F;&#x5B58;&#x50A8;&#x6709;&#x5BC6;&#x7801; &#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x53EF;&#x4EE5;&#x963B;&#x6B62;&#x5F53;&#x524D;&#x8FDB;&#x7A0B;&#x8BFB;&#x53D6;&#x524D;&#x4E00;&#x8FDB;&#x7A0B;&#x7684;&#x5BC6;&#x7801;</p>
+<p><strong>So, the first concern here is security.</strong></p>
+<p>Now, let&#x2019;s assume that all processes are honest and won&#x2019;t use the information  from a previous process.Does that solve all the problems? </p>
+<ol start="2">
+<li>Even if the current process has no intention of using that information,  it still needs to manipulate the registers to carry out its own tasks.</li>
+</ol>
+<p>&#x4E3A;&#x4E86;&#x505A;&#x5230;&#x8FD9;&#x4E00;&#x70B9;it <strong>alters the CPU state</strong> of the previous process But <strong>&#x5728;&#x5C06; CPU &#x5206;&#x914D;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E4B;&#x524D;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x5C06;&#x8BE5;&#x5730;&#x5740;&#x5B58;&#x50A8;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#xFF0C;&#x56E0;&#x6B64;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x65E0;&#x6CD5;&#x6062;&#x590D;&#x7B2C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x3002;</strong></p>
+<p> So, when the previous process regains CPU access  later, the CPU state it had when it was interrupted would <strong>be lost.</strong> </p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101623153.png"></p>
+<p>&#x5F53;CPU&#x5FC5;&#x987B;&#x5206;&#x914D;&#x7ED9;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#x3002;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5E76;&#x4E0D;&#x662F;&#x7B80;&#x5355;&#x5730;&#x8986;&#x76D6;&#x5730;&#x5740;&#x5BC4;&#x5B58;&#x5668;&#x6765;&#x4F7F;CPU&#x8DF3;&#x8F6C;&#x5230;&#x7B2C;&#x4E8C;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x53EF;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x800C;&#x662F;&#x9996;&#x5148;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;&#x4F8B;&#x7A0B;&#x6765;&#x6355;&#x83B7;CPU&#x7684;&#x5F53;&#x524D;&#x72B6;&#x6001;&#x2014;&#x2014;&#x5C31;&#x50CF;&#x62CD;&#x6444;&#x5FEB;&#x7167;&#x4E00;&#x6837;&#x3002;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x76EE;&#x7684;&#x662F;&#x590D;&#x5236;&#x5185;&#x5BB9;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101626126.png">&#x901A;&#x8FC7;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x6BCF;&#x6B21;&#x8FDB;&#x7A0B;&#x91CD;&#x65B0;&#x83B7;&#x5F97;&#x5BF9; CPU &#x7684;&#x63A7;&#x5236;&#x65F6;&#xFF0C;&#x5B83;&#x90FD;&#x4F1A;&#x627E;&#x5230;&#x4E0E;&#x4E2D;&#x65AD;&#x65F6;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x3002;&#x6B64;&#x8FC7;&#x7A0B;&#x89E3;&#x51B3;&#x4E86;&#x8FD9;&#x4E24;&#x4E2A;&#x95EE;&#x9898;&#x3002;&#x8FDB;&#x7A0B;&#x65E0;&#x6CD5;&#x518D;&#x8BBF;&#x95EE;&#x524D;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x4E14;&#x7531;&#x4E8E;&#x5176;&#x81EA;&#x8EAB;&#x7684;&#x72B6;&#x6001;&#x5C1A;&#x672A;&#x88AB;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x66F4;&#x6539;&#xFF0C;&#x56E0;&#x6B64;&#x5B83;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x5E76;&#x786E;&#x4FE1;&#x5B83;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x6B63;&#x786E;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<blockquote>
+<p>&#x5728;switch&#x524D;OS&#x4F1A;&#x770B;&#x6709;&#x65E0; &#x5373;&#x5C06;&#x8981;&#x5207;&#x6362;&#x5230;&#x7684;&#x76EE;&#x6807;&#x8FDB;&#x7A0B;&#x7684;PCB &#x5982;&#x679C;&#x6CA1;&#x6709;&#x8BF4;&#x660E;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B; &#x6240;&#x4EE5;&#x4F1A;&#x628A;&#x76F8;&#x5173;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x8BBE;&#x4E3A;0</p>
+</blockquote>
+<p>&#x8FD9;&#x79CD;&#x6355;&#x83B7;&#x8FDB;&#x7A0B;&#x7684; CPU &#x72B6;&#x6001;&#x5E76;&#x6062;&#x590D;&#x4E0D;&#x540C;&#x8FDB;&#x7A0B;&#x7684;&#x72B6;&#x6001;&#x4EE5;&#x4FBF;&#x5176;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;&#x79F0;&#x4E3A;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x3002;</p>
+<h2 id="supplement"><a href="#supplement" class="headerlink" title="supplement"></a>supplement</h2><p>&#x4F46;&#x662F;&#x8FDB;&#x7A0B;&#x8FD8;&#x6709;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x53EF;&#x80FD;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x4EE5;&#x53CA;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x7684; IO &#x8BBE;&#x5907;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101629677.png"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101646984.png" alt="image-20250210163005387"></p>
+<p>&#x8FDB;&#x7A0B;&#x4E0D;&#x53EA;&#x662F;&#x5355;&#x4E2A;&#x5B9E;&#x4F53;&#xFF0C;&#x800C;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4E0E;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x9694;&#x79BB;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101631353.png"></p>
+<h2 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h2><p>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5C31;&#x662F;&#x6574;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x4ECE;&#x5BC4;&#x5B58;&#x5668;&#x7B49;&#x4F4E;&#x7EA7;&#x7EC4;&#x4EF6;&#x5230;&#x6587;&#x4EF6;&#x5217;&#x8868;&#x7B49;&#x9AD8;&#x7EA7;&#x7EC4;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x4F55;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5165;&#x961F;&#x5217;&#x4E2D;&#xFF1F;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x8FDB;&#x7A0B;&#x4E0D;&#x50CF;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5730;&#x7528;&#x4F5C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x4E2D;&#x7684;&#x5143;&#x7D20;&#x7684;&#x5BF9;&#x8C61;.</p>
+<p>PCB:&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7528;&#x6765;&#x8DDF;&#x8E2A;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x7279;&#x6B8A;&#x7ED3;&#x6784;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101633832.png"></p>
+<p><strong>&#x8FDB;&#x7A0B;&#x63A7;&#x5236;&#x5757;&#x4E0D;&#x662F;&#x8FDB;&#x7A0B;&#x672C;&#x8EAB;&#xFF0C;&#x800C;&#x662F;&#x8FDB;&#x7A0B;&#x7684;&#x8868;&#x793A;&#x3002;&#x5B83;&#x5145;&#x5F53;&#x542F;&#x52A8;&#x6216;&#x6062;&#x590D;&#x6D41;&#x7A0B;&#x6240;&#x9700;&#x7684;&#x6240;&#x6709;&#x6570;&#x636E;&#x4EE5;&#x53CA;&#x4E00;&#x4E9B;&#x4F1A;&#x8BA1;&#x4FE1;&#x606F;&#x7684;&#x5B58;&#x50A8;&#x5E93;&#x3002;&#x8FD9;&#x4E2A;&#x8868;&#x793A;&#x5C31;&#x662F;&#x5B9E;&#x9645;&#x653E;&#x7F6E;&#x5728;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#x3002;</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101634407.png"></p>
+<p>&#x8FD9;&#x662F;Linux&#x91CC;&#x7684;PCB</p>
+<h2 id="&#x591A;&#x6838;CPU"><a href="#&#x591A;&#x6838;CPU" class="headerlink" title="&#x591A;&#x6838;CPU"></a>&#x591A;&#x6838;CPU</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502101635020.png"></p>
+<p>&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x4E2D;&#xFF0C;pipeline&#xFF08;&#x6D41;&#x6C34;&#x7EBF;&#xFF09;&#x662F;&#x6307;&#x5C06;&#x6307;&#x4EE4;&#x5904;&#x7406;&#x5206;&#x89E3;&#x4E3A;&#x591A;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x6280;&#x672F;&#x3002;</p>
+<h1 id="What&#x2019;s-in-each-process-&#xFF1A;Thread"><a href="#What&#x2019;s-in-each-process-&#xFF1A;Thread" class="headerlink" title="What&#x2019;s in each process &#xFF1A;Thread"></a>What&#x2019;s in each process &#xFF1A;Thread</h1><p>&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;<br>It&#x2019;s going to compute based on the program-flow<br>one of the program-flow or <strong>execution streams</strong> here is one thread<br>if there are multiple threads<br>You need multiple <strong>program counters</strong></p>
+<h1 id="So-why-do-we-need-a-design-thread"><a href="#So-why-do-we-need-a-design-thread" class="headerlink" title="So why do we need a design thread"></a>So why do we need a design thread</h1><p>we look at it through <strong>a document editor</strong> Like a notepad</p>
+<p>This notepad holds some text-data and some document which makes it a <strong>process</strong></p>
+<p>Imagine:now the user uses the keyboard to type a return at the end of the second line</p>
+<p>There needs to be <strong>an interactive program</strong> that knows about keyboard <strong>press events</strong> and then the process that manages the layout recalculates the text and renders it</p>
+<p>and every once in a while the writing-program needs to save the document to the hard disk</p>
+<p><strong>Three programs</strong> need to execute <strong>concurrently</strong>, but they must access and modify the <strong>same</strong> document. Since processes have their own <strong>independent memory spaces</strong>, they must operate within the same process to access shared resources. Therefore, three lighter-weight constructs&#x2014;threads&#x2014;are necessary for this scenario.</p>
+<p>Threads allow these programs to run in parallel while sharing the same memory space for document access and modification.</p>
+<hr>
 
-          </pre>
-
-<h2 id="tokens"><a href="#tokens" class="headerlink" title="tokens"></a>tokens</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162202929.png"></p>
-<p>&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x9891;&#xFF0C;&#x6587;&#x672C;&#x7684;&#x201D;a piece&#x201D;&#x90FD;&#x53EF;&#x4EE5;&#x662F; token<br><strong>A token doesn&#x2019;t align with a word</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170023326.png" style="zoom:50%;">the first time I met token</p>
-<p>&#x6BCF;&#x4E00;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector, &#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E00;&#x4E32;&#x6570;&#x5B57;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x662F;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8868;&#x8FBE;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x542B;&#x4E49;</p>
-<p><strong>this vector somehow encode the information a token contain</strong></p>
-<p>if you think of these vectors as giving coordinates in some very high dimensional space.You will find words with similar meaning tend to land on vectors that close to each other in that space &#x5411;&#x91CF;</p>
-<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E00;&#x4E2A; token &#x5728; high dimensional space &#x90FD;&#x53EF;&#x4EE5;&#x8868;&#x73B0;&#x4E3A;&#x4E00;&#x4E2A; informational &#x7684;&#x5411;&#x91CF;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162207013.png" alt="1739714827253_d"></p>
-<p>&#x8FD9;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x5207;&#x7247;</p>
-<p>Transformer &#x7684; tokens &#x5E94;&#x8BE5;&#x8981;&#x8F6C;&#x5316;&#x6210; vectors,&#x4E00;&#x4E2A; token &#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector &#x4ECE; embeddings matrix &#x91CC;&#x53D6;&#x51FA;&#x5BF9;&#x5E94; token &#x7684;&#x5411;&#x91CF; vector&#xFF0C;&#x5C31;&#x5B8C;&#x6210;&#x4E86; tokens-&gt;vectors,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x5F53; input data &#x5728; Transformer &#x4E2D;&#x6D41;&#x52A8;&#x7684;&#x65F6;&#x5019; &#x4ED6;&#x5C31;&#x957F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A; vectors &#x6784;&#x6210;&#x7684; sequence &#x7684;&#x6837;&#x5B50;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># &#x5047;&#x8BBE;&#x7684;&#x4F2A;&#x4EE3;&#x7801;</span><br><span class="line">embeddings_matrix = ...  # &#x9884;&#x8BAD;&#x7EC3;&#x7684;embedding&#x77E9;&#x9635;</span><br><span class="line">tokens = [&quot;I&quot;, &quot;love&quot;, &quot;machine&quot;, &quot;learning&quot;]</span><br><span class="line"></span><br><span class="line"># &#x5C06;&#x6BCF;&#x4E2A;token&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;vector</span><br><span class="line">token_vectors = [</span><br><span class="line">    embeddings_matrix[&quot;I&quot;],</span><br><span class="line">    embeddings_matrix[&quot;love&quot;],</span><br><span class="line">    embeddings_matrix[&quot;machine&quot;],</span><br><span class="line">    embeddings_matrix[&quot;learning&quot;]</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>&#x7136;&#x540E;&#x521A;&#x521A;&#x751F;&#x6210;&#x7684;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E00;&#x5806; vectors &#x4F1A;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EB;&#x505A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x3002;</p>
-<h2 id="Attention-Block"><a href="#Attention-Block" class="headerlink" title="Attention Block"></a>Attention Block</h2><p>WHY need attention block.</p>
-<p>A token is not supposed to be just the exact original meaning(in embeddings matrix) &#x6BD4;&#x5982; model &#x8FD9;&#x4E2A;&#x8BCD;&#xFF0C;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x4ED6;&#x662F;&#x4E00;&#x4E2A; token&#xFF0C;machine learning model &#x548C; fashion model &#x7684;&#x610F;&#x601D;&#x80AF;&#x5B9A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x4ED6;&#x4EEC;&#x7684; Pre-trained embeddings matrix &#x91CC;&#x7684;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x6837;,&#x4F46;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x4ED6;&#x4EEC;&#x7684;&#x610F;&#x601D;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x5B66;&#x4E60;&#x5230;&#x8FD9;&#x4E2A;&#x610F;&#x4E49;<br>The vector in embeddings matrix encoded the original information which should change into the meaning it is supposed to be in THE CONTEXT<br>&#x5728; attention block &#x8FD9;&#x4E9B; Vector &#x4F1A;&#x4E92;&#x76F8;&#x4F5C;&#x7528;</p>
-<p>&#x63A5;&#x7740;&#x521A;&#x521A;&#x8BF4;&#x7684;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6709; vectors &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x5728;&#x8FD9;&#x4E2A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x91CC;&#xFF0C;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x4EA4;&#x6D41;&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5; pass information back and forth</p>
-<h2 id="Multilayer-Perceptron"><a href="#Multilayer-Perceptron" class="headerlink" title="Multilayer Perceptron"></a>Multilayer Perceptron</h2><p>&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</p>
-<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x63D0;&#x51FA;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x95EE;&#x9898;&#xFF0C; &#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x7B54;&#x6848;&#x6765;&#x66F4;&#x65B0;&#x5411;&#x91CF;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162232003.png"></p>
-<p>&#x8FD9;&#x6837;&#x91CD;&#x590D;&#x8FD9;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162234738.png"></p>
-<h2 id="Final-Processing-vectors"><a href="#Final-Processing-vectors" class="headerlink" title="Final Processing vectors"></a>Final Processing vectors</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162239819.png"></p>
-<h1 id="Dive-into"><a href="#Dive-into" class="headerlink" title="Dive into"></a>Dive into</h1><h2 id="Premise-What-is-Weight"><a href="#Premise-What-is-Weight" class="headerlink" title="Premise:What is Weight"></a>Premise:What is Weight</h2><p>We start with the simplest machine-learning model: <strong>linear model</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170030041.png"></p>
-<p>&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F; y = wx + b</p>
-<ul>
-<li>y: &#x9884;&#x6D4B;&#x503C;</li>
-<li>x: &#x8F93;&#x5165;&#x7279;&#x5F81;</li>
-<li>w: &#x6743;&#x91CD;(weight)</li>
-<li>b: &#x504F;&#x7F6E;(bias)</li>
-</ul>
-<p>We see x as a vector and by processing(computing) x with weight and bias,in the high semantic dimensional space we have changed the meaning x originally represents.</p>
-<h2 id="About-Input-tokens"><a href="#About-Input-tokens" class="headerlink" title="About Input tokens"></a>About Input tokens</h2><p>Input is just what the model processes,the actual brain of Transformer is WEIGHTS.</p>
-<p>&#x6A21;&#x578B;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x9884;&#x8BBE;&#x7684;&#x8BCD;&#x6C47;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x5355;&#x8BCD;&#xFF0C; &#x6BD4;&#x5982;&#x8BF4;&#x6709; 50,000 &#x4E2A;</p>
-<p>&#x8FD9;&#x4E2A;&#x8BCD;&#x6C47;&#x8868;&#x4EE5; Embedding matrix &#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170032772.png"><br>this is pre-trained which somehow encoded the information a single token should represent!<br>Which is to say : these columns are what determines what vector each word(token) turns into <strong>IN THE FIRST STEP</strong></p>
-<p>And &#x4E0D;&#x7BA1;&#x4F60;&#x6784;&#x5EFA;&#x7684;&#x662F;&#x54EA;&#x79CD;&#x6A21;&#x578B;&#xFF0C;&#x8F93;&#x5165;&#x90FD;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x6570;&#x6570;&#x7EC4;&#x8FD9;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x5217;&#x8868;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;&#xFF0C;&#x6216;&#x8005;&#x66F4;&#x5E38;&#x89C1;&#x7684;&#x662F;&#x66F4;&#x9AD8;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x7528;&#x7684;&#x672F;&#x8BED;&#x6211;&#x4EEC;&#x79F0;&#x4E4B;&#x4E3A;&#x5F20;&#x91CF;<br>So &#x2B07;&#xFE0F;</p>
-<h3 id="How-many-dimensions-can-x-be"><a href="#How-many-dimensions-can-x-be" class="headerlink" title="How many dimensions can x be"></a>How many dimensions can x be</h3><p>As we already know:In the perception of Transformer,Input data is sequence of vectors (high dimensional vector)</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
-<p>So how many numbers are in a vector ?&#x1F928;</p>
-<p>take GPT-3 for example :12800 dimension,which means 12800 rows for a vector</p>
-<h3 id="review-key-concept"><a href="#review-key-concept" class="headerlink" title="review key concept"></a>review key concept</h3><p>&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#xFF0C; &#x4EE5;&#x786E;&#x5B9A;&#x8BCD;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x88AB;&#x5D4C;&#x5165;&#x4E3A; final &#x5411;&#x91CF;<br><strong>how exactly words get embedded as vectors during training</strong></p>
-<h2 id="What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"><a href="#What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;" class="headerlink" title="What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"></a>What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</h2><p>we&#x2019;ve said that &#x201C;&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#x201D;<br>So In the Attention block that&#x2019;s what happened.<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052799.png"></p>
-<p>And it does that by what we have mentioned:Weights</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Attention block&#x6838;&#x5FC3;&#x8FC7;&#x7A0B;</span><br><span class="line">Vectors &#x2192; &#x76F8;&#x4E92;&#x4F20;&#x9012;&#x4FE1;&#x606F; &#x2192; &#x8C03;&#x6574;&#x77E9;&#x9635;&#x503C;</span><br></pre></td></tr></table></figure>
-
-<p> &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
-<ul>
-<li>&#x4E0E;&#x5176;&#x4ED6; vectors &#x4EA4;&#x4E92;</li>
-<li>&#x4EA4;&#x6362;&#x4FE1;&#x606F;</li>
-<li>&#x6839;&#x636E;&#x4EA4;&#x4E92;&#x7ED3;&#x679C;&#x8C03;&#x6574;&#x81EA;&#x8EAB;&#x8868;&#x5F81;</li>
-</ul>
-<p>In GPT-3</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170051060.png"></p>
-<p>these weights constantly changed during the process of training</p>
-<h3 id="How-do-we-get-weights"><a href="#How-do-we-get-weights" class="headerlink" title="How do we get weights"></a>How do we get weights</h3><p>&#x9884;&#x6D4B;&#x9636;&#x6BB5;(Inference)</p>
-<ul>
-<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;input vectors matrix</li>
-<li>&#x52A8;&#x6001;&#x8C03;&#x6574; tokens &#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</li>
-<li>&#x4E0D;&#x6539;&#x53D8;&#x6A21;&#x578B;&#x6743;&#x91CD;</li>
-</ul>
-<p>&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;(Training)</p>
-<ul>
-<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;&#x6A21;&#x578B;&#x7684; weights</li>
-<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;</li>
-<li>&#x76EE;&#x7684;&#xFF1A;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x66F4;&#x597D;&#x5730;&#x6355;&#x6349; tokens &#x95F4;&#x5173;&#x7CFB;</li>
-</ul>
-<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x5F97;&#x5230;&#x4E00;&#x4E2A; reasonable weights</p>
-<h4 id="WHY-do-they-weights-change"><a href="#WHY-do-they-weights-change" class="headerlink" title="WHY do they (weights) change"></a>WHY do they (weights) change</h4><p>The ULTIMATE Goal &#x662F;&#x6700;&#x5C0F;&#x5316;&#x6574;&#x4F53;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x8F93;&#x5165;x &#x2192; &#x6A21;&#x578B;&#x9884;&#x6D4B; &#x2192; &#x8BA1;&#x7B97;&#x8BEF;&#x5DEE; &#x2192; &#x8C03;&#x6574;weights</span><br></pre></td></tr></table></figure>
-
-<h4 id="How-they-change"><a href="#How-they-change" class="headerlink" title="How they change"></a>How they change</h4><ul>
-<li>&#x635F;&#x5931;&#x51FD;&#x6570;(Loss Function)&#x8861;&#x91CF;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</li>
-<li>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8BA1;&#x7B97;&#x6743;&#x91CD;&#x8C03;&#x6574;&#x65B9;&#x5411;</li>
-<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;(Backpropagation)&#x66F4;&#x65B0;&#x6743;&#x91CD;</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170102556.png"></p>
-<p>The most popular algorithm today&#x2019;s models are mostly using</p>
-<p>The model is given an <strong>input vector</strong>, makes a prediction, compares that prediction to the <strong>expected output</strong>, and then uses the error (quantified by the loss function) and the gradient of that error to adjust its weights.</p>
-<p><strong>This adjustment process is what we call &#x201C;learning.&#x201D;</strong></p>
-<h3 id="The-results-of-learning-of-adjusting-weights"><a href="#The-results-of-learning-of-adjusting-weights" class="headerlink" title="The results of learning ,of adjusting weights"></a>The results of learning ,of adjusting weights</h3><p>&#x5047;&#x8BBE;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x8868;&#x793A;&#x201C;&#x5973;&#x6027;&#x541B;&#x4E3B;&#x201D;&#x7684;&#x8BCD; &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5411;&#x201C;&#x56FD;&#x738B;&#x201D;&#x5411;&#x91CF;&#x6DFB;&#x52A0;&#x201C;&#x5973;&#x4EBA;&#x51CF;&#x7537;&#x4EBA;&#x201D;&#x7684;&#x65B9;&#x5411; &#x5E76;&#x641C;&#x7D22;&#x6700;&#x63A5;&#x8FD1;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x6765;&#x627E;&#x5230;&#x5B83;&#x3002;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052126.png"></p>
-<p>&#x5173;&#x952E;&#x5728;&#x4E8E;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x6A21;&#x578B;&#x53D1;&#x73B0;&#x91C7;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x5D4C;&#x5165;&#x65B9;&#x5F0F;&#x66F4;&#x4E3A;&#x6709;&#x5229; &#x5373;&#x4ED6;&#x5B66;&#x4F1A;&#x4E86;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x80FD;&#x591F;&#x7F16;&#x7801;&#x6027;&#x522B;&#x4FE1;&#x606F;</p>
-<p>And it has found a proper vector to encode the information the token represents! Not just its original meaning,But IN THE CONTEXT</p>
-<h2 id="In-this-step-What-does-a-well-trained-vector-mean"><a href="#In-this-step-What-does-a-well-trained-vector-mean" class="headerlink" title="In this step,What does a well-trained vector mean"></a>In this step,What does a well-trained vector mean</h2><p>we have got processed vectors by filtering with weights<br>Which means What we are asking right now is (In Y=WX+B)<br><strong>What does WX mean now</strong></p>
-<p>It means <strong>it&#x2019;s context-encoded</strong></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170125004.png"></p>
-<p>Let&#x2019;s summarize it:<br>&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x610F;&#x4E49;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x7531;&#x5176;&#x6240;&#x5904;&#x7684;&#x73AF;&#x5883;&#x51B3;&#x5B9A;&#x7684; &#x6709;&#x65F6;&#x8FD9;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x6765;&#x81EA;&#x5F88;&#x8FDC;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x80FD;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x6C47;&#x7684;&#x6A21;&#x578B;&#x65F6; &#x5173;&#x952E;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x8BA9;&#x5B83;&#x80FD;&#x591F;&#x9AD8;&#x6548;&#x5730;&#x878D;&#x5408;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x6839;&#x636E;&#x8F93;&#x5165;&#x6587;&#x672C;&#x521B;&#x5EFA;&#x5411;&#x91CF;&#x6570;&#x7EC4;&#x65F6;&#xFF0C; &#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x4ECE;&#x5D4C;&#x5165;&#x77E9;&#x9635;&#x4E2D;&#x9009;&#x53D6;&#x7684;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x8D77;&#x521D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x4EC5;&#x80FD;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x542B;&#x4E49;&#xFF0C; &#x800C;&#x4E0D;&#x6D89;&#x53CA;&#x5176;&#x5468;&#x8FB9;&#x73AF;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x9012;&#xFF0C;&#x4F7F;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x80FD;&#x83B7;&#x5F97;&#x6BD4;&#x5355;&#x4E2A;&#x8BCD;&#x66F4;&#x4E30;&#x5BCC;&#x3001;&#x66F4;&#x5177;&#x4F53;&#x7684;&#x542B;&#x4E49;&#x3002;</p>
-<p>Which is A token has the capacity to absorb its context-meaning</p>
-<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x6BCF;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x5411;&#x91CF;&#x8FD9;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5927;&#x5C0F;&#x3002;<br>&#x610F;&#x5473;&#x7740;&#x6570;&#x636E;&#x5728; Transformer &#x7F51;&#x7EDC;&#x4E2D;&#x6D41;&#x52A8;&#x65F6;&#xFF0C; &#x603B;&#x662F;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E00;&#x4E32; 2048 &#x5217;&#x7684;&#x6570;&#x7EC4;&#x3002;</p>
-<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170130380.png" style="zoom:200%;">
-
-<p>:smile:</p>
-<h2 id="In-the-final"><a href="#In-the-final" class="headerlink" title="In the final"></a>In the final</h2><p>End should look like this:</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170134409.png" alt="1739727248332_d"></p>
-<p>Its final goal is to have a distribution of probability Because Transformer is a prediction model in the end.<br>So We have our processed vectors-composed Sequence&#xFF08;&#x4E0A;&#x4E0B;&#x6587;&#xFF09;,We just need its last column</p>
-<p>&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x77E9;&#x9635; Unembedding matrix&#xFF0C; &#x5C06;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6620;&#x5C04;&#x5230; to a list of 50,000 values, one for each token in the vocabulary.&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x63A5;&#x7740;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x8FD9;&#x4E9B;&#x503C;&#x8F6C;&#x6362;&#x6210;&#x6982;&#x7387;&#x5206;&#x5E03;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x53EB; softmax&#xFF0C;&#x4EC5;&#x4EC5;&#x57FA;&#x4E8E;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x6765;&#x505A;&#x51FA;&#x9884;&#x6D4B;&#x4F3C;&#x4E4E;&#x6709;&#x4E9B;&#x5947;&#x602A;&#xFF0C; &#x6BD5;&#x7ADF;&#x5728;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x4E2D;&#x8FD8;&#x6709;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x7684;&#x5176;&#x4ED6;&#x5411;&#x91CF;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x5982;&#x679C;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x6700;&#x7EC8;&#x5C42;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6765;&#x9884;&#x6D4B;&#x5176;&#x540E;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x88AB;&#x8BC1;&#x660E;&#x662F;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170139461.png" alt="1739727579409_d"></p>
-<h3 id="&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values"><a href="#&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values" class="headerlink" title="&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values"></a>&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values</h3><p>&#x5173;&#x4E8E;&#x53C2;&#x6570;&#x603B;&#x6570;&#x7684;&#x7EDF;&#x8BA1;&#xFF0C; &#x8FD9;&#x4E2A; unembedding &#x77E9;&#x9635;&#x4E3A;&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x5206;&#x914D;&#x4E86;&#x4E00;&#x884C;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x5305;&#x542B;&#x4E0E;&#x5D4C;&#x5165;&#x7EF4;&#x5EA6;&#x76F8;&#x540C;&#x6570;&#x91CF;&#x7684;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E0E;&#x5D4C;&#x5165;&#xFF08;embedding&#xFF09;&#x77E9;&#x9635;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x628A;&#x987A;&#x5E8F;&#x5012;&#x8FC7;&#x6765;&#x4E86;&#xFF0C; &#x56E0;&#x6B64;&#x5B83;&#x4E3A;&#x7F51;&#x7EDC;&#x589E;&#x52A0;&#x4E86;&#x53E6;&#x5916; 6.17 &#x4EBF;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
-<h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h3><p>&#x6211;&#x4EEC;&#x7684;&#x6700;&#x540E;&#x8BA1;&#x7B97;&#x90FD;&#x662F;&#x77E9;&#x9635;&#x548C; vector &#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x4E0D;&#x5230;&#x4E00;&#x4E2A;&#x6982;&#x7387;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5F52;&#x4E00;&#x5316;&#x51FD;&#x6570; &#x8F93;&#x5165;&#x662F; logits &#x8F93;&#x51FA;&#x662F; Probabilities</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png"></p>
-<p>&#x73B0;&#x5728;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x6E29;&#x5EA6;</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png" alt="1739727981548_d"></p>
-<p>&#x5B83;&#x7684;&#x6548;&#x679C;&#x662F;&#xFF0C;&#x5F53; t &#x503C;&#x8F83;&#x5927;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x503C;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x7684;&#x6743;&#x91CD;&#xFF0C; &#x4F7F;&#x5F97;&#x5206;&#x5E03;&#x7A0D;&#x5FAE;&#x5747;&#x5300;&#x4E00;&#x4E9B;&#x3002;&#x800C;&#x5982;&#x679C; t &#x503C;&#x8F83;&#x5C0F;&#x5219;&#x8F83;&#x5927;&#x7684;&#x6570;&#x503C;&#x5219;&#x4F1A;&#x66F4;&#x52A0;&#x660E;&#x663E;&#x5730;&#x5360;&#x636E;&#x4E3B;&#x5BFC;&#xFF0C;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;0 &#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD; &#x90A3;&#x4E48;&#x6240;&#x6709;&#x7684;&#x6743;&#x91CD;&#x90FD;&#x4F1A;&#x96C6;&#x4E2D;&#x5728;&#x6700;&#x5927;&#x7684;&#x503C;&#x4E0A;&#x3002;</p>
-<p>&#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD;,&#x800C;&#x4F60;&#x6240;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x9648;&#x8BCD;&#x6EE5;&#x8C03;&#x7684;&#x91D1;&#x53D1;&#x59D1;&#x5A18;&#x6545;&#x4E8B;&#x3002;&#x8F83;&#x9AD8;&#x7684;&#x6E29;&#x5EA6;&#x7ED9;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x9009;&#x62E9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x8BCD;&#x7684;&#x673A;&#x4F1A;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x4F34;&#x968F;&#x7740;&#x98CE;&#x9669;&#x3002;&#x4F46;&#x5F88;&#x5FEB;&#x5C31;&#x53D8;&#x5F97;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x3002;API &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x4E0D;&#x5141;&#x8BB8;&#x4F60;&#x9009;&#x62E9;&#x5927;&#x4E8E; 2 &#x7684;&#x6E29;&#x5EA6;&#x3002;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x5E76;&#x6CA1;&#x6709;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x6839;&#x636E;&#xFF0C; &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x6211;&#x731C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4ED6;&#x4EEC;&#x7684;&#x5DE5;&#x5177;&#x4EA7;&#x751F;&#x592A;&#x8FC7;&#x8352;&#x8BDE;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<p>Threads are the smallest unit of <strong>parallel execution</strong>.</p>
+<p>However, if there is only a single-core CPU, it can execute only one thread at a time. In this case, threads must take turns to run, effectively sharing the CPU. This sharing is managed through <strong>time slicing</strong>, where each thread is allocated a specific time slice to execute.</p>
+<p>This mechanism allows multiple threads to make progress by switching between them rapidly, <strong>creating the illusion of concurrent execution even on a single-core system.</strong></p>
 ]]></content>
       <tags>
-        <tag>ML</tag>
-        <tag>Transformer</tag>
+        <tag>计算机组成原理</tag>
+        <tag>cs app</tag>
+        <tag>Process</tag>
       </tags>
   </entry>
   <entry>
@@ -1423,6 +1247,40 @@ end
 ]]></content>
       <tags>
         <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unix Philosophy</title>
+    <url>/2025/02/16/Jottings/2025-02-18-first-journal/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
+</blockquote>
+<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
+<li>break down a complex computational tasks into simple, clear linguistic components</li>
+<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
+</ul>
+<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
+<li>Allowing simple tools to be connected through pipes and redirections</li>
+<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
+<li>Promoting modularity and flexibility in system design</li>
+</ul>
+<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
+<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
+<li>Achieving complex operations through the intelligent combination of simple tools</li>
+</ul>
+<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
+<li>Lone wolves in computer science are an endangered species.</li>
+<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
+</ul>
+<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
+<li><strong>Each tool does one specific task</strong></li>
+<li><strong>Tools are connected through pipes</strong></li>
+<li><strong>Complex functionality emerges from simple tool composition</strong></li>
+<li><strong>Convey ideas</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Jottings</tag>
       </tags>
   </entry>
   <entry>
@@ -1650,37 +1508,179 @@ end
       </tags>
   </entry>
   <entry>
-    <title>Unix Philosophy</title>
-    <url>/2025/02/16/Jottings/2025-02-18-first-journal/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
-</blockquote>
-<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
-<li>break down a complex computational tasks into simple, clear linguistic components</li>
-<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
+    <title>Transformer</title>
+    <url>/2025/02/16/2025-02-16-Transformer-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
+<h1 id="GPT-intro"><a href="#GPT-intro" class="headerlink" title="GPT intro"></a>GPT intro</h1><p>GPT &#x7684;&#x5168;&#x540D;&#x5C31;&#x662F; generative pre-trained transformer<br>&#x9884;&#x8BAD;&#x7EC3;&#x662F;&#x6307;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4ECE;&#x5927;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x524D;&#x7F00; Pre &#x6697;&#x793A;&#x6709;&#x66F4;&#x591A;&#x7A7A;&#x95F4;&#x901A;&#x8FC7;&#x989D;&#x5916;&#x7684;&#x8BAD;&#x7EC3;&#x6765;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;&#x3002;</p>
+<p>The last piece that&#x2019;s the real key, a transformer is a specific kind of neural network, a machine learning model, and it&#x2019;s the core invention underlying current boom in AI</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x5C31;&#x662F; transformer &#x521B;&#x9020;&#x5F88;&#x591A;&#x7C7B;&#x578B;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4; voice to text what text to voice, text to image These are based on transformer</p>
+<p>&#x4E4B;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x7528; transformer &#x8FD9;&#x79CD;&#x9884;&#x6D4B;&#x6A21;&#x578B;&#x6765;&#x751F;&#x6210;&#x4E00;&#x6BB5;&#x65B0;&#x6587;&#x672C;&#x662F;&#x56E0;&#x4E3A;&#x4F60;&#x53EF;&#x4EE5;&#x7ED9;&#x4ED6;&#x4E00;&#x4E2A;&#x6587;&#x672C;&#x7247;&#x6BB5;&#xFF0C;&#x7136;&#x540E;&#x4ED6; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#xFF0C;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x3002;&#x7136;&#x540E;&#x4F60;&#x518D;&#x628A;&#x8FD9;&#x4E2A;&#x65B0;&#x7684;&#x7247;&#x6BB5;&#x53C8;&#x4E22;&#x8FDB;&#x53BB;&#xFF0C;&#x53BB; predict &#x4E0B;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x5C31;&#x8FD9;&#x6837;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162154749.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162156993.png"></p>
+<h1 id="How-Data-flows-in-Transformer-Generally"><a href="#How-Data-flows-in-Transformer-Generally" class="headerlink" title="How Data flows in Transformer (Generally)"></a>How Data flows in Transformer (Generally)</h1><pre class="mermaid" style="text-align: center;">
+            
+            flowchart TD
+subgraph Input[&quot;&#x8F93;&#x5165;&#x5C42; (Raw Tokens)&quot;]
+A[(&quot;Token &#x5E8F;&#x5217;&quot;)]
+end
+
+    subgraph Embedding[&quot;Embedding&#x5C42;&quot;]
+        B1[&quot;Embeddings Matrix&#x67E5;&#x627E;&quot;]
+        B2[&quot;&#x5411;&#x91CF;&#x6620;&#x5C04; (12800&#x7EF4;)&quot;]
+    end
+    
+    subgraph TransformerFlow[&quot;Transformer&#x6838;&#x5FC3;&quot;]
+        subgraph AttentionBlock[&quot;Attention Block&quot;]
+            D1[&quot;&#x591A;&#x5934;&#x6CE8;&#x610F;&#x529B;&#x673A;&#x5236;&quot;] --&gt; D2[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
+            D2 --&gt; D3[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
+            D3 --&gt; D4[&quot;MLP&quot;]
+            D4 --&gt; D5[&quot;&#x6B8B;&#x5DEE;&#x8FDE;&#x63A5;&quot;]
+            D5 --&gt; D6[&quot;&#x5C42;&#x5F52;&#x4E00;&#x5316;&quot;]
+        end
+    
+        C[&quot;&#x5411;&#x91CF;&#x5E8F;&#x5217;&quot;] --&gt; D1
+        D6 --&gt; E[&quot;&#x4E0B;&#x4E00;&#x4E2A;Attention Block&quot;]
+    end
+    
+    subgraph Output[&quot;&#x8F93;&#x51FA;&#x5C42;&#x5904;&#x7406;&quot;]
+        F1[&quot;Unembedding Matrix&quot;]
+        F2[&quot;50000&#x7EF4;&#x8BCD;&#x8868;&#x6620;&#x5C04;&quot;]
+        G1[&quot;Softmax&#x6E29;&#x5EA6;&#x8C03;&#x8282;&quot;]
+        G2[&quot;&#x6982;&#x7387;&#x5206;&#x5E03;&#x8F93;&#x51FA;&quot;]
+    end
+    
+    A --&gt; B1
+    B1 --&gt; B2
+    B2 --&gt; C
+    E --&gt; F1
+    F1 --&gt; F2
+    F2 --&gt; G1
+    G1 --&gt; G2
+    
+    %% &#x6DFB;&#x52A0;&#x8BF4;&#x660E;&#x6CE8;&#x91CA;
+    classDef process fill:#f9f,stroke:#333,stroke-width:2px
+    class D1,D4 process
+    
+    %% &#x6DFB;&#x52A0;&#x5173;&#x952E;&#x6B65;&#x9AA4;&#x8BF4;&#x660E;
+    note1[/&quot;&#x8F93;&#x5165;token&#x8F6C;&#x6362;&#x4E3A;&#x5411;&#x91CF;&quot;/]
+    note2[/&quot;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x4EA4;&#x4E92;&quot;/]
+    note3[/&quot;&#x751F;&#x6210;&#x9884;&#x6D4B;&#x6982;&#x7387;&quot;/]
+    
+    B2 -.-&gt; note1
+    D1 -.-&gt; note2
+    G2 -.-&gt; note3
+
+          </pre>
+
+<h2 id="tokens"><a href="#tokens" class="headerlink" title="tokens"></a>tokens</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162202929.png"></p>
+<p>&#x89C6;&#x9891;&#xFF0C;&#x97F3;&#x9891;&#xFF0C;&#x6587;&#x672C;&#x7684;&#x201D;a piece&#x201D;&#x90FD;&#x53EF;&#x4EE5;&#x662F; token<br><strong>A token doesn&#x2019;t align with a word</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170023326.png" style="zoom:50%;">the first time I met token</p>
+<p>&#x6BCF;&#x4E00;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector, &#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E00;&#x4E32;&#x6570;&#x5B57;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x662F;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x6765;&#x8868;&#x8FBE;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x542B;&#x4E49;</p>
+<p><strong>this vector somehow encode the information a token contain</strong></p>
+<p>if you think of these vectors as giving coordinates in some very high dimensional space.You will find words with similar meaning tend to land on vectors that close to each other in that space &#x5411;&#x91CF;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6BCF;&#x4E00;&#x4E2A; token &#x5728; high dimensional space &#x90FD;&#x53EF;&#x4EE5;&#x8868;&#x73B0;&#x4E3A;&#x4E00;&#x4E2A; informational &#x7684;&#x5411;&#x91CF;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162207013.png" alt="1739714827253_d"></p>
+<p>&#x8FD9;&#x53EF;&#x4EE5;&#x770B;&#x6210;&#x4E00;&#x4E2A;&#x4E09;&#x7EF4;&#x7A7A;&#x95F4;&#x7684;&#x5207;&#x7247;</p>
+<p>Transformer &#x7684; tokens &#x5E94;&#x8BE5;&#x8981;&#x8F6C;&#x5316;&#x6210; vectors,&#x4E00;&#x4E2A; token &#x5BF9;&#x5E94;&#x4E00;&#x4E2A; vector &#x4ECE; embeddings matrix &#x91CC;&#x53D6;&#x51FA;&#x5BF9;&#x5E94; token &#x7684;&#x5411;&#x91CF; vector&#xFF0C;&#x5C31;&#x5B8C;&#x6210;&#x4E86; tokens-&gt;vectors,&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x60F3;&#x8C61;&#x5F53; input data &#x5728; Transformer &#x4E2D;&#x6D41;&#x52A8;&#x7684;&#x65F6;&#x5019; &#x4ED6;&#x5C31;&#x957F;&#x8FD9;&#x6837;&#x4E00;&#x4E2A; vectors &#x6784;&#x6210;&#x7684; sequence &#x7684;&#x6837;&#x5B50;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># &#x5047;&#x8BBE;&#x7684;&#x4F2A;&#x4EE3;&#x7801;</span><br><span class="line">embeddings_matrix = ...  # &#x9884;&#x8BAD;&#x7EC3;&#x7684;embedding&#x77E9;&#x9635;</span><br><span class="line">tokens = [&quot;I&quot;, &quot;love&quot;, &quot;machine&quot;, &quot;learning&quot;]</span><br><span class="line"></span><br><span class="line"># &#x5C06;&#x6BCF;&#x4E2A;token&#x8F6C;&#x6362;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;vector</span><br><span class="line">token_vectors = [</span><br><span class="line">    embeddings_matrix[&quot;I&quot;],</span><br><span class="line">    embeddings_matrix[&quot;love&quot;],</span><br><span class="line">    embeddings_matrix[&quot;machine&quot;],</span><br><span class="line">    embeddings_matrix[&quot;learning&quot;]</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>&#x7136;&#x540E;&#x521A;&#x521A;&#x751F;&#x6210;&#x7684;&#x8FD9;&#x4E00;&#x4E2A; token &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E00;&#x5806; vectors &#x4F1A;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EB;&#x505A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x7684;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h2 id="Attention-Block"><a href="#Attention-Block" class="headerlink" title="Attention Block"></a>Attention Block</h2><p>WHY need attention block.</p>
+<p>A token is not supposed to be just the exact original meaning(in embeddings matrix) &#x6BD4;&#x5982; model &#x8FD9;&#x4E2A;&#x8BCD;&#xFF0C;&#x6211;&#x4EEC;&#x5047;&#x8BBE;&#x4ED6;&#x662F;&#x4E00;&#x4E2A; token&#xFF0C;machine learning model &#x548C; fashion model &#x7684;&#x610F;&#x601D;&#x80AF;&#x5B9A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x4ED6;&#x4EEC;&#x7684; Pre-trained embeddings matrix &#x91CC;&#x7684;&#x5411;&#x91CF;&#x662F;&#x4E00;&#x6837;,&#x4F46;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x4ED6;&#x4EEC;&#x7684;&#x610F;&#x601D;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6A21;&#x578B;&#x5E94;&#x8BE5;&#x5B66;&#x4E60;&#x5230;&#x8FD9;&#x4E2A;&#x610F;&#x4E49;<br>The vector in embeddings matrix encoded the original information which should change into the meaning it is supposed to be in THE CONTEXT<br>&#x5728; attention block &#x8FD9;&#x4E9B; Vector &#x4F1A;&#x4E92;&#x76F8;&#x4F5C;&#x7528;</p>
+<p>&#x63A5;&#x7740;&#x521A;&#x521A;&#x8BF4;&#x7684;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6709; vectors &#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x5728;&#x8FD9;&#x4E2A;&#x6CE8;&#x610F;&#x529B;&#x5757;&#x91CC;&#xFF0C;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x80FD;&#x591F;&#x76F8;&#x4E92;&#x4EA4;&#x6D41;&#xFF0C;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5; pass information back and forth</p>
+<h2 id="Multilayer-Perceptron"><a href="#Multilayer-Perceptron" class="headerlink" title="Multilayer Perceptron"></a>Multilayer Perceptron</h2><p>&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</p>
+<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF1A;&#x5BF9;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x63D0;&#x51FA;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x95EE;&#x9898;&#xFF0C; &#x7136;&#x540E;&#x6839;&#x636E;&#x8FD9;&#x4E9B;&#x95EE;&#x9898;&#x7684;&#x7B54;&#x6848;&#x6765;&#x66F4;&#x65B0;&#x5411;&#x91CF;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162232003.png"></p>
+<p>&#x8FD9;&#x6837;&#x91CD;&#x590D;&#x8FD9;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162234738.png"></p>
+<h2 id="Final-Processing-vectors"><a href="#Final-Processing-vectors" class="headerlink" title="Final Processing vectors"></a>Final Processing vectors</h2><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162239819.png"></p>
+<h1 id="Dive-into"><a href="#Dive-into" class="headerlink" title="Dive into"></a>Dive into</h1><h2 id="Premise-What-is-Weight"><a href="#Premise-What-is-Weight" class="headerlink" title="Premise:What is Weight"></a>Premise:What is Weight</h2><p>We start with the simplest machine-learning model: <strong>linear model</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170030041.png"></p>
+<p>&#x6570;&#x5B66;&#x8868;&#x8FBE;&#x5F0F; y = wx + b</p>
+<ul>
+<li>y: &#x9884;&#x6D4B;&#x503C;</li>
+<li>x: &#x8F93;&#x5165;&#x7279;&#x5F81;</li>
+<li>w: &#x6743;&#x91CD;(weight)</li>
+<li>b: &#x504F;&#x7F6E;(bias)</li>
 </ul>
-<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
-<li>Allowing simple tools to be connected through pipes and redirections</li>
-<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
-<li>Promoting modularity and flexibility in system design</li>
+<p>We see x as a vector and by processing(computing) x with weight and bias,in the high semantic dimensional space we have changed the meaning x originally represents.</p>
+<h2 id="About-Input-tokens"><a href="#About-Input-tokens" class="headerlink" title="About Input tokens"></a>About Input tokens</h2><p>Input is just what the model processes,the actual brain of Transformer is WEIGHTS.</p>
+<p>&#x6A21;&#x578B;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x9884;&#x8BBE;&#x7684;&#x8BCD;&#x6C47;&#x5E93;&#xFF0C;&#x5305;&#x542B;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x5355;&#x8BCD;&#xFF0C; &#x6BD4;&#x5982;&#x8BF4;&#x6709; 50,000 &#x4E2A;</p>
+<p>&#x8FD9;&#x4E2A;&#x8BCD;&#x6C47;&#x8868;&#x4EE5; Embedding matrix &#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x50A8;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170032772.png"><br>this is pre-trained which somehow encoded the information a single token should represent!<br>Which is to say : these columns are what determines what vector each word(token) turns into <strong>IN THE FIRST STEP</strong></p>
+<p>And &#x4E0D;&#x7BA1;&#x4F60;&#x6784;&#x5EFA;&#x7684;&#x662F;&#x54EA;&#x79CD;&#x6A21;&#x578B;&#xFF0C;&#x8F93;&#x5165;&#x90FD;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x6570;&#x6570;&#x7EC4;&#x8FD9;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x5217;&#x8868;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;&#xFF0C;&#x6216;&#x8005;&#x66F4;&#x5E38;&#x89C1;&#x7684;&#x662F;&#x66F4;&#x9AD8;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x7EC4;&#xFF0C;&#x901A;&#x7528;&#x7684;&#x672F;&#x8BED;&#x6211;&#x4EEC;&#x79F0;&#x4E4B;&#x4E3A;&#x5F20;&#x91CF;<br>So &#x2B07;&#xFE0F;</p>
+<h3 id="How-many-dimensions-can-x-be"><a href="#How-many-dimensions-can-x-be" class="headerlink" title="How many dimensions can x be"></a>How many dimensions can x be</h3><p>As we already know:In the perception of Transformer,Input data is sequence of vectors (high dimensional vector)</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502162219267.png"></p>
+<p>So how many numbers are in a vector ?&#x1F928;</p>
+<p>take GPT-3 for example :12800 dimension,which means 12800 rows for a vector</p>
+<h3 id="review-key-concept"><a href="#review-key-concept" class="headerlink" title="review key concept"></a>review key concept</h3><p>&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#xFF0C; &#x4EE5;&#x786E;&#x5B9A;&#x8BCD;&#x5177;&#x4F53;&#x5982;&#x4F55;&#x88AB;&#x5D4C;&#x5165;&#x4E3A; final &#x5411;&#x91CF;<br><strong>how exactly words get embedded as vectors during training</strong></p>
+<h2 id="What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"><a href="#What-happens-in-the-Attention-block-and-&#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;" class="headerlink" title="What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;"></a>What happens in the Attention block and &#x591A;&#x5C42;&#x611F;&#x77E5;&#x673A;</h2><p>we&#x2019;ve said that &#x201C;&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x601D;&#x60F3;&#x662F;&#xFF0C;&#x6A21;&#x578B;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#x8C03;&#x6574;&#x548C;&#x5FAE;&#x8C03;&#x6743;&#x91CD;&#x201D;<br>So In the Attention block that&#x2019;s what happened.<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052799.png"></p>
+<p>And it does that by what we have mentioned:Weights</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Attention block&#x6838;&#x5FC3;&#x8FC7;&#x7A0B;</span><br><span class="line">Vectors &#x2192; &#x76F8;&#x4E92;&#x4F20;&#x9012;&#x4FE1;&#x606F; &#x2192; &#x8C03;&#x6574;&#x77E9;&#x9635;&#x503C;</span><br></pre></td></tr></table></figure>
+
+<p> &#x6BCF;&#x4E2A; vector &#x90FD;&#x4F1A;:</p>
+<ul>
+<li>&#x4E0E;&#x5176;&#x4ED6; vectors &#x4EA4;&#x4E92;</li>
+<li>&#x4EA4;&#x6362;&#x4FE1;&#x606F;</li>
+<li>&#x6839;&#x636E;&#x4EA4;&#x4E92;&#x7ED3;&#x679C;&#x8C03;&#x6574;&#x81EA;&#x8EAB;&#x8868;&#x5F81;</li>
 </ul>
-<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
-<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
-<li>Achieving complex operations through the intelligent combination of simple tools</li>
+<p>In GPT-3</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170051060.png"></p>
+<p>these weights constantly changed during the process of training</p>
+<h3 id="How-do-we-get-weights"><a href="#How-do-we-get-weights" class="headerlink" title="How do we get weights"></a>How do we get weights</h3><p>&#x9884;&#x6D4B;&#x9636;&#x6BB5;(Inference)</p>
+<ul>
+<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;input vectors matrix</li>
+<li>&#x52A8;&#x6001;&#x8C03;&#x6574; tokens &#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;</li>
+<li>&#x4E0D;&#x6539;&#x53D8;&#x6A21;&#x578B;&#x6743;&#x91CD;</li>
 </ul>
-<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
-<li>Lone wolves in computer science are an endangered species.</li>
-<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
+<p>&#x8BAD;&#x7EC3;&#x9636;&#x6BB5;(Training)</p>
+<ul>
+<li>&#x6539;&#x53D8;&#x7684;&#x662F;&#xFF1A;&#x6A21;&#x578B;&#x7684; weights</li>
+<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;</li>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x5B66;&#x4E60;&#x5982;&#x4F55;&#x66F4;&#x597D;&#x5730;&#x6355;&#x6349; tokens &#x95F4;&#x5173;&#x7CFB;</li>
 </ul>
-<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
-<li><strong>Each tool does one specific task</strong></li>
-<li><strong>Tools are connected through pipes</strong></li>
-<li><strong>Complex functionality emerges from simple tool composition</strong></li>
-<li><strong>Convey ideas</strong></li>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x5F97;&#x5230;&#x4E00;&#x4E2A; reasonable weights</p>
+<h4 id="WHY-do-they-weights-change"><a href="#WHY-do-they-weights-change" class="headerlink" title="WHY do they (weights) change"></a>WHY do they (weights) change</h4><p>The ULTIMATE Goal &#x662F;&#x6700;&#x5C0F;&#x5316;&#x6574;&#x4F53;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x8F93;&#x5165;x &#x2192; &#x6A21;&#x578B;&#x9884;&#x6D4B; &#x2192; &#x8BA1;&#x7B97;&#x8BEF;&#x5DEE; &#x2192; &#x8C03;&#x6574;weights</span><br></pre></td></tr></table></figure>
+
+<h4 id="How-they-change"><a href="#How-they-change" class="headerlink" title="How they change"></a>How they change</h4><ul>
+<li>&#x635F;&#x5931;&#x51FD;&#x6570;(Loss Function)&#x8861;&#x91CF;&#x9884;&#x6D4B;&#x8BEF;&#x5DEE;</li>
+<li>&#x68AF;&#x5EA6;&#x4E0B;&#x964D;&#x6CD5;&#x8BA1;&#x7B97;&#x6743;&#x91CD;&#x8C03;&#x6574;&#x65B9;&#x5411;</li>
+<li>&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x4F20;&#x64AD;(Backpropagation)&#x66F4;&#x65B0;&#x6743;&#x91CD;</li>
 </ul>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170102556.png"></p>
+<p>The most popular algorithm today&#x2019;s models are mostly using</p>
+<p>The model is given an <strong>input vector</strong>, makes a prediction, compares that prediction to the <strong>expected output</strong>, and then uses the error (quantified by the loss function) and the gradient of that error to adjust its weights.</p>
+<p><strong>This adjustment process is what we call &#x201C;learning.&#x201D;</strong></p>
+<h3 id="The-results-of-learning-of-adjusting-weights"><a href="#The-results-of-learning-of-adjusting-weights" class="headerlink" title="The results of learning ,of adjusting weights"></a>The results of learning ,of adjusting weights</h3><p>&#x5047;&#x8BBE;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x8868;&#x793A;&#x201C;&#x5973;&#x6027;&#x541B;&#x4E3B;&#x201D;&#x7684;&#x8BCD; &#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5411;&#x201C;&#x56FD;&#x738B;&#x201D;&#x5411;&#x91CF;&#x6DFB;&#x52A0;&#x201C;&#x5973;&#x4EBA;&#x51CF;&#x7537;&#x4EBA;&#x201D;&#x7684;&#x65B9;&#x5411; &#x5E76;&#x641C;&#x7D22;&#x6700;&#x63A5;&#x8FD1;&#x8FD9;&#x4E2A;&#x70B9;&#x7684;&#x8BCD;&#x5411;&#x91CF;&#x6765;&#x627E;&#x5230;&#x5B83;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170052126.png"></p>
+<p>&#x5173;&#x952E;&#x5728;&#x4E8E;&#xFF0C;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x6A21;&#x578B;&#x53D1;&#x73B0;&#x91C7;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x5D4C;&#x5165;&#x65B9;&#x5F0F;&#x66F4;&#x4E3A;&#x6709;&#x5229; &#x5373;&#x4ED6;&#x5B66;&#x4F1A;&#x4E86;&#x8FD9;&#x4E2A;&#x7A7A;&#x95F4;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x5411;&#x80FD;&#x591F;&#x7F16;&#x7801;&#x6027;&#x522B;&#x4FE1;&#x606F;</p>
+<p>And it has found a proper vector to encode the information the token represents! Not just its original meaning,But IN THE CONTEXT</p>
+<h2 id="In-this-step-What-does-a-well-trained-vector-mean"><a href="#In-this-step-What-does-a-well-trained-vector-mean" class="headerlink" title="In this step,What does a well-trained vector mean"></a>In this step,What does a well-trained vector mean</h2><p>we have got processed vectors by filtering with weights<br>Which means What we are asking right now is (In Y=WX+B)<br><strong>What does WX mean now</strong></p>
+<p>It means <strong>it&#x2019;s context-encoded</strong></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170125004.png"></p>
+<p>Let&#x2019;s summarize it:<br>&#x4E00;&#x4E2A;&#x8BCD;&#x7684;&#x610F;&#x4E49;&#x5F88;&#x5927;&#x7A0B;&#x5EA6;&#x4E0A;&#x662F;&#x7531;&#x5176;&#x6240;&#x5904;&#x7684;&#x73AF;&#x5883;&#x51B3;&#x5B9A;&#x7684; &#x6709;&#x65F6;&#x8FD9;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x6765;&#x81EA;&#x5F88;&#x8FDC;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x3002; &#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x6784;&#x5EFA;&#x4E00;&#x4E2A;&#x80FD;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x8BCD;&#x6C47;&#x7684;&#x6A21;&#x578B;&#x65F6; &#x5173;&#x952E;&#x76EE;&#x6807;&#x5C31;&#x662F;&#x8BA9;&#x5B83;&#x80FD;&#x591F;&#x9AD8;&#x6548;&#x5730;&#x878D;&#x5408;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x6839;&#x636E;&#x8F93;&#x5165;&#x6587;&#x672C;&#x521B;&#x5EFA;&#x5411;&#x91CF;&#x6570;&#x7EC4;&#x65F6;&#xFF0C; &#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x662F;&#x76F4;&#x63A5;&#x4ECE;&#x5D4C;&#x5165;&#x77E9;&#x9635;&#x4E2D;&#x9009;&#x53D6;&#x7684;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x8D77;&#x521D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5411;&#x91CF;&#x4EC5;&#x80FD;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x5355;&#x8BCD;&#x7684;&#x542B;&#x4E49;&#xFF0C; &#x800C;&#x4E0D;&#x6D89;&#x53CA;&#x5176;&#x5468;&#x8FB9;&#x73AF;&#x5883;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x6211;&#x4EEC;&#x7684;&#x4E3B;&#x8981;&#x76EE;&#x6807;&#x662F;&#x8BA9;&#x8FD9;&#x4E9B;&#x5411;&#x91CF;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x9012;&#xFF0C;&#x4F7F;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x90FD;&#x80FD;&#x83B7;&#x5F97;&#x6BD4;&#x5355;&#x4E2A;&#x8BCD;&#x66F4;&#x4E30;&#x5BCC;&#x3001;&#x66F4;&#x5177;&#x4F53;&#x7684;&#x542B;&#x4E49;&#x3002;</p>
+<p>Which is A token has the capacity to absorb its context-meaning</p>
+<h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>&#x8FD9;&#x4E2A;&#x7F51;&#x7EDC;&#x6BCF;&#x6B21;&#x53EA;&#x80FD;&#x5904;&#x7406;&#x4E00;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x5411;&#x91CF;&#x8FD9;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5927;&#x5C0F;&#x3002;<br>&#x610F;&#x5473;&#x7740;&#x6570;&#x636E;&#x5728; Transformer &#x7F51;&#x7EDC;&#x4E2D;&#x6D41;&#x52A8;&#x65F6;&#xFF0C; &#x603B;&#x662F;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E00;&#x4E32; 2048 &#x5217;&#x7684;&#x6570;&#x7EC4;&#x3002;</p>
+<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170130380.png" style="zoom:200%;">
+
+<p>:smile:</p>
+<h2 id="In-the-final"><a href="#In-the-final" class="headerlink" title="In the final"></a>In the final</h2><p>End should look like this:</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170134409.png" alt="1739727248332_d"></p>
+<p>Its final goal is to have a distribution of probability Because Transformer is a prediction model in the end.<br>So We have our processed vectors-composed Sequence&#xFF08;&#x4E0A;&#x4E0B;&#x6587;&#xFF09;,We just need its last column</p>
+<p>&#x4F7F;&#x7528;&#x53E6;&#x4E00;&#x4E2A;&#x77E9;&#x9635; Unembedding matrix&#xFF0C; &#x5C06;&#x4E0A;&#x4E0B;&#x6587;&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6620;&#x5C04;&#x5230; to a list of 50,000 values, one for each token in the vocabulary.&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A; token &#x90FD;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x503C;&#xFF0C;&#x63A5;&#x7740;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x8FD9;&#x4E9B;&#x503C;&#x8F6C;&#x6362;&#x6210;&#x6982;&#x7387;&#x5206;&#x5E03;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x53EB; softmax&#xFF0C;&#x4EC5;&#x4EC5;&#x57FA;&#x4E8E;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x6765;&#x505A;&#x51FA;&#x9884;&#x6D4B;&#x4F3C;&#x4E4E;&#x6709;&#x4E9B;&#x5947;&#x602A;&#xFF0C; &#x6BD5;&#x7ADF;&#x5728;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x4E2D;&#x8FD8;&#x6709;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x7684;&#x5176;&#x4ED6;&#x5411;&#x91CF;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5728;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C; &#x5982;&#x679C;&#x6211;&#x4EEC;&#x5229;&#x7528;&#x6700;&#x7EC8;&#x5C42;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5411;&#x91CF;&#x6765;&#x9884;&#x6D4B;&#x5176;&#x540E;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x88AB;&#x8BC1;&#x660E;&#x662F;&#x66F4;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170139461.png" alt="1739727579409_d"></p>
+<h3 id="&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values"><a href="#&#x600E;&#x4E48;&#x786E;&#x5B9A;-50-000-values" class="headerlink" title="&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values"></a>&#x600E;&#x4E48;&#x786E;&#x5B9A; 50,000 values</h3><p>&#x5173;&#x4E8E;&#x53C2;&#x6570;&#x603B;&#x6570;&#x7684;&#x7EDF;&#x8BA1;&#xFF0C; &#x8FD9;&#x4E2A; unembedding &#x77E9;&#x9635;&#x4E3A;&#x8BCD;&#x6C47;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5355;&#x8BCD;&#x90FD;&#x5206;&#x914D;&#x4E86;&#x4E00;&#x884C;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x5305;&#x542B;&#x4E0E;&#x5D4C;&#x5165;&#x7EF4;&#x5EA6;&#x76F8;&#x540C;&#x6570;&#x91CF;&#x7684;&#x5143;&#x7D20;&#x3002;&#x8FD9;&#x4E0E;&#x5D4C;&#x5165;&#xFF08;embedding&#xFF09;&#x77E9;&#x9635;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x662F;&#x628A;&#x987A;&#x5E8F;&#x5012;&#x8FC7;&#x6765;&#x4E86;&#xFF0C; &#x56E0;&#x6B64;&#x5B83;&#x4E3A;&#x7F51;&#x7EDC;&#x589E;&#x52A0;&#x4E86;&#x53E6;&#x5916; 6.17 &#x4EBF;&#x4E2A;&#x53C2;&#x6570;&#x3002;</p>
+<h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h3><p>&#x6211;&#x4EEC;&#x7684;&#x6700;&#x540E;&#x8BA1;&#x7B97;&#x90FD;&#x662F;&#x77E9;&#x9635;&#x548C; vector &#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x6700;&#x540E;&#x5F97;&#x4E0D;&#x5230;&#x4E00;&#x4E2A;&#x6982;&#x7387;&#x5206;&#x5E03;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5F52;&#x4E00;&#x5316;&#x51FD;&#x6570; &#x8F93;&#x5165;&#x662F; logits &#x8F93;&#x51FA;&#x662F; Probabilities</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170143064.png"></p>
+<p>&#x73B0;&#x5728;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x6E29;&#x5EA6;</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502170146374.png" alt="1739727981548_d"></p>
+<p>&#x5B83;&#x7684;&#x6548;&#x679C;&#x662F;&#xFF0C;&#x5F53; t &#x503C;&#x8F83;&#x5927;&#x65F6;&#xFF0C;&#x4F1A;&#x4F7F;&#x8F83;&#x5C0F;&#x7684;&#x6570;&#x503C;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x7684;&#x6743;&#x91CD;&#xFF0C; &#x4F7F;&#x5F97;&#x5206;&#x5E03;&#x7A0D;&#x5FAE;&#x5747;&#x5300;&#x4E00;&#x4E9B;&#x3002;&#x800C;&#x5982;&#x679C; t &#x503C;&#x8F83;&#x5C0F;&#x5219;&#x8F83;&#x5927;&#x7684;&#x6570;&#x503C;&#x5219;&#x4F1A;&#x66F4;&#x52A0;&#x660E;&#x663E;&#x5730;&#x5360;&#x636E;&#x4E3B;&#x5BFC;&#xFF0C;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;0 &#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD; &#x90A3;&#x4E48;&#x6240;&#x6709;&#x7684;&#x6743;&#x91CD;&#x90FD;&#x4F1A;&#x96C6;&#x4E2D;&#x5728;&#x6700;&#x5927;&#x7684;&#x503C;&#x4E0A;&#x3002;</p>
+<p>&#x6E29;&#x5EA6;&#x4E3A; 0 &#x610F;&#x5473;&#x7740;&#x5B83;&#x603B;&#x662F;&#x9009;&#x62E9;&#x6700;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#x8BCD;,&#x800C;&#x4F60;&#x6240;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x9648;&#x8BCD;&#x6EE5;&#x8C03;&#x7684;&#x91D1;&#x53D1;&#x59D1;&#x5A18;&#x6545;&#x4E8B;&#x3002;&#x8F83;&#x9AD8;&#x7684;&#x6E29;&#x5EA6;&#x7ED9;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x9009;&#x62E9;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x7684;&#x8BCD;&#x7684;&#x673A;&#x4F1A;&#xFF0C;&#x4F46;&#x8FD9;&#x4E5F;&#x4F34;&#x968F;&#x7740;&#x98CE;&#x9669;&#x3002;&#x4F46;&#x5F88;&#x5FEB;&#x5C31;&#x53D8;&#x5F97;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x3002;API &#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x4E0D;&#x5141;&#x8BB8;&#x4F60;&#x9009;&#x62E9;&#x5927;&#x4E8E; 2 &#x7684;&#x6E29;&#x5EA6;&#x3002;&#x8FD9;&#x4E2A;&#x9650;&#x5236;&#x5E76;&#x6CA1;&#x6709;&#x6570;&#x5B66;&#x4E0A;&#x7684;&#x6839;&#x636E;&#xFF0C; &#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4EBA;&#x4E3A;&#x7684;&#x9650;&#x5236;&#xFF0C;&#x6211;&#x731C;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x4ED6;&#x4EEC;&#x7684;&#x5DE5;&#x5177;&#x4EA7;&#x751F;&#x592A;&#x8FC7;&#x8352;&#x8BDE;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
 ]]></content>
       <tags>
-        <tag>Jottings</tag>
+        <tag>ML</tag>
+        <tag>Transformer</tag>
       </tags>
   </entry>
 </search>
