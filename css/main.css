@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #b5cf90;
+  background: #6313ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2619,7 +2619,7 @@ ul.breadcrumb li + li:last-child {
 }
 .sub-menu .menu-item a:hover,
 .sub-menu .menu-item span.exturl:hover {
-  background: transparent;
+  background: #b7a0a0;
   color: #fc6423;
 }
 .sub-menu .menu-item-active a {
