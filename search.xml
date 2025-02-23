@@ -652,84 +652,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Virtual Memory</title>
-    <url>/2024/10/20/2024-10-20Virtual%20Memory/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
-<span id="more"></span>
-
-<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
-<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
-<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OS load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
-<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
-<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000  this instruction loads a value from the virtual address 1000 into a register</span><br></pre></td></tr></table></figure>
-
-<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
-<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
-<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
-<pre><code>      +---------------------+
-      |         CPU         |
-      |                     |
-      |   MOV REG, 1000    |
-      +----------+----------+
-                 |
-                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
-                 v
-      +---------------------+
-      |         MMU         |
-      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
-      +----------+----------+
-                 |
-                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
-                 v
-      +---------------------+
-      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
-      |                     |
-      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
-      +----------+----------+
-</code></pre>
-<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
-<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
-<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
-</li>
-<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
-<p>If the entry exists, the physical address is retrieved.</p>
-</li>
-<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
-<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
-</li>
-<li><p>Page Fault Handling (if needed)</p>
-</li>
-</ol>
-<p>If the virtual address isn&#x2019;t mapped which means a page fault occurs, the OS handles it by performing the following steps:</p>
-<ul>
-<li>Check if there are any free frames in memory.</li>
-<li>If there are free frames, allocate one for the page.</li>
-<li>If there are no free frames, select a victim page to evict from memory.</li>
-<li>The OS retrieves the required data from <strong>disk storage</strong>. Load the required page from disk into the selected frame.</li>
-<li>Update the page table with the new mapping.</li>
-<li>Resume the interrupted instruction that caused the page fault.Which is Returns to step 3 to complete the address translation.</li>
-</ul>
-<p><img src="https://imgur.com/zjbcuyG.png"></p>
-<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
-<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
-<ul>
-<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;whether the page is currently loaded in memory</li>
-<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
-<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
-</ul>
-<p><img src="https://imgur.com/wHlFmqj.png"></p>
-<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
-<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
-<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>计算机组成原理</tag>
-        <tag>cs app</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Stacks And Queues in Data structure</title>
     <url>/2024/10/19/2024-10-19-StackAndQueue/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
@@ -1461,7 +1383,7 @@ end
   </entry>
   <entry>
     <title>But what is a neural network?</title>
-    <url>/2025/02/14/2025-2-21-Neural_Network/</url>
+    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
 <p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
 <p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
@@ -1505,6 +1427,84 @@ end
       <tags>
         <tag>ML</tag>
         <tag>Neural Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Virtual Memory</title>
+    <url>/2024/10/20/2024-10-20-Virtual%20Memory/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+<span id="more"></span>
+
+<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
+<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OS load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
+<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
+<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000  this instruction loads a value from the virtual address 1000 into a register</span><br></pre></td></tr></table></figure>
+
+<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
+<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
+<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
+<pre><code>      +---------------------+
+      |         CPU         |
+      |                     |
+      |   MOV REG, 1000    |
+      +----------+----------+
+                 |
+                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
+                 v
+      +---------------------+
+      |         MMU         |
+      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
+      +----------+----------+
+                 |
+                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
+                 v
+      +---------------------+
+      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
+      |                     |
+      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
+      +----------+----------+
+</code></pre>
+<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
+<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
+<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
+</li>
+<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
+<p>If the entry exists, the physical address is retrieved.</p>
+</li>
+<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
+<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
+</li>
+<li><p>Page Fault Handling (if needed)</p>
+</li>
+</ol>
+<p>If the virtual address isn&#x2019;t mapped which means a page fault occurs, the OS handles it by performing the following steps:</p>
+<ul>
+<li>Check if there are any free frames in memory.</li>
+<li>If there are free frames, allocate one for the page.</li>
+<li>If there are no free frames, select a victim page to evict from memory.</li>
+<li>The OS retrieves the required data from <strong>disk storage</strong>. Load the required page from disk into the selected frame.</li>
+<li>Update the page table with the new mapping.</li>
+<li>Resume the interrupted instruction that caused the page fault.Which is Returns to step 3 to complete the address translation.</li>
+</ul>
+<p><img src="https://imgur.com/zjbcuyG.png"></p>
+<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
+<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
+<ul>
+<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;whether the page is currently loaded in memory</li>
+<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
+<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
+</ul>
+<p><img src="https://imgur.com/wHlFmqj.png"></p>
+<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>计算机组成原理</tag>
+        <tag>cs app</tag>
       </tags>
   </entry>
 </search>
