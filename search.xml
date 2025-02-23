@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>My First Post</title>
+    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
+<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
+</blockquote>
+<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
+<span id="more"></span>
+
+<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
+<hr>
+
+<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
+<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
+<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
+<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
+<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
+<p>we also want to keep primitives lightweight In the meantime.</p>
+<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
+<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
+<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
+<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
+<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
+</ol>
+<p>Which means something besides the simple and standalone value is actually created!</p>
+<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
+<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
+</li>
+<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
+<p>For example, this is entirely valid:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
+
+<p>the result will be</p>
+<ol>
+<li><code>undefined</code> (no strict mode)</li>
+<li>An error (strict mode).</li>
+</ol>
+<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
+<ol>
+<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
+<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>data types</tag>
+        <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Promise</title>
     <url>/2024/07/27/2024-07-27-Promise-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
@@ -198,69 +261,6 @@
       <tags>
         <tag>Javascript</tag>
         <tag>Promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>My First Post</title>
-    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
-<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
-</blockquote>
-<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
-<span id="more"></span>
-
-<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
-<hr>
-
-<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
-<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
-<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
-<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
-<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
-<p>we also want to keep primitives lightweight In the meantime.</p>
-<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
-<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
-<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
-<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
-<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
-</ol>
-<p>Which means something besides the simple and standalone value is actually created!</p>
-<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
-<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
-</li>
-<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
-<p>For example, this is entirely valid:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
-
-<p>the result will be</p>
-<ol>
-<li><code>undefined</code> (no strict mode)</li>
-<li>An error (strict mode).</li>
-</ol>
-<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
-<ol>
-<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
-<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>data types</tag>
-        <tag>数据类型</tag>
       </tags>
   </entry>
   <entry>
@@ -624,6 +624,34 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Ref and Reactive in Vue</title>
+    <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
+
+<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
+<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
+<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
+<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
+<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
+<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
+<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
+<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Stacks And Queues in Data structure</title>
     <url>/2024/10/19/2024-10-19-StackAndQueue/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
@@ -729,97 +757,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>Ref and Reactive in Vue</title>
-    <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
-
-<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
-<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
-<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
-<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
-<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
-<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
-<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
-<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Bubbling and capturing</title>
-    <url>/2024/10/22/2024-10-22-Bubbling%20and%20capturing/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
-<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
-<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
-<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
-<p>Note the differences from</p>
-<ol>
-<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
-</li>
-<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
-</li>
-</ol>
-<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
-<p>In form.onclick handler:</p>
-<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
-<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
-<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
-<p>The method for it is <code>event.stopPropagation()</code>.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
-<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
-<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
-<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
-<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
-<p>For example:</p>
-<ul>
-<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
-<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
-<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
-</ul>
-<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
-<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
-<ol>
-<li>Capturing phase &#x2013; the event goes down to the element.</li>
-<li>Target phase &#x2013; the event reached the target element.</li>
-<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
-</ol>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
-<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>Its third parameter is a Boolean value. By setting true/false, the listener is designed in different stages. True means in the capture stage, and false means in the bubbling stage.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-
-<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
-<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>There are both bubbling and capturing, but according to the previous roller coaster, capturing takes precedence over bubbling. When you trigger an event, the browser first checks if there is a listener in your capture phase, then the listener on your element, and then checks if there is a listener in your bubbling phase.</p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
-<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
-<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
-]]></content>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Virtual Memory</title>
     <url>/2024/10/20/2024-10-20-Virtual%20Memory/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
@@ -898,6 +835,69 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Bubbling and capturing</title>
+    <url>/2024/10/22/2024-10-22-Bubbling%20and%20capturing/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
+<h1 id="Bubbling"><a href="#Bubbling" class="headerlink" title="Bubbling"></a>Bubbling</h1><p>When an event happens on an element(like click on a button), it first runs the handlers on it, then on its parent, then all the way up on other <strong>ancestors.</strong><br><img src="https://s3.bmp.ovh/imgs/2024/10/22/9d20d1c154df1a4d.png"></p>
+<h2 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h2><p><strong>A handler on a parent element</strong> can always get the information about where it actually happened.</p>
+<p>The most deeply nested element that caused the event is called a target element, accessible as event.target.</p>
+<p>Note the differences from</p>
+<ol>
+<li><p>this (=event.currentTarget): this &#x2013; is the &#x201C;current&#x201D; element, the one that <strong>has a currently running handler</strong> on it.</p>
+</li>
+<li><p>event.target &#x2013; is the &#x201C;target&#x201D; element that <strong>initiated the event,</strong> it doesn&#x2019;t change through the bubbling process.</p>
+</li>
+</ol>
+<h3 id="example&#xFF1A;form"><a href="#example&#xFF1A;form" class="headerlink" title="example&#xFF1A;form"></a>example&#xFF1A;form</h3><p>For instance, if we have a single handler form.onclick, then it can &#x201C;catch&#x201D; all clicks inside the form. No matter where the click happened, it bubbles up to <form> and runs the handler.</form></p>
+<p>In form.onclick handler:</p>
+<p>this (=event.currentTarget) is the <form> element, because the handler runs on it.<br>event.target is the actual element inside the form that was clicked.</form></p>
+<h1 id="Stop-bubbling"><a href="#Stop-bubbling" class="headerlink" title="Stop bubbling"></a>Stop bubbling</h1><p>A bubbling event goes from the target element straight up. Normally it goes upwards till <code>&lt;html&gt;</code>, and then to <code>document</code> object, and some events even reach <code>window</code>, <strong>calling all handlers on the path</strong>.</p>
+<p>**But any handler can decide that the event has been fully processed and stop the bubbling.**which is to say &#x201C;this is enough, I don&#x2019;t want this event to be known by other handlers&#x201D;.</p>
+<p>The method for it is <code>event.stopPropagation()</code>.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(`the bubbling doesn&apos;t reach here`)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;event.stopPropagation()&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="event-stopImmediatePropagation"><a href="#event-stopImmediatePropagation" class="headerlink" title="event.stopImmediatePropagation()."></a><code>event.stopImmediatePropagation()</code>.</h2><p>If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.</p>
+<p>In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.</p>
+<p>To stop the bubbling and prevent handlers on the current element from running, there&#x2019;s a method <code>event.stopImmediatePropagation()</code>. After you use this <code>event.stopImmediatePropagation()</code> no other handlers will execute.</p>
+<h2 id="event-preventDefault"><a href="#event-preventDefault" class="headerlink" title="event.preventDefault();"></a>event.preventDefault();</h2><p>What is default behavior&#xFF1F;</p>
+<p>It is the default behavior of the browser <strong>in response to the event</strong> like click, keypress, submit, etc.</p>
+<p>For example:</p>
+<ul>
+<li>Click the &#x201C;Submit&#x201D; button in the form, the browser will submit the form by default.</li>
+<li>Press the Enter key in the text box, the browser will perform the submit operation by default.</li>
+<li>Trigger the <code>copy</code> event, the browser will copy the selected text to the clipboard by default.</li>
+</ul>
+<h1 id="Capturing"><a href="#Capturing" class="headerlink" title="Capturing"></a>Capturing</h1><p>There&#x2019;s another phase of event processing called &#x201C;capturing&#x201D;. It is rarely used in real code, but sometimes can be useful.</p>
+<p>The standard <a href="https://www.w3.org/TR/DOM-Level-3-Events/">DOM Events</a> describes 3 phases of event propagation:</p>
+<ol>
+<li>Capturing phase &#x2013; the event goes down to the element.</li>
+<li>Target phase &#x2013; the event reached the target element.</li>
+<li>Bubbling phase &#x2013; the event bubbles up from the element.</li>
+</ol>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/1b28efb367e3bce0.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/46932dc2a35503c3.png"></p>
+<h1 id="addeventListener"><a href="#addeventListener" class="headerlink" title="addeventListener"></a>addeventListener</h1><p>Its third parameter is a Boolean value. By setting true/false, the listener is designed in different stages. True means in the capture stage, and false means in the bubbling stage.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&#x5F53;&#x4F60;&#x70B9;&#x51FB; span &#x65F6;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; span button body&#xFF0C;&#x56E0;&#x4E3A;&#x4E8B;&#x4EF6;&#x662F;&#x4ECE; span &#x5F00;&#x59CB;&#x5192;&#x6CE1;&#x5230; button &#x518D;&#x5192;&#x6CE1;&#x5230; body &#x7684;&#x3002;<br>&#x4F46;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x53EA;&#x6709; body &#x4F1A;&#x8F93;&#x51FA; &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x5143;&#x7D20; &#x4ED6;&#x5F80;&#x4E0A;&#x5192;&#x6CE1;&#x6CA1;&#x6709;&#x76D1;&#x542C;&#x5668;&#x4E86;&#x3002;</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;button&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> span = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;span&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Name</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">nodeName</span>);</span><br><span class="line">}</span><br><span class="line">button.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">span.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br><span class="line">body.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="title class_">Name</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x73B0;&#x5728;&#x5F53;&#x4F60;&#x70B9;&#x51FB; body &#x4F1A;&#x4F9D;&#x6B21;&#x8F93;&#x51FA; body &#x4E5F;&#x53EA;&#x4F1A;&#x8F93;&#x51FA; body &#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x5143;&#x7D20; target &#x4E86; &#x5F53;&#x4F60;&#x70B9;&#x51FB; body body &#x5C31;&#x662F;&#x76EE;&#x6807;&#x5143;&#x7D20; &#x8FD9;&#x4E2A;&#x6355;&#x83B7;&#x9636;&#x6BB5;&#x662F;&#x4ECE; window-&gt;body &#x800C;&#x4E0D;&#x662F; body-&gt;button-&gt;span</strong></p>
+<h1 id="&#x4E8B;&#x4EF6;&#x6D41;"><a href="#&#x4E8B;&#x4EF6;&#x6D41;" class="headerlink" title="&#x4E8B;&#x4EF6;&#x6D41;"></a>&#x4E8B;&#x4EF6;&#x6D41;</h1><p>There are both bubbling and capturing, but according to the previous roller coaster, capturing takes precedence over bubbling. When you trigger an event, the browser first checks if there is a listener in your capture phase, then the listener on your element, and then checks if there is a listener in your bubbling phase.</p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/0604a69b22152556.png"></p>
+<p><img src="https://s3.bmp.ovh/imgs/2024/10/22/9ffa9d7610d4de7b.png"></p>
+<p>&#x70B9;&#x51FB;&#x5143;&#x7D20;&#xFF0C;&#x89E6;&#x53D1;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6D41;&#x5230;&#x8FBE;&#x4ED6; &#x6D4F;&#x89C8;&#x5668;&#x4ECE; window &#x5F00;&#x59CB;&#x6355;&#x83B7;&#x5230;&#x8FBE;&#x5143;&#x7D20; &#x518D;&#x4ECE;&#x5143;&#x7D20;&#x5192;&#x6CE1;&#x5230; window &#x6CBF;&#x8DEF;&#x53D1;&#x73B0; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x7136;&#x540E;&#x5230;&#x8FBE;&#x5143;&#x7D20; baby &#x7684; &#x5192;&#x6CE1;&#x5230;&#x8FBE; grandma &#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x6267;&#x884C; mother &#x548C; daughter &#x7684;&#x76D1;&#x542C;&#x5668; &#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x76D1;&#x542C;&#x5668;&#x8BBE;&#x5728;&#x6355;&#x83B7;&#x9636;&#x6BB5;</p>
+]]></content>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Siganls</title>
     <url>/2024/10/22/2024-10-22-signal/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410230050367.png"></p>
@@ -963,6 +963,65 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       <tags>
         <tag>计算机组成原理</tag>
         <tag>cs app</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跨域</title>
+    <url>/2024/11/02/2024-11-2-%E8%B7%A8%E5%9F%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="&#x540C;&#x6E90;&#x7B56;&#x7565;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;</h1><h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x4E2A; URL &#x7684;&#x534F;&#x8BAE;&#x3001;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x90FD;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x5176;&#x8D44;&#x6E90;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x68C0;&#x67E5;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x5426;&#x76F8;&#x540C;&#xFF1A;</p>
+<ol>
+<li><strong>&#x534F;&#x8BAE;</strong>&#xFF08;&#x5982; <code>http</code>&#x3001;<code>https</code>&#xFF09;</li>
+<li><strong>&#x57DF;&#x540D;</strong>&#xFF08;&#x5982; <code>example.com</code>&#x3001;<code>sub.example.com</code>&#xFF09;</li>
+<li><strong>&#x7AEF;&#x53E3;</strong>&#xFF08;&#x5982; <code>80</code>&#x3001;<code>443</code>&#xFF09;</li>
+</ol>
+<h3 id="&#x793A;&#x4F8B;"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</h3><ul>
+<li><code>http://example.com/page1</code> &#x548C; <code>http://example.com/page2</code> &#x662F;&#x540C;&#x6E90;&#x7684;&#x3002;</li>
+<li><code>http://example.com</code> &#x548C; <code>https://example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x534F;&#x8BAE;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+<li><code>http://example.com</code> &#x548C; <code>http://api.example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x57DF;&#x540D;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+<li><code>http://example.com:80</code> &#x548C; <code>http://example.com:8080</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x7AEF;&#x53E3;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
+</ul>
+<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x8DE8;&#x57DF;&#x8BBF;&#x95EE;&#xFF1A;</p>
+<ol>
+<li><strong>DOM &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x6216;&#x64CD;&#x4F5C;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; DOM&#x3002;</li>
+<li><strong>Cookie &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; Cookie&#x3002;</li>
+<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x53D1;&#x8D77; AJAX &#x8BF7;&#x6C42;&#xFF0C;&#x9664;&#x975E;&#x76EE;&#x6807;&#x6E90;&#x5141;&#x8BB8;&#xFF08;&#x901A;&#x8FC7; CORS&#xFF09;&#x3002;</li>
+<li><strong>LocalStorage &#x548C; SessionStorage &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x3002;</li>
+</ol>
+<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
+<ol>
+<li><strong>Cookie</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; Cookie&#x3002;</li>
+<li><strong>DOM</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x64CD;&#x4F5C;&#x6216;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; DOM&#x3002;</li>
+<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x901A;&#x8FC7; AJAX &#x8BF7;&#x6C42;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x6570;&#x636E;&#x3002;</li>
+</ol>
+<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;</h3><p>&#x867D;&#x7136;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x5B89;&#x5168;&#x673A;&#x5236;&#xFF0C;&#x4F46;&#x6709;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7ED5;&#x8FC7;&#x6216;&#x653E;&#x5BBD;&#x540C;&#x6E90;&#x7B56;&#x7565;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF1A;</p>
+<ol>
+<li><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong>&#xFF1A;&#x670D;&#x52A1;&#x5668;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
+<li><strong>JSONP</strong>&#xFF1A;&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
+<li><strong>PostMessage</strong>&#xFF1A;&#x4F7F;&#x7528; <code>window.postMessage</code> &#x65B9;&#x6CD5;&#x5728;&#x4E0D;&#x540C;&#x6E90;&#x7684;&#x7A97;&#x53E3;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x901A;&#x4FE1;&#x3002;</li>
+<li><strong>&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</strong>&#xFF1A;&#x901A;&#x8FC7;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4EE3;&#x7406;&#x8BF7;&#x6C42;&#x76EE;&#x6807;&#x8D44;&#x6E90;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</li>
+</ol>
+<h1 id="JSONP-&#x793A;&#x4F8B;"><a href="#JSONP-&#x793A;&#x4F8B;" class="headerlink" title="JSONP &#x793A;&#x4F8B;"></a>JSONP &#x793A;&#x4F8B;</h1><ul>
+<li>&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
+<li>&#x53EA;&#x80FD;&#x7528;&#x4E8E; GET &#x8BF7;&#x6C42;&#x3002;</li>
+</ul>
+<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">const callback = req.query.callback;</span><br><span class="line">const data = { message: &apos;Hello, JSONP!&apos; };</span><br><span class="line">res.send(`${callback}(${JSON.stringify(data)})`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;JSONP Example&lt;/title&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function handleResponse(data) {</span><br><span class="line">      console.log(data.message);</span><br><span class="line">    }</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script src=&quot;http://localhost:3000/data?callback=handleResponse&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"><a href="#CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;" class="headerlink" title="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"></a><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong></h1><ul>
+<li>&#x670D;&#x52A1;&#x5668;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#x6DFB;&#x52A0;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
+<li>&#x652F;&#x6301; GET&#x3001;POST&#x3001;PUT&#x3001;DELETE &#x7B49;&#x591A;&#x79CD; HTTP &#x65B9;&#x6CD5;&#x3002;</li>
+</ul>
+<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.use((req, res, next) =&gt; {</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Methods&apos;, &apos;GET, POST, PUT, DELETE&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type&apos;);</span><br><span class="line">  next();</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">  res.json({ message: &apos;Hello, CORS!&apos; });</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">  console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>&#x5BA2;&#x6237;&#x7AEF;</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CORS Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">fetch</span>(<span class="string">&quot;http://localhost:3000/data&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">message</span>))</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error:&quot;</span>, error));</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>前端</tag>
       </tags>
   </entry>
   <entry>
@@ -1138,113 +1197,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>跨域</title>
-    <url>/2024/11/02/2024-11-2-%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="&#x540C;&#x6E90;&#x7B56;&#x7565;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;</h1><h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x4E2A; URL &#x7684;&#x534F;&#x8BAE;&#x3001;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x90FD;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x5176;&#x8D44;&#x6E90;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x68C0;&#x67E5;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x5426;&#x76F8;&#x540C;&#xFF1A;</p>
-<ol>
-<li><strong>&#x534F;&#x8BAE;</strong>&#xFF08;&#x5982; <code>http</code>&#x3001;<code>https</code>&#xFF09;</li>
-<li><strong>&#x57DF;&#x540D;</strong>&#xFF08;&#x5982; <code>example.com</code>&#x3001;<code>sub.example.com</code>&#xFF09;</li>
-<li><strong>&#x7AEF;&#x53E3;</strong>&#xFF08;&#x5982; <code>80</code>&#x3001;<code>443</code>&#xFF09;</li>
-</ol>
-<h3 id="&#x793A;&#x4F8B;"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</h3><ul>
-<li><code>http://example.com/page1</code> &#x548C; <code>http://example.com/page2</code> &#x662F;&#x540C;&#x6E90;&#x7684;&#x3002;</li>
-<li><code>http://example.com</code> &#x548C; <code>https://example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x534F;&#x8BAE;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
-<li><code>http://example.com</code> &#x548C; <code>http://api.example.com</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x57DF;&#x540D;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
-<li><code>http://example.com:80</code> &#x548C; <code>http://example.com:8080</code> &#x4E0D;&#x662F;&#x540C;&#x6E90;&#x7684;&#xFF08;&#x7AEF;&#x53E3;&#x4E0D;&#x540C;&#xFF09;&#x3002;</li>
-</ul>
-<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5177;&#x4F53;&#x9650;&#x5236;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x4E86;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x8DE8;&#x57DF;&#x8BBF;&#x95EE;&#xFF1A;</p>
-<ol>
-<li><strong>DOM &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x6216;&#x64CD;&#x4F5C;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; DOM&#x3002;</li>
-<li><strong>Cookie &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;&#x6216;&#x5199;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684; Cookie&#x3002;</li>
-<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x5411;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x53D1;&#x8D77; AJAX &#x8BF7;&#x6C42;&#xFF0C;&#x9664;&#x975E;&#x76EE;&#x6807;&#x6E90;&#x5141;&#x8BB8;&#xFF08;&#x901A;&#x8FC7; CORS&#xFF09;&#x3002;</li>
-<li><strong>LocalStorage &#x548C; SessionStorage &#x8BBF;&#x95EE;</strong>&#xFF1A;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x811A;&#x672C;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x53E6;&#x4E00;&#x4E2A;&#x6E90;&#x7684;&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x3002;</li>
-</ol>
-<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F5C;&#x7528;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</p>
-<ol>
-<li><strong>Cookie</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; Cookie&#x3002;</li>
-<li><strong>DOM</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x64CD;&#x4F5C;&#x6216;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684; DOM&#x3002;</li>
-<li><strong>AJAX &#x8BF7;&#x6C42;</strong>&#xFF1A;&#x9632;&#x6B62;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x901A;&#x8FC7; AJAX &#x8BF7;&#x6C42;&#x8BFB;&#x53D6;&#x53E6;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x6570;&#x636E;&#x3002;</li>
-</ol>
-<h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x4F8B;&#x5916;</h3><p>&#x867D;&#x7136;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x662F;&#x9ED8;&#x8BA4;&#x7684;&#x5B89;&#x5168;&#x673A;&#x5236;&#xFF0C;&#x4F46;&#x6709;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7ED5;&#x8FC7;&#x6216;&#x653E;&#x5BBD;&#x540C;&#x6E90;&#x7B56;&#x7565;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF1A;</p>
-<ol>
-<li><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong>&#xFF1A;&#x670D;&#x52A1;&#x5668;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
-<li><strong>JSONP</strong>&#xFF1A;&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
-<li><strong>PostMessage</strong>&#xFF1A;&#x4F7F;&#x7528; <code>window.postMessage</code> &#x65B9;&#x6CD5;&#x5728;&#x4E0D;&#x540C;&#x6E90;&#x7684;&#x7A97;&#x53E3;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x901A;&#x4FE1;&#x3002;</li>
-<li><strong>&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</strong>&#xFF1A;&#x901A;&#x8FC7;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x4EE3;&#x7406;&#x8BF7;&#x6C42;&#x76EE;&#x6807;&#x8D44;&#x6E90;&#xFF0C;&#x7136;&#x540E;&#x5C06;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</li>
-</ol>
-<h1 id="JSONP-&#x793A;&#x4F8B;"><a href="#JSONP-&#x793A;&#x4F8B;" class="headerlink" title="JSONP &#x793A;&#x4F8B;"></a>JSONP &#x793A;&#x4F8B;</h1><ul>
-<li>&#x901A;&#x8FC7; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x7684; src &#x5C5E;&#x6027;&#x6765;&#x8BF7;&#x6C42;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#xFF0C;&#x56E0;&#x4E3A; <code>&lt;script&gt;</code> &#x6807;&#x7B7E;&#x4E0D;&#x53D7;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x9650;&#x5236;&#x3002;</li>
-<li>&#x53EA;&#x80FD;&#x7528;&#x4E8E; GET &#x8BF7;&#x6C42;&#x3002;</li>
-</ul>
-<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">const callback = req.query.callback;</span><br><span class="line">const data = { message: &apos;Hello, JSONP!&apos; };</span><br><span class="line">res.send(`${callback}(${JSON.stringify(data)})`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>&#x5BA2;&#x6237;&#x7AEF;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;title&gt;JSONP Example&lt;/title&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    function handleResponse(data) {</span><br><span class="line">      console.log(data.message);</span><br><span class="line">    }</span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script src=&quot;http://localhost:3000/data?callback=handleResponse&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"><a href="#CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;" class="headerlink" title="CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;"></a><strong>CORS&#xFF08;&#x8DE8;&#x57DF;&#x8D44;&#x6E90;&#x5171;&#x4EAB;&#xFF09;</strong></h1><ul>
-<li>&#x670D;&#x52A1;&#x5668;&#x5728;&#x54CD;&#x5E94;&#x5934;&#x4E2D;&#x6DFB;&#x52A0;&#x7279;&#x5B9A;&#x7684; HTTP &#x5934;&#xFF0C;&#x5141;&#x8BB8;&#x8DE8;&#x57DF;&#x8BF7;&#x6C42;&#x3002;</li>
-<li>&#x652F;&#x6301; GET&#x3001;POST&#x3001;PUT&#x3001;DELETE &#x7B49;&#x591A;&#x79CD; HTTP &#x65B9;&#x6CD5;&#x3002;</li>
-</ul>
-<p>&#x670D;&#x52A1;&#x5668;&#x7AEF;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">app.use((req, res, next) =&gt; {</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Methods&apos;, &apos;GET, POST, PUT, DELETE&apos;);</span><br><span class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type&apos;);</span><br><span class="line">  next();</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.get(&apos;/data&apos;, (req, res) =&gt; {</span><br><span class="line">  res.json({ message: &apos;Hello, CORS!&apos; });</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">app.listen(3000, () =&gt; {</span><br><span class="line">  console.log(&apos;Server is running on port 3000&apos;);</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>&#x5BA2;&#x6237;&#x7AEF;</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CORS Example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">      <span class="title function_">fetch</span>(<span class="string">&quot;http://localhost:3000/data&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">message</span>))</span></span><br><span class="line"><span class="language-javascript">        .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error:&quot;</span>, error));</span></span><br><span class="line"><span class="language-javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>But what is a neural network?</title>
-    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
-<p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
-<p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
-<p>&#x7B80;&#x5355;&#x5047;&#x8BBE;neuron&#xFF1A;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212112168.png" style="zoom:50%;"></p>
-<p>Activation</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114250.png"></p>
-<p>this 784 neurons make up our first layer:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114394.png" style="zoom:50%;"></p>
-<p>&#x800C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7684;:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212116496.png" style="zoom:67%;"></p>
-<p>&#x4E2D;&#x95F4;&#x7684;&#x662F;&#x9690;&#x85CF;&#x5C42;<br>The way the network operates, activations in one layer determine the activations of the next layer.</p>
-<p>how those activations from one layer bring about activations in the next layer It&#x2019;s meant to be loosely analogous to how in biological networks of neurons, some groups of neurons firing cause certain others to fire.</p>
-<p><strong>if you feed in an image, lighting up all 784 neurons of the input layer according to the brightness of each pixel in the image, that pattern of activations causes some very specific pattern in the next layer which causes some pattern in the one after it,which finally gives some pattern in the output layer.And the brightest neuron of that output layer is the network&#x2019;s choice</strong></p>
-<h1 id="why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently"><a href="#why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently" class="headerlink" title="why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently"></a>why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently</h1><p>Well, when you or I recognize digits, we piece together various components. A 9 has a loop up top and a line on the right. An 8 also has a loop up top, but it&#x2019;s paired with another loop down low. A 4 basically breaks down into three specific lines, and things like that.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212121375.png"></p>
-<p>Now in a perfect world, we might hope that each neuron in the second to last layer corresponds with one of these subcomponents<br>like:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212123258.png" style="zoom:50%;"></p>
-<p>That way, going from the third layer to the last one just requires learning which combination of subcomponents corresponds to which digits. </p>
-<h2 id="Recognizing-a-loop-can-also-break-down-into-subproblems"><a href="#Recognizing-a-loop-can-also-break-down-into-subproblems" class="headerlink" title="Recognizing a loop can also break down into subproblems."></a>Recognizing a loop can also break down into subproblems.</h2><p>recognize the various little edges that make it up.<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212124765.png"></p>
-<p>So our final hope is like:</p>
-<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212126814.png" style="zoom:50%;">
-
-<h1 id="design"><a href="#design" class="headerlink" title="design"></a>design</h1><p>let&#x2019;s say the hope is for one particular neuron in the second layer to pick up  whether or not the image has an edge in this region here. The question at hand is what parameters should the network have?</p>
-<p>what we&#x2019;ll do is assign a weight to each one of the connections between our neuron and the neurons from the first layer. Then take all of those activations from the first layer and compute their weighted sum according to these weights.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212146600.png"></p>
-<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><p>When you compute a weighted sum like this, you might come out with any number, but for this network what we want is for activations to be some value between 0 and 1. </p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212147104.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212148379.png"></p>
-<h1 id="bias"><a href="#bias" class="headerlink" title="bias"></a>bias</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212150034.png"></p>
-<p>bias What we&#x2019;ll do then is just add in some other number like negative 10 to this</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212151469.png"></p>
-<p>So the weights tell you what pixel pattern this neuron in the second  is picking up on, and the bias tells you how high the weighted sum needs to be before the neuron starts getting meaningfully active.</p>
-<p>Every other neuron in this layer is going to be connected to  all 784 pixel neurons from the first layer, and each one of those 784 connections has its own weight associated with it. Also, each one has some bias, some other number that you add</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212153573.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212154068.png"></p>
-<p>13,000 &#x4E2A;&#x65CB;&#x94AE;&#x548C;&#x65CB;&#x94AE;&#xFF0C;&#x53EF;&#x8C03;&#x6574;&#x548C;&#x8F6C;&#x52A8;to make this network behave in different ways.</p>
-<p>So when we talk about learning, what that&#x2019;s referring to is getting the computer to find a valid setting for all of these many many numbers so that it&#x2019;ll actually solve the problem at hand.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212158165.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212159137.png"></p>
-<p>so it&#x2019;s actually more accurate to think of each neuron as a function, one that takes in the outputs of all the neurons in the previous layer and spits out a number between 0,1</p>
-<p>784 numbers as an input and spits out 10 numbers as an output. It&#x2019;s an absurdly complicated function, one that involves 13,000 parameters</p>
-]]></content>
-      <tags>
-        <tag>ML</tag>
-        <tag>Neural Network</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>webpack基础</title>
     <url>/2025/02/04/2025-02-06-Webpack%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
@@ -1295,6 +1247,54 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>But what is a neural network?</title>
+    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
+<p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
+<p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
+<p>&#x7B80;&#x5355;&#x5047;&#x8BBE;neuron&#xFF1A;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212112168.png" style="zoom:50%;"></p>
+<p>Activation</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114250.png"></p>
+<p>this 784 neurons make up our first layer:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114394.png" style="zoom:50%;"></p>
+<p>&#x800C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7684;:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212116496.png" style="zoom:67%;"></p>
+<p>&#x4E2D;&#x95F4;&#x7684;&#x662F;&#x9690;&#x85CF;&#x5C42;<br>The way the network operates, activations in one layer determine the activations of the next layer.</p>
+<p>how those activations from one layer bring about activations in the next layer It&#x2019;s meant to be loosely analogous to how in biological networks of neurons, some groups of neurons firing cause certain others to fire.</p>
+<p><strong>if you feed in an image, lighting up all 784 neurons of the input layer according to the brightness of each pixel in the image, that pattern of activations causes some very specific pattern in the next layer which causes some pattern in the one after it,which finally gives some pattern in the output layer.And the brightest neuron of that output layer is the network&#x2019;s choice</strong></p>
+<h1 id="why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently"><a href="#why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently" class="headerlink" title="why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently"></a>why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently</h1><p>Well, when you or I recognize digits, we piece together various components. A 9 has a loop up top and a line on the right. An 8 also has a loop up top, but it&#x2019;s paired with another loop down low. A 4 basically breaks down into three specific lines, and things like that.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212121375.png"></p>
+<p>Now in a perfect world, we might hope that each neuron in the second to last layer corresponds with one of these subcomponents<br>like:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212123258.png" style="zoom:50%;"></p>
+<p>That way, going from the third layer to the last one just requires learning which combination of subcomponents corresponds to which digits. </p>
+<h2 id="Recognizing-a-loop-can-also-break-down-into-subproblems"><a href="#Recognizing-a-loop-can-also-break-down-into-subproblems" class="headerlink" title="Recognizing a loop can also break down into subproblems."></a>Recognizing a loop can also break down into subproblems.</h2><p>recognize the various little edges that make it up.<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212124765.png"></p>
+<p>So our final hope is like:</p>
+<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212126814.png" style="zoom:50%;">
+
+<h1 id="design"><a href="#design" class="headerlink" title="design"></a>design</h1><p>let&#x2019;s say the hope is for one particular neuron in the second layer to pick up  whether or not the image has an edge in this region here. The question at hand is what parameters should the network have?</p>
+<p>what we&#x2019;ll do is assign a weight to each one of the connections between our neuron and the neurons from the first layer. Then take all of those activations from the first layer and compute their weighted sum according to these weights.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212146600.png"></p>
+<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><p>When you compute a weighted sum like this, you might come out with any number, but for this network what we want is for activations to be some value between 0 and 1. </p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212147104.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212148379.png"></p>
+<h1 id="bias"><a href="#bias" class="headerlink" title="bias"></a>bias</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212150034.png"></p>
+<p>bias What we&#x2019;ll do then is just add in some other number like negative 10 to this</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212151469.png"></p>
+<p>So the weights tell you what pixel pattern this neuron in the second  is picking up on, and the bias tells you how high the weighted sum needs to be before the neuron starts getting meaningfully active.</p>
+<p>Every other neuron in this layer is going to be connected to  all 784 pixel neurons from the first layer, and each one of those 784 connections has its own weight associated with it. Also, each one has some bias, some other number that you add</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212153573.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212154068.png"></p>
+<p>13,000 &#x4E2A;&#x65CB;&#x94AE;&#x548C;&#x65CB;&#x94AE;&#xFF0C;&#x53EF;&#x8C03;&#x6574;&#x548C;&#x8F6C;&#x52A8;to make this network behave in different ways.</p>
+<p>So when we talk about learning, what that&#x2019;s referring to is getting the computer to find a valid setting for all of these many many numbers so that it&#x2019;ll actually solve the problem at hand.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212158165.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212159137.png"></p>
+<p>so it&#x2019;s actually more accurate to think of each neuron as a function, one that takes in the outputs of all the neurons in the previous layer and spits out a number between 0,1</p>
+<p>784 numbers as an input and spits out 10 numbers as an output. It&#x2019;s an absurdly complicated function, one that involves 13,000 parameters</p>
+]]></content>
+      <tags>
+        <tag>ML</tag>
+        <tag>Neural Network</tag>
       </tags>
   </entry>
   <entry>
@@ -1569,20 +1569,6 @@ end
 <li><strong>Complex functionality emerges from simple tool composition</strong></li>
 <li><strong>Convey ideas</strong></li>
 </ul>
-]]></content>
-      <tags>
-        <tag>Jottings</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>02-23</title>
-    <url>/2025/02/23/Jottings/2025/2025-02-23-MIT/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>Reflecting on my time at MIT, I wish I had been more intentional, more present, and more engaged. The experience was a gift, but I see now how much more I could have made of it.</p>
-<p>I was young, naive, and plagued by impostor syndrome. I held back instead of exploring more, engaging more deeply, and seeking out more challenges.  I allowed myself to be carried along by the current, rather than actively charting my own course. Youth is wasted on the young.</p>
-<p>Why pretend to be smart and play it safe? True understanding is rare and hard-won, so why claim it before you are sure of it? Isn&#x2019;t it more advantageous to embrace your stupidity/ignorance and be underestimated?  In research and academia, success often goes not to the one who understands first, but to the one who understands best. Even when speed matters, the real advantage comes from the deep, foundational insights that lead there.</p>
-<p>When you approach work with humility and curiosity, you learn more and participate more fully. Good collaborators value these qualities. A beginner&#x2019;s mind is an asset. <a href="https://muratbuffalo.blogspot.com/2020/07/the-great-work-of-your-life-by-stephen.html">Staying close to your authentic self helps you find your true calling.</a></p>
-</blockquote>
 ]]></content>
       <tags>
         <tag>Jottings</tag>
