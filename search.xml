@@ -1197,54 +1197,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>But what is a neural network?</title>
-    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
-<p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
-<p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
-<p>&#x7B80;&#x5355;&#x5047;&#x8BBE;neuron&#xFF1A;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212112168.png" style="zoom:50%;"></p>
-<p>Activation</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114250.png"></p>
-<p>this 784 neurons make up our first layer:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114394.png" style="zoom:50%;"></p>
-<p>&#x800C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7684;:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212116496.png" style="zoom:67%;"></p>
-<p>&#x4E2D;&#x95F4;&#x7684;&#x662F;&#x9690;&#x85CF;&#x5C42;<br>The way the network operates, activations in one layer determine the activations of the next layer.</p>
-<p>how those activations from one layer bring about activations in the next layer It&#x2019;s meant to be loosely analogous to how in biological networks of neurons, some groups of neurons firing cause certain others to fire.</p>
-<p><strong>if you feed in an image, lighting up all 784 neurons of the input layer according to the brightness of each pixel in the image, that pattern of activations causes some very specific pattern in the next layer which causes some pattern in the one after it,which finally gives some pattern in the output layer.And the brightest neuron of that output layer is the network&#x2019;s choice</strong></p>
-<h1 id="why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently"><a href="#why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently" class="headerlink" title="why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently"></a>why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently</h1><p>Well, when you or I recognize digits, we piece together various components. A 9 has a loop up top and a line on the right. An 8 also has a loop up top, but it&#x2019;s paired with another loop down low. A 4 basically breaks down into three specific lines, and things like that.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212121375.png"></p>
-<p>Now in a perfect world, we might hope that each neuron in the second to last layer corresponds with one of these subcomponents<br>like:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212123258.png" style="zoom:50%;"></p>
-<p>That way, going from the third layer to the last one just requires learning which combination of subcomponents corresponds to which digits. </p>
-<h2 id="Recognizing-a-loop-can-also-break-down-into-subproblems"><a href="#Recognizing-a-loop-can-also-break-down-into-subproblems" class="headerlink" title="Recognizing a loop can also break down into subproblems."></a>Recognizing a loop can also break down into subproblems.</h2><p>recognize the various little edges that make it up.<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212124765.png"></p>
-<p>So our final hope is like:</p>
-<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212126814.png" style="zoom:50%;">
-
-<h1 id="design"><a href="#design" class="headerlink" title="design"></a>design</h1><p>let&#x2019;s say the hope is for one particular neuron in the second layer to pick up  whether or not the image has an edge in this region here. The question at hand is what parameters should the network have?</p>
-<p>what we&#x2019;ll do is assign a weight to each one of the connections between our neuron and the neurons from the first layer. Then take all of those activations from the first layer and compute their weighted sum according to these weights.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212146600.png"></p>
-<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><p>When you compute a weighted sum like this, you might come out with any number, but for this network what we want is for activations to be some value between 0 and 1. </p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212147104.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212148379.png"></p>
-<h1 id="bias"><a href="#bias" class="headerlink" title="bias"></a>bias</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212150034.png"></p>
-<p>bias What we&#x2019;ll do then is just add in some other number like negative 10 to this</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212151469.png"></p>
-<p>So the weights tell you what pixel pattern this neuron in the second  is picking up on, and the bias tells you how high the weighted sum needs to be before the neuron starts getting meaningfully active.</p>
-<p>Every other neuron in this layer is going to be connected to  all 784 pixel neurons from the first layer, and each one of those 784 connections has its own weight associated with it. Also, each one has some bias, some other number that you add</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212153573.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212154068.png"></p>
-<p>13,000 &#x4E2A;&#x65CB;&#x94AE;&#x548C;&#x65CB;&#x94AE;&#xFF0C;&#x53EF;&#x8C03;&#x6574;&#x548C;&#x8F6C;&#x52A8;to make this network behave in different ways.</p>
-<p>So when we talk about learning, what that&#x2019;s referring to is getting the computer to find a valid setting for all of these many many numbers so that it&#x2019;ll actually solve the problem at hand.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212158165.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212159137.png"></p>
-<p>so it&#x2019;s actually more accurate to think of each neuron as a function, one that takes in the outputs of all the neurons in the previous layer and spits out a number between 0,1</p>
-<p>784 numbers as an input and spits out 10 numbers as an output. It&#x2019;s an absurdly complicated function, one that involves 13,000 parameters</p>
-]]></content>
-      <tags>
-        <tag>ML</tag>
-        <tag>Neural Network</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>webpack基础</title>
     <url>/2025/02/04/2025-02-06-Webpack%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
@@ -1295,6 +1247,54 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>But what is a neural network?</title>
+    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
+<p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
+<p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
+<p>&#x7B80;&#x5355;&#x5047;&#x8BBE;neuron&#xFF1A;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212112168.png" style="zoom:50%;"></p>
+<p>Activation</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114250.png"></p>
+<p>this 784 neurons make up our first layer:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114394.png" style="zoom:50%;"></p>
+<p>&#x800C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7684;:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212116496.png" style="zoom:67%;"></p>
+<p>&#x4E2D;&#x95F4;&#x7684;&#x662F;&#x9690;&#x85CF;&#x5C42;<br>The way the network operates, activations in one layer determine the activations of the next layer.</p>
+<p>how those activations from one layer bring about activations in the next layer It&#x2019;s meant to be loosely analogous to how in biological networks of neurons, some groups of neurons firing cause certain others to fire.</p>
+<p><strong>if you feed in an image, lighting up all 784 neurons of the input layer according to the brightness of each pixel in the image, that pattern of activations causes some very specific pattern in the next layer which causes some pattern in the one after it,which finally gives some pattern in the output layer.And the brightest neuron of that output layer is the network&#x2019;s choice</strong></p>
+<h1 id="why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently"><a href="#why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently" class="headerlink" title="why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently"></a>why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently</h1><p>Well, when you or I recognize digits, we piece together various components. A 9 has a loop up top and a line on the right. An 8 also has a loop up top, but it&#x2019;s paired with another loop down low. A 4 basically breaks down into three specific lines, and things like that.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212121375.png"></p>
+<p>Now in a perfect world, we might hope that each neuron in the second to last layer corresponds with one of these subcomponents<br>like:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212123258.png" style="zoom:50%;"></p>
+<p>That way, going from the third layer to the last one just requires learning which combination of subcomponents corresponds to which digits. </p>
+<h2 id="Recognizing-a-loop-can-also-break-down-into-subproblems"><a href="#Recognizing-a-loop-can-also-break-down-into-subproblems" class="headerlink" title="Recognizing a loop can also break down into subproblems."></a>Recognizing a loop can also break down into subproblems.</h2><p>recognize the various little edges that make it up.<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212124765.png"></p>
+<p>So our final hope is like:</p>
+<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212126814.png" style="zoom:50%;">
+
+<h1 id="design"><a href="#design" class="headerlink" title="design"></a>design</h1><p>let&#x2019;s say the hope is for one particular neuron in the second layer to pick up  whether or not the image has an edge in this region here. The question at hand is what parameters should the network have?</p>
+<p>what we&#x2019;ll do is assign a weight to each one of the connections between our neuron and the neurons from the first layer. Then take all of those activations from the first layer and compute their weighted sum according to these weights.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212146600.png"></p>
+<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><p>When you compute a weighted sum like this, you might come out with any number, but for this network what we want is for activations to be some value between 0 and 1. </p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212147104.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212148379.png"></p>
+<h1 id="bias"><a href="#bias" class="headerlink" title="bias"></a>bias</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212150034.png"></p>
+<p>bias What we&#x2019;ll do then is just add in some other number like negative 10 to this</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212151469.png"></p>
+<p>So the weights tell you what pixel pattern this neuron in the second  is picking up on, and the bias tells you how high the weighted sum needs to be before the neuron starts getting meaningfully active.</p>
+<p>Every other neuron in this layer is going to be connected to  all 784 pixel neurons from the first layer, and each one of those 784 connections has its own weight associated with it. Also, each one has some bias, some other number that you add</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212153573.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212154068.png"></p>
+<p>13,000 &#x4E2A;&#x65CB;&#x94AE;&#x548C;&#x65CB;&#x94AE;&#xFF0C;&#x53EF;&#x8C03;&#x6574;&#x548C;&#x8F6C;&#x52A8;to make this network behave in different ways.</p>
+<p>So when we talk about learning, what that&#x2019;s referring to is getting the computer to find a valid setting for all of these many many numbers so that it&#x2019;ll actually solve the problem at hand.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212158165.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212159137.png"></p>
+<p>so it&#x2019;s actually more accurate to think of each neuron as a function, one that takes in the outputs of all the neurons in the previous layer and spits out a number between 0,1</p>
+<p>784 numbers as an input and spits out 10 numbers as an output. It&#x2019;s an absurdly complicated function, one that involves 13,000 parameters</p>
+]]></content>
+      <tags>
+        <tag>ML</tag>
+        <tag>Neural Network</tag>
       </tags>
   </entry>
   <entry>
