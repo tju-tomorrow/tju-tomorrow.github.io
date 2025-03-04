@@ -114,3 +114,122 @@ document.addEventListener('DOMContentLoaded', () => {
   addBlogShowImage();
   Affix.init(document.querySelector('.sidebar-inner'), NexT.utils.getAffixParam());
 });
+
+// JavaScript 辅助函数
+// 高级鼠标追踪特效
+class AdvancedMouseTracker {
+  constructor(selector) {
+    this.elements = document.querySelectorAll(selector);
+    this.init();
+  }
+
+  init() {
+    this.elements.forEach(el => {
+      el.addEventListener('mousemove', this.handleMouseMove.bind(this));
+      el.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
+      el.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+    });
+  }
+
+  handleMouseMove(e) {
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+
+    // 计算鼠标相对位置
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // 计算元素中心点
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // 计算倾斜角度
+    const rotateX = (y - centerY) / 20;
+    const rotateY = -(x - centerX) / 20;
+
+    // 计算光影位置
+    const lightX = (x / rect.width * 100).toFixed(2);
+    const lightY = (y / rect.height * 100).toFixed(2);
+
+    // 应用高级效果
+    requestAnimationFrame(() => {
+      el.style.setProperty('--mouse-x', `${x}px`);
+      el.style.setProperty('--mouse-y', `${y}px`);
+      el.style.setProperty('--light-x', `${lightX}%`);
+      el.style.setProperty('--light-y', `${lightY}%`);
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  }
+
+  handleMouseEnter(e) {
+    const el = e.currentTarget;
+    el.classList.add('mouse-enter');
+  }
+
+  handleMouseLeave(e) {
+    const el = e.currentTarget;
+    el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    el.classList.remove('mouse-enter');
+  }
+}
+
+// 对应的 CSS
+const style = document.createElement('style');
+style.textContent = `
+.post-block .post-body.post-body-excerpt {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.8s ease;
+  transform-style: preserve-3d;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &::before {
+    background: radial-gradient(
+      circle at var(--light-x, 50%) var(--light-y, 50%),
+      rgba(255,255,255,0.3),
+      transparent 50%
+    );
+  }
+
+  &::after {
+    background: linear-gradient(
+      135deg,
+      rgba(0,255,255,0.2),
+      rgba(255,0,255,0.2)
+    );
+    mix-blend-mode: color-dodge;
+  }
+
+  &.mouse-enter {
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow:
+      0 10px 20px rgba(0,0,0,0.3),
+      0 0 30px rgba(0,255,255,0.8);
+  }
+}`;
+
+document.head.appendChild(style);
+
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+  new AdvancedMouseTracker('.post-block .post-body.post-body-excerpt');
+});

@@ -1229,7 +1229,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #005098;
+  background: #afffb1;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2101,11 +2101,39 @@ pre .javascript .function {
   text-align: center;
 }
 .post-block .post-body.post-body-excerpt {
-  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.8s ease !important;
+}
+.post-block .post-body.post-body-excerpt::before,
+.post-block .post-body.post-body-excerpt::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 1;
+}
+.post-block .post-body.post-body-excerpt::before {
+  background: radial-gradient(circle closest-corner at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.4), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.post-block .post-body.post-body-excerpt::after {
+  background: linear-gradient(45deg, rgba(0,255,255,0.3), rgba(255,0,255,0.3));
+  opacity: 0;
+  mix-blend-mode: color-dodge;
+  transition: opacity 0.5s;
 }
 .post-block .post-body.post-body-excerpt:hover {
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 1px 1px 15px 2px #000 !important;
+  transform: translateY(-5px) scale(1.03) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 30px rgba(0,255,255,0.8) !important;
+}
+.post-block .post-body.post-body-excerpt:hover::before,
+.post-block .post-body.post-body-excerpt:hover::after {
+  opacity: 1;
 }
 .post-body-full {
 /* Styles for full post view */
