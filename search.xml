@@ -1,9 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>My First Post</title>
+    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
+<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
+</blockquote>
+<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
+<span id="more"></span>
+
+<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
+<hr>
+
+<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
+<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
+<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
+<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
+<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
+<p>we also want to keep primitives lightweight In the meantime.</p>
+<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
+<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
+<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
+<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
+<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
+</ol>
+<p>Which means something besides the simple and standalone value is actually created!</p>
+<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
+<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
+</li>
+<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
+<p>For example, this is entirely valid:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
+
+<p>the result will be</p>
+<ol>
+<li><code>undefined</code> (no strict mode)</li>
+<li>An error (strict mode).</li>
+</ol>
+<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
+<ol>
+<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
+<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>data types</tag>
+        <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Promise</title>
     <url>/2024/07/27/2024-07-27-Promise-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
 <p>Imagine that you&#x2019;re a top singer, and fans ask day and night for your upcoming song.</p>
 </blockquote>
 <span id="more"></span>
@@ -201,72 +264,9 @@
       </tags>
   </entry>
   <entry>
-    <title>My First Post</title>
-    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
-<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
-</blockquote>
-<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
-<span id="more"></span>
-
-<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
-<hr>
-
-<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
-<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
-<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
-<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
-<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
-<p>we also want to keep primitives lightweight In the meantime.</p>
-<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
-<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
-<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
-<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
-<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
-</ol>
-<p>Which means something besides the simple and standalone value is actually created!</p>
-<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
-<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
-</li>
-<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
-<p>For example, this is entirely valid:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
-
-<p>the result will be</p>
-<ol>
-<li><code>undefined</code> (no strict mode)</li>
-<li>An error (strict mode).</li>
-</ol>
-<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
-<ol>
-<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
-<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>data types</tag>
-        <tag>数据类型</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Promise chainning</title>
     <url>/2024/07/28/2024-07-28-Promise-chainning-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
 <span id="more"></span>
 
 <p>which is formed like this:</p>
@@ -356,7 +356,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Proxy</title>
     <url>/2024/10/23/2024-08-19-Proxy-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="what&#x2019;s-a-proxy"><a href="#what&#x2019;s-a-proxy" class="headerlink" title="what&#x2019;s a proxy"></a>what&#x2019;s a proxy</h2><p>a proxy is a object with a superpower of wrapping another object Like a trash wrapper <br></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="what&#x2019;s-a-proxy"><a href="#what&#x2019;s-a-proxy" class="headerlink" title="what&#x2019;s a proxy"></a>what&#x2019;s a proxy</h2><p>a proxy is a object with a superpower of wrapping another object Like a trash wrapper <br></p>
 <span id="more"></span>
 
 <p>Not only wrap it but also protect it . The protecting way is to intercept the operations that are about to operate on the object that been wrapped inside For example reading/writing properties <br><br><strong>optionally handling them on Proxy&#x2019;s own</strong></p>
@@ -550,7 +550,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>What happens when you type a URL into your browser?</title>
     <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
 <h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
 <p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
 <h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
@@ -582,7 +582,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Server</title>
     <url>/2024/09/02/2024-09-02-Server-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
 <p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
 <span id="more"></span>
 
@@ -607,7 +607,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>What’s the Difference Between localhost and 127.0.0.1</title>
     <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
 <h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
 <p>The scope of localhost is limited to the local machine</p>
 <p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
@@ -626,7 +626,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Ref and Reactive in Vue</title>
     <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
 
 <h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
 <h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
@@ -654,7 +654,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Stacks And Queues in Data structure</title>
     <url>/2024/10/19/2024-10-19-StackAndQueue/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
 <h1 id="Basic"><a href="#Basic" class="headerlink" title="Basic"></a>Basic</h1><p>Stacks and queues are two <strong>special</strong> linear lists.<br>In terms of structure, both are linear lists, but in terms of operation, the basic operations they support are only a <strong>subset</strong> of linear list operations So they are linear lists with <strong>restricted</strong> operations.</p>
 <h1 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h1><h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition:"></a>Definition:</h2><p>It is a linear list that allows insertion or deletion <strong>only</strong> at the <strong>end</strong> of the list.<br>The end that <strong>allows</strong> insertion and deletion is called the <strong>top</strong> of the stack, and the other side is called the bottom of the stack.</p>
 <h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><p>Above gives it a feature : <strong>Last In First Out</strong> (LIFO)<br>The latest node added to a stack is the node which is eligible to be removed first.</p>
@@ -759,7 +759,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Virtual Memory</title>
     <url>/2024/10/20/2024-10-20-Virtual%20Memory/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
 <span id="more"></span>
 
 <p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
@@ -837,7 +837,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Bubbling and capturing</title>
     <url>/2024/10/22/2024-10-22-Bubbling%20and%20capturing/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&apos;The handler!&apos;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">em</span></span></span><br><span class="line"><span class="tag">    &gt;</span>If you click on <span class="tag">&lt;<span class="name">code</span>&gt;</span>EM<span class="tag">&lt;/<span class="name">code</span>&gt;</span>, the handler on <span class="tag">&lt;<span class="name">code</span>&gt;</span>DIV<span class="tag">&lt;/<span class="name">code</span>&gt;</span> runs.&lt;/em</span><br><span class="line">  &gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>This handler is assigned to div, but <strong>also runs</strong> if you click any nested tag like em or code:<br>Why does the handler on <strong>div</strong> run even if the actual click was on <strong>em</strong>?</p>
@@ -900,7 +900,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Siganls</title>
     <url>/2024/10/22/2024-10-22-signal/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410230050367.png"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410230050367.png"></p>
 <p>A signal is a mechanism for communication <strong>between processes.</strong> You can think of it like a notification that interrupts you, prompting you to pay attention to something important.</p>
 <span id="more"></span>
 
@@ -968,7 +968,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>跨域</title>
     <url>/2024/11/02/2024-11-2-%E8%B7%A8%E5%9F%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="&#x540C;&#x6E90;&#x7B56;&#x7565;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;</h1><h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x4E2A; URL &#x7684;&#x534F;&#x8BAE;&#x3001;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x90FD;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x5176;&#x8D44;&#x6E90;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x68C0;&#x67E5;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x5426;&#x76F8;&#x540C;&#xFF1A;</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="&#x540C;&#x6E90;&#x7B56;&#x7565;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;</h1><h3 id="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"><a href="#&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;" class="headerlink" title="&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;"></a>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;</h3><p>&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x4E2A; URL &#x7684;&#x534F;&#x8BAE;&#x3001;&#x57DF;&#x540D;&#x548C;&#x7AEF;&#x53E3;&#x90FD;&#x76F8;&#x540C;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x4E92;&#x76F8;&#x8BBF;&#x95EE;&#x5176;&#x8D44;&#x6E90;&#x3002;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#xFF0C;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x68C0;&#x67E5;&#x4EE5;&#x4E0B;&#x4E09;&#x4E2A;&#x90E8;&#x5206;&#x662F;&#x5426;&#x76F8;&#x540C;&#xFF1A;</p>
 <ol>
 <li><strong>&#x534F;&#x8BAE;</strong>&#xFF08;&#x5982; <code>http</code>&#x3001;<code>https</code>&#xFF09;</li>
 <li><strong>&#x57DF;&#x540D;</strong>&#xFF08;&#x5982; <code>example.com</code>&#x3001;<code>sub.example.com</code>&#xFF09;</li>
@@ -1027,7 +1027,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Process &amp; Thread</title>
     <url>/2025/01/17/2025-01-17-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://www.ruanyifeng.com/blogimg/asset/201304/bg2013042411.png" alt="img"></p>
 <span id="more"></span>
 
 <p>After a programmer finishes writing a program, it is saved permanently on the hard drive. Just as a chef needs a cutting board and a countertop to prepare food, the CPU needs to load the program from the hard drive to memory to execute it.</p>
@@ -1092,7 +1092,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Isolation Forest</title>
     <url>/2025/02/02/2025-02-04-IsolationForest/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x60F3;&#x8C61;&#x4F60;&#x5728;&#x4E00;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x4ED3;&#x5E93;&#x91CC;&#x5806;&#x6EE1;&#x4E86;&#x82F9;&#x679C;&#xFF0C;&#x4F46;&#x6709;&#x4EBA;&#x5077;&#x5077;&#x6DF7;&#x8FDB;&#x4E86;&#x51E0;&#x4E2A;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x8FD9;&#x4E9B;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x4F1A;&#x600E;&#x4E48;&#x505A;&#xFF1F;</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x60F3;&#x8C61;&#x4F60;&#x5728;&#x4E00;&#x4E2A;&#x5DE8;&#x5927;&#x7684;&#x4ED3;&#x5E93;&#x91CC;&#x5806;&#x6EE1;&#x4E86;&#x82F9;&#x679C;&#xFF0C;&#x4F46;&#x6709;&#x4EBA;&#x5077;&#x5077;&#x6DF7;&#x8FDB;&#x4E86;&#x51E0;&#x4E2A;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x7684;&#x4EFB;&#x52A1;&#x662F;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x8FD9;&#x4E9B;&#x70C2;&#x82F9;&#x679C;&#x3002;&#x4F60;&#x4F1A;&#x600E;&#x4E48;&#x505A;&#xFF1F;</p>
 <ul>
 <li><p>&#x4F20;&#x7EDF;&#x65B9;&#x6CD5;&#xFF1A;&#x68C0;&#x67E5;&#x6BCF;&#x4E2A;&#x82F9;&#x679C;&#x7684;&#x989C;&#x8272;&#x3001;&#x5F62;&#x72B6;&#x3001;&#x6C14;&#x5473;&#xFF0C;&#x7136;&#x540E;&#x8BB0;&#x4F4F;&#x201C;&#x6B63;&#x5E38;&#x82F9;&#x679C;&#x7684;&#x6807;&#x51C6;&#x201D;&#xFF08;&#x6BD4;&#x5982;&#x7EA2;&#x8272;&#x3001;&#x5706;&#x5F62;&#x3001;&#x9999;&#x751C;&#xFF09;&#x3002;<br>&#x95EE;&#x9898;&#x662F;&#xFF1A;&#x4ED3;&#x5E93;&#x91CC;&#x6709;&#x6210;&#x5343;&#x4E0A;&#x4E07;&#x4E2A;&#x82F9;&#x679C;&#xFF0C;&#x9010;&#x4E2A;&#x68C0;&#x67E5;&#x9700;&#x8981;&#x8017;&#x8D39;&#x5927;&#x91CF;&#x65F6;&#x95F4;&#x3002;</p>
 </li>
@@ -1199,7 +1199,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>webpack基础</title>
     <url>/2025/02/04/2025-02-06-Webpack%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. &#x5165;&#x53E3; (entry): &apos;./extension.js&apos; // &#x7A0B;&#x5E8F;&#x5F00;&#x59CB;&#x6253;&#x5305;&#x7684;&#x8D77;&#x70B9;</span><br><span class="line">2. &#x8F93;&#x51FA; (output): dist/extension.js // &#x6700;&#x7EC8;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4F4D;&#x7F6E;</span><br><span class="line">3. &#x6392;&#x9664;&#x9879; (externals): vscode &#x6A21;&#x5757; // &#x4E0D;&#x6253;&#x5305;&#x8FDB;&#x6700;&#x7EC8;&#x6587;&#x4EF6;&#x7684;&#x5916;&#x90E8;&#x4F9D;&#x8D56;</span><br></pre></td></tr></table></figure>
 
@@ -1252,7 +1252,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>But what is a neural network?</title>
     <url>/2025/02/14/2025-02-14-Neural_Network/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
 <p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
 <p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
 <p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
@@ -1300,7 +1300,7 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
   <entry>
     <title>Transformer</title>
     <url>/2025/02/16/2025-02-16-Transformer-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>the key idea about transformers was the self-potential mechanism uh that was developed in 2017</p>
 <h1 id="GPT-intro"><a href="#GPT-intro" class="headerlink" title="GPT intro"></a>GPT intro</h1><p>GPT &#x7684;&#x5168;&#x540D;&#x5C31;&#x662F; generative pre-trained transformer<br>&#x9884;&#x8BAD;&#x7EC3;&#x662F;&#x6307;&#x6A21;&#x578B;&#x5982;&#x4F55;&#x4ECE;&#x5927;&#x91CF;&#x6570;&#x636E;&#x4E2D;&#x5B66;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x524D;&#x7F00; Pre &#x6697;&#x793A;&#x6709;&#x66F4;&#x591A;&#x7A7A;&#x95F4;&#x901A;&#x8FC7;&#x989D;&#x5916;&#x7684;&#x8BAD;&#x7EC3;&#x6765;&#x9488;&#x5BF9;&#x7279;&#x5B9A;&#x4EFB;&#x52A1;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;&#x3002;</p>
 <p>The last piece that&#x2019;s the real key, a transformer is a specific kind of neural network, a machine learning model, and it&#x2019;s the core invention underlying current boom in AI</p>
 <p>&#x4F60;&#x53EF;&#x4EE5;&#x7528;&#x5C31;&#x662F; transformer &#x521B;&#x9020;&#x5F88;&#x591A;&#x7C7B;&#x578B;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4; voice to text what text to voice, text to image These are based on transformer</p>
@@ -1477,75 +1477,9 @@ end
       </tags>
   </entry>
   <entry>
-    <title>Loss Function,Gradient Descent and Backpropagation （basic）</title>
-    <url>/2025/02/23/2025-02-23-Lossfunction/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>By understanding these three concept,we get to better understand how Transformer adjusts the weights.</p>
-<h1 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a><strong>Loss Function</strong></h1><p> it&#x2019;s the first step: we need to <strong>measure</strong> the mistake before we can <strong>fix</strong> it.</p>
-<p><strong>What it does:</strong><br>The loss function measures how wrong a prediction is compared to the actual value. It gives us a number that shows the size of the mistake.</p>
-<p><strong>How it works:</strong>  </p>
-<ul>
-<li>You have an actual value (the real answer).  </li>
-<li>You have a predicted value (the model&#x2019;s guess).  </li>
-<li>The loss function calculates the difference between these two values.  </li>
-<li>A smaller difference means a smaller loss number; a bigger difference means a bigger loss number.</li>
-</ul>
-<p><strong>Example:</strong><br>Suppose the actual price of a house is $300,000,and the model predicts $280,000.  </p>
-<ul>
-<li>The difference is $300,000 - $280,000 = $20,000.  </li>
-<li>The loss could simply be this difference: $20,000.</li>
-</ul>
-<p><strong>Why we need it:</strong><br>We use the loss to see how good or bad the prediction is. Without it, we wouldn&#x2019;t know if the model is right or wrong, or by how much.</p>
-<h1 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a><strong>Gradient Descent</strong></h1><p><strong>What it does:</strong><br>Gradient descent figures out how to adjust the model&#x2019;s weights (numbers that control the prediction) to make the loss smaller.<br>It decides the direction where the model is improving towards.</p>
-<p><strong>How it works:</strong>  </p>
-<ul>
-<li>The model uses weights to make predictions.  </li>
-<li>The loss tells us how wrong the prediction is.  </li>
-<li>Gradient descent looks at how each weight affects the loss.  </li>
-<li>It <strong>adjusts each weight a little bit</strong> to reduce the loss.  </li>
-<li>We repeat this process many times until the loss gets as small as possible.</li>
-</ul>
-<p><strong>Example:</strong><br>Let&#x2019;s say our model predicts the house price using a weight. The formula might be:  </p>
-<ul>
-<li>Gradient descent checks: &#x201C;If I change the weight from 280 to 281, does the loss get smaller?&#x201D;  </li>
-<li>New prediction = 281 &#xD7; 1000 = $281,000; loss = $19,000.  </li>
-<li>The loss went down, so we keep adjusting the weight upward a little at a time (e.g., to 282, 283) until the prediction is closer to $300,000.</li>
-</ul>
-<p><strong>Why we need it:</strong><br>It&#x2019;s the step that improves the model by reducing the loss, using the mistake we measured earlier.</p>
-<h1 id="Backpropagation-&#x53CD;&#x5411;&#x4F20;&#x64AD;"><a href="#Backpropagation-&#x53CD;&#x5411;&#x4F20;&#x64AD;" class="headerlink" title="Backpropagation (&#x53CD;&#x5411;&#x4F20;&#x64AD;)"></a>Backpropagation (&#x53CD;&#x5411;&#x4F20;&#x64AD;)</h1><p><strong>What it does:</strong><br>Backpropagation figures out how much each weight in the model is responsible for the loss, so we can adjust them using gradient descent.</p>
-<p><strong>How it works:</strong>  </p>
-<ul>
-<li>A model can have many weights, not just one, spread across layers (like steps in a calculation).  </li>
-<li>First, we send the input through all layers to get a prediction (forward).  </li>
-<li>Then, we calculate the loss.  </li>
-<li>Next, we go backwards: starting from the loss, <strong>we check how each weight in each layer contributed to it.</strong>  </li>
-<li>We calculate how to adjust each weight to lower the loss.</li>
-</ul>
-<p><strong>Example:</strong><br>Let&#x2019;s make our house price model a bit more complex with two weights:  </p>
-<ul>
-<li>Weight 1 (W1) = 200, Weight 2 (W2) = 1.4.  </li>
-<li>Step 1: Input (1000 square feet) &#xD7; W1 = 200 &#xD7; 1000 = 200,000.  </li>
-<li>Step 2: 200,000 &#xD7; W2 = 200,000 &#xD7; 1.4 = $280,000 (prediction).  </li>
-<li>Actual price = $300,000, so loss = $20,000.  </li>
-<li>Backpropagation asks:  <ul>
-<li>How much did W2 (1.4) affect the loss? If W2 were 1.5, prediction = 200,000 &#xD7; 1.5 = $300,000, loss = $0. So, W2 needs to increase.  </li>
-<li>How much did W1 (200) affect the loss? It made the 200,000 that W2 used. If W1 were 210, then 210 &#xD7; 1000 = 210,000, and 210,000 &#xD7; 1.4 = $294,000, loss = $6,000. So, <strong>W1 also needs to adjust.</strong></li>
-</ul>
-</li>
-<li>Backpropagation calculates these effects backwards, from the loss to W2, then to W1.</li>
-</ul>
-<p><strong>Why we need it:</strong><br>With many weights, we need to know which ones to change and by how much. Backpropagation tells us this so gradient descent can work.</p>
-]]></content>
-      <tags>
-        <tag>ML</tag>
-        <tag>Loss Function</tag>
-        <tag>Gradient Descent</tag>
-        <tag>Backpropagation</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Unix Philosophy</title>
     <url>/2025/02/16/Jottings/2025/2025-02-18-first-journal/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
 </blockquote>
 <h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
