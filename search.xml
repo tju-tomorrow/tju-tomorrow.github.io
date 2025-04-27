@@ -332,7 +332,7 @@
   .then((response) =&gt; response.json())
   .then((data) =&gt; console.log(data))
   .catch((error) =&gt; console.log(error));
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">   fetch is a api that allows us to input a url as a door to get data and this api return a promise</span><br><span class="line">   (of course! 1.Getting is absolutely a task that requires some time2.two consequences : get it or miss it)</span><br><span class="line">   And during each level of the chain promise.result is passed as paramter for handler</span><br><span class="line"></span><br><span class="line">2. ```js</span><br><span class="line">   function LoadImage(url) {</span><br><span class="line">     return new Promise((resolve, reject) =&gt; {</span><br><span class="line">       const img = new Image(); //create a img</span><br><span class="line">       img.src = url;</span><br><span class="line">       img.onload = () =&gt; resolve(img);</span><br><span class="line">       img.onerror = () =&gt; reject(new Error(&quot;fail loading&quot;));</span><br><span class="line">     });</span><br><span class="line">   }</span><br><span class="line">   LoadImage(&quot;path/to/image.jpg&quot;)</span><br><span class="line">     .then((img) =&gt; document.body.appendChild(img))</span><br><span class="line">     .catch((error) =&gt; console.error(error));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   </span><br><span class="line">   fetch is a api that allows us to input a url as a door to get data and this api return a promise</span><br><span class="line">   (of course! 1.Getting is absolutely a task that requires some time2.two consequences : get it or miss it)</span><br><span class="line">   And during each level of the chain promise.result is passed as paramter for handler</span><br><span class="line"></span><br><span class="line">2. ```js</span><br><span class="line">   function LoadImage(url) {</span><br><span class="line">     return new Promise((resolve, reject) =&gt; {</span><br><span class="line">       const img = new Image(); //create a img</span><br><span class="line">       img.src = url;</span><br><span class="line">       img.onload = () =&gt; resolve(img);</span><br><span class="line">       img.onerror = () =&gt; reject(new Error(&quot;fail loading&quot;));</span><br><span class="line">     });</span><br><span class="line">   }</span><br><span class="line">   LoadImage(&quot;path/to/image.jpg&quot;)</span><br><span class="line">     .then((img) =&gt; document.body.appendChild(img))</span><br><span class="line">     .catch((error) =&gt; console.error(error));</span><br></pre></td></tr></table></figure>
 
 Why do you need to bind functionc to events of img?
 Cause two callback must be called .And when you wanna use then/catch handler to link the function(LoadImage).It should be a produced (fully formed)promise in front of these handlers
@@ -386,6 +386,219 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Proxy</title>
+    <url>/2024/10/23/2024-08-19-Proxy-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="what&#x2019;s-a-proxy"><a href="#what&#x2019;s-a-proxy" class="headerlink" title="what&#x2019;s a proxy"></a>what&#x2019;s a proxy</h2><p>a proxy is a object with a superpower of wrapping another object Like a trash wrapper <br></p>
+<span id="more"></span>
+
+<p>Not only wrap it but also protect it . The protecting way is to intercept the operations that are about to operate on the object that been wrapped inside For example reading/writing properties <br><br><strong>optionally handling them on Proxy&#x2019;s own</strong></p>
+<h2 id="Proxy-syntax"><a href="#Proxy-syntax" class="headerlink" title="Proxy syntax"></a>Proxy syntax</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let` proxy `=` `new` `Proxy``(`target`,` handler`)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>target</code> &#x2013; is an object to wrap, can be anything, including functions.</li>
+<li><code>handler</code> &#x2013; proxy configuration: an object with &#x201C;traps&#x201D;, methods that intercept operations. &#x2013; e.g. <code>get</code> trap for reading a property of <code>target</code>, <code>set</code> trap for writing a property into <code>target</code>, and so on.</li>
+</ul>
+<p>For operations on <code>proxy</code>, if there&#x2019;s a corresponding trap in <code>handler</code>, then it runs<br>otherwise the operation is performed <strong>directly</strong> on <code>target</code>.</p>
+<h3 id="A-proxy-with-no-&#x201C;traps&#x201D;-can-be-seen-as-the-object-inside-itself-OR-without-any-traps-proxy-is-a-transparent-wrapper-around-target"><a href="#A-proxy-with-no-&#x201C;traps&#x201D;-can-be-seen-as-the-object-inside-itself-OR-without-any-traps-proxy-is-a-transparent-wrapper-around-target" class="headerlink" title="A proxy with no &#x201C;traps&#x201D; can be seen as the object(inside) itself OR without any traps, proxy is a transparent wrapper around target"></a>A proxy with no &#x201C;traps&#x201D; can be seen as the object(inside) itself OR without any traps, <code>proxy</code> is a transparent wrapper around <code>target</code></h3><p>Below is the demonstration</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let target = {};</span><br><span class="line">let proxy = new Proxy(target, {});</span><br><span class="line">proxy.test = 5; //set to proxy also set to target</span><br><span class="line">console.log(&quot;target.test is &quot;, target.test);</span><br></pre></td></tr></table></figure>
+
+<p>As there are no traps, all operations on <code>proxy</code> are forwarded to <code>target</code>.</p>
+<h3 id="What-can-we-intercept"><a href="#What-can-we-intercept" class="headerlink" title="What can we intercept"></a>What can we intercept</h3><p>For a object there are some so-called &#x201C;internal method&#x201D;<br><code>[[Get]]</code>, the internal method to read a property,<br><code>[[Set]]</code>, the internal method to write a property,</p>
+<p><strong>Proxy traps intercept invocations of these methods</strong></p>
+<p>They are listed in the <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">Proxy specification</a> and in the table below.</p>
+<h2 id="Internal-Method-and-handler-methods-and-Trigger-point"><a href="#Internal-Method-and-handler-methods-and-Trigger-point" class="headerlink" title="Internal Method and handler methods and Trigger-point"></a>Internal Method and handler methods and Trigger-point</h2><p><strong>For every internal method, there&#x2019;s a trap in this table: the name of the method that we can add to the <code>handler</code> parameter of <code>new Proxy</code> to intercept the operation</strong></p>
+<h4 id="To-note"><a href="#To-note" class="headerlink" title="To note"></a>To note</h4><p>handler is a paramter in Proxy&#x2019;s constructor.It&#x2019;s a set including all the methods(we can call them Handler Methods)<br>And what&#x2019;s actually intercepting the specific operation?THE corresponding handler method!<br>How?When you trigger the internal method in THE object.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Internal Method In object &#x5185;&#x90E8;&#x65B9;&#x6CD5;</th>
+<th align="left">Handler Method In proxy &#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x65B9;&#x6CD5;</th>
+<th align="left">Triggers when&#x2026; &#x89E6;&#x53D1;&#x65F6;&#x2026;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>[[Get]]</code></td>
+<td align="left"><code>get</code></td>
+<td align="left">reading a property &#x8BFB;&#x53D6;&#x5C5E;&#x6027; use [ ] or . on a object</td>
+</tr>
+<tr>
+<td align="left"><code>[[Set]]</code></td>
+<td align="left"><code>set</code></td>
+<td align="left">writing to a property &#x5199;&#x5165;&#x5C5E;&#x6027; .newproperty = /.push(for array) /unshift</td>
+</tr>
+<tr>
+<td align="left"><code>[[HasProperty]]</code></td>
+<td align="left"><code>has</code></td>
+<td align="left"><code>in</code> operator <code>in</code> &#x8FD0;&#x7B97;&#x7B26;</td>
+</tr>
+<tr>
+<td align="left"><code>[[Delete]]</code></td>
+<td align="left"><code>deleteProperty</code></td>
+<td align="left"><code>delete</code> operator <code>delete</code> &#x8FD0;&#x7B97;&#x7B26;</td>
+</tr>
+<tr>
+<td align="left"><code>[[Call]]</code></td>
+<td align="left"><code>apply</code></td>
+<td align="left">function call &#x51FD;&#x6570;&#x8C03;&#x7528;</td>
+</tr>
+<tr>
+<td align="left"><code>[[Construct]]</code></td>
+<td align="left"><code>construct</code></td>
+<td align="left"><code>new</code> operator <code>new</code> &#x8FD0;&#x7B97;&#x7B26;</td>
+</tr>
+<tr>
+<td align="left"><code>[[GetPrototypeOf]]</code></td>
+<td align="left"><code>getPrototypeOf</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object.getPrototypeOf &#x5BF9;&#x8C61;.getPrototypeOf</a></td>
+</tr>
+<tr>
+<td align="left"><code>[[SetPrototypeOf]]</code></td>
+<td align="left"><code>setPrototypeOf</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf">Object.setPrototypeOf &#x5BF9;&#x8C61;.setPrototypeOf</a></td>
+</tr>
+<tr>
+<td align="left"><code>[[IsExtensible]]</code></td>
+<td align="left"><code>isExtensible</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible">Object.isExtensible &#x5BF9;&#x8C61;&#x53EF;&#x6269;&#x5C55;</a></td>
+</tr>
+<tr>
+<td align="left"><code>[[PreventExtensions]]</code></td>
+<td align="left"><code>preventExtensions</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions">Object.preventExtensions &#x5BF9;&#x8C61;.preventExtensions</a></td>
+</tr>
+<tr>
+<td align="left"><code>[[DefineOwnProperty]]</code></td>
+<td align="left"><code>defineProperty</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Object.defineProperties</a> &#x5BF9;&#x8C61;.defineProperty, &#x5BF9;&#x8C61;.defineProperties</td>
+</tr>
+<tr>
+<td align="left"><code>[[GetOwnProperty]]</code></td>
+<td align="left"><code>getOwnPropertyDescriptor</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor</a>, <code>for..in</code>, <code>Object.keys/values/entries</code> Object.getOwnPropertyDescriptor&#xFF0C; <code>for..in</code> &#xFF0C; <code>Object.keys/values/entries</code></td>
+</tr>
+<tr>
+<td align="left"><code>[[OwnPropertyKeys]]</code></td>
+<td align="left"><code>ownKeys</code></td>
+<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols</a>, <code>for..in</code>, <code>Object.keys/values/entries</code> Object.getOwnPropertyNames&#x3001;Object.getOwnPropertySymbols&#x3001; <code>for..in</code> &#x3001; <code>Object.keys/values/entries</code></td>
+</tr>
+</tbody></table>
+<h4 id="Notification"><a href="#Notification" class="headerlink" title="Notification"></a>Notification</h4><ul>
+<li><code>[[Set]]</code> must return <code>true</code> if the value was written successfully, otherwise <code>false</code>.</li>
+<li><code>[[Delete]]</code> must return <code>true</code> if the value was deleted successfully, otherwise <code>false</code>.</li>
+</ul>
+<h3 id="How-to-set-the-handler"><a href="#How-to-set-the-handler" class="headerlink" title="How to set the handler"></a>How to set the handler</h3><p>To intercept reading, the <code>handler</code> should have the so-called handler-method <code>get(target, property, receiver)</code> As we mentioned: <strong>It triggers when a property is read</strong></p>
+<ul>
+<li><code>target</code> &#x2013; is the target object, the one passed as the first argument to <code>new Proxy</code>,</li>
+<li><code>property</code> &#x2013; the object&#x2019;s property(the key in a key-value pair),</li>
+<li><code>receiver</code> &#x2013; if the target property is a getter, then <code>receiver</code> is the object that&#x2019;s going to be used as <code>this</code> in its call. Usually that&#x2019;s the <code>proxy</code> object itself (or an object that inherits from it, if we inherit from proxy). Right now we don&#x2019;t need this argument, so it will be explained in more detail later.</li>
+</ul>
+<h4 id="eg1"><a href="#eg1" class="headerlink" title="eg1"></a>eg1</h4><p>Usually when one tries to get a non-existing array item, they get <code>undefined</code>, but we&#x2019;ll wrap a regular array into the proxy that traps reading and returns <code>0</code> if there&#x2019;s no such property:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(number, {</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="keyword">if</span> (prop <span class="keyword">in</span> target) {</span><br><span class="line">      <span class="keyword">return</span> target[prop];</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>there should be a supplement For array : if array is seen as a object {key&#xFF1A;value}The &#x6570;&#x7EC4;&#x7684;&#x7D22;&#x5F15; is the key The &#x5177;&#x4F53;&#x6570;&#x503C; &#x662F; value</p>
+<h4 id="eg2"><a href="#eg2" class="headerlink" title="eg2"></a>eg2</h4><p>Let&#x2019;s say we want an array exclusively for numbers. If a value of another type is added, there should be an error.</p>
+<p><strong>The <code>set</code> trap triggers when a property is written.</strong></p>
+<p><code>set(target, property, value, receiver)</code>:</p>
+<ul>
+<li><code>target</code> &#x2013; is the target object, the one passed as the first argument to <code>new Proxy</code>,</li>
+<li><code>property</code> &#x2013; property name,</li>
+<li><code>value</code> &#x2013; property value,</li>
+<li><code>receiver</code> &#x2013; similar to <code>get</code> trap, matters only for setter properties.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [];</span><br><span class="line"></span><br><span class="line">numbers = <span class="keyword">new</span> <span class="title class_">Proxy</span>(numbers, {</span><br><span class="line">  <span class="comment">// (*)</span></span><br><span class="line">  <span class="title function_">set</span>(<span class="params">target, prop, val</span>) {</span><br><span class="line">    <span class="comment">// to intercept property writing</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> val == <span class="string">&quot;number&quot;</span>) {</span><br><span class="line">      target[prop] = val;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//For set, it must return true for a successful write.</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="number">1</span>); <span class="comment">// added successfully</span></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="number">2</span>); <span class="comment">// added successfully</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;Length is: &quot;</span> + numbers.<span class="property">length</span>); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="string">&quot;test&quot;</span>); <span class="comment">// TypeError (&apos;set&apos; on proxy returned false)</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;This line is never reached (error in the line above)&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>For <code>set</code>, it must return <code>true</code> for a successful write.</strong></p>
+<h3 id="Note-Only-interact-with-the-proxy-object"><a href="#Note-Only-interact-with-the-proxy-object" class="headerlink" title="Note : Only interact with the proxy object"></a>Note : Only interact with the proxy object</h3><h4 id="You-should-follow-below"><a href="#You-should-follow-below" class="headerlink" title="You should follow below:"></a>You should follow below:</h4><p>When a proxy object is created <strong>As for</strong> when you have proxied an object<br>You shouldn&#x2019;t reference the origin(or target) object.(the object is past the moment you get the proxy version)<br>And below is a normal way we deal with it.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dictionary = new Proxy(dictionary, ...);</span><br></pre></td></tr></table></figure>
+
+<p>can overwrite the &#x201C;dictionary&#x201D; variable .</p>
+<h4 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h4><p>Usually When you created a proxy You got to devise some traps . And so it&#x2019;s important for you to make sure the defined behaviors and traps are constantly applied to ensure all operation go through the proxy and its traps</p>
+<h2 id="iteration"><a href="#iteration" class="headerlink" title="iteration"></a>iteration</h2><h3 id="OwnPropertyKeys-internal-method"><a href="#OwnPropertyKeys-internal-method" class="headerlink" title="[[OwnPropertyKeys]] internal method"></a><code>[[OwnPropertyKeys]]</code> internal method</h3><p><code>Object.keys</code>, <code>for..in</code> loop and most other methods that iterate over object properties (use <code>[[OwnPropertyKeys]]</code> internal method) (intercepted by <code>ownKeys</code> trap) to** get a list of properties**</p>
+<h4 id="Such-methods-differ-in-details"><a href="#Such-methods-differ-in-details" class="headerlink" title="Such methods differ in details:"></a>Such methods differ in details:</h4><ul>
+<li><code>Object.getOwnPropertyNames(obj)</code> returns non-symbol keys.</li>
+<li><code>Object.getOwnPropertySymbols(obj)</code> returns symbol keys.</li>
+<li><code>Object.keys/values()</code> returns non-symbol keys/values with <code>enumerable</code> flag (property flags were explained in the article <a href="https://javascript.info/property-descriptors">Property flags and descriptors</a>).</li>
+<li><code>for..in</code> loops over non-symbol keys with <code>enumerable</code> flag, and also prototype keys.</li>
+</ul>
+<h4 id="to-supplement"><a href="#to-supplement" class="headerlink" title="to supplement:"></a>to supplement:</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>()&#xFF1A;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x8BE5;&#x6570;&#x7EC4;&#x5305;&#x542B;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#xFF08;&#x4E0D;&#x5305;&#x62EC;&#x539F;&#x578B;&#x94FE;&#xFF09;&#x7684;&#x6240;&#x6709;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</span><br><span class="line"><span class="keyword">const</span> obj = { <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> };</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(obj)); <span class="comment">// &#x8F93;&#x51FA;&#xFF1A;[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span></span><br><span class="line"><span class="keyword">for</span>...<span class="keyword">in</span> &#x5FAA;&#x73AF;&#xFF1A;&#x8FD9;&#x4E2A;&#x5FAA;&#x73AF;&#x904D;&#x5386;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#x7684;&#x548C;&#x7EE7;&#x627F;&#x7684;&#x6240;&#x6709;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#xFF08;&#x5305;&#x62EC;&#x539F;&#x578B;&#x94FE;&#xFF09;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</span><br><span class="line"><span class="keyword">const</span> obj = { <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> };</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">// &#x8F93;&#x51FA;&#xFF1A;&quot;a&quot;&#xFF0C;&quot;b&quot;&#xFF0C;&quot;c&quot;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+<h3 id="eg3"><a href="#eg3" class="headerlink" title="eg3"></a>eg3</h3><p>In the example below we use <code>ownKeys</code> trap to make <code>for..in</code> loop over <code>user</code>, and also <code>Object.keys</code> and <code>Object.values</code>, to skip properties starting with an underscore `_</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span>,</span><br><span class="line">  <span class="attr">_password</span>: <span class="string">&quot;***&quot;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">keys</span>(target).<span class="title function_">filter</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> !key.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>));</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;ownKeys&quot; filters out _password</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> user) <span class="title function_">alert</span>(key); <span class="comment">// name, then: age</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// same effect on these methods:</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(user)); <span class="comment">// name,age</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(user)); <span class="comment">// John,30</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>To articulate</strong></p>
+<p>No matter &#x201C;for in&#x201D; &#x201C;Object.keys&#x201D; or &#x201C;Object.values&#x201D;<br>Deep inside They still use the same list offered by [[OwnPropertyKeys]]<br>Different methods <strong>just filter the list with different ways.</strong> And &#x201C;ownKeys&#x201D; trap does something to the list (above:Object.keys(target).filter(key =&gt; !key.startsWith(&#x2018;_&#x2018;));)<br> <strong>before</strong> the &#x201C;for in&#x201D; &#x201C;Object.keys&#x201D; or &#x201C;Object.values&#x201D; can access the list.</p>
+<h4 id="To-note-1"><a href="#To-note-1" class="headerlink" title="To note"></a>To note</h4><p>if we return a key that doesn&#x2019;t exist in the object, <code>Object.keys</code> won&#x2019;t list it:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(user)); <span class="comment">// &lt;empty&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>the trap return a list full of keys But none of these keys exist in the &#x201C;user &#x201C;object<br><strong>Why?</strong> The reason is simple: <code>Object.keys</code> returns only properties <strong>with the <code>enumerable</code> flag.</strong></p>
+<p>the properties of [&#x2018;a&#x2019;, &#x2018;b&#x2019;, &#x2018;c&#x2019;] don&#x2019;t have the flag But how does Object.keys find out?<br>Object.keys check for it by calling the internal method <code>[[GetOwnProperty]]</code> of &#x201C;user&#x201D; for every property to get its <strong>descriptor</strong><br>And here, as there&#x2019;s no property in user, its descriptor is empty, no <code>enumerable</code> flag, so the listing-properties procedure is skipped.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="comment">// called once to get a list of properties</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  <span class="title function_">getOwnPropertyDescriptor</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="comment">// called for every property</span></span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      <span class="attr">enumerable</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">configurable</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="comment">/* ...other flags, probable &quot;value:...&quot; */</span></span><br><span class="line">    };</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(user)); <span class="comment">// a, b, c</span></span><br></pre></td></tr></table></figure>
+
+<p>when Object.keys is checking by calling the internal method <code>[[GetOwnProperty]]</code>of &#x201C;user&#x201D;<br>the calling will be intercepted and Object.keys will receive the informing-letter(haha) which is written &#x201C;it&#x2019;s enumable&#x201D;</p>
+<h2 id="Convention"><a href="#Convention" class="headerlink" title="Convention"></a>Convention</h2><ol>
+<li>There&#x2019;s a widespread convention that properties and methods prefixed by an underscore <code>_</code> are internal. They shouldn&#x2019;t be accessed from outside the object.</li>
+<li>(prop can be seen as a key in the wrapped object&#x2019;s key-value pair)</li>
+<li>target in &#x201C;get(target,prop)&#x201D; is the original object</li>
+</ol>
+<h2 id="deleteProperty"><a href="#deleteProperty" class="headerlink" title="deleteProperty"></a>deleteProperty</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">_password</span>: <span class="string">&quot;secret&quot;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(user.<span class="property">_password</span>); <span class="comment">// secret</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="eg4"><a href="#eg4" class="headerlink" title="eg4"></a>eg4</h3><p>Let&#x2019;s use proxies to prevent any access to properties starting with <code>_</code>.</p>
+<p>We&#x2019;ll need these traps to accomplish an internal property:</p>
+<ul>
+<li><code>get</code> to throw an error when reading such property,</li>
+<li><code>set</code> to throw an error when writing,</li>
+<li><code>deleteProperty</code> to throw an error when deleting,</li>
+<li><code>ownKeys</code> to exclude properties starting with <code>_</code> from <code>for..in</code> and methods like <code>Object.keys</code>.</li>
+</ul>
+<p>here is how we approach that:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">_password</span>: <span class="string">&quot;***&quot;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="keyword">if</span> (prop.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Access denied&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">let</span> value = target[prop];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">&quot;function&quot;</span> ? value.<span class="title function_">bind</span>(target) : value; <span class="comment">// (*)</span></span><br><span class="line">  },</span><br><span class="line">  <span class="title function_">set</span>(<span class="params">target, prop, val</span>) {</span><br><span class="line">    <span class="comment">// to intercept property writing</span></span><br><span class="line">    <span class="keyword">if</span> (prop.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Access denied&quot;</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      target[prop] = val;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  <span class="title function_">deleteProperty</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="comment">// to intercept property deletion</span></span><br><span class="line">    <span class="keyword">if</span> (prop.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Access denied&quot;</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">delete</span> target[prop];</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="comment">// to intercept property list</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">keys</span>(target).<span class="title function_">filter</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> !key.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>));</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;get&quot; doesn&apos;t allow to read _password</span></span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  <span class="title function_">alert</span>(user.<span class="property">_password</span>); <span class="comment">// Error: Access denied</span></span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line">  <span class="title function_">alert</span>(e.<span class="property">message</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;set&quot; doesn&apos;t allow to write _password</span></span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  user.<span class="property">_password</span> = <span class="string">&quot;test&quot;</span>; <span class="comment">// Error: Access denied</span></span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line">  <span class="title function_">alert</span>(e.<span class="property">message</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;deleteProperty&quot; doesn&apos;t allow to delete _password</span></span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  <span class="keyword">delete</span> user.<span class="property">_password</span>; <span class="comment">// Error: Access denied</span></span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line">  <span class="title function_">alert</span>(e.<span class="property">message</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;ownKeys&quot; filters out _password</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> user) <span class="title function_">alert</span>(key); <span class="comment">// name</span></span><br></pre></td></tr></table></figure>
+
+<p>To explain:</p>
+<ol>
+<li><p>get: the throwing-error part is obvious But why do we need to return a function binded to the object &#x201C;target&#x201D;when what we try to use[[Get]] to get is a function<br>Because:<br>In real-life code there will absolutely be a method in the <em>original object</em> that can access the internal value(_ prefixed)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">user = {</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="title function_">checkPassword</span>(<span class="params">value</span>) {</span><br><span class="line">    <span class="comment">// object method must be able to read _password</span></span><br><span class="line">    <span class="keyword">return</span> value === <span class="variable language_">this</span>.<span class="property">_password</span>;</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<p>for example <em>above</em> should be working properly! But with the trap &#x201C;get&#x201D; is set already when you write user.checkPassword &#x201C;this._password&#x201D; will activate the trap which will deny your access So the checkPassword won&#x2019;t be working.<br>After you set &#x201C;value.bind(target)&#x201D; actually you are bonding the context of the method(signing &#x201C;this&#x201D; to the) to target (we know it&#x2019;s the original object) And in the target(the original object) there are no traps at all.<br><strong>To be more clear : You need to ensure when &#x201C;checkPassword&#x201D; is working its(&#x201C;checkPassword&#x201D;) &#x201C;this&#x201D; should point to the &#x201C;obedient&#x201D;(no traps)object to ensure it (&#x201C;checkPassword&#x201D;) functions!(&#x8D77;&#x4F5C;&#x7528;)</strong></p>
+</li>
+</ol>
+<p>That solution usually works, but isn&#x2019;t ideal</p>
+<ol start="2">
+<li>the rest is simple</li>
+</ol>
+<h2 id="In-to-has-trap"><a href="#In-to-has-trap" class="headerlink" title="In to has trap"></a>In to has trap</h2><p>As you can see above(in the internal method and handler method). The has trap intercept the &#x201C;in&#x201D; operator(which operate on the proxy object)because the in operator will invoke the <code>[[HasProperty]]</code></p>
+<h3 id="eg5"><a href="#eg5" class="headerlink" title="eg5"></a>eg5</h3><p>We&#x2019;d like to use the <code>in</code> operator to check that a number is in <code>range</code>.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> range = {</span><br><span class="line">  <span class="attr">start</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">end</span>: <span class="number">10</span>,</span><br><span class="line">};</span><br><span class="line">proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(range, {</span><br><span class="line">  <span class="title function_">has</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="keyword">return</span> prop &gt;= target.<span class="property">start</span> &amp;&amp; prop &lt;= target.<span class="property">end</span>;</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span> <span class="keyword">in</span> proxy); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Wrapping-functions-&#x201D;apply&#x201D;"><a href="#Wrapping-functions-&#x201D;apply&#x201D;" class="headerlink" title="Wrapping functions:&#x201D;apply&#x201D;"></a>Wrapping functions:&#x201D;apply&#x201D;</h2><p>You should see the article Decortor and forwarding,call/apply first to understand this section</p>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Proxy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What’s the Difference Between localhost and 127.0.0.1</title>
+    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
+<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
+<p>The scope of localhost is limited to the local machine</p>
+<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
+<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
+<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
+<p>localhost is a domain name</p>
+<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
+<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
+<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Server</title>
     <url>/2024/09/02/2024-09-02-Server-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
@@ -408,25 +621,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
         <tag>http</tag>
         <tag>https</tag>
         <tag>domain</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What’s the Difference Between localhost and 127.0.0.1</title>
-    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
-<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
-<p>The scope of localhost is limited to the local machine</p>
-<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
-<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
-<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
-<p>localhost is a domain name</p>
-<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
-<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
-<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -828,200 +1022,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Proxy</title>
-    <url>/2024/10/23/2024-08-19-Proxy-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="what&#x2019;s-a-proxy"><a href="#what&#x2019;s-a-proxy" class="headerlink" title="what&#x2019;s a proxy"></a>what&#x2019;s a proxy</h2><p>a proxy is a object with a superpower of wrapping another object Like a trash wrapper <br></p>
-<span id="more"></span>
-
-<p>Not only wrap it but also protect it . The protecting way is to intercept the operations that are about to operate on the object that been wrapped inside For example reading/writing properties <br><br><strong>optionally handling them on Proxy&#x2019;s own</strong></p>
-<h2 id="Proxy-syntax"><a href="#Proxy-syntax" class="headerlink" title="Proxy syntax"></a>Proxy syntax</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let` proxy `=` `new` `Proxy``(`target`,` handler`)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>target</code> &#x2013; is an object to wrap, can be anything, including functions.</li>
-<li><code>handler</code> &#x2013; proxy configuration: an object with &#x201C;traps&#x201D;, methods that intercept operations. &#x2013; e.g. <code>get</code> trap for reading a property of <code>target</code>, <code>set</code> trap for writing a property into <code>target</code>, and so on.</li>
-</ul>
-<p>For operations on <code>proxy</code>, if there&#x2019;s a corresponding trap in <code>handler</code>, then it runs<br>otherwise the operation is performed <strong>directly</strong> on <code>target</code>.</p>
-<h3 id="A-proxy-with-no-&#x201C;traps&#x201D;-can-be-seen-as-the-object-inside-itself-OR-without-any-traps-proxy-is-a-transparent-wrapper-around-target"><a href="#A-proxy-with-no-&#x201C;traps&#x201D;-can-be-seen-as-the-object-inside-itself-OR-without-any-traps-proxy-is-a-transparent-wrapper-around-target" class="headerlink" title="A proxy with no &#x201C;traps&#x201D; can be seen as the object(inside) itself OR without any traps, proxy is a transparent wrapper around target"></a>A proxy with no &#x201C;traps&#x201D; can be seen as the object(inside) itself OR without any traps, <code>proxy</code> is a transparent wrapper around <code>target</code></h3><p>Below is the demonstration</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let target = {};</span><br><span class="line">let proxy = new Proxy(target, {});</span><br><span class="line">proxy.test = 5; //set to proxy also set to target</span><br><span class="line">console.log(&quot;target.test is &quot;, target.test);</span><br></pre></td></tr></table></figure>
-
-<p>As there are no traps, all operations on <code>proxy</code> are forwarded to <code>target</code>.</p>
-<h3 id="What-can-we-intercept"><a href="#What-can-we-intercept" class="headerlink" title="What can we intercept"></a>What can we intercept</h3><p>For a object there are some so-called &#x201C;internal method&#x201D;<br><code>[[Get]]</code>, the internal method to read a property,<br><code>[[Set]]</code>, the internal method to write a property,</p>
-<p><strong>Proxy traps intercept invocations of these methods</strong></p>
-<p>They are listed in the <a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots">Proxy specification</a> and in the table below.</p>
-<h2 id="Internal-Method-and-handler-methods-and-Trigger-point"><a href="#Internal-Method-and-handler-methods-and-Trigger-point" class="headerlink" title="Internal Method and handler methods and Trigger-point"></a>Internal Method and handler methods and Trigger-point</h2><p><strong>For every internal method, there&#x2019;s a trap in this table: the name of the method that we can add to the <code>handler</code> parameter of <code>new Proxy</code> to intercept the operation</strong></p>
-<h4 id="To-note"><a href="#To-note" class="headerlink" title="To note"></a>To note</h4><p>handler is a paramter in Proxy&#x2019;s constructor.It&#x2019;s a set including all the methods(we can call them Handler Methods)<br>And what&#x2019;s actually intercepting the specific operation?THE corresponding handler method!<br>How?When you trigger the internal method in THE object.</p>
-<table>
-<thead>
-<tr>
-<th align="left">Internal Method In object &#x5185;&#x90E8;&#x65B9;&#x6CD5;</th>
-<th align="left">Handler Method In proxy &#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x65B9;&#x6CD5;</th>
-<th align="left">Triggers when&#x2026; &#x89E6;&#x53D1;&#x65F6;&#x2026;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>[[Get]]</code></td>
-<td align="left"><code>get</code></td>
-<td align="left">reading a property &#x8BFB;&#x53D6;&#x5C5E;&#x6027; use [ ] or . on a object</td>
-</tr>
-<tr>
-<td align="left"><code>[[Set]]</code></td>
-<td align="left"><code>set</code></td>
-<td align="left">writing to a property &#x5199;&#x5165;&#x5C5E;&#x6027; .newproperty = /.push(for array) /unshift</td>
-</tr>
-<tr>
-<td align="left"><code>[[HasProperty]]</code></td>
-<td align="left"><code>has</code></td>
-<td align="left"><code>in</code> operator <code>in</code> &#x8FD0;&#x7B97;&#x7B26;</td>
-</tr>
-<tr>
-<td align="left"><code>[[Delete]]</code></td>
-<td align="left"><code>deleteProperty</code></td>
-<td align="left"><code>delete</code> operator <code>delete</code> &#x8FD0;&#x7B97;&#x7B26;</td>
-</tr>
-<tr>
-<td align="left"><code>[[Call]]</code></td>
-<td align="left"><code>apply</code></td>
-<td align="left">function call &#x51FD;&#x6570;&#x8C03;&#x7528;</td>
-</tr>
-<tr>
-<td align="left"><code>[[Construct]]</code></td>
-<td align="left"><code>construct</code></td>
-<td align="left"><code>new</code> operator <code>new</code> &#x8FD0;&#x7B97;&#x7B26;</td>
-</tr>
-<tr>
-<td align="left"><code>[[GetPrototypeOf]]</code></td>
-<td align="left"><code>getPrototypeOf</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object.getPrototypeOf &#x5BF9;&#x8C61;.getPrototypeOf</a></td>
-</tr>
-<tr>
-<td align="left"><code>[[SetPrototypeOf]]</code></td>
-<td align="left"><code>setPrototypeOf</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf">Object.setPrototypeOf &#x5BF9;&#x8C61;.setPrototypeOf</a></td>
-</tr>
-<tr>
-<td align="left"><code>[[IsExtensible]]</code></td>
-<td align="left"><code>isExtensible</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible">Object.isExtensible &#x5BF9;&#x8C61;&#x53EF;&#x6269;&#x5C55;</a></td>
-</tr>
-<tr>
-<td align="left"><code>[[PreventExtensions]]</code></td>
-<td align="left"><code>preventExtensions</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions">Object.preventExtensions &#x5BF9;&#x8C61;.preventExtensions</a></td>
-</tr>
-<tr>
-<td align="left"><code>[[DefineOwnProperty]]</code></td>
-<td align="left"><code>defineProperty</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties">Object.defineProperties</a> &#x5BF9;&#x8C61;.defineProperty, &#x5BF9;&#x8C61;.defineProperties</td>
-</tr>
-<tr>
-<td align="left"><code>[[GetOwnProperty]]</code></td>
-<td align="left"><code>getOwnPropertyDescriptor</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor">Object.getOwnPropertyDescriptor</a>, <code>for..in</code>, <code>Object.keys/values/entries</code> Object.getOwnPropertyDescriptor&#xFF0C; <code>for..in</code> &#xFF0C; <code>Object.keys/values/entries</code></td>
-</tr>
-<tr>
-<td align="left"><code>[[OwnPropertyKeys]]</code></td>
-<td align="left"><code>ownKeys</code></td>
-<td align="left"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames">Object.getOwnPropertyNames</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols">Object.getOwnPropertySymbols</a>, <code>for..in</code>, <code>Object.keys/values/entries</code> Object.getOwnPropertyNames&#x3001;Object.getOwnPropertySymbols&#x3001; <code>for..in</code> &#x3001; <code>Object.keys/values/entries</code></td>
-</tr>
-</tbody></table>
-<h4 id="Notification"><a href="#Notification" class="headerlink" title="Notification"></a>Notification</h4><ul>
-<li><code>[[Set]]</code> must return <code>true</code> if the value was written successfully, otherwise <code>false</code>.</li>
-<li><code>[[Delete]]</code> must return <code>true</code> if the value was deleted successfully, otherwise <code>false</code>.</li>
-</ul>
-<h3 id="How-to-set-the-handler"><a href="#How-to-set-the-handler" class="headerlink" title="How to set the handler"></a>How to set the handler</h3><p>To intercept reading, the <code>handler</code> should have the so-called handler-method <code>get(target, property, receiver)</code> As we mentioned: <strong>It triggers when a property is read</strong></p>
-<ul>
-<li><code>target</code> &#x2013; is the target object, the one passed as the first argument to <code>new Proxy</code>,</li>
-<li><code>property</code> &#x2013; the object&#x2019;s property(the key in a key-value pair),</li>
-<li><code>receiver</code> &#x2013; if the target property is a getter, then <code>receiver</code> is the object that&#x2019;s going to be used as <code>this</code> in its call. Usually that&#x2019;s the <code>proxy</code> object itself (or an object that inherits from it, if we inherit from proxy). Right now we don&#x2019;t need this argument, so it will be explained in more detail later.</li>
-</ul>
-<h4 id="eg1"><a href="#eg1" class="headerlink" title="eg1"></a>eg1</h4><p>Usually when one tries to get a non-existing array item, they get <code>undefined</code>, but we&#x2019;ll wrap a regular array into the proxy that traps reading and returns <code>0</code> if there&#x2019;s no such property:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(number, {</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="keyword">if</span> (prop <span class="keyword">in</span> target) {</span><br><span class="line">      <span class="keyword">return</span> target[prop];</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>there should be a supplement For array : if array is seen as a object {key&#xFF1A;value}The &#x6570;&#x7EC4;&#x7684;&#x7D22;&#x5F15; is the key The &#x5177;&#x4F53;&#x6570;&#x503C; &#x662F; value</p>
-<h4 id="eg2"><a href="#eg2" class="headerlink" title="eg2"></a>eg2</h4><p>Let&#x2019;s say we want an array exclusively for numbers. If a value of another type is added, there should be an error.</p>
-<p><strong>The <code>set</code> trap triggers when a property is written.</strong></p>
-<p><code>set(target, property, value, receiver)</code>:</p>
-<ul>
-<li><code>target</code> &#x2013; is the target object, the one passed as the first argument to <code>new Proxy</code>,</li>
-<li><code>property</code> &#x2013; property name,</li>
-<li><code>value</code> &#x2013; property value,</li>
-<li><code>receiver</code> &#x2013; similar to <code>get</code> trap, matters only for setter properties.</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> numbers = [];</span><br><span class="line"></span><br><span class="line">numbers = <span class="keyword">new</span> <span class="title class_">Proxy</span>(numbers, {</span><br><span class="line">  <span class="comment">// (*)</span></span><br><span class="line">  <span class="title function_">set</span>(<span class="params">target, prop, val</span>) {</span><br><span class="line">    <span class="comment">// to intercept property writing</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> val == <span class="string">&quot;number&quot;</span>) {</span><br><span class="line">      target[prop] = val;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">//For set, it must return true for a successful write.</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="number">1</span>); <span class="comment">// added successfully</span></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="number">2</span>); <span class="comment">// added successfully</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;Length is: &quot;</span> + numbers.<span class="property">length</span>); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">numbers.<span class="title function_">push</span>(<span class="string">&quot;test&quot;</span>); <span class="comment">// TypeError (&apos;set&apos; on proxy returned false)</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="string">&quot;This line is never reached (error in the line above)&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>For <code>set</code>, it must return <code>true</code> for a successful write.</strong></p>
-<h3 id="Note-Only-interact-with-the-proxy-object"><a href="#Note-Only-interact-with-the-proxy-object" class="headerlink" title="Note : Only interact with the proxy object"></a>Note : Only interact with the proxy object</h3><h4 id="You-should-follow-below"><a href="#You-should-follow-below" class="headerlink" title="You should follow below:"></a>You should follow below:</h4><p>When a proxy object is created <strong>As for</strong> when you have proxied an object<br>You shouldn&#x2019;t reference the origin(or target) object.(the object is past the moment you get the proxy version)<br>And below is a normal way we deal with it.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dictionary = new Proxy(dictionary, ...);</span><br></pre></td></tr></table></figure>
-
-<p>can overwrite the &#x201C;dictionary&#x201D; variable .</p>
-<h4 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h4><p>Usually When you created a proxy You got to devise some traps . And so it&#x2019;s important for you to make sure the defined behaviors and traps are constantly applied to ensure all operation go through the proxy and its traps</p>
-<h2 id="iteration"><a href="#iteration" class="headerlink" title="iteration"></a>iteration</h2><h3 id="OwnPropertyKeys-internal-method"><a href="#OwnPropertyKeys-internal-method" class="headerlink" title="[[OwnPropertyKeys]] internal method"></a><code>[[OwnPropertyKeys]]</code> internal method</h3><p><code>Object.keys</code>, <code>for..in</code> loop and most other methods that iterate over object properties (use <code>[[OwnPropertyKeys]]</code> internal method) (intercepted by <code>ownKeys</code> trap) to** get a list of properties**</p>
-<h4 id="Such-methods-differ-in-details"><a href="#Such-methods-differ-in-details" class="headerlink" title="Such methods differ in details:"></a>Such methods differ in details:</h4><ul>
-<li><code>Object.getOwnPropertyNames(obj)</code> returns non-symbol keys.</li>
-<li><code>Object.getOwnPropertySymbols(obj)</code> returns symbol keys.</li>
-<li><code>Object.keys/values()</code> returns non-symbol keys/values with <code>enumerable</code> flag (property flags were explained in the article <a href="https://javascript.info/property-descriptors">Property flags and descriptors</a>).</li>
-<li><code>for..in</code> loops over non-symbol keys with <code>enumerable</code> flag, and also prototype keys.</li>
-</ul>
-<h4 id="to-supplement"><a href="#to-supplement" class="headerlink" title="to supplement:"></a>to supplement:</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>()&#xFF1A;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x8BE5;&#x6570;&#x7EC4;&#x5305;&#x542B;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#xFF08;&#x4E0D;&#x5305;&#x62EC;&#x539F;&#x578B;&#x94FE;&#xFF09;&#x7684;&#x6240;&#x6709;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</span><br><span class="line"><span class="keyword">const</span> obj = { <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> };</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(obj)); <span class="comment">// &#x8F93;&#x51FA;&#xFF1A;[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span></span><br><span class="line"><span class="keyword">for</span>...<span class="keyword">in</span> &#x5FAA;&#x73AF;&#xFF1A;&#x8FD9;&#x4E2A;&#x5FAA;&#x73AF;&#x904D;&#x5386;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#x7684;&#x548C;&#x7EE7;&#x627F;&#x7684;&#x6240;&#x6709;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#xFF08;&#x5305;&#x62EC;&#x539F;&#x578B;&#x94FE;&#xFF09;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</span><br><span class="line"><span class="keyword">const</span> obj = { <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> };</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">// &#x8F93;&#x51FA;&#xFF1A;&quot;a&quot;&#xFF0C;&quot;b&quot;&#xFF0C;&quot;c&quot;</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-<h3 id="eg3"><a href="#eg3" class="headerlink" title="eg3"></a>eg3</h3><p>In the example below we use <code>ownKeys</code> trap to make <code>for..in</code> loop over <code>user</code>, and also <code>Object.keys</code> and <code>Object.values</code>, to skip properties starting with an underscore `_</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">30</span>,</span><br><span class="line">  <span class="attr">_password</span>: <span class="string">&quot;***&quot;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">keys</span>(target).<span class="title function_">filter</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> !key.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>));</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;ownKeys&quot; filters out _password</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> user) <span class="title function_">alert</span>(key); <span class="comment">// name, then: age</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// same effect on these methods:</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(user)); <span class="comment">// name,age</span></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">values</span>(user)); <span class="comment">// John,30</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>To articulate</strong></p>
-<p>No matter &#x201C;for in&#x201D; &#x201C;Object.keys&#x201D; or &#x201C;Object.values&#x201D;<br>Deep inside They still use the same list offered by [[OwnPropertyKeys]]<br>Different methods <strong>just filter the list with different ways.</strong> And &#x201C;ownKeys&#x201D; trap does something to the list (above:Object.keys(target).filter(key =&gt; !key.startsWith(&#x2018;_&#x2018;));)<br> <strong>before</strong> the &#x201C;for in&#x201D; &#x201C;Object.keys&#x201D; or &#x201C;Object.values&#x201D; can access the list.</p>
-<h4 id="To-note-1"><a href="#To-note-1" class="headerlink" title="To note"></a>To note</h4><p>if we return a key that doesn&#x2019;t exist in the object, <code>Object.keys</code> won&#x2019;t list it:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(user)); <span class="comment">// &lt;empty&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>the trap return a list full of keys But none of these keys exist in the &#x201C;user &#x201C;object<br><strong>Why?</strong> The reason is simple: <code>Object.keys</code> returns only properties <strong>with the <code>enumerable</code> flag.</strong></p>
-<p>the properties of [&#x2018;a&#x2019;, &#x2018;b&#x2019;, &#x2018;c&#x2019;] don&#x2019;t have the flag But how does Object.keys find out?<br>Object.keys check for it by calling the internal method <code>[[GetOwnProperty]]</code> of &#x201C;user&#x201D; for every property to get its <strong>descriptor</strong><br>And here, as there&#x2019;s no property in user, its descriptor is empty, no <code>enumerable</code> flag, so the listing-properties procedure is skipped.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="comment">// called once to get a list of properties</span></span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>];</span><br><span class="line">  },</span><br><span class="line"></span><br><span class="line">  <span class="title function_">getOwnPropertyDescriptor</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="comment">// called for every property</span></span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      <span class="attr">enumerable</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">configurable</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="comment">/* ...other flags, probable &quot;value:...&quot; */</span></span><br><span class="line">    };</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(user)); <span class="comment">// a, b, c</span></span><br></pre></td></tr></table></figure>
-
-<p>when Object.keys is checking by calling the internal method <code>[[GetOwnProperty]]</code>of &#x201C;user&#x201D;<br>the calling will be intercepted and Object.keys will receive the informing-letter(haha) which is written &#x201C;it&#x2019;s enumable&#x201D;</p>
-<h2 id="Convention"><a href="#Convention" class="headerlink" title="Convention"></a>Convention</h2><ol>
-<li>There&#x2019;s a widespread convention that properties and methods prefixed by an underscore <code>_</code> are internal. They shouldn&#x2019;t be accessed from outside the object.</li>
-<li>(prop can be seen as a key in the wrapped object&#x2019;s key-value pair)</li>
-<li>target in &#x201C;get(target,prop)&#x201D; is the original object</li>
-</ol>
-<h2 id="deleteProperty"><a href="#deleteProperty" class="headerlink" title="deleteProperty"></a>deleteProperty</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">_password</span>: <span class="string">&quot;secret&quot;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(user.<span class="property">_password</span>); <span class="comment">// secret</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="eg4"><a href="#eg4" class="headerlink" title="eg4"></a>eg4</h3><p>Let&#x2019;s use proxies to prevent any access to properties starting with <code>_</code>.</p>
-<p>We&#x2019;ll need these traps to accomplish an internal property:</p>
-<ul>
-<li><code>get</code> to throw an error when reading such property,</li>
-<li><code>set</code> to throw an error when writing,</li>
-<li><code>deleteProperty</code> to throw an error when deleting,</li>
-<li><code>ownKeys</code> to exclude properties starting with <code>_</code> from <code>for..in</code> and methods like <code>Object.keys</code>.</li>
-</ul>
-<p>here is how we approach that:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">  <span class="attr">_password</span>: <span class="string">&quot;***&quot;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">user = <span class="keyword">new</span> <span class="title class_">Proxy</span>(user, {</span><br><span class="line">  <span class="title function_">get</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="keyword">if</span> (prop.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Access denied&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">let</span> value = target[prop];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">&quot;function&quot;</span> ? value.<span class="title function_">bind</span>(target) : value; <span class="comment">// (*)</span></span><br><span class="line">  },</span><br><span class="line">  <span class="title function_">set</span>(<span class="params">target, prop, val</span>) {</span><br><span class="line">    <span class="comment">// to intercept property writing</span></span><br><span class="line">    <span class="keyword">if</span> (prop.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Access denied&quot;</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      target[prop] = val;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  <span class="title function_">deleteProperty</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="comment">// to intercept property deletion</span></span><br><span class="line">    <span class="keyword">if</span> (prop.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>)) {</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;Access denied&quot;</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="keyword">delete</span> target[prop];</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  <span class="title function_">ownKeys</span>(<span class="params">target</span>) {</span><br><span class="line">    <span class="comment">// to intercept property list</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">keys</span>(target).<span class="title function_">filter</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> !key.<span class="title function_">startsWith</span>(<span class="string">&quot;_&quot;</span>));</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;get&quot; doesn&apos;t allow to read _password</span></span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  <span class="title function_">alert</span>(user.<span class="property">_password</span>); <span class="comment">// Error: Access denied</span></span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line">  <span class="title function_">alert</span>(e.<span class="property">message</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;set&quot; doesn&apos;t allow to write _password</span></span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  user.<span class="property">_password</span> = <span class="string">&quot;test&quot;</span>; <span class="comment">// Error: Access denied</span></span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line">  <span class="title function_">alert</span>(e.<span class="property">message</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;deleteProperty&quot; doesn&apos;t allow to delete _password</span></span><br><span class="line"><span class="keyword">try</span> {</span><br><span class="line">  <span class="keyword">delete</span> user.<span class="property">_password</span>; <span class="comment">// Error: Access denied</span></span><br><span class="line">} <span class="keyword">catch</span> (e) {</span><br><span class="line">  <span class="title function_">alert</span>(e.<span class="property">message</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// &quot;ownKeys&quot; filters out _password</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> user) <span class="title function_">alert</span>(key); <span class="comment">// name</span></span><br></pre></td></tr></table></figure>
-
-<p>To explain:</p>
-<ol>
-<li><p>get: the throwing-error part is obvious But why do we need to return a function binded to the object &#x201C;target&#x201D;when what we try to use[[Get]] to get is a function<br>Because:<br>In real-life code there will absolutely be a method in the <em>original object</em> that can access the internal value(_ prefixed)</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">user = {</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="title function_">checkPassword</span>(<span class="params">value</span>) {</span><br><span class="line">    <span class="comment">// object method must be able to read _password</span></span><br><span class="line">    <span class="keyword">return</span> value === <span class="variable language_">this</span>.<span class="property">_password</span>;</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<p>for example <em>above</em> should be working properly! But with the trap &#x201C;get&#x201D; is set already when you write user.checkPassword &#x201C;this._password&#x201D; will activate the trap which will deny your access So the checkPassword won&#x2019;t be working.<br>After you set &#x201C;value.bind(target)&#x201D; actually you are bonding the context of the method(signing &#x201C;this&#x201D; to the) to target (we know it&#x2019;s the original object) And in the target(the original object) there are no traps at all.<br><strong>To be more clear : You need to ensure when &#x201C;checkPassword&#x201D; is working its(&#x201C;checkPassword&#x201D;) &#x201C;this&#x201D; should point to the &#x201C;obedient&#x201D;(no traps)object to ensure it (&#x201C;checkPassword&#x201D;) functions!(&#x8D77;&#x4F5C;&#x7528;)</strong></p>
-</li>
-</ol>
-<p>That solution usually works, but isn&#x2019;t ideal</p>
-<ol start="2">
-<li>the rest is simple</li>
-</ol>
-<h2 id="In-to-has-trap"><a href="#In-to-has-trap" class="headerlink" title="In to has trap"></a>In to has trap</h2><p>As you can see above(in the internal method and handler method). The has trap intercept the &#x201C;in&#x201D; operator(which operate on the proxy object)because the in operator will invoke the <code>[[HasProperty]]</code></p>
-<h3 id="eg5"><a href="#eg5" class="headerlink" title="eg5"></a>eg5</h3><p>We&#x2019;d like to use the <code>in</code> operator to check that a number is in <code>range</code>.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> range = {</span><br><span class="line">  <span class="attr">start</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">end</span>: <span class="number">10</span>,</span><br><span class="line">};</span><br><span class="line">proxy = <span class="keyword">new</span> <span class="title class_">Proxy</span>(range, {</span><br><span class="line">  <span class="title function_">has</span>(<span class="params">target, prop</span>) {</span><br><span class="line">    <span class="keyword">return</span> prop &gt;= target.<span class="property">start</span> &amp;&amp; prop &lt;= target.<span class="property">end</span>;</span><br><span class="line">  },</span><br><span class="line">});</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span> <span class="keyword">in</span> proxy); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Wrapping-functions-&#x201D;apply&#x201D;"><a href="#Wrapping-functions-&#x201D;apply&#x201D;" class="headerlink" title="Wrapping functions:&#x201D;apply&#x201D;"></a>Wrapping functions:&#x201D;apply&#x201D;</h2><p>You should see the article Decortor and forwarding,call/apply first to understand this section</p>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Proxy</tag>
       </tags>
   </entry>
   <entry>
@@ -1508,6 +1508,33 @@ end
 ]]></content>
       <tags>
         <tag>Jottings</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ipv4 &amp;&amp; ipv6</title>
+    <url>/2025/04/27/2025-04-27-ipv4&amp;&amp;ipv6-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="NAT&#x5730;&#x5740;&#x8F6C;&#x6362;"><a href="#NAT&#x5730;&#x5740;&#x8F6C;&#x6362;" class="headerlink" title="NAT&#x5730;&#x5740;&#x8F6C;&#x6362;"></a>NAT&#x5730;&#x5740;&#x8F6C;&#x6362;</h1><p>&#x5BB6;&#x91CC;&#x8DEF;&#x7531;&#x5668;&#x88AB;&#x8FD0;&#x8425;&#x5546;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x516C;&#x7F51;IP<br>&#x624B;&#x673A;&#x5E73;&#x677F;&#x7535;&#x8111; &#x88AB;&#x8DEF;&#x7531;&#x5668;&#x5206;&#x914D;&#x4E86;&#x5185;&#x7F51;ip</p>
+<p>&#x8DEF;&#x7531;&#x5668;&#x5728;&#x670D;&#x52A1;&#x5668;&#x8DDF;&#x624B;&#x673A;&#x4E4B;&#x95F4; &#x4FEE;&#x6539;&#x624B;&#x673A;&#x53D1;&#x6765;&#x7684;&#x5185;&#x7F51;ip&#x548C;&#x7AEF;&#x53E3; &#x53D8;&#x6210;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7AEF;&#x53E3;&#x548C;&#x516C;&#x7F51;ip</p>
+<p>&#x95EE;&#x9898;&#x5C31;&#x662F;&#x5728;&#x516C;&#x7F51;&#x7684;&#x5176;&#x4ED6;&#x8BBE;&#x5907;&#x8BA4;&#x4E3A;&#x4F60;&#x7684;&#x624B;&#x673A;&#x548C;&#x7535;&#x8111;&#x662F;&#x4E00;&#x4E2A;&#x516C;&#x7F51;&#x8DDF;&#x4ED6;&#x4EEC;&#x5E73;&#x7EA7;&#x7684;&#x8BBE;&#x5907;</p>
+<p>&#x8FD9;&#x4E9B;&#x5176;&#x4ED6;&#x8BBE;&#x5907; &#x53EF;&#x4EE5;&#x8BA4;&#x4E3A; &#x4ED6;&#x4EEC;&#x770B;&#x4E0D;&#x5230;&#x8DEF;&#x7531;&#x5668; &#x4ED6;&#x4EEC;&#x4F1A;&#x4F7F;&#x7528;&#x516C;&#x7F51;ip+&#x7AEF;&#x53E3;9443&#x6765;&#x5C1D;&#x8BD5;&#x8FDE;&#x63A5;&#x4F60;&#x7684;&#x624B;&#x673A;&#x7535;&#x8111; </p>
+<p>&#x4F46;&#x662F;&#x7AEF;&#x53E3;&#x80AF;&#x5B9A;&#x4E0D;&#x5BF9; &#x56E0;&#x4E3A;&#x4F1A;&#x8FDE;&#x63A5;&#x5230;&#x8DEF;&#x7531;&#x5668;&#x7684;9443&#x7AEF;&#x53E3; &#x4F46;&#x662F;&#x5176;&#x5B9E;&#x60F3;&#x8FDE;&#x63A5;&#x624B;&#x673A;&#x7535;&#x8111;&#x7684;9443&#x7AEF;&#x53E3; &#x6240;&#x4EE5;&#x8981;&#x5728;&#x8DEF;&#x7531;&#x5668;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x6620;&#x5C04;</p>
+<hr>
+<p>NAT&#x4E4B;&#x4E0A;&#x5F04;NAT &#x56E0;&#x4E3A;&#x5206;&#x914D;&#x7ED9;&#x8DEF;&#x7531;&#x5668;&#x7684;ip&#x4E5F;&#x7528;&#x5B8C;&#x7684;&#x8BDD;&#x5C31;&#x8FD9;&#x6837;</p>
+<p>&#x5C0F;&#x533A;&#x4E00;&#x4E2A; &#x5C0F;&#x533A;&#x7684;&#x6BCF;&#x5BB6;&#x6BCF;&#x6237;&#x90FD;&#x662F;&#x7B2C;&#x4E00;&#x5C42;&#x5185;&#x7F51;ip &#x4F60;&#x7684;&#x8BBE;&#x5907;&#x53D8;&#x6210;&#x7B2C;&#x4E8C;&#x5C42;&#x4E86;</p>
+<p>&#x624B;&#x673A;&#x9996;&#x5148;&#x53D1;&#x5305;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x8DEF;&#x7531;&#x5668;&#x6539;&#x5B8C;&#x5730;&#x5740;&#x53D1;&#x5305;&#x7ED9;&#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6B21;&#x5730;&#x5740;&#x8F6C;&#x6362; &#x8FD9;&#x65F6;&#x5019;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x5305;&#x624D;&#x7528;&#x4E0A;&#x4E86;&#x516C;&#x7F51;ip&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x5668;</p>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x5927;&#x5185;&#x7F51;</p>
+<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x63A7;&#x5236;&#x6743;&#x5E76;&#x4E0D;&#x5728;&#x7528;&#x6237;&#x624B;&#x91CC; &#x4F60;&#x4E0D;&#x53EF;&#x80FD;&#x8DD1;&#x5230;&#x8FD0;&#x8425;&#x5546;&#x673A;&#x623F;&#x91CC;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x6240;&#x4EE5;&#x516C;&#x7F51;&#x7528;&#x6237;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x5927;&#x5185;&#x7F51;&#x91CC;&#x7684;&#x8BBE;&#x5907;</p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x51FA;&#x73B0;&#x4E86;&#x5185;&#x7F51;&#x7A7F;&#x900F;</p>
+<h1 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h1><p>NAT&#x5C42;&#x6570;&#x592A;&#x591A;&#x4E86; &#x4F7F;&#x7528;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6848; IPv6&#x5730;&#x5740;&#x957F;&#x5EA6;&#x662F;ipv4&#x7684;4&#x500D; 128&#x4F4D;2&#x8FDB;&#x5236; </p>
+<p>ipv6&#x5730;&#x5740;&#x5F88;&#x591A;  &#x6BCF;&#x4E2A;&#x5185;&#x7F51;&#x7528;&#x6237;&#x90FD;&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x5230;&#x4E00;&#x4E2A;</p>
+<p>&#x8BBE;&#x7F6E;&#x91CC;IPv6&#x5B57;&#x6BB5;&#x5982;&#x679C;&#x662F;FE80&#x5F00;&#x5934;&#x662F;&#x5185;&#x7F51;ipv6</p>
+<p>240E&#x5F00;&#x5934;&#x662F;&#x4E2D;&#x56FD;&#x7535;&#x4FE1; 2408&#x662F;&#x8054;&#x901A;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x7535;&#x8111;&#x901A;&#x8FC7;&#x4E86;<a href="http://www.test-ipv6.com&#x7684;&#x6D4B;&#x8BD5;/">www.test-ipv6.com&#x7684;&#x6D4B;&#x8BD5;</a> &#x8BF4;&#x660E;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;IPv6&#x7684;&#x7F51;&#x7AD9;</p>
+<p>&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x516C;&#x7F51;&#x7684;&#x9ED1;&#x5BA2;&#x968F;&#x610F;&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907;</p>
+<p>&#x81EA;&#x5DF1;&#x4E70;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x901A;&#x5E38;&#x4F1A;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x5165;&#x7AD9;&#x9632;&#x706B;&#x5899; &#x963B;&#x65AD;&#x5916;&#x7F51;IPv6&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907; &#x9700;&#x8981;&#x8FDB;&#x5165;&#x540E;&#x53F0;&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;&#x624D;&#x80FD;&#x4ECE;&#x516C;&#x7F51;&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907; &#x5BF9;&#x4E8E;&#x6709;&#x516C;&#x7F51;IPv4&#x7684;&#x670B;&#x53CB;&#x6765;&#x8BF4; &#x53EA;&#x8981;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x586B;&#x4E0A;&#x5185;&#x7F51;&#x8BBE;&#x5907;&#x5BF9;&#x5E94;&#x7684;IP&#x548C;&#x7AEF;&#x53E3;</p>
+]]></content>
+      <tags>
+        <tag>Networking</tag>
       </tags>
   </entry>
 </search>
