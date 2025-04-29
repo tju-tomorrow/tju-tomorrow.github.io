@@ -354,38 +354,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>What happens when you type a URL into your browser?</title>
-    <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
-<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
-<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
-<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
-<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
-<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
-<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
-<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
-<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
-<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
-<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
-<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
-<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
-<hr>
-
-<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
-]]></content>
-      <categories>
-        <category>Internet</category>
-      </categories>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-        <tag>Browser</tag>
-        <tag>URL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Proxy</title>
     <url>/2024/10/23/2024-08-19-Proxy-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="what&#x2019;s-a-proxy"><a href="#what&#x2019;s-a-proxy" class="headerlink" title="what&#x2019;s a proxy"></a>what&#x2019;s a proxy</h2><p>a proxy is a object with a superpower of wrapping another object Like a trash wrapper <br></p>
@@ -580,22 +548,35 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
-    <title>What’s the Difference Between localhost and 127.0.0.1</title>
-    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
-<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
-<p>The scope of localhost is limited to the local machine</p>
-<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
-<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
-<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
-<p>localhost is a domain name</p>
-<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
-<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
-<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
+    <title>What happens when you type a URL into your browser?</title>
+    <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
+<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
+<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
+<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
+<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
+<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
+<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
+<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
+<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
+<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
+<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
+<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
+<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
+<hr>
+
+<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
 ]]></content>
+      <categories>
+        <category>Internet</category>
+      </categories>
       <tags>
         <tag>Server</tag>
         <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+        <tag>Browser</tag>
+        <tag>URL</tag>
       </tags>
   </entry>
   <entry>
@@ -621,6 +602,25 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
         <tag>http</tag>
         <tag>https</tag>
         <tag>domain</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What’s the Difference Between localhost and 127.0.0.1</title>
+    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
+<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
+<p>The scope of localhost is limited to the local machine</p>
+<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
+<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
+<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
+<p>localhost is a domain name</p>
+<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
+<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
+<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -1477,6 +1477,33 @@ end
       </tags>
   </entry>
   <entry>
+    <title>ipv4 &amp;&amp; ipv6</title>
+    <url>/2025/04/27/2025-04-27-ipv4&amp;&amp;ipv6-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="NAT&#x5730;&#x5740;&#x8F6C;&#x6362;"><a href="#NAT&#x5730;&#x5740;&#x8F6C;&#x6362;" class="headerlink" title="NAT&#x5730;&#x5740;&#x8F6C;&#x6362;"></a>NAT&#x5730;&#x5740;&#x8F6C;&#x6362;</h1><p>&#x5BB6;&#x91CC;&#x8DEF;&#x7531;&#x5668;&#x88AB;&#x8FD0;&#x8425;&#x5546;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x516C;&#x7F51;IP<br>&#x624B;&#x673A;&#x5E73;&#x677F;&#x7535;&#x8111; &#x88AB;&#x8DEF;&#x7531;&#x5668;&#x5206;&#x914D;&#x4E86;&#x5185;&#x7F51;ip</p>
+<p>&#x8DEF;&#x7531;&#x5668;&#x5728;&#x670D;&#x52A1;&#x5668;&#x8DDF;&#x624B;&#x673A;&#x4E4B;&#x95F4; &#x4FEE;&#x6539;&#x624B;&#x673A;&#x53D1;&#x6765;&#x7684;&#x5185;&#x7F51;ip&#x548C;&#x7AEF;&#x53E3; &#x53D8;&#x6210;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7AEF;&#x53E3;&#x548C;&#x516C;&#x7F51;ip</p>
+<p>&#x95EE;&#x9898;&#x5C31;&#x662F;&#x5728;&#x516C;&#x7F51;&#x7684;&#x5176;&#x4ED6;&#x8BBE;&#x5907;&#x8BA4;&#x4E3A;&#x4F60;&#x7684;&#x624B;&#x673A;&#x548C;&#x7535;&#x8111;&#x662F;&#x4E00;&#x4E2A;&#x516C;&#x7F51;&#x8DDF;&#x4ED6;&#x4EEC;&#x5E73;&#x7EA7;&#x7684;&#x8BBE;&#x5907;</p>
+<p>&#x8FD9;&#x4E9B;&#x5176;&#x4ED6;&#x8BBE;&#x5907; &#x53EF;&#x4EE5;&#x8BA4;&#x4E3A; &#x4ED6;&#x4EEC;&#x770B;&#x4E0D;&#x5230;&#x8DEF;&#x7531;&#x5668; &#x4ED6;&#x4EEC;&#x4F1A;&#x4F7F;&#x7528;&#x516C;&#x7F51;ip+&#x7AEF;&#x53E3;9443&#x6765;&#x5C1D;&#x8BD5;&#x8FDE;&#x63A5;&#x4F60;&#x7684;&#x624B;&#x673A;&#x7535;&#x8111; </p>
+<p>&#x4F46;&#x662F;&#x7AEF;&#x53E3;&#x80AF;&#x5B9A;&#x4E0D;&#x5BF9; &#x56E0;&#x4E3A;&#x4F1A;&#x8FDE;&#x63A5;&#x5230;&#x8DEF;&#x7531;&#x5668;&#x7684;9443&#x7AEF;&#x53E3; &#x4F46;&#x662F;&#x5176;&#x5B9E;&#x60F3;&#x8FDE;&#x63A5;&#x624B;&#x673A;&#x7535;&#x8111;&#x7684;9443&#x7AEF;&#x53E3; &#x6240;&#x4EE5;&#x8981;&#x5728;&#x8DEF;&#x7531;&#x5668;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x6620;&#x5C04;</p>
+<hr>
+<p>NAT&#x4E4B;&#x4E0A;&#x5F04;NAT &#x56E0;&#x4E3A;&#x5206;&#x914D;&#x7ED9;&#x8DEF;&#x7531;&#x5668;&#x7684;ip&#x4E5F;&#x7528;&#x5B8C;&#x7684;&#x8BDD;&#x5C31;&#x8FD9;&#x6837;</p>
+<p>&#x5C0F;&#x533A;&#x4E00;&#x4E2A; &#x5C0F;&#x533A;&#x7684;&#x6BCF;&#x5BB6;&#x6BCF;&#x6237;&#x90FD;&#x662F;&#x7B2C;&#x4E00;&#x5C42;&#x5185;&#x7F51;ip &#x4F60;&#x7684;&#x8BBE;&#x5907;&#x53D8;&#x6210;&#x7B2C;&#x4E8C;&#x5C42;&#x4E86;</p>
+<p>&#x624B;&#x673A;&#x9996;&#x5148;&#x53D1;&#x5305;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x8DEF;&#x7531;&#x5668;&#x6539;&#x5B8C;&#x5730;&#x5740;&#x53D1;&#x5305;&#x7ED9;&#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6B21;&#x5730;&#x5740;&#x8F6C;&#x6362; &#x8FD9;&#x65F6;&#x5019;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x5305;&#x624D;&#x7528;&#x4E0A;&#x4E86;&#x516C;&#x7F51;ip&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x5668;</p>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x5927;&#x5185;&#x7F51;</p>
+<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x63A7;&#x5236;&#x6743;&#x5E76;&#x4E0D;&#x5728;&#x7528;&#x6237;&#x624B;&#x91CC; &#x4F60;&#x4E0D;&#x53EF;&#x80FD;&#x8DD1;&#x5230;&#x8FD0;&#x8425;&#x5546;&#x673A;&#x623F;&#x91CC;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x6240;&#x4EE5;&#x516C;&#x7F51;&#x7528;&#x6237;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x5927;&#x5185;&#x7F51;&#x91CC;&#x7684;&#x8BBE;&#x5907;</p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x51FA;&#x73B0;&#x4E86;&#x5185;&#x7F51;&#x7A7F;&#x900F;</p>
+<h1 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h1><p>NAT&#x5C42;&#x6570;&#x592A;&#x591A;&#x4E86; &#x4F7F;&#x7528;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6848; IPv6&#x5730;&#x5740;&#x957F;&#x5EA6;&#x662F;ipv4&#x7684;4&#x500D; 128&#x4F4D;2&#x8FDB;&#x5236; </p>
+<p>ipv6&#x5730;&#x5740;&#x5F88;&#x591A;  &#x6BCF;&#x4E2A;&#x5185;&#x7F51;&#x7528;&#x6237;&#x90FD;&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x5230;&#x4E00;&#x4E2A;</p>
+<p>&#x8BBE;&#x7F6E;&#x91CC;IPv6&#x5B57;&#x6BB5;&#x5982;&#x679C;&#x662F;FE80&#x5F00;&#x5934;&#x662F;&#x5185;&#x7F51;ipv6</p>
+<p>240E&#x5F00;&#x5934;&#x662F;&#x4E2D;&#x56FD;&#x7535;&#x4FE1; 2408&#x662F;&#x8054;&#x901A;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x7535;&#x8111;&#x901A;&#x8FC7;&#x4E86;<a href="http://www.test-ipv6.com&#x7684;&#x6D4B;&#x8BD5;/">www.test-ipv6.com&#x7684;&#x6D4B;&#x8BD5;</a> &#x8BF4;&#x660E;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;IPv6&#x7684;&#x7F51;&#x7AD9;</p>
+<p>&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x516C;&#x7F51;&#x7684;&#x9ED1;&#x5BA2;&#x968F;&#x610F;&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907;</p>
+<p>&#x81EA;&#x5DF1;&#x4E70;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x901A;&#x5E38;&#x4F1A;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x5165;&#x7AD9;&#x9632;&#x706B;&#x5899; &#x963B;&#x65AD;&#x5916;&#x7F51;IPv6&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907; &#x9700;&#x8981;&#x8FDB;&#x5165;&#x540E;&#x53F0;&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;&#x624D;&#x80FD;&#x4ECE;&#x516C;&#x7F51;&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907; &#x5BF9;&#x4E8E;&#x6709;&#x516C;&#x7F51;IPv4&#x7684;&#x670B;&#x53CB;&#x6765;&#x8BF4; &#x53EA;&#x8981;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x586B;&#x4E0A;&#x5185;&#x7F51;&#x8BBE;&#x5907;&#x5BF9;&#x5E94;&#x7684;IP&#x548C;&#x7AEF;&#x53E3;</p>
+]]></content>
+      <tags>
+        <tag>Networking</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unix Philosophy</title>
     <url>/2025/02/16/Jottings/2025/2025-02-18-first-journal/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1508,33 +1535,6 @@ end
 ]]></content>
       <tags>
         <tag>Jottings</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ipv4 &amp;&amp; ipv6</title>
-    <url>/2025/04/27/2025-04-27-ipv4&amp;&amp;ipv6-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="NAT&#x5730;&#x5740;&#x8F6C;&#x6362;"><a href="#NAT&#x5730;&#x5740;&#x8F6C;&#x6362;" class="headerlink" title="NAT&#x5730;&#x5740;&#x8F6C;&#x6362;"></a>NAT&#x5730;&#x5740;&#x8F6C;&#x6362;</h1><p>&#x5BB6;&#x91CC;&#x8DEF;&#x7531;&#x5668;&#x88AB;&#x8FD0;&#x8425;&#x5546;&#x5206;&#x914D;&#x4E00;&#x4E2A;&#x516C;&#x7F51;IP<br>&#x624B;&#x673A;&#x5E73;&#x677F;&#x7535;&#x8111; &#x88AB;&#x8DEF;&#x7531;&#x5668;&#x5206;&#x914D;&#x4E86;&#x5185;&#x7F51;ip</p>
-<p>&#x8DEF;&#x7531;&#x5668;&#x5728;&#x670D;&#x52A1;&#x5668;&#x8DDF;&#x624B;&#x673A;&#x4E4B;&#x95F4; &#x4FEE;&#x6539;&#x624B;&#x673A;&#x53D1;&#x6765;&#x7684;&#x5185;&#x7F51;ip&#x548C;&#x7AEF;&#x53E3; &#x53D8;&#x6210;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7AEF;&#x53E3;&#x548C;&#x516C;&#x7F51;ip</p>
-<p>&#x95EE;&#x9898;&#x5C31;&#x662F;&#x5728;&#x516C;&#x7F51;&#x7684;&#x5176;&#x4ED6;&#x8BBE;&#x5907;&#x8BA4;&#x4E3A;&#x4F60;&#x7684;&#x624B;&#x673A;&#x548C;&#x7535;&#x8111;&#x662F;&#x4E00;&#x4E2A;&#x516C;&#x7F51;&#x8DDF;&#x4ED6;&#x4EEC;&#x5E73;&#x7EA7;&#x7684;&#x8BBE;&#x5907;</p>
-<p>&#x8FD9;&#x4E9B;&#x5176;&#x4ED6;&#x8BBE;&#x5907; &#x53EF;&#x4EE5;&#x8BA4;&#x4E3A; &#x4ED6;&#x4EEC;&#x770B;&#x4E0D;&#x5230;&#x8DEF;&#x7531;&#x5668; &#x4ED6;&#x4EEC;&#x4F1A;&#x4F7F;&#x7528;&#x516C;&#x7F51;ip+&#x7AEF;&#x53E3;9443&#x6765;&#x5C1D;&#x8BD5;&#x8FDE;&#x63A5;&#x4F60;&#x7684;&#x624B;&#x673A;&#x7535;&#x8111; </p>
-<p>&#x4F46;&#x662F;&#x7AEF;&#x53E3;&#x80AF;&#x5B9A;&#x4E0D;&#x5BF9; &#x56E0;&#x4E3A;&#x4F1A;&#x8FDE;&#x63A5;&#x5230;&#x8DEF;&#x7531;&#x5668;&#x7684;9443&#x7AEF;&#x53E3; &#x4F46;&#x662F;&#x5176;&#x5B9E;&#x60F3;&#x8FDE;&#x63A5;&#x624B;&#x673A;&#x7535;&#x8111;&#x7684;9443&#x7AEF;&#x53E3; &#x6240;&#x4EE5;&#x8981;&#x5728;&#x8DEF;&#x7531;&#x5668;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x6620;&#x5C04;</p>
-<hr>
-<p>NAT&#x4E4B;&#x4E0A;&#x5F04;NAT &#x56E0;&#x4E3A;&#x5206;&#x914D;&#x7ED9;&#x8DEF;&#x7531;&#x5668;&#x7684;ip&#x4E5F;&#x7528;&#x5B8C;&#x7684;&#x8BDD;&#x5C31;&#x8FD9;&#x6837;</p>
-<p>&#x5C0F;&#x533A;&#x4E00;&#x4E2A; &#x5C0F;&#x533A;&#x7684;&#x6BCF;&#x5BB6;&#x6BCF;&#x6237;&#x90FD;&#x662F;&#x7B2C;&#x4E00;&#x5C42;&#x5185;&#x7F51;ip &#x4F60;&#x7684;&#x8BBE;&#x5907;&#x53D8;&#x6210;&#x7B2C;&#x4E8C;&#x5C42;&#x4E86;</p>
-<p>&#x624B;&#x673A;&#x9996;&#x5148;&#x53D1;&#x5305;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x8DEF;&#x7531;&#x5668;&#x6539;&#x5B8C;&#x5730;&#x5740;&#x53D1;&#x5305;&#x7ED9;&#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6B21;&#x5730;&#x5740;&#x8F6C;&#x6362; &#x8FD9;&#x65F6;&#x5019;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x5305;&#x624D;&#x7528;&#x4E0A;&#x4E86;&#x516C;&#x7F51;ip&#x53D1;&#x7ED9;&#x670D;&#x52A1;&#x5668;</p>
-<p>&#x8FD9;&#x5C31;&#x662F;&#x5927;&#x5185;&#x7F51;</p>
-<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x662F;&#x8FD0;&#x8425;&#x5546;&#x7684;&#x8DEF;&#x7531;&#x5668;&#x63A7;&#x5236;&#x6743;&#x5E76;&#x4E0D;&#x5728;&#x7528;&#x6237;&#x624B;&#x91CC; &#x4F60;&#x4E0D;&#x53EF;&#x80FD;&#x8DD1;&#x5230;&#x8FD0;&#x8425;&#x5546;&#x673A;&#x623F;&#x91CC;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x6240;&#x4EE5;&#x516C;&#x7F51;&#x7528;&#x6237;&#x4E0D;&#x80FD;&#x8BBF;&#x95EE;&#x5927;&#x5185;&#x7F51;&#x91CC;&#x7684;&#x8BBE;&#x5907;</p>
-<p>&#x8FD9;&#x65F6;&#x5019;&#x5C31;&#x51FA;&#x73B0;&#x4E86;&#x5185;&#x7F51;&#x7A7F;&#x900F;</p>
-<h1 id="ipv6"><a href="#ipv6" class="headerlink" title="ipv6"></a>ipv6</h1><p>NAT&#x5C42;&#x6570;&#x592A;&#x591A;&#x4E86; &#x4F7F;&#x7528;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6848; IPv6&#x5730;&#x5740;&#x957F;&#x5EA6;&#x662F;ipv4&#x7684;4&#x500D; 128&#x4F4D;2&#x8FDB;&#x5236; </p>
-<p>ipv6&#x5730;&#x5740;&#x5F88;&#x591A;  &#x6BCF;&#x4E2A;&#x5185;&#x7F51;&#x7528;&#x6237;&#x90FD;&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x5230;&#x4E00;&#x4E2A;</p>
-<p>&#x8BBE;&#x7F6E;&#x91CC;IPv6&#x5B57;&#x6BB5;&#x5982;&#x679C;&#x662F;FE80&#x5F00;&#x5934;&#x662F;&#x5185;&#x7F51;ipv6</p>
-<p>240E&#x5F00;&#x5934;&#x662F;&#x4E2D;&#x56FD;&#x7535;&#x4FE1; 2408&#x662F;&#x8054;&#x901A;</p>
-<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x7535;&#x8111;&#x901A;&#x8FC7;&#x4E86;<a href="http://www.test-ipv6.com&#x7684;&#x6D4B;&#x8BD5;/">www.test-ipv6.com&#x7684;&#x6D4B;&#x8BD5;</a> &#x8BF4;&#x660E;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;IPv6&#x7684;&#x7F51;&#x7AD9;</p>
-<p>&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x516C;&#x7F51;&#x7684;&#x9ED1;&#x5BA2;&#x968F;&#x610F;&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907;</p>
-<p>&#x81EA;&#x5DF1;&#x4E70;&#x7684;&#x8DEF;&#x7531;&#x5668; &#x901A;&#x5E38;&#x4F1A;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x5165;&#x7AD9;&#x9632;&#x706B;&#x5899; &#x963B;&#x65AD;&#x5916;&#x7F51;IPv6&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907; &#x9700;&#x8981;&#x8FDB;&#x5165;&#x540E;&#x53F0;&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;&#x624D;&#x80FD;&#x4ECE;&#x516C;&#x7F51;&#x8BBF;&#x95EE;&#x5185;&#x7F51;&#x8BBE;&#x5907; &#x5BF9;&#x4E8E;&#x6709;&#x516C;&#x7F51;IPv4&#x7684;&#x670B;&#x53CB;&#x6765;&#x8BF4; &#x53EA;&#x8981;&#x8BBE;&#x7F6E;&#x7AEF;&#x53E3;&#x8F6C;&#x53D1; &#x586B;&#x4E0A;&#x5185;&#x7F51;&#x8BBE;&#x5907;&#x5BF9;&#x5E94;&#x7684;IP&#x548C;&#x7AEF;&#x53E3;</p>
-]]></content>
-      <tags>
-        <tag>Networking</tag>
       </tags>
   </entry>
 </search>

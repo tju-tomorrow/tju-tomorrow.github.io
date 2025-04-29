@@ -1229,7 +1229,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff907f;
+  background: #668700;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3115,6 +3115,51 @@ ul.breadcrumb li + li:last-child {
   }
 }
 
+.posts-expand .personal-profile-page .post-body {
+  font-size: 1.1em;
+  font-style: italic;
+}
+.posts-expand .personal-profile-page .post-body h1 {
+  font-size: 2em;
+  color: #dedede;
+  border-bottom: 1px solid #4a4a4a;
+  padding-bottom: 10px;
+  margin: 30px 0;
+  font-style: italic;
+}
+.posts-expand .personal-profile-page .post-body h2 {
+  font-size: 1.5em;
+  color: #b8bfc6;
+  margin: 25px 0;
+  font-style: italic;
+}
+.posts-expand .personal-profile-page .post-body ul {
+  margin: 20px 0;
+}
+.posts-expand .personal-profile-page .post-body ul li {
+  line-height: 2;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+  font-style: italic;
+}
+.posts-expand .personal-profile-page .post-body ul li:hover {
+  transform: translateX(5px);
+  color: #df7575;
+}
+.posts-expand .personal-profile-page .post-body #about-me + p {
+  line-height: 1.8;
+  margin: 15px 0;
+  color: #a1afbd;
+}
+@media (max-width: 767px) {
+  .search-popup {
+    width: 90%;
+    left: 5%;
+    margin-left: 0;
+    top: 5%;
+    height: 90%;
+  }
+}
 .posts-expand .personal-profile-page .post-body {
   font-size: 1.1em;
   font-style: italic;
