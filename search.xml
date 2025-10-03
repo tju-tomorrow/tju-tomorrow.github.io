@@ -1877,4 +1877,51 @@ end
         <tag>Jottings</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Web3 is fun</title>
+    <url>/2025/10/02/2025-10-02-Web3-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h1><p>Think of it as <strong>&#x201C;read-only internet.&#x201D;</strong></p>
+<ul>
+<li><strong>Content</strong>: Mostly static HTML pages.<ul>
+<li>For example: A company&#x2019;s website had an &#x201C;About Us&#x201D; page, maybe a contact email, but no comments, no interactivity.</li>
+</ul>
+</li>
+<li><strong>Users</strong>: Just consumers of content.<ul>
+<li>You visit Yahoo, AOL, or a personal blog &#x2192; you read, but you don&#x2019;t post.</li>
+</ul>
+</li>
+<li><strong>Ownership</strong>: Content was hosted on someone&#x2019;s server (universities, companies, hobbyists).</li>
+</ul>
+<h1 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h1><p>the current internet dominated by centralized platforms</p>
+<p>in web2  you are not just a consumer but also a creator </p>
+<p>but in web2 big company scoop up our data like kids in a candy store(like your search history, browsing habits, location, purchases, likes, clicks).</p>
+<h2 id="The-Web3-idea"><a href="#The-Web3-idea" class="headerlink" title="The Web3 idea"></a><strong>The Web3 idea</strong></h2><p>Web3 is supposed to <strong>flip the control</strong>:</p>
+<ul>
+<li><strong>Data ownership</strong>: Instead of companies storing your data, you keep it in your wallet or decentralized identity.</li>
+<li><strong>Permission</strong>: If someone (even an app) wants to use your data, they need <em>your consent</em>, often enforced by cryptography or smart contracts.</li>
+<li><strong>Incentives</strong>: You might even get paid if you share your data.</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li>In a Web3 social network, instead of Meta showing ads and keeping the profit, <em>you</em> might choose to share your attention or browsing habits with advertisers and get tokens in return.</li>
+<li>In healthcare, you could grant a hospital temporary access to your medical records via blockchain, then revoke it later.</li>
+</ul>
+<p>Web3 is&#xA0;<strong>a proposed next generation of the internet that is decentralized and user-centric, built on blockchain technology to give users ownership of their data and digital assets, rather than relying on centralized corporations</strong>.&#xA0;</p>
+<ul>
+<li><strong>Decentralization:</strong>&#xA0;Power and control are distributed across a network, moving away from the centralized servers and control of large corporations like Google and Facebook.</li>
+<li><strong>User Ownership:</strong>&#xA0;Users have greater control over their personal data, digital identity, and digital assets through mechanisms like private blockchain wallets.</li>
+</ul>
+<h2 id="Why-would-companies-give-up-power"><a href="#Why-would-companies-give-up-power" class="headerlink" title="Why would companies give up power?"></a><strong>Why would companies give up power?</strong></h2><p>Good question &#x2014; they <em>won&#x2019;t do it voluntarily</em>. The shift would happen only if:</p>
+<ul>
+<li><strong>Users demand it</strong> &#x2192; If people migrate to platforms that protect their data.</li>
+<li><strong>Regulation forces it</strong> &#x2192; e.g., GDPR in Europe already limits how data is used.</li>
+<li><strong>Economic incentives change</strong> &#x2192; If blockchain/Web3 ecosystems become more profitable than hoarding data in silos.</li>
+</ul>
+<p>So Web3 isn&#x2019;t a guarantee &#x2014; it&#x2019;s more like a <strong>proposal for a new balance of power</strong>, where data is not automatically locked inside corporate servers.</p>
+]]></content>
+      <tags>
+        <tag>Fun Info</tag>
+        <tag>Web</tag>
+      </tags>
+  </entry>
 </search>
