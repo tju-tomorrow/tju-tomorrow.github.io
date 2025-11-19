@@ -856,62 +856,66 @@ pre .javascript .function {
 }
 .pagination .prev,
 .pagination .next,
-.pagination .page-number,
-.pagination .space {
+.pagination .page-number {
   display: inline-block;
-  margin: 0 15px;
-  padding: 8px 12px;
+  margin: 0 6px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   position: relative;
-  color: #666;
-  font-size: 15px;
+  color: #555;
+  font-size: 16px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid #ddd;
 }
 @media (max-width: 767px) {
   .pagination .prev,
   .pagination .next,
-  .pagination .page-number,
-  .pagination .space {
-    margin: 0 8px;
+  .pagination .page-number {
+    margin: 0 4px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
   }
 }
 .pagination {
-  margin: 80px 0 0;
+  margin: 60px 0 40px;
   text-align: center;
   border: none;
-}
-.pagination .prev,
-.pagination .next,
-.pagination .page-number {
-  background: none;
-  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .pagination .prev:hover,
 .pagination .next:hover,
 .pagination .page-number:hover {
-  color: #cc3538;
-  border: 3px;
-  transform: translateY(-3px);
+  color: #fff;
+  background: #333;
+  border-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 .pagination .space {
+  display: inline-block;
   margin: 0 5px;
   padding: 0;
+  color: #999;
+  font-size: 16px;
+  line-height: 40px;
 }
 .pagination .page-number.current {
-  color: #333;
+  color: #fff;
   font-weight: bold;
-  position: relative;
+  background: #333;
+  border-color: #333;
 }
 .pagination .page-number.current:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 2px;
-  background: #333;
-  border-radius: 1px;
+  display: none;
 }
 .pagination .prev {
   margin-left: 0;
@@ -921,20 +925,18 @@ pre .javascript .function {
 }
 @media (max-width: 767px) {
   .pagination {
-    border-top: none;
+    margin: 40px 0 20px;
   }
   .pagination .prev,
   .pagination .next,
   .pagination .page-number {
-    border-bottom: 1px solid #eee;
-    border-top: 0;
-    margin-bottom: 10px;
-    padding: 0 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 0;
   }
   .pagination .prev:hover,
   .pagination .next:hover,
   .pagination .page-number:hover {
-    border-bottom-color: #222;
+    border: 1px solid #333;
   }
 }
 .comments {
@@ -1229,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1d2bda;
+  background: #bb3d78;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1609,7 +1611,7 @@ pre .javascript .function {
 }
 .post-button .btn:hover {
   border-bottom-color: var(--btn-default-hover-border-color);
-  transform: scale(1.2);
+  transform: scale(1.03);
 }
 .use-motion .post-block,
 .use-motion .pagination,
@@ -1628,17 +1630,20 @@ pre .javascript .function {
 .post-body {
   border-radius: 10px;
   transition: background-color 0.3s ease;
-  background-color: #cdcbca;
+  background-color: transparent;
 }
 .post-block {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
   will-change: transform;
   position: relative;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-  border-radius: 12px;
-  padding: 20px;
-  background: #fff;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+  border-radius: 16px;
+  padding: 25px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
   margin-bottom: 24px;
 }
 .post-block::after {
@@ -1651,8 +1656,8 @@ pre .javascript .function {
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
-  background: linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-  border-radius: 12px;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+  border-radius: 16px;
 }
 .post-block .btn[rel="contents"] {
   transition: all 0.3s ease;
@@ -1660,14 +1665,14 @@ pre .javascript .function {
   z-index: 2;
   padding: 6px 16px;
   border-radius: 10px;
-  background: #dcd1d1;
+  background: rgba(230,188,188,0.647);
+}
+.post-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31,38,135,0.25);
 }
 .post-block:hover::after {
   opacity: 1;
-}
-.post-block:hover .btn[rel="contents"] {
-  transform: scale(1.05);
-  background: #696363;
 }
 .tag-cloud {
   text-align: center;
