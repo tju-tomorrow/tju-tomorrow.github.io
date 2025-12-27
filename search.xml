@@ -2194,4 +2194,22 @@ end
         <tag>Reflection</tag>
       </tags>
   </entry>
+  <entry>
+    <title>音文同步技术方案思考</title>
+    <url>/2025/12/27/2025-12-27-%E9%9F%B3%E6%96%87%E5%90%8C%E6%AD%A5%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>So I was running towards a problem while enhancing my project.</p>
+<p>The goal was simple: <strong>Highlight the text in the browser as the audio plays.</strong></p>
+<p>Initially, I was quite proud of coming up with the idea of &#x200B;&#x200B;using binary search to find the matching relationship between the start/end times of the generated audio and text segments. However, I later encountered the problem of inaccurate matching. Why? Because the Markdown I initially rendered was the content returned by the AI. I used regular expressions to clean it up into segments usable by the TTS service. Therefore, the audio&#x2019;s <code>currentTime</code> corresponds to the cleaned plain text, not the rendered Markdown text visible to the user.  This makes using <code>includes</code> or <code>indexOf</code> for matching quite fragile.</p>
+<p>Then I learned how other people did it.</p>
+<p>Large companies would absolutely not use string matching (indexOf or includes) on the front end for highlighting, because it&#x2019;s extremely unreliable (as I&#x2019;ve discovered, punctuation, formatting, and code blocks can all break the matching).</p>
+<p>The general solution is <strong>&#x201C;ID mapping based on AST (Abstract Syntax Tree)&#x201D;</strong>.</p>
+<p>&#x6838;&#x5FC3;&#x601D;&#x8DEF;&#xFF1A;&#x4E0D;&#x8981;&#x5339;&#x914D;&#x6587;&#x672C;&#xFF0C;&#x5339;&#x914D; ID<br>&#x5728;&#x540E;&#x7AEF;&#x5904;&#x7406; Markdown &#x65F6;&#xFF0C;&#x4E0D;&#x8981;&#x76F4;&#x63A5;&#x7528;&#x6B63;&#x5219;&#x53BB;&#x6E05;&#x6D17;&#x6587;&#x672C;&#x3002;&#x4F7F;&#x7528; Markdown &#x89E3;&#x6790;&#x5668; &#x5F53;&#x8C03;&#x7528; TTS &#x5F15;&#x64CE;&#x751F;&#x6210;&#x97F3;&#x9891;&#x65F6;&#xFF0C;&#x4FDD;&#x7559;&#x8FD9;&#x4E2A; id&#x3002;</p>
+<p>&#x524D;&#x7AEF;&#x5728;&#x6E32;&#x67D3; Markdown &#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x6E32;&#x67D3;&#x5668;&#xFF08;Custom Renderer&#xFF09;&#xFF0C;&#x5C06;&#x540E;&#x7AEF;&#x751F;&#x6210;&#x7684;&#x90A3;&#x4E2A; id &#x6CE8;&#x5165;&#x5230; HTML &#x6807;&#x7B7E;&#x7684; data-id &#x5C5E;&#x6027;&#x4E2D;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x6211;&#x7528;&#x7684;&#x662F;React-markdown &#x76F4;&#x63A5;&#x7531;&#x540E;&#x7AEF;&#x8FD4;&#x56DE;&#x5E26;&#x6709; ID &#x7684; HTML/JSON &#x7ED9;&#x524D;&#x7AEF;&#x6E32;&#x67D3;&#x6216;&#x8BB8;&#x663E;&#x5F97;&#x66F4;&#x7A33;&#x59A5;</p>
+]]></content>
+      <tags>
+        <tag>Project</tag>
+        <tag>Reflection</tag>
+      </tags>
+  </entry>
 </search>
