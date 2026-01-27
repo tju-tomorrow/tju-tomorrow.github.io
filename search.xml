@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>My First Post</title>
+    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
+<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
+</blockquote>
+<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
+<span id="more"></span>
+
+<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
+<hr>
+
+<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
+<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
+<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
+<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
+<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
+<p>we also want to keep primitives lightweight In the meantime.</p>
+<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
+<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
+<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
+<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
+<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
+</ol>
+<p>Which means something besides the simple and standalone value is actually created!</p>
+<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
+<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
+</li>
+<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
+<p>For example, this is entirely valid:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
+
+<p>the result will be</p>
+<ol>
+<li><code>undefined</code> (no strict mode)</li>
+<li>An error (strict mode).</li>
+</ol>
+<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
+<ol>
+<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
+<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>data types</tag>
+        <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Promise</title>
     <url>/2024/07/27/2024-07-27-Promise-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><h2 id="Preface-Scene-Imagination-lead-to-Promise"><a href="#Preface-Scene-Imagination-lead-to-Promise" class="headerlink" title="Preface:Scene Imagination lead to Promise"></a>Preface:Scene Imagination lead to Promise</h2><blockquote>
@@ -201,346 +264,6 @@
       </tags>
   </entry>
   <entry>
-    <title>My First Post</title>
-    <url>/2024/07/25/2024-07-25-the-First-One-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Hey"><a href="#Hey" class="headerlink" title="Hey"></a>Hey</h2><blockquote>
-<p>&#x8FD9;&#x662F;&#x6211;&#x7684;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
-</blockquote>
-<h3 id="preface"><a href="#preface" class="headerlink" title="preface"></a>preface</h3><p>In the first blog I want to talk about methods of primitives.We know objects have methods and in javascript we have the power to treat them as they were objects.</p>
-<span id="more"></span>
-
-<h3 id="first-why-we-want-to-treat-primitives-like-objects"><a href="#first-why-we-want-to-treat-primitives-like-objects" class="headerlink" title="first why we want to treat primitives like objects"></a>first why we want to treat primitives like objects</h3><p>There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.</p>
-<hr>
-
-<p>We should know the respective specialities of primitive and object before we want to combine the speciality in object(have methods) into the mechanism of primitive</p>
-<h3 id="the-distinctions-between-primitive-and-object"><a href="#the-distinctions-between-primitive-and-object" class="headerlink" title="the distinctions between primitive and object"></a>the distinctions between primitive and object</h3><h4 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h4><p>is a value of the basic type <code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code> and <code>undefined</code>.<br>So it&#x2019;s light-weight.</p>
-<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p>object is capable to store mutiple values as their &#x201C;properties&#x201D;</p>
-<p>there is a <strong>superiority</strong> of object that is : we can insert or store a function into a property</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> object = {</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;jack&quot;</span>,</span><br><span class="line">  <span class="attr">sayhi</span>: <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
-
-<h4 id="So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery"><a href="#So-Objects-are-&#x201C;heavier&#x201D;-than-primitives-They-require-additional-resources-to-support-the-internal-machinery" class="headerlink" title="So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery."></a>So Objects are &#x201C;heavier&#x201D; than primitives. They require additional resources to support the internal machinery.</h4><p>Then we manage to add the speciality into primitive which is being able to use &#x201C;.&#x201D; to invoke some methods.</p>
-<h3 id="How-to-accomplish-that-treat-primitives-like-objects"><a href="#How-to-accomplish-that-treat-primitives-like-objects" class="headerlink" title="How to accomplish that : treat primitives like objects"></a>How to accomplish that : treat primitives like objects</h3><p>With the speciality added,</p>
-<p>we also want to keep primitives lightweight In the meantime.</p>
-<p>So here we think :Only When we want to operate primitives with methods they are objects And When we don&#x2019;t need that they change back to primitive (So that they can provide methods, but they still remain lightweight)<br>So flexible!</p>
-<p>In order to do that :<strong>a special &#x201C;object wrapper&#x201D; that provides the extra functionality is created, and then is destroyed.</strong></p>
-<h4 id="Dive-in"><a href="#Dive-in" class="headerlink" title="Dive in"></a>Dive in</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">alert( str.toUpperCase() ); // HELLO</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>The string <code>str</code> is a primitive. So in the moment of accessing its property, a special object is created that <strong>knows the value of the string</strong>, and has useful methods, like <code>toUpperCase()</code>.</li>
-<li>That method runs and returns a new string (shown by <code>alert</code>).</li>
-<li>The special object is destroyed, leaving the primitive <code>str</code> alone.</li>
-</ol>
-<p>Which means something besides the simple and standalone value is actually created!</p>
-<h4 id="Some-details-to-supplementary"><a href="#Some-details-to-supplementary" class="headerlink" title="Some details to supplementary"></a>Some details to supplementary</h4><ol>
-<li><p><strong>null/undefined have no methods</strong><br>In a sense, they are &#x201C;the most primitive&#x201D;.</p>
-</li>
-<li><p>using the same functions <code>String/Number/Boolean</code> without <code>new</code> is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).</p>
-<p>For example, this is entirely valid:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="title class_">Number</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">// convert a string to number</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Still !! <strong>primitives are not objects.</strong> which means they can&#x2019;t store additional data</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let str = &quot;Hello&quot;;</span><br><span class="line"></span><br><span class="line">str.test = 5;</span><br><span class="line"></span><br><span class="line">alert(str.test);</span><br></pre></td></tr></table></figure>
-
-<p>the result will be</p>
-<ol>
-<li><code>undefined</code> (no strict mode)</li>
-<li>An error (strict mode).</li>
-</ol>
-<p>The reason is that &#x201C;wrapper object&#x201D; :<br>when you use &#x201C;.&#x201D; after &#x201C;str&#x201D; (in other words when you wanna access the &#x201C;str&#x201D;) the &#x201C;wrapper object&#x201D; is created.</p>
-<ol>
-<li>in &#x201C;no strict mode&#x201D; it carries the &#x201C;test&#x201D; property but remember it will disappear When you see the &#x201C;;&#x201D; after&#x201D;5;&#x201D; it disappears. So you won&#x2019;t have the trace of the &#x201C;wrapper object&#x201D; .It vanishes with no trace. So you could only get &#x201C;undefined&#x201D;</li>
-<li>in &#x201C;strict mode&#x201D; : there is a red flag or a Rule that cannot be crossed : you can&#x2019;t write into &#x201C;wrapper object&#x201D; So An error</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>data types</tag>
-        <tag>数据类型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Server</title>
-    <url>/2024/09/02/2024-09-02-Server-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
-<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
-<span id="more"></span>
-
-<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
-<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
-<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
-<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
-<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
-<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
-<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
-<hr>
-
-<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What’s the Difference Between localhost and 127.0.0.1</title>
-    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
-<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
-<p>The scope of localhost is limited to the local machine</p>
-<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
-<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
-<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
-<p>localhost is a domain name</p>
-<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
-<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
-<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
-]]></content>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ref and Reactive in Vue</title>
-    <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
-
-<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
-<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
-<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
-<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
-<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
-<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
-<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
-<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Promise chainning</title>
-    <url>/2024/07/28/2024-07-28-Promise-chainning-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
-<span id="more"></span>
-
-<p>which is formed like this:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>), <span class="number">1000</span>); <span class="comment">// (*)</span></span><br><span class="line">})</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">// (**)</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">return</span> result * <span class="number">2</span>;</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">// (***)</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 2</span></span><br><span class="line">    <span class="keyword">return</span> result * <span class="number">2</span>;</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 4</span></span><br><span class="line">    <span class="keyword">return</span> result * <span class="number">2</span>;</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
-
-<h2 id="why-it&#x2019;s-created"><a href="#why-it&#x2019;s-created" class="headerlink" title="why it&#x2019;s created"></a>why it&#x2019;s created</h2><p>We have a sequence of asynchronous tasks needed to be performed one after another In other words:When dealing with tasks that have sequencial order<br>for instance, loading scripts.<br>we can&#x2019;t hold all tasks in one &#x201C;then&#x201D; handler<br>It&#x2019;s known that When a handler returns a value, it becomes the result of that promise and in this chainning system<br>the promise holding a value peformed by the last handler become the input of next handler</p>
-<p>analogy:<br>If you look at this in a broad way<br>you can see Promise keep a emerge-dive pattern like a joyful fish<br>The Promise-wrapper is the same just the inside-value(or result) changes each time emerge-dive</p>
-<h2 id="returning-promise"><a href="#returning-promise" class="headerlink" title="returning promise"></a>returning promise</h2><p>A handler, used in <code>.then(handler)</code> may create and return a promise.<br>In that case further handlers <strong>wait</strong> until it settles, and then get its result.</p>
-<p>For instance:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>), <span class="number">1000</span>);</span><br><span class="line">})</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">      <span class="comment">// (*)</span></span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(result * <span class="number">2</span>), <span class="number">1000</span>);</span><br><span class="line">    });</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">// (**)</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(result * <span class="number">2</span>), <span class="number">1000</span>);</span><br><span class="line">    });</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 4</span></span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>[!NOTE]</p>
-<p>In <code>then</code> handler if you return a value the value become a Promise for the next <code>then</code><br>But returning a Promise seems more reasonable</p>
-</blockquote>
-<p>So the output is the same as in the previous example: 1 &#x2192; 2 &#x2192; 4, but now with 1 second delay between <code>alert</code> calls.</p>
-<h2 id="Here-we-go-Useful-example-loadscript"><a href="#Here-we-go-Useful-example-loadscript" class="headerlink" title="Here we go ! Useful example : loadscript"></a>Here we go ! Useful example : loadscript</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/one.js&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">script</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/two.js&quot;</span>);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">script</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/three.js&quot;</span>);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">script</span>) {</span><br><span class="line">    <span class="comment">// use functions declared in scripts</span></span><br><span class="line">    <span class="comment">// to show that they indeed loaded</span></span><br><span class="line">    <span class="title function_">one</span>();</span><br><span class="line">    <span class="title function_">two</span>();</span><br><span class="line">    <span class="title function_">three</span>();</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
-
-<p>This code can be made bit shorter with arrow functions:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/one.js&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/two.js&quot;</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/three.js&quot;</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// scripts are loaded, we can use functions declared there</span></span><br><span class="line">    <span class="title function_">one</span>();</span><br><span class="line">    <span class="title function_">two</span>();</span><br><span class="line">    <span class="title function_">three</span>();</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
-
-<h2 id="A-special-feature"><a href="#A-special-feature" class="headerlink" title="A special feature"></a>A special feature</h2><p><strong>This feature will allow us to integrate custom objects with promise chains without having to inherit from Promise</strong><br>What does above mean ? To understand that there should be a clarification:<br><strong>Actually in the promise-chain It&#x2019;s not promise that continuely flow up and down (return and input)(that means what the handler returns is not Promise ) It&#x2019;s another special object called <em>&#x201C;thenable&#x201D; object</em></strong><br>All the things we said above still <strong>valid</strong> because this &#x201C;thenable&#x201D; object has <em>.then</em> method and can be treated like Promise.So actually it gives us flexibilty!Because we can build like an architect on a object that has already implemented with basic Promise-function</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thenable</span> {</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">num</span>) {</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">num</span> = num;</span><br><span class="line">  }</span><br><span class="line">  <span class="title function_">then</span>(<span class="params">resolve, reject</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(resolve); <span class="comment">// function() { native code }</span></span><br><span class="line">    <span class="comment">// resolve with this.num*2 after the 1 second</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="variable language_">this</span>.<span class="property">num</span> * <span class="number">2</span>), <span class="number">1000</span>); <span class="comment">// (**)</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Thenable</span>(result); <span class="comment">// (*)</span></span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(alert); <span class="comment">// shows 2 after 1000ms</span></span><br></pre></td></tr></table></figure>
-
-<p>JavaScript checks the object returned by the <code>.then</code> handler in line <code>(*)</code>: if it has a callable method named <code>then</code>, then it calls that method providing native functions <code>resolve</code>, <code>reject</code> as arguments (similar to an executor) and waits until one of them is called. In the example above <code>resolve(2)</code> is called after 1 second <code>(**)</code>. Then the result is passed further down the chain.</p>
-<blockquote>
-<p>[!TIP]</p>
-<p>A Thenable class should still define the <code>then</code> method inside<br>And what is passed into the constructor is actually the <code>promise.result</code></p>
-</blockquote>
-<h2 id="example-associated-with-fetch"><a href="#example-associated-with-fetch" class="headerlink" title="example associated with fetch"></a>example associated with <em>fetch</em></h2><p>We&#x2019;ll use the <a href="https://javascript.info/fetch">fetch</a> method to load the information about the user from the remote server. It has a lot of optional parameters covered in <a href="https://javascript.info/fetch">separate chapters</a>, but the basic syntax is quite simple:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="title function_">fetch</span>(url);</span><br></pre></td></tr></table></figure>
-
-<p>fetch(url) is saying :make a network request to the <code>url</code> and returns a promise. The promise resolves with a <code>response</code> object when the remote server responds with headers, but <em>before the full response is downloaded</em>.</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>You haven&#x2019;t got the infomation now</p>
-</blockquote>
-<p>To read the full response, we should call the method <code>response.text()</code>: it returns a promise that resolves when the full text is downloaded from the remote server, with that text(information we require) as a result.</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>So response is a promise and response.text() is also a promise</p>
-</blockquote>
-<p>The code below makes a request to <code>user.json</code> and loads its text from the server:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  <span class="comment">// .then below runs when the remote server responds</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">response</span>) {</span><br><span class="line">    <span class="comment">// response.text() returns a new promise that resolves with the full response text</span></span><br><span class="line">    <span class="comment">// when it loads</span></span><br><span class="line">    <span class="keyword">return</span> response.<span class="title function_">text</span>();</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">text</span>) {</span><br><span class="line">    <span class="comment">// ...and here&apos;s the content of the remote file</span></span><br><span class="line">    <span class="title function_">alert</span>(text); <span class="comment">// {&quot;name&quot;: &quot;iliakan&quot;, &quot;isAdmin&quot;: true}</span></span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
-
-<p>The <code>response</code> object returned from <code>fetch</code> also includes the method <code>response.json()</code> that reads the remote data and parses it as JSON. In our case that&#x2019;s even more convenient</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// same as above, but response.json() parses the remote content as JSON</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">user</span>) =&gt;</span> <span class="title function_">alert</span>(user.<span class="property">name</span>)); <span class="comment">// iliakan, got user name</span></span><br></pre></td></tr></table></figure>
-
-<p>let&#x2019;s see a more complex one :</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Make a request for user.json</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  <span class="comment">// Load it as json</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  <span class="comment">// Make a request to GitHub</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">user</span>) =&gt;</span> <span class="title function_">fetch</span>(<span class="string">`https://api.github.com/users/<span class="subst">${user.name}</span>`</span>))</span><br><span class="line">  <span class="comment">// Load the response as json</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  <span class="comment">// Show the avatar image (githubUser.avatar_url) for 3 seconds (maybe animate it)</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">githubUser</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">    img.<span class="property">src</span> = githubUser.<span class="property">avatar_url</span>;</span><br><span class="line">    img.<span class="property">className</span> = <span class="string">&quot;promise-avatar-example&quot;</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(img);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> img.<span class="title function_">remove</span>(), <span class="number">3000</span>); <span class="comment">// (*)</span></span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
-
-<p>this works but below is much better :</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">user</span>) =&gt;</span> <span class="title function_">fetch</span>(<span class="string">`https://api.github.com/users/<span class="subst">${user.name}</span>`</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(</span><br><span class="line">    <span class="function">(<span class="params">githubUser</span>) =&gt;</span></span><br><span class="line">      <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">        <span class="comment">// (*)</span></span><br><span class="line">        <span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">        img.<span class="property">src</span> = githubUser.<span class="property">avatar_url</span>;</span><br><span class="line">        img.<span class="property">className</span> = <span class="string">&quot;promise-avatar-example&quot;</span>;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(img);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">          img.<span class="title function_">remove</span>();</span><br><span class="line">          <span class="title function_">resolve</span>(githubUser); <span class="comment">// (**)</span></span><br><span class="line">        }, <span class="number">3000</span>);</span><br><span class="line">      })</span><br><span class="line">  )</span><br><span class="line">  <span class="comment">// triggers after 3 seconds</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">githubUser</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">`Finished showing <span class="subst">${githubUser.name}</span>`</span>));</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>[!CAUTION]</p>
-<p>As a good practice, an asynchronous action should always return a promise.</p>
-</blockquote>
-<p>That makes it possible to plan actions after it; even if we don&#x2019;t plan to extend the chain now, we may need it later.</p>
-<h2 id="When-should-you-consider-about-Promise"><a href="#When-should-you-consider-about-Promise" class="headerlink" title="When should you consider about Promise"></a>When should you consider about Promise</h2><p>In the last chapter <em>Promise</em> we bury a seed in the last.This is the position it should get settled<br>So promise is actually used in a situation : 1.the task is gonna need some time 2. there are two possible consequences of the task3.mostly have to do with networking connection<br>let us see some egs</p>
-<ol>
-<li><pre><code class="js">fetch(&quot;https://api.examplecom/data&quot;)
-  .then((response) =&gt; response.json())
-  .then((data) =&gt; console.log(data))
-  .catch((error) =&gt; console.log(error));
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   </span><br><span class="line">   fetch is a api that allows us to input a url as a door to get data and this api return a promise</span><br><span class="line">   (of course! 1.Getting is absolutely a task that requires some time2.two consequences : get it or miss it)</span><br><span class="line">   And during each level of the chain promise.result is passed as paramter for handler</span><br><span class="line"></span><br><span class="line">2. ```js</span><br><span class="line">   function LoadImage(url) {</span><br><span class="line">     return new Promise((resolve, reject) =&gt; {</span><br><span class="line">       const img = new Image(); //create a img</span><br><span class="line">       img.src = url;</span><br><span class="line">       img.onload = () =&gt; resolve(img);</span><br><span class="line">       img.onerror = () =&gt; reject(new Error(&quot;fail loading&quot;));</span><br><span class="line">     });</span><br><span class="line">   }</span><br><span class="line">   LoadImage(&quot;path/to/image.jpg&quot;)</span><br><span class="line">     .then((img) =&gt; document.body.appendChild(img))</span><br><span class="line">     .catch((error) =&gt; console.error(error));</span><br></pre></td></tr></table></figure>
-
-Why do you need to bind functionc to events of img?
-Cause two callback must be called .And when you wanna use then/catch handler to link the function(LoadImage).It should be a produced (fully formed)promise in front of these handlers
-</code></pre>
-</li>
-<li><p>Custom Promise<br>Promise basically follow this pattern:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">doSomething</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">if</span> (success) {</span><br><span class="line">      <span class="title function_">resolve</span>(result);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;error&quot;</span>));</span><br><span class="line">    }</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"><span class="title function_">doSomething</span>()</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(error));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Ajax with XMLHttpRequest</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params">url</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, url);</span><br><span class="line">    xhr.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">resolve</span>(xhr.<span class="property">responseText</span>);</span><br><span class="line">    xhr.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;ajax failed&quot;</span>));</span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"><span class="title function_">ajax</span>(<span class="string">&quot;https://&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(error));</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-        <tag>Promise</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>How to use axios and cheerio to grab bullshit</title>
-    <url>/2024/10/18/2024-10-18-axiosAndcheerio/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Basically, to delivery this toy is to use axios to accomplish <strong>http-request</strong> and to use cheerio to <strong>parse and extract</strong> the info you need.</p>
-<h2 id="What-is-axios"><a href="#What-is-axios" class="headerlink" title="What is axios"></a>What is axios</h2><p>axios is an <strong>library</strong> based on <strong>Promise</strong> providing you a capability to realize a http request.</p>
-<p>Why choose it? It simplifies the process for sending an Internet request.</p>
-<h2 id="What-is-cheerio"><a href="#What-is-cheerio" class="headerlink" title="What is cheerio"></a>What is cheerio</h2><p>Cheerio is a fast and lightweight <strong>library</strong> for manipulation of <strong>HTML and XML documents.</strong></p>
-<p>It&#x2019;s designed for use in Node.js environments, allowing you to easily parse, traverse, and manipulate the structure of web pages.</p>
-<p>With Cheerio, you can load HTML content, select elements using familiar jQuery selectors, and extract or modify data.</p>
-<h2 id="write-js-code"><a href="#write-js-code" class="headerlink" title="write js code"></a>write js code</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&quot;axios&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">&quot;cheerio&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>Using these to introduce them.</p>
-<p>design a <strong>async</strong>-function to wrap it.Why async? The function makes an HTTP request, which can take time (like waiting for a server response). Using <code>async</code> allows the function to pause execution until the request is completed <strong>without blocking other operations.</strong></p>
-<p>You can add a console.log(&#x201C;waiting&#x201D;); after you call the function.It will be printed first.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">await axios.get(url);</span><br></pre></td></tr></table></figure>
-
-<p>this <strong>await</strong> shall pause the function-exection and <strong>axios.get</strong> shall get the info.</p>
-<h3 id="what-does-axios-get-return"><a href="#what-does-axios-get-return" class="headerlink" title="what does axios.get return"></a>what does axios.get return</h3><p>It returns a <strong>Promise</strong> and the Promise will <strong>resolve to an object</strong> wrapping the HTTP response.<br>this object has lots of properties to show information about this Internet request.</p>
-<p>like status:200 statusText:ok response-headers</p>
-<p>And the data: The body of the response returned by the server, usually data in HTML, JSON</p>
-<p>That&#x2019;s what we need.</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> { data } = <span class="keyword">await</span> axios.<span class="title function_">get</span>(url);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> $ = cheerio.<span class="title function_">load</span>(data);</span><br><span class="line">$(<span class="string">&quot;h1&quot;</span>).<span class="title function_">each</span>(<span class="function">(<span class="params">i, element</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>($(element).<span class="title function_">text</span>());</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
-
-<p>&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x5C06; HTML &#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5230; Cheerio &#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; jQuery &#x98CE;&#x683C;&#x7684;&#x9009;&#x62E9;&#x5668;&#x6765;&#x64CD;&#x4F5C;&#x8FD9;&#x4E2A;&#x6587;&#x6863;&#x3002;</p>
-<p><strong><code>$(&quot;h1&quot;).each((i, element) =&gt; {...});</code></strong>: &#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x9009;&#x62E9;&#x6240;&#x6709;&#x7684; <code>&lt;h1&gt;</code> &#x6807;&#x7B7E;&#xFF0C;&#x5E76;&#x5BF9;&#x6BCF;&#x4E2A;&#x627E;&#x5230;&#x7684;&#x5143;&#x7D20;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
-<p><strong><code>console.log($(element).text());</code></strong>: &#x5728;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;<code>$(element).text()</code> &#x83B7;&#x53D6;&#x5F53;&#x524D; <code>&lt;h1&gt;</code> &#x5143;&#x7D20;&#x7684;&#x6587;&#x672C;&#x5185;&#x5BB9;</p>
-]]></content>
-      <categories>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>axios</tag>
-        <tag>cheerio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Virtual Memory</title>
-    <url>/2024/10/20/2024-10-20-Virtual%20Memory/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
-<span id="more"></span>
-
-<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
-<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
-<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OS load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
-<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
-<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000  this instruction loads a value from the virtual address 1000 into a register</span><br></pre></td></tr></table></figure>
-
-<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
-<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
-<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
-<pre><code>      +---------------------+
-      |         CPU         |
-      |                     |
-      |   MOV REG, 1000    |
-      +----------+----------+
-                 |
-                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
-                 v
-      +---------------------+
-      |         MMU         |
-      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
-      +----------+----------+
-                 |
-                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
-                 v
-      +---------------------+
-      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
-      |                     |
-      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
-      +----------+----------+
-</code></pre>
-<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
-<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
-<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
-</li>
-<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
-<p>If the entry exists, the physical address is retrieved.</p>
-</li>
-<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
-<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
-</li>
-<li><p>Page Fault Handling (if needed)</p>
-</li>
-</ol>
-<p>If the virtual address isn&#x2019;t mapped which means a page fault occurs, the OS handles it by performing the following steps:</p>
-<ul>
-<li>Check if there are any free frames in memory.</li>
-<li>If there are free frames, allocate one for the page.</li>
-<li>If there are no free frames, select a victim page to evict from memory.</li>
-<li>The OS retrieves the required data from <strong>disk storage</strong>. Load the required page from disk into the selected frame.</li>
-<li>Update the page table with the new mapping.</li>
-<li>Resume the interrupted instruction that caused the page fault.Which is Returns to step 3 to complete the address translation.</li>
-</ul>
-<p><img src="https://imgur.com/zjbcuyG.png"></p>
-<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
-<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
-<ul>
-<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;whether the page is currently loaded in memory</li>
-<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
-<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
-</ul>
-<p><img src="https://imgur.com/wHlFmqj.png"></p>
-<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
-<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
-<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>计算机组成原理</tag>
-        <tag>cs app</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Proxy</title>
     <url>/2024/10/23/2024-08-19-Proxy-2024/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="what&#x2019;s-a-proxy"><a href="#what&#x2019;s-a-proxy" class="headerlink" title="what&#x2019;s a proxy"></a>what&#x2019;s a proxy</h2><p>a proxy is a object with a superpower of wrapping another object Like a trash wrapper <br></p>
@@ -735,6 +458,237 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Promise chainning</title>
+    <url>/2024/07/28/2024-07-28-Promise-chainning-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Promise-chainning"><a href="#Promise-chainning" class="headerlink" title="Promise chainning"></a>Promise chainning</h1><h2 id="what-is-Promise-chainning"><a href="#what-is-Promise-chainning" class="headerlink" title="what is Promise chainning"></a>what is Promise chainning</h2><p>A Promise-chain starts with <code>new Promise</code> constructor and use<code>then/catch</code> as middle-party to pass the <code>promise.result</code></p>
+<span id="more"></span>
+
+<p>which is formed like this:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>), <span class="number">1000</span>); <span class="comment">// (*)</span></span><br><span class="line">})</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">// (**)</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">return</span> result * <span class="number">2</span>;</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">// (***)</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 2</span></span><br><span class="line">    <span class="keyword">return</span> result * <span class="number">2</span>;</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 4</span></span><br><span class="line">    <span class="keyword">return</span> result * <span class="number">2</span>;</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+
+<h2 id="why-it&#x2019;s-created"><a href="#why-it&#x2019;s-created" class="headerlink" title="why it&#x2019;s created"></a>why it&#x2019;s created</h2><p>We have a sequence of asynchronous tasks needed to be performed one after another In other words:When dealing with tasks that have sequencial order<br>for instance, loading scripts.<br>we can&#x2019;t hold all tasks in one &#x201C;then&#x201D; handler<br>It&#x2019;s known that When a handler returns a value, it becomes the result of that promise and in this chainning system<br>the promise holding a value peformed by the last handler become the input of next handler</p>
+<p>analogy:<br>If you look at this in a broad way<br>you can see Promise keep a emerge-dive pattern like a joyful fish<br>The Promise-wrapper is the same just the inside-value(or result) changes each time emerge-dive</p>
+<h2 id="returning-promise"><a href="#returning-promise" class="headerlink" title="returning promise"></a>returning promise</h2><p>A handler, used in <code>.then(handler)</code> may create and return a promise.<br>In that case further handlers <strong>wait</strong> until it settles, and then get its result.</p>
+<p>For instance:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>), <span class="number">1000</span>);</span><br><span class="line">})</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">      <span class="comment">// (*)</span></span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(result * <span class="number">2</span>), <span class="number">1000</span>);</span><br><span class="line">    });</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="comment">// (**)</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(result * <span class="number">2</span>), <span class="number">1000</span>);</span><br><span class="line">    });</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">result</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(result); <span class="comment">// 4</span></span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!NOTE]</p>
+<p>In <code>then</code> handler if you return a value the value become a Promise for the next <code>then</code><br>But returning a Promise seems more reasonable</p>
+</blockquote>
+<p>So the output is the same as in the previous example: 1 &#x2192; 2 &#x2192; 4, but now with 1 second delay between <code>alert</code> calls.</p>
+<h2 id="Here-we-go-Useful-example-loadscript"><a href="#Here-we-go-Useful-example-loadscript" class="headerlink" title="Here we go ! Useful example : loadscript"></a>Here we go ! Useful example : loadscript</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/one.js&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">script</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/two.js&quot;</span>);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">script</span>) {</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/three.js&quot;</span>);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">script</span>) {</span><br><span class="line">    <span class="comment">// use functions declared in scripts</span></span><br><span class="line">    <span class="comment">// to show that they indeed loaded</span></span><br><span class="line">    <span class="title function_">one</span>();</span><br><span class="line">    <span class="title function_">two</span>();</span><br><span class="line">    <span class="title function_">three</span>();</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+
+<p>This code can be made bit shorter with arrow functions:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/one.js&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/two.js&quot;</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> <span class="title function_">loadScript</span>(<span class="string">&quot;/article/promise-chaining/three.js&quot;</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">script</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// scripts are loaded, we can use functions declared there</span></span><br><span class="line">    <span class="title function_">one</span>();</span><br><span class="line">    <span class="title function_">two</span>();</span><br><span class="line">    <span class="title function_">three</span>();</span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+
+<h2 id="A-special-feature"><a href="#A-special-feature" class="headerlink" title="A special feature"></a>A special feature</h2><p><strong>This feature will allow us to integrate custom objects with promise chains without having to inherit from Promise</strong><br>What does above mean ? To understand that there should be a clarification:<br><strong>Actually in the promise-chain It&#x2019;s not promise that continuely flow up and down (return and input)(that means what the handler returns is not Promise ) It&#x2019;s another special object called <em>&#x201C;thenable&#x201D; object</em></strong><br>All the things we said above still <strong>valid</strong> because this &#x201C;thenable&#x201D; object has <em>.then</em> method and can be treated like Promise.So actually it gives us flexibilty!Because we can build like an architect on a object that has already implemented with basic Promise-function</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thenable</span> {</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">num</span>) {</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">num</span> = num;</span><br><span class="line">  }</span><br><span class="line">  <span class="title function_">then</span>(<span class="params">resolve, reject</span>) {</span><br><span class="line">    <span class="title function_">alert</span>(resolve); <span class="comment">// function() { native code }</span></span><br><span class="line">    <span class="comment">// resolve with this.num*2 after the 1 second</span></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="variable language_">this</span>.<span class="property">num</span> * <span class="number">2</span>), <span class="number">1000</span>); <span class="comment">// (**)</span></span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Thenable</span>(result); <span class="comment">// (*)</span></span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(alert); <span class="comment">// shows 2 after 1000ms</span></span><br></pre></td></tr></table></figure>
+
+<p>JavaScript checks the object returned by the <code>.then</code> handler in line <code>(*)</code>: if it has a callable method named <code>then</code>, then it calls that method providing native functions <code>resolve</code>, <code>reject</code> as arguments (similar to an executor) and waits until one of them is called. In the example above <code>resolve(2)</code> is called after 1 second <code>(**)</code>. Then the result is passed further down the chain.</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>A Thenable class should still define the <code>then</code> method inside<br>And what is passed into the constructor is actually the <code>promise.result</code></p>
+</blockquote>
+<h2 id="example-associated-with-fetch"><a href="#example-associated-with-fetch" class="headerlink" title="example associated with fetch"></a>example associated with <em>fetch</em></h2><p>We&#x2019;ll use the <a href="https://javascript.info/fetch">fetch</a> method to load the information about the user from the remote server. It has a lot of optional parameters covered in <a href="https://javascript.info/fetch">separate chapters</a>, but the basic syntax is quite simple:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="title function_">fetch</span>(url);</span><br></pre></td></tr></table></figure>
+
+<p>fetch(url) is saying :make a network request to the <code>url</code> and returns a promise. The promise resolves with a <code>response</code> object when the remote server responds with headers, but <em>before the full response is downloaded</em>.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>You haven&#x2019;t got the infomation now</p>
+</blockquote>
+<p>To read the full response, we should call the method <code>response.text()</code>: it returns a promise that resolves when the full text is downloaded from the remote server, with that text(information we require) as a result.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>So response is a promise and response.text() is also a promise</p>
+</blockquote>
+<p>The code below makes a request to <code>user.json</code> and loads its text from the server:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  <span class="comment">// .then below runs when the remote server responds</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">response</span>) {</span><br><span class="line">    <span class="comment">// response.text() returns a new promise that resolves with the full response text</span></span><br><span class="line">    <span class="comment">// when it loads</span></span><br><span class="line">    <span class="keyword">return</span> response.<span class="title function_">text</span>();</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">text</span>) {</span><br><span class="line">    <span class="comment">// ...and here&apos;s the content of the remote file</span></span><br><span class="line">    <span class="title function_">alert</span>(text); <span class="comment">// {&quot;name&quot;: &quot;iliakan&quot;, &quot;isAdmin&quot;: true}</span></span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+
+<p>The <code>response</code> object returned from <code>fetch</code> also includes the method <code>response.json()</code> that reads the remote data and parses it as JSON. In our case that&#x2019;s even more convenient</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// same as above, but response.json() parses the remote content as JSON</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">user</span>) =&gt;</span> <span class="title function_">alert</span>(user.<span class="property">name</span>)); <span class="comment">// iliakan, got user name</span></span><br></pre></td></tr></table></figure>
+
+<p>let&#x2019;s see a more complex one :</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Make a request for user.json</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  <span class="comment">// Load it as json</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  <span class="comment">// Make a request to GitHub</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">user</span>) =&gt;</span> <span class="title function_">fetch</span>(<span class="string">`https://api.github.com/users/<span class="subst">${user.name}</span>`</span>))</span><br><span class="line">  <span class="comment">// Load the response as json</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  <span class="comment">// Show the avatar image (githubUser.avatar_url) for 3 seconds (maybe animate it)</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">githubUser</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">    img.<span class="property">src</span> = githubUser.<span class="property">avatar_url</span>;</span><br><span class="line">    img.<span class="property">className</span> = <span class="string">&quot;promise-avatar-example&quot;</span>;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(img);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> img.<span class="title function_">remove</span>(), <span class="number">3000</span>); <span class="comment">// (*)</span></span><br><span class="line">  });</span><br></pre></td></tr></table></figure>
+
+<p>this works but below is much better :</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/article/promise-chaining/user.json&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">user</span>) =&gt;</span> <span class="title function_">fetch</span>(<span class="string">`https://api.github.com/users/<span class="subst">${user.name}</span>`</span>))</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>) =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(</span><br><span class="line">    <span class="function">(<span class="params">githubUser</span>) =&gt;</span></span><br><span class="line">      <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span> (<span class="params">resolve, reject</span>) {</span><br><span class="line">        <span class="comment">// (*)</span></span><br><span class="line">        <span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">        img.<span class="property">src</span> = githubUser.<span class="property">avatar_url</span>;</span><br><span class="line">        img.<span class="property">className</span> = <span class="string">&quot;promise-avatar-example&quot;</span>;</span><br><span class="line">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">append</span>(img);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">          img.<span class="title function_">remove</span>();</span><br><span class="line">          <span class="title function_">resolve</span>(githubUser); <span class="comment">// (**)</span></span><br><span class="line">        }, <span class="number">3000</span>);</span><br><span class="line">      })</span><br><span class="line">  )</span><br><span class="line">  <span class="comment">// triggers after 3 seconds</span></span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">githubUser</span>) =&gt;</span> <span class="title function_">alert</span>(<span class="string">`Finished showing <span class="subst">${githubUser.name}</span>`</span>));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>[!CAUTION]</p>
+<p>As a good practice, an asynchronous action should always return a promise.</p>
+</blockquote>
+<p>That makes it possible to plan actions after it; even if we don&#x2019;t plan to extend the chain now, we may need it later.</p>
+<h2 id="When-should-you-consider-about-Promise"><a href="#When-should-you-consider-about-Promise" class="headerlink" title="When should you consider about Promise"></a>When should you consider about Promise</h2><p>In the last chapter <em>Promise</em> we bury a seed in the last.This is the position it should get settled<br>So promise is actually used in a situation : 1.the task is gonna need some time 2. there are two possible consequences of the task3.mostly have to do with networking connection<br>let us see some egs</p>
+<ol>
+<li><pre><code class="js">fetch(&quot;https://api.examplecom/data&quot;)
+  .then((response) =&gt; response.json())
+  .then((data) =&gt; console.log(data))
+  .catch((error) =&gt; console.log(error));
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   </span><br><span class="line">   fetch is a api that allows us to input a url as a door to get data and this api return a promise</span><br><span class="line">   (of course! 1.Getting is absolutely a task that requires some time2.two consequences : get it or miss it)</span><br><span class="line">   And during each level of the chain promise.result is passed as paramter for handler</span><br><span class="line"></span><br><span class="line">2. ```js</span><br><span class="line">   function LoadImage(url) {</span><br><span class="line">     return new Promise((resolve, reject) =&gt; {</span><br><span class="line">       const img = new Image(); //create a img</span><br><span class="line">       img.src = url;</span><br><span class="line">       img.onload = () =&gt; resolve(img);</span><br><span class="line">       img.onerror = () =&gt; reject(new Error(&quot;fail loading&quot;));</span><br><span class="line">     });</span><br><span class="line">   }</span><br><span class="line">   LoadImage(&quot;path/to/image.jpg&quot;)</span><br><span class="line">     .then((img) =&gt; document.body.appendChild(img))</span><br><span class="line">     .catch((error) =&gt; console.error(error));</span><br></pre></td></tr></table></figure>
+
+Why do you need to bind functionc to events of img?
+Cause two callback must be called .And when you wanna use then/catch handler to link the function(LoadImage).It should be a produced (fully formed)promise in front of these handlers
+</code></pre>
+</li>
+<li><p>Custom Promise<br>Promise basically follow this pattern:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">doSomething</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">if</span> (success) {</span><br><span class="line">      <span class="title function_">resolve</span>(result);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;error&quot;</span>));</span><br><span class="line">    }</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"><span class="title function_">doSomething</span>()</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">error</span>(error));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Ajax with XMLHttpRequest</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params">url</span>) {</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">    <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, url);</span><br><span class="line">    xhr.<span class="property">onload</span> = <span class="function">() =&gt;</span> <span class="title function_">resolve</span>(xhr.<span class="property">responseText</span>);</span><br><span class="line">    xhr.<span class="property">onerror</span> = <span class="function">() =&gt;</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&quot;ajax failed&quot;</span>));</span><br><span class="line">    xhr.<span class="title function_">send</span>();</span><br><span class="line">  });</span><br><span class="line">}</span><br><span class="line"><span class="title function_">ajax</span>(<span class="string">&quot;https://&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(error));</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+        <tag>Promise</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Server</title>
+    <url>/2024/09/02/2024-09-02-Server-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h1><p>Browser is the middleman between you and Server.</p>
+<p>A server is a provider that offers services . It can be visualize as a computer being open all the time 24/7.</p>
+<span id="more"></span>
+
+<p>the websites you visit and the webpages you view doesn&#x2019;t belong to the browser <br> It originally comes from server.</p>
+<h1 id="IP-Port"><a href="#IP-Port" class="headerlink" title="IP Port"></a>IP Port</h1><p>Every server has a unique ip address to be differentiated But it&#x2019;s digits composed which makes it not readable <br> So domain shows up .<strong>Domain is example.com</strong></p>
+<h1 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h1><p>&#x57DF;&#x540D;&#x662F;&#x6709;&#x5C42;&#x6B21;&#x7684;&#xFF0C;&#x5206;&#x4E3A;&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#x3001;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF08;SLD&#xFF09;&#x548C;&#x4E09;&#x7EA7;&#x57DF;&#x540D;<br>&#x9876;&#x7EA7;&#x57DF;&#x540D;&#xFF08;TLD&#xFF09;&#xFF1A;&#x57DF;&#x540D;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x7EA7;&#x522B;&#xFF0C;&#x4F4D;&#x4E8E;&#x57DF;&#x540D;&#x7684;&#x6700;&#x53F3;&#x4FA7;&#xFF0C;&#x901A;&#x5E38;&#x7531;&#x51E0;&#x4E2A;&#x5B57;&#x6BCD;&#x7EC4;&#x6210;&#x3002; TLD &#x5206;&#x4E3A;&#x901A;&#x7528; TLD &#x548C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x901A;&#x7528;&#x901A;&#x7528; TLD &#x5305;&#x62EC;&#x4EE3;&#x8868;&#x5546;&#x4E1A;&#x4F01;&#x4E1A;&#x7684;.com&#x3001;&#x4EE3;&#x8868;&#x7F51;&#x7EDC;&#x63D0;&#x4F9B;&#x5546;&#x7684;.net&#x3001;&#x4EE3;&#x8868;&#x975E;&#x8425;&#x5229;&#x7EC4;&#x7EC7;&#x7684;.org&#xFF0C;&#x800C;&#x56FD;&#x5BB6;&#x4EE3;&#x7801; TLD &#x5219;&#x4EE3;&#x8868;&#x7279;&#x5B9A;&#x7684;&#x56FD;&#x5BB6;&#x6216;&#x5730;&#x533A;&#xFF0C;&#x4F8B;&#x5982;.cn &#x4EE3;&#x8868;&#x4E2D;&#x56FD;&#xFF0C;.uk &#x4EE3;&#x8868;&#x82F1;&#x56FD;&#x3002;<br>&#x4E8C;&#x7EA7;&#x57DF;&#x540D; (SLD)&#xFF1A;&#x4F4E;&#x4E8E; TLD &#x7684;&#x7EA7;&#x522B;&#xFF0C;&#x7531;&#x6CE8;&#x518C;&#x4EBA;&#x9009;&#x62E9;&#x548C;&#x6CE8;&#x518C;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x4E2A;&#x6027;&#x5316;&#x4E14;&#x6613;&#x4E8E;&#x8BB0;&#x5FC6;&#x7684;&#x540D;&#x79F0;&#x3002;&#x4F8B;&#x5982;&#xFF0C;juejin.cn &#x662F;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7533;&#x8BF7;<br>&#x4E09;&#x7EA7;&#x57DF;&#xFF08;3LD&#xFF09;&#xFF1A;&#x5728;&#x4E8C;&#x7EA7;&#x57DF;&#x4E4B;&#x4E0B;&#xFF0C;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x6307;&#x5411;&#x7279;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x5668;&#x6216;&#x5B50;&#x7F51;&#x3002;&#x5728; blog.example.com &#x4E2D;&#xFF0C;&#x201C;blog&#x201D;&#x662F;&#x4E00;&#x4E2A;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#x3002; &#x201C;www&#x201D;&#x662F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4E09;&#x7EA7;&#x57DF;&#x540D;&#xFF0C;&#x4EE3;&#x8868;&#x7F51;&#x7AD9;&#x7684;&#x4E3B;&#x9875;&#x6216;&#x4E3B;&#x7AD9;&#x70B9;&#xFF0C;&#x4F46;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7EA6;&#x5B9A;&#xFF0C;&#x73B0;&#x5728;&#x8BB8;&#x591A;&#x7F51;&#x7AD9;&#x5EFA;&#x8BAE;&#x901A;&#x8FC7;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x3002;</p>
+<p><strong>So</strong> when you put a URL including domain onto the browser&#x2019;s search bar The browser parses it into IP address (using DNS) in order to get you accessed to the right server</p>
+<p>The protocols are well known as <strong>http and https</strong> <br>These are specifically created for <strong>webpage-transmit</strong> These two specify the <strong>rules</strong> that should be followed by both server and browser (client) during the transmission.</p>
+<p>BUT website is just one of the many services that a server can provide and <strong>output by the specific port</strong> &#xFF08;80 443&#xFF09;</p>
+<p>The Internet request when you are expecting a webpage is sent to the server by the browser<br>And To be concrete to port 80 /443 <strong>of</strong> the server(Biu!!!)</p>
+<hr>
+
+<p>I want to clarify that Multiple network applications might be deployed on a Server. Which one should receive the request?<br>a server can host many services, not just websites, and each service typically runs on different port of the server.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What happens when you type a URL into your browser?</title>
+    <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
+<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
+<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
+<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
+<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
+<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
+<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
+<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
+<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
+<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
+<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
+<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
+<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
+<hr>
+
+<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
+]]></content>
+      <categories>
+        <category>Internet</category>
+      </categories>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+        <tag>https</tag>
+        <tag>domain</tag>
+        <tag>Browser</tag>
+        <tag>URL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>What’s the Difference Between localhost and 127.0.0.1</title>
+    <url>/2024/09/22/2024-09-22-What%E2%80%99s%20the%20Difference%20Between%20localhost%20and%20127.0.0.1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1"><a href="#What&#x2019;s-the-Difference-Between-localhost-and-127-0-0-1" class="headerlink" title="What&#x2019;s the Difference Between localhost and 127.0.0.1?"></a>What&#x2019;s the Difference Between localhost and 127.0.0.1?</h1><p>When front-end developers debug locally, they often interact with localhost, simply running <code>npm run</code> to open their webpage in a browser, with the address bar displaying something like <code>http://localhost:xxx/index.html</code>.</p>
+<h2 id="What-is-localhost"><a href="#What-is-localhost" class="headerlink" title="What is localhost?"></a>What is localhost?</h2><p>localhost is a domain name, fundamentally no different from the domain names used for internet access, except for its ease of remembrance.</p>
+<p>The scope of localhost is limited to the local machine</p>
+<p>Both John Smith and Jane Doe can use localhost on their respective machines without interfering with each other, accessing their individual page content.</p>
+<h2 id="From-Domain-Name-to-Program"><a href="#From-Domain-Name-to-Program" class="headerlink" title="From Domain Name to Program"></a>From Domain Name to Program</h2><p>To truly understand localhost, we need to discuss how users access programs via domain names,</p>
+<p><strong><a href="https://tju-tomorrow.github.io/2024/10/07/2024-10-07-Server-2024/">this article</a></strong></p>
+<p>localhost is a domain name</p>
+<p>127.0.0.1? It&#x2019;s an IP address, the local IP address of the current machine, which can only be used on the machine itself. our computer can use this IP address without being connected to the internet</p>
+<p>How does localhost get resolved to 127.0.0.1 then? Does it go through DNS? No. Every computer can use localhost and 127.0.0.1 without DNS resolution.</p>
+<p>This resolution is handled by each computer individually. There&#x2019;s a hosts file on every computer with some hardcoded DNS resolution rules, including the rule for resolving localhost to 127.0.0.1, which is a convention.</p>
+]]></content>
+      <tags>
+        <tag>Server</tag>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ref and Reactive in Vue</title>
+    <url>/2024/09/23/2024-09-23-Ref%E5%92%8CReactive/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><!-- more -->
+
+<h1 id="ref"><a href="#ref" class="headerlink" title="ref()"></a>ref()</h1><p>ref() is in composition API.</p>
+<h2 id="What-does-it-do"><a href="#What-does-it-do" class="headerlink" title="What does it do?"></a>What does it do?</h2><p>Takes an value as its inner value and returns a <strong>reactive and mutable ref object</strong>, which has a <strong>single</strong> property <code>.value</code> that points to the inner value.</p>
+<h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><p>1.The ref object is mutable you can assign new values to <code>.value</code>.</p>
+<p>2.It is also reactive any read operations to <code>.value</code> are <strong>tracked</strong>, and write operations will <strong>trigger associated effects.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;Ref Example&lt;/h2&gt;</span><br><span class="line">    &lt;p&gt;Count: {{ count.value }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;increment&quot;&gt;Increment&lt;/button&gt;</span><br><span class="line">    &lt;p&gt;Message: {{ message }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeMessage&quot;&gt;Change Message&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref, watch } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">// 1. Create a mutable ref object</span><br><span class="line">const count = ref(0);</span><br><span class="line"></span><br><span class="line">// 2. Watch for changes (reactive)</span><br><span class="line">watch(count, (newVal) =&gt; {</span><br><span class="line">  console.log(`Count changed to: ${newVal}`);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">// Function to increment the count</span><br><span class="line">const increment = () =&gt; {</span><br><span class="line">  count.value++; // Mutating the value</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">// Message to demonstrate tracking</span><br><span class="line">let message = &quot;Initial Message&quot;;</span><br><span class="line"></span><br><span class="line">// Function to change the message</span><br><span class="line">const changeMessage = () =&gt; {</span><br><span class="line">  message = &quot;Message Changed!&quot;; // Change message, not tracked by ref</span><br><span class="line">  console.log(`Message changed to: ${message}`);</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">button {</span><br><span class="line">  margin-right: 10px;</span><br><span class="line">}</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>1.The <code>count</code> is created as a <code>ref</code>, and you can modify its value using <code>count.value++</code>. This shows that <code>.value</code> is mutable.</p>
+<p>2.Changing <code>message</code> directly doesn&#x2019;t trigger reactivity because it isn&#x2019;t a <code>ref</code>. This highlights that only <code>ref</code> objects are tracked reactively.</p>
+<h2 id="what-can-you-pass-into-ref"><a href="#what-can-you-pass-into-ref" class="headerlink" title="what can you pass into ref()"></a>what can you pass into ref()</h2><h2 id="primitive"><a href="#primitive" class="headerlink" title="primitive"></a>primitive</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">const count = ref(0);</span><br><span class="line">const handleCountIncrement = () =&gt; {</span><br><span class="line">  count.value++;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;count: {{ count }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;handleCountIncrement&quot;&gt;count++&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import { ref } from &quot;vue&quot;;</span><br><span class="line">const product = ref({ price: 0 });</span><br><span class="line"></span><br><span class="line">const changeProductPrice = () =&gt; {</span><br><span class="line">  product.value.price += 10;</span><br><span class="line">};</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;p&gt;price: {{ product.price }}&lt;/p&gt;</span><br><span class="line">    &lt;button @click=&quot;changeProductPrice&quot;&gt;&#x4FEE;&#x6539;&#x4EA7;&#x54C1;&#x4EF7;&#x683C;&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202410231346487.png"></p>
+<p>Regardless of whether the value of the primitive data type or the value of the reference data type is passed to the ref function, the returned object is constructed by the <strong>RefImpl</strong> class, but the difference is the <strong>value in the object:</strong></p>
+<p>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x539F;&#x59CB;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A;&#x539F;&#x59CB;&#x503C;<br>&#x5982;&#x679C; ref &#x51FD;&#x6570;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48; value &#x662F;&#x4E00;&#x4E2A; Proxy &#x5BF9;&#x8C61;</p>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>How to use axios and cheerio to grab bullshit</title>
+    <url>/2024/10/18/2024-10-18-axiosAndcheerio/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Basically, to delivery this toy is to use axios to accomplish <strong>http-request</strong> and to use cheerio to <strong>parse and extract</strong> the info you need.</p>
+<h2 id="What-is-axios"><a href="#What-is-axios" class="headerlink" title="What is axios"></a>What is axios</h2><p>axios is an <strong>library</strong> based on <strong>Promise</strong> providing you a capability to realize a http request.</p>
+<p>Why choose it? It simplifies the process for sending an Internet request.</p>
+<h2 id="What-is-cheerio"><a href="#What-is-cheerio" class="headerlink" title="What is cheerio"></a>What is cheerio</h2><p>Cheerio is a fast and lightweight <strong>library</strong> for manipulation of <strong>HTML and XML documents.</strong></p>
+<p>It&#x2019;s designed for use in Node.js environments, allowing you to easily parse, traverse, and manipulate the structure of web pages.</p>
+<p>With Cheerio, you can load HTML content, select elements using familiar jQuery selectors, and extract or modify data.</p>
+<h2 id="write-js-code"><a href="#write-js-code" class="headerlink" title="write js code"></a>write js code</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&quot;axios&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> cheerio = <span class="built_in">require</span>(<span class="string">&quot;cheerio&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Using these to introduce them.</p>
+<p>design a <strong>async</strong>-function to wrap it.Why async? The function makes an HTTP request, which can take time (like waiting for a server response). Using <code>async</code> allows the function to pause execution until the request is completed <strong>without blocking other operations.</strong></p>
+<p>You can add a console.log(&#x201C;waiting&#x201D;); after you call the function.It will be printed first.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">await axios.get(url);</span><br></pre></td></tr></table></figure>
+
+<p>this <strong>await</strong> shall pause the function-exection and <strong>axios.get</strong> shall get the info.</p>
+<h3 id="what-does-axios-get-return"><a href="#what-does-axios-get-return" class="headerlink" title="what does axios.get return"></a>what does axios.get return</h3><p>It returns a <strong>Promise</strong> and the Promise will <strong>resolve to an object</strong> wrapping the HTTP response.<br>this object has lots of properties to show information about this Internet request.</p>
+<p>like status:200 statusText:ok response-headers</p>
+<p>And the data: The body of the response returned by the server, usually data in HTML, JSON</p>
+<p>That&#x2019;s what we need.</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> { data } = <span class="keyword">await</span> axios.<span class="title function_">get</span>(url);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> $ = cheerio.<span class="title function_">load</span>(data);</span><br><span class="line">$(<span class="string">&quot;h1&quot;</span>).<span class="title function_">each</span>(<span class="function">(<span class="params">i, element</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>($(element).<span class="title function_">text</span>());</span><br><span class="line">});</span><br></pre></td></tr></table></figure>
+
+<p>&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x5C06; HTML &#x6570;&#x636E;&#x52A0;&#x8F7D;&#x5230; Cheerio &#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; jQuery &#x98CE;&#x683C;&#x7684;&#x9009;&#x62E9;&#x5668;&#x6765;&#x64CD;&#x4F5C;&#x8FD9;&#x4E2A;&#x6587;&#x6863;&#x3002;</p>
+<p><strong><code>$(&quot;h1&quot;).each((i, element) =&gt; {...});</code></strong>: &#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x9009;&#x62E9;&#x6240;&#x6709;&#x7684; <code>&lt;h1&gt;</code> &#x6807;&#x7B7E;&#xFF0C;&#x5E76;&#x5BF9;&#x6BCF;&#x4E2A;&#x627E;&#x5230;&#x7684;&#x5143;&#x7D20;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p><strong><code>console.log($(element).text());</code></strong>: &#x5728;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;<code>$(element).text()</code> &#x83B7;&#x53D6;&#x5F53;&#x524D; <code>&lt;h1&gt;</code> &#x5143;&#x7D20;&#x7684;&#x6587;&#x672C;&#x5185;&#x5BB9;</p>
+]]></content>
+      <categories>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>axios</tag>
+        <tag>cheerio</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Stacks And Queues in Data structure</title>
     <url>/2024/10/19/2024-10-19-StackAndQueue/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://imgur.com/cSzgXRO.png" alt="1"></p>
@@ -840,6 +794,84 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>Virtual Memory</title>
+    <url>/2024/10/20/2024-10-20-Virtual%20Memory/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>You open a web browser, a text editor, and a game concurrently. Together, these applications consume <strong>10 GB of RAM</strong>.</p>
+<span id="more"></span>
+
+<p>Since you only have 8 GB of physical RAM, the system cannot keep all the data in RAM <strong>at once</strong>.<br>So OS uses a technique to do that:<br>Use the disk to temporarily store <strong>less-used</strong> data and free up RAM for <strong>more important</strong> data. Like 2GB of data is stored in the disk and 8GB of data is stored in the RAM.<br>When an application needs more RAM to process or generate more data, add new features, or respond to user actions, it can request additional RAM from the operating system. If the physical RAM is insufficient, the OS manages memory by swapping less-used data to disk to free up RAM for the application.</p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Virtual memory</strong> is a memory management <strong>technique</strong> that allows an application to use <strong>more</strong> memory than what is physically available on the system. It does this by using disk space as an <strong>extension</strong> of RAM.</p>
+<p>What to do when the CPU needs to access the <strong>less-used</strong> data that is not in the memory since you have removed it?<br>The OS load the corresponding data from disk to the memory<br><img src="https://imgur.com/7Uu9Dge.png"></p>
+<h1 id="Why-this-called-Virtual-Memory"><a href="#Why-this-called-Virtual-Memory" class="headerlink" title="Why this called Virtual Memory?"></a>Why this called Virtual Memory?</h1><p>Virtual Memory is for the Program to say.<br>The memory space is numbered, that is, each small block of memory has its own address.<br>There are two types of addresses:Virtual Address and Physical Address<br>From this 10GB Program&#x2019;s perspective,it sees a table of numbers that is 10GB in size., And When it needs to access data, it uses virtual addresses within that 10GB space.</p>
+<h1 id="Senario"><a href="#Senario" class="headerlink" title="Senario"></a>Senario</h1><p>So, when an instruction in your game says to go to address 1000 to get the health-value data of this user, will the CPU go to address 1000 to get it?What if it does go to address 1000,what will it get? No,it will not get the health-value data of this user, So, how does the CPU know where is the right place to get the data? This is where the MMU comes in.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MOV REG,1000  this instruction loads a value from the virtual address 1000 into a register</span><br></pre></td></tr></table></figure>
+
+<p>this 1000 is virtual-address.The cpu will parse this instruction<br>After that the parsing-result will be sent to MMU</p>
+<h2 id="MMU"><a href="#MMU" class="headerlink" title="MMU"></a>MMU</h2><p>MMU is an address translator<br>It converts virtual addresses into physical addresses</p>
+<p>So after the MMU conversion, the CPU uses this physical address to go to the right place to access the memory (read memory&#x2018;s data or write data to the memory).</p>
+<pre><code>      +---------------------+
+      |         CPU         |
+      |                     |
+      |   MOV REG, 1000    |
+      +----------+----------+
+                 |
+                 | (&#x865A;&#x62DF;&#x5730;&#x5740;: 1000)
+                 v
+      +---------------------+
+      |         MMU         |
+      |  (&#x5730;&#x5740;&#x8F6C;&#x6362;&#x5668;)       |
+      +----------+----------+
+                 |
+                 | (&#x7269;&#x7406;&#x5730;&#x5740;&#x8F6C;&#x6362;)
+                 v
+      +---------------------+
+      |     &#x7269;&#x7406;&#x5730;&#x5740;        |
+      |                     |
+      |   (&#x8BFB;/&#x5199;&#x6570;&#x636E;)      |
+      +----------+----------+
+</code></pre>
+<h1 id="How-MMU-works"><a href="#How-MMU-works" class="headerlink" title="How MMU works"></a>How MMU works</h1><ol>
+<li><p>The CPU sends the virtual address to the <strong>MMU</strong> for translation. &#x201C;hey give me the actual address of this virtual address&#x201D;</p>
+<p>The virtual address is divided into <strong>page number</strong> and <strong>offset</strong>.</p>
+</li>
+<li><p>The MMU checks the <strong>page table</strong> to find the corresponding <strong>physical address</strong>. How? It looks up the page table to see if the virtual address is mapped to a physical address.</p>
+<p>If the entry exists, the physical address is retrieved.</p>
+</li>
+<li><p>The MMU sends the physical address to the memory controller.The controller is a part of the CPU that manages memory access.</p>
+<p>The controller accesses the <strong>physical memory (RAM)</strong> to read or write data.</p>
+</li>
+<li><p>Page Fault Handling (if needed)</p>
+</li>
+</ol>
+<p>If the virtual address isn&#x2019;t mapped which means a page fault occurs, the OS handles it by performing the following steps:</p>
+<ul>
+<li>Check if there are any free frames in memory.</li>
+<li>If there are free frames, allocate one for the page.</li>
+<li>If there are no free frames, select a victim page to evict from memory.</li>
+<li>The OS retrieves the required data from <strong>disk storage</strong>. Load the required page from disk into the selected frame.</li>
+<li>Update the page table with the new mapping.</li>
+<li>Resume the interrupted instruction that caused the page fault.Which is Returns to step 3 to complete the address translation.</li>
+</ul>
+<p><img src="https://imgur.com/zjbcuyG.png"></p>
+<h1 id="page-table"><a href="#page-table" class="headerlink" title="page-table"></a>page-table</h1><p>A <strong>page table</strong> is a <strong>data structure</strong> used by the MMU to translate virtual addresses to physical addresses.</p>
+<p>It contains a list of <strong>page table entries (PTEs)</strong> that map virtual pages to physical frames. Each PTE includes:</p>
+<ul>
+<li>&#x6709;&#x6548;/&#x65E0;&#x6548;&#x4F4D;&#xFF1A;whether the page is currently loaded in memory</li>
+<li>&#x7269;&#x7406;&#x5730;&#x5740;&#xFF1A;&#x6307;&#x5411;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x7269;&#x7406;&#x9875;&#x6846;</li>
+<li>&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x4F4D;&#xFF1A;&#x4F8B;&#x5982;&#x8BFB;/&#x5199;&#x6743;&#x9650;&#x3001;&#x7528;&#x6237;/&#x5185;&#x6838;&#x6743;&#x9650;&#x7B49;<br>so on</li>
+</ul>
+<p><img src="https://imgur.com/wHlFmqj.png"></p>
+<h1 id="Informative"><a href="#Informative" class="headerlink" title="Informative"></a>Informative</h1><ol>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;0x1000-&gt;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;0x1000&#x7ECF;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6620;&#x5C04;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;-&gt;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x5F0F;&#x662F;MMU&#x4F7F;&#x7528;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x8FDB;&#x7A0B;&#x88AB;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7EF4;&#x62A4;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;-&gt;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x8868;&#x5BF9;0x1000&#x7684;&#x6620;&#x5C04;&#x89C4;&#x5219;&#x4E0D;&#x540C;</li>
+<li>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x90FD;&#x8BA4;&#x4E3A;&#x5B83;&#x4ECE;0x0000&#x5F00;&#x59CB;&#xFF0C;&#x5230;0x1000&#x3001;0x2000&#x7B49;&#x7B49;&#xFF0C;&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7740;&#x5B83;&#x7684;&#x4EE3;&#x7801;&#x3001;&#x6570;&#x636E;&#x3001;&#x5806;&#x6808;&#x7B49;&#x3002;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E0D;&#x9700;&#x8981;&#x5173;&#x5FC3;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x5E03;&#x5C40;&#xFF0C;&#x5B83;&#x53EA;&#x4F1A;&#x5173;&#x6CE8;&#x81EA;&#x5DF1;&#x90A3;&#x4E00;&#x5757;&#x865A;&#x62DF;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>计算机组成原理</tag>
+        <tag>cs app</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Bubbling and capturing</title>
     <url>/2024/10/22/2024-10-22-Bubbling%20and%20capturing/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://s3.bmp.ovh/imgs/2024/10/22/c40d807ad0034767.png"></p>
@@ -900,38 +932,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>What happens when you type a URL into your browser?</title>
-    <url>/2024/08/25/2024-08-25-How-browser-retrieve-your-website-2024/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>In the modern age of the internet, where accessing information is just a click away, the journey of a URL from the moment it&#x2019;s typed into the browser to the display of the desired webpage is <strong>an intricate process</strong> involving various components of the web stack.</p>
-<h1 id="DNS-Look-up"><a href="#DNS-Look-up" class="headerlink" title="DNS Look up"></a>DNS Look up</h1><p>Your browser first channels the Domain Name System (DNS) to translate the human-readable URL (like <a href="http://www.example.com/">www.example.com</a>) into an IP address (e.g., 123.456.78.90), which identifies the server where the website is hosted.<br><br>To make this lookup process fast, the DNS information is <strong>heavily cached.</strong><br>1.First the browser itself <strong>caches</strong> it for a short period of time. And if it is not in the browser&#x2019;s cache .The browser asks the operating system for it.<br>2.Also,The operating system itself has a <strong>cache</strong> for it&#x2026; which also keeps the answer for a short period of time.</p>
-<p>if the operating operating system doesn&#x2019;t have it, it makes a query out to the internet <strong>to a DNS resolver.</strong> This sets off a <strong>chain</strong> of requests (Recursive lookup to the DNS Server ) until the IP address is <strong>resolved.</strong></p>
-<h1 id="Using-IP-to-establish-TCP-connection"><a href="#Using-IP-to-establish-TCP-connection" class="headerlink" title="Using IP to establish TCP connection"></a>Using IP to establish TCP connection</h1><p>there&#x2019;s a <strong>handshake-process</strong> involved in establishing <strong>a TCP connection</strong>. It takes several network-round-trips for this to complete. To keep the loading process fast, modern browsers use something called a keep-alive connection to try to reuse an established TCP connection to the server as much as possible.</p>
-<p>This handshake is expensive and the browsers use tricks like SSL session resumption to try to lower the cost. Finally, the browser sends an HTTP request to the server over the established TCP connection.</p>
-<h1 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h1><p><strong>HTTP Request</strong>: After getting the IP address, the browser sends an HTTP request to the server asking for the website&#x2019;s content, like &#x201C;Hey, give me the page at this URL.&#x201D;</p>
-<h1 id="Server-Response"><a href="#Server-Response" class="headerlink" title="Server Response"></a><strong>Server Response</strong></h1><p><strong>Server Response</strong>: The server processes the request and sends back a response, which usually includes the HTML, CSS, JavaScript, and sometimes images or videos that make up the website.</p>
-<p>The browser receives the response and renders html content. Oftentimes there are additional resources to load, like javascript bundles and images.</p>
-<h1 id="resource-fetching"><a href="#resource-fetching" class="headerlink" title="resource fetching."></a><strong>resource fetching.</strong></h1><p>The browser repeats the process above that we mentioned to finish fetching all the other resources.</p>
-<p>When a browser receives the <strong>initial HTML content</strong>, it often contains <strong>links to</strong> other resources like JavaScript, CSS, and images. The browser then <strong>repeats</strong> the process of making <strong>additional HTTP requests</strong> to fetch each of those resources.</p>
-<p>This entire flow of making multiple requests and processing them to fully load a website is called the <strong>&#x201C;resource loading process&#x201D;</strong> or <strong>&#x201C;resource fetching.&#x201D;</strong></p>
-<p>To optimize this, browsers handle many of these requests <strong>in parallel</strong>, fetching multiple resources simultaneously to speed things up. So, even though many requests are made, they aren&#x2019;t strictly sequential; they happen concurrently, making the site load faster.</p>
-<h1 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a><strong>Rendering</strong></h1><p><strong>Rendering</strong>: Your browser then takes this response and renders it, displaying the website visually for you to interact with.</p>
-<hr>
-
-<p>So basically, the browser is like a translator and a middleman between you and the server.</p>
-]]></content>
-      <categories>
-        <category>Internet</category>
-      </categories>
-      <tags>
-        <tag>Server</tag>
-        <tag>http</tag>
-        <tag>https</tag>
-        <tag>domain</tag>
-        <tag>Browser</tag>
-        <tag>URL</tag>
       </tags>
   </entry>
   <entry>
@@ -1234,6 +1234,54 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
       </tags>
   </entry>
   <entry>
+    <title>But what is a neural network?</title>
+    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
+<p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
+<p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
+<p>&#x7B80;&#x5355;&#x5047;&#x8BBE;neuron&#xFF1A;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212112168.png" style="zoom:50%;"></p>
+<p>Activation</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114250.png"></p>
+<p>this 784 neurons make up our first layer:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114394.png" style="zoom:50%;"></p>
+<p>&#x800C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7684;:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212116496.png" style="zoom:67%;"></p>
+<p>&#x4E2D;&#x95F4;&#x7684;&#x662F;&#x9690;&#x85CF;&#x5C42;<br>The way the network operates, activations in one layer determine the activations of the next layer.</p>
+<p>how those activations from one layer bring about activations in the next layer It&#x2019;s meant to be loosely analogous to how in biological networks of neurons, some groups of neurons firing cause certain others to fire.</p>
+<p><strong>if you feed in an image, lighting up all 784 neurons of the input layer according to the brightness of each pixel in the image, that pattern of activations causes some very specific pattern in the next layer which causes some pattern in the one after it,which finally gives some pattern in the output layer.And the brightest neuron of that output layer is the network&#x2019;s choice</strong></p>
+<h1 id="why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently"><a href="#why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently" class="headerlink" title="why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently"></a>why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently</h1><p>Well, when you or I recognize digits, we piece together various components. A 9 has a loop up top and a line on the right. An 8 also has a loop up top, but it&#x2019;s paired with another loop down low. A 4 basically breaks down into three specific lines, and things like that.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212121375.png"></p>
+<p>Now in a perfect world, we might hope that each neuron in the second to last layer corresponds with one of these subcomponents<br>like:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212123258.png" style="zoom:50%;"></p>
+<p>That way, going from the third layer to the last one just requires learning which combination of subcomponents corresponds to which digits. </p>
+<h2 id="Recognizing-a-loop-can-also-break-down-into-subproblems"><a href="#Recognizing-a-loop-can-also-break-down-into-subproblems" class="headerlink" title="Recognizing a loop can also break down into subproblems."></a>Recognizing a loop can also break down into subproblems.</h2><p>recognize the various little edges that make it up.<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212124765.png"></p>
+<p>So our final hope is like:</p>
+<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212126814.png" style="zoom:50%;">
+
+<h1 id="design"><a href="#design" class="headerlink" title="design"></a>design</h1><p>let&#x2019;s say the hope is for one particular neuron in the second layer to pick up  whether or not the image has an edge in this region here. The question at hand is what parameters should the network have?</p>
+<p>what we&#x2019;ll do is assign a weight to each one of the connections between our neuron and the neurons from the first layer. Then take all of those activations from the first layer and compute their weighted sum according to these weights.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212146600.png"></p>
+<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><p>When you compute a weighted sum like this, you might come out with any number, but for this network what we want is for activations to be some value between 0 and 1. </p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212147104.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212148379.png"></p>
+<h1 id="bias"><a href="#bias" class="headerlink" title="bias"></a>bias</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212150034.png"></p>
+<p>bias What we&#x2019;ll do then is just add in some other number like negative 10 to this</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212151469.png"></p>
+<p>So the weights tell you what pixel pattern this neuron in the second  is picking up on, and the bias tells you how high the weighted sum needs to be before the neuron starts getting meaningfully active.</p>
+<p>Every other neuron in this layer is going to be connected to  all 784 pixel neurons from the first layer, and each one of those 784 connections has its own weight associated with it. Also, each one has some bias, some other number that you add</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212153573.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212154068.png"></p>
+<p>13,000 &#x4E2A;&#x65CB;&#x94AE;&#x548C;&#x65CB;&#x94AE;&#xFF0C;&#x53EF;&#x8C03;&#x6574;&#x548C;&#x8F6C;&#x52A8;to make this network behave in different ways.</p>
+<p>So when we talk about learning, what that&#x2019;s referring to is getting the computer to find a valid setting for all of these many many numbers so that it&#x2019;ll actually solve the problem at hand.</p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212158165.png"></p>
+<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212159137.png"></p>
+<p>so it&#x2019;s actually more accurate to think of each neuron as a function, one that takes in the outputs of all the neurons in the previous layer and spits out a number between 0,1</p>
+<p>784 numbers as an input and spits out 10 numbers as an output. It&#x2019;s an absurdly complicated function, one that involves 13,000 parameters</p>
+]]></content>
+      <tags>
+        <tag>ML</tag>
+        <tag>Neural Network</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>webpack基础</title>
     <url>/2025/02/04/2025-02-06-Webpack%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">target</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">  <span class="attr">mode</span>: <span class="string">&quot;production&quot;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&quot;./extension.js&quot;</span>,</span><br><span class="line">  <span class="attr">output</span>: {</span><br><span class="line">    <span class="attr">path</span>: path.<span class="title function_">resolve</span>(__dirname, <span class="string">&quot;dist&quot;</span>),</span><br><span class="line">    <span class="attr">filename</span>: <span class="string">&quot;extension.js&quot;</span>,</span><br><span class="line">    <span class="attr">libraryTarget</span>: <span class="string">&quot;commonjs2&quot;</span>,</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">externals</span>: {</span><br><span class="line">    <span class="attr">vscode</span>: <span class="string">&quot;commonjs vscode&quot;</span>, <span class="comment">// &#x1F6AB; &#x544A;&#x8BC9; Webpack &#x8FD9;&#x4E9B;&#x6A21;&#x5757;&#x7531;&#x5916;&#x90E8;&#x63D0;&#x4F9B;</span></span><br><span class="line">  },</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  &#x9632;&#x6B62;&#x5C06; vscode API &#x6253;&#x5305;&#x8FDB;&#x53BB;</span></span><br><span class="line"><span class="comment">  &#x56E0;&#x4E3A; VS Code &#x8FD0;&#x884C;&#x65F6;&#x81EA;&#x5E26;&#x8FD9;&#x4E9B; API</span></span><br><span class="line"><span class="comment">   externals: { vscode: &apos;commonjs vscode&apos; }</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="attr">resolve</span>: {</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">&quot;.js&quot;</span>],</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">optimization</span>: {</span><br><span class="line">    <span class="attr">minimize</span>: <span class="literal">true</span>,</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
@@ -1284,54 +1332,6 @@ Cause two callback must be called .And when you wanna use then/catch handler to 
 ]]></content>
       <tags>
         <tag>webpack</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>But what is a neural network?</title>
-    <url>/2025/02/14/2025-02-14-Neural_Network/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212102140.png"></p>
-<p>&#x5982;&#x679C;&#x6211;&#x8981;&#x4F60;&#x5199;&#x4E00;&#x4E2A;program &#x63A5;&#x53D7;&#x4E00;&#x4E2A;image with &#x5F88;&#x591A;&#x50CF;&#x7D20;&#x503C; &#x7136;&#x540E;&#x8981;&#x4F60;output &#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;number &#x4EE3;&#x8868;&#x8FD9;&#x4E2A;image represent&#x7684;&#x6570;&#x5B57; </p>
-<p>How&#xFF1F;<br>What we&#x2019;re going to do is put together a neural network that can learn to recognize handwritten digits.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212111661.png"></p>
-<p>&#x7B80;&#x5355;&#x5047;&#x8BBE;neuron&#xFF1A;<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212112168.png" style="zoom:50%;"></p>
-<p>Activation</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114250.png"></p>
-<p>this 784 neurons make up our first layer:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212114394.png" style="zoom:50%;"></p>
-<p>&#x800C;&#x6700;&#x540E;&#x4E00;&#x5C42;&#x7684;:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212116496.png" style="zoom:67%;"></p>
-<p>&#x4E2D;&#x95F4;&#x7684;&#x662F;&#x9690;&#x85CF;&#x5C42;<br>The way the network operates, activations in one layer determine the activations of the next layer.</p>
-<p>how those activations from one layer bring about activations in the next layer It&#x2019;s meant to be loosely analogous to how in biological networks of neurons, some groups of neurons firing cause certain others to fire.</p>
-<p><strong>if you feed in an image, lighting up all 784 neurons of the input layer according to the brightness of each pixel in the image, that pattern of activations causes some very specific pattern in the next layer which causes some pattern in the one after it,which finally gives some pattern in the output layer.And the brightest neuron of that output layer is the network&#x2019;s choice</strong></p>
-<h1 id="why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently"><a href="#why-it&#x2019;s-even-reasonable-to-expect-a-layered-structure-like-this-to-behave-intelligently" class="headerlink" title="why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently"></a>why it&#x2019;s even reasonable to expect a layered structure like this to behave intelligently</h1><p>Well, when you or I recognize digits, we piece together various components. A 9 has a loop up top and a line on the right. An 8 also has a loop up top, but it&#x2019;s paired with another loop down low. A 4 basically breaks down into three specific lines, and things like that.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212121375.png"></p>
-<p>Now in a perfect world, we might hope that each neuron in the second to last layer corresponds with one of these subcomponents<br>like:<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212123258.png" style="zoom:50%;"></p>
-<p>That way, going from the third layer to the last one just requires learning which combination of subcomponents corresponds to which digits. </p>
-<h2 id="Recognizing-a-loop-can-also-break-down-into-subproblems"><a href="#Recognizing-a-loop-can-also-break-down-into-subproblems" class="headerlink" title="Recognizing a loop can also break down into subproblems."></a>Recognizing a loop can also break down into subproblems.</h2><p>recognize the various little edges that make it up.<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212124765.png"></p>
-<p>So our final hope is like:</p>
-<img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212126814.png" style="zoom:50%;">
-
-<h1 id="design"><a href="#design" class="headerlink" title="design"></a>design</h1><p>let&#x2019;s say the hope is for one particular neuron in the second layer to pick up  whether or not the image has an edge in this region here. The question at hand is what parameters should the network have?</p>
-<p>what we&#x2019;ll do is assign a weight to each one of the connections between our neuron and the neurons from the first layer. Then take all of those activations from the first layer and compute their weighted sum according to these weights.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212146600.png"></p>
-<h1 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h1><p>When you compute a weighted sum like this, you might come out with any number, but for this network what we want is for activations to be some value between 0 and 1. </p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212147104.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212148379.png"></p>
-<h1 id="bias"><a href="#bias" class="headerlink" title="bias"></a>bias</h1><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212150034.png"></p>
-<p>bias What we&#x2019;ll do then is just add in some other number like negative 10 to this</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212151469.png"></p>
-<p>So the weights tell you what pixel pattern this neuron in the second  is picking up on, and the bias tells you how high the weighted sum needs to be before the neuron starts getting meaningfully active.</p>
-<p>Every other neuron in this layer is going to be connected to  all 784 pixel neurons from the first layer, and each one of those 784 connections has its own weight associated with it. Also, each one has some bias, some other number that you add</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212153573.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212154068.png"></p>
-<p>13,000 &#x4E2A;&#x65CB;&#x94AE;&#x548C;&#x65CB;&#x94AE;&#xFF0C;&#x53EF;&#x8C03;&#x6574;&#x548C;&#x8F6C;&#x52A8;to make this network behave in different ways.</p>
-<p>So when we talk about learning, what that&#x2019;s referring to is getting the computer to find a valid setting for all of these many many numbers so that it&#x2019;ll actually solve the problem at hand.</p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212158165.png"></p>
-<p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/202502212159137.png"></p>
-<p>so it&#x2019;s actually more accurate to think of each neuron as a function, one that takes in the outputs of all the neurons in the previous layer and spits out a number between 0,1</p>
-<p>784 numbers as an input and spits out 10 numbers as an output. It&#x2019;s an absurdly complicated function, one that involves 13,000 parameters</p>
-]]></content>
-      <tags>
-        <tag>ML</tag>
-        <tag>Neural Network</tag>
       </tags>
   </entry>
   <entry>
@@ -1774,6 +1774,22 @@ end
       </tags>
   </entry>
   <entry>
+    <title>AI CLI</title>
+    <url>/2025/07/07/2025-07-07-Ai-Cli-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
+<li>Claude code - &#x9700;&#x8981;api &#x597D;&#x8D35;</li>
+<li>Gemini Cli - token&#x591A; &#x6BCF;&#x5206;&#x949F;&#x6709;&#x514D;&#x8D39;&#x8BF7;&#x6C42;</li>
+<li>Warp -&#x6BCF;&#x4E2A;&#x6708; &#x514D;&#x8D39;&#x7528;&#x6237;&#x6709;&#x9650;&#x5236;</li>
+<li>Amazon Q &#x53EF;&#x4EE5;&#x8C03;Claude sonnet 4 &#x8FD8;&#x53EF;&#x4EE5;&#x5440; &#x6CA1;&#x6709;&#x9650;&#x5236;&#xFF1F; q chat</li>
+</ul>
+<p>&#x73B0;&#x5728;&#x4E3B;&#x8981;&#x7528;Amazon Q</p>
+<p>&#x53E6;&#x5916;&#x4ECA;&#x5929;&#x53D1;&#x73B0;&#x5168;&#x5C40;&#x68AF;&#x5B50; gemini&#x600E;&#x4E48;&#x5410;&#x90A3;&#x4E48;&#x591A;&#x1F923;</p>
+]]></content>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大型语言模型（LLM）信息来源的核心</title>
     <url>/2025/07/20/2025-07-20-%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E4%BF%A1%E6%81%AF%E6%9D%A5%E6%BA%90%E7%9A%84%E6%A0%B8%E5%BF%83-2025/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="main"><a href="#main" class="headerlink" title="main"></a>main</h1><p>&#x8FD9;&#x6837;&#x7684;&#x7406;&#x89E3;&#x662F;&#x6B63;&#x786E;&#x7684;&#xFF1A;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x8C08;&#x8BBA;&#x7684;LLM&#xFF0C;&#x6BD4;&#x5982;GPT&#x7CFB;&#x5217;&#xFF0C;&#x5176;&#x8BAD;&#x7EC3;&#x57FA;&#x7840;&#x786E;&#x5B9E;&#x662F;<strong>&#x6587;&#x672C;&#xFF08;Text-based&#xFF09;</strong>&#x3002;&#x5B83;&#x4EEC;&#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x80FD;&#x50CF;&#x4EBA;&#x7C7B;&#x4E00;&#x6837;&#x201C;&#x89C2;&#x770B;&#x201D;&#x7535;&#x5F71;&#x6216;&#x8005;&#x201C;&#x542C;&#x201D;&#x97F3;&#x9891;&#x3002;</p>
@@ -1825,22 +1841,6 @@ end
         <tag>AI</tag>
         <tag>LLM</tag>
         <tag>Fun Info</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI CLI</title>
-    <url>/2025/07/07/2025-07-07-Ai-Cli-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
-<li>Claude code - &#x9700;&#x8981;api &#x597D;&#x8D35;</li>
-<li>Gemini Cli - token&#x591A; &#x6BCF;&#x5206;&#x949F;&#x6709;&#x514D;&#x8D39;&#x8BF7;&#x6C42;</li>
-<li>Warp -&#x6BCF;&#x4E2A;&#x6708; &#x514D;&#x8D39;&#x7528;&#x6237;&#x6709;&#x9650;&#x5236;</li>
-<li>Amazon Q &#x53EF;&#x4EE5;&#x8C03;Claude sonnet 4 &#x8FD8;&#x53EF;&#x4EE5;&#x5440; &#x6CA1;&#x6709;&#x9650;&#x5236;&#xFF1F; q chat</li>
-</ul>
-<p>&#x73B0;&#x5728;&#x4E3B;&#x8981;&#x7528;Amazon Q</p>
-<p>&#x53E6;&#x5916;&#x4ECA;&#x5929;&#x53D1;&#x73B0;&#x5168;&#x5C40;&#x68AF;&#x5B50; gemini&#x600E;&#x4E48;&#x5410;&#x90A3;&#x4E48;&#x591A;&#x1F923;</p>
-]]></content>
-      <tags>
-        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -1954,6 +1954,16 @@ end
       <tags>
         <tag>Fun Info</tag>
         <tag>Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>突击数值分析有感</title>
+    <url>/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x6700;&#x8FD1;&#x7528;&#x4E09;&#x56DB;&#x5929;&#x4ECE;&#x65E0;&#x5230;&#x6709;&#x7A81;&#x51FB;&#x6570;&#x503C;&#x5206;&#x6790;,&#x76EE;&#x6807;&#x662F;&#x901A;&#x8FC7;&#x7684;&#x8BDD;&#x6839;&#x672C;&#x6CA1;&#x5FC5;&#x8981;&#x4ECE;PPT&#x5B66;&#x8D77;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x5728;B&#x7AD9;&#x4E0A;&#x8BFE;&#x7A0B;&#x8D44;&#x6E90;&#x4E0D;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x540C;&#x5927;&#x5B66;&#x8BFE;&#x7A0B;&#x5185;&#x5BB9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x8BFE;&#xFF0C;&#x76F4;&#x63A5;&#x5C31;&#x627E;&#x4E00;&#x4EFD;&#x5F80;&#x5E74;&#x9898;&#xFF0C;&#x6CA1;&#x6709;&#x5F80;&#x5E74;&#x9898;&#x5C31;&#x627E;&#x5E73;&#x5E38;&#x8001;&#x5E08;&#x5E03;&#x7F6E;&#x7684;&#x8BFE;&#x540E;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x6254;&#x7ED9;Gemini &#x8BA9;&#x4ED6;&#x7528;&#x6559;&#x5B66;&#x98CE;&#x683C;&#x6559;&#x4F60;&#x600E;&#x4E48;&#x505A;&#xFF08;&#x7528;&#x5947;&#x5999;&#x7684;Prompt&#x1F601;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7B54;&#x6848;&#x786E;&#x4FDD;&#x4ED6;&#x6CA1;&#x6709;&#x89E3;&#x9519;&#x3002;&#x73B0;&#x5728;Gemini3.0 pro&#x89E3;&#x8FD9;&#x79CD;&#x9898;&#x5DF2;&#x7ECF;&#x5F88;&#x5389;&#x5BB3;&#x4E86;&#x3002;&#x8FD9;&#x662F;&#x4ECE;&#x9898;&#x76EE;&#x51FA;&#x53D1;&#x5B66;&#x4E60;&#xFF0C;&#x4ECE;&#x76EE;&#x7684;&#x53CD;&#x903C;&#x81EA;&#x5DF1;&#xFF0C;&#x4F60;&#x6700;&#x7EC8;&#x76EE;&#x6807;&#x4E0D;&#x5C31;&#x662F;&#x8981;&#x4F1A;&#x505A;&#x9898;&#x561B;&#x3002;<br>&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x56FA;&#x5B9A;&#x9898;&#x578B; &#x5728;b&#x7AD9;&#x4E0A;&#x641C;&#x7D22;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E9B;&#x5FEB;&#x901F;&#x89E3;&#x6CD5;&#xFF0C;&#x96C6;&#x767E;&#x5BB6;&#x4E4B;&#x957F;&#x6784;&#x5EFA;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x89E3;&#x6CD5;&#x3002;</p>
+<p>&#x4EE5;&#x6B64;&#x7BC7;Blog&#x7948;&#x7977;&#xFF0C;&#x671F;&#x76FC;&#x9526;&#x9CA4;&#x9644;&#x4F53;&#x3002;<br>&#x7948;&#x7977;&#x6765;&#x9762;&#x8BD5;&#xFF0C;&#x6C42;&#x9762;&#xFF01;</p>
+]]></content>
+      <tags>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -2129,6 +2139,80 @@ end
       </tags>
   </entry>
   <entry>
+    <title>Gemini 3.0 pro 为什么会打错字</title>
+    <url>/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG70332.jpg"></p>
+<p>&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&#x4E48;Gemini&#x4F1A;&#x6253;&#x9519;&#x5B57;&#x5462;&#xFF1F; &#x8FD9;&#x662F;&#x56E0;&#x4E3A;Gemini&#x80FD;&#x50CF;&#x4EBA;&#x4E00;&#x6837;&#x72AF;&#x9519;&#x4E86;&#xFF08;&#x8FD9;&#x4E48;&#x5389;&#x5BB3;&#x5417;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;&#x8FD8;&#x662F;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x8BAD;&#x7EC3;&#x91CC;&#x9762;&#x201C;&#x77E5;&#x9053;&#x201D;&#x6253;&#x9519;&#x5F88;&#x591A;&#xFF0C;&#x5BFC;&#x81F4;&#x4ED6;&#x7684;&#x9884;&#x6D4B;&#x201C;&#x76F4;&#x5230;&#x201D;&#x6982;&#x7387;&#x5F88;&#x9AD8; &#x4ED6;pick&#x4E86;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4F46;&#x662F;&#x8FD9;&#x4E5F;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x554A;Gemini&#x600E;&#x4E48;&#x4F1A;&#x72AF;&#x8FD9;&#x6837;&#x3002;&#x6216;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x522B;&#x4EBA;&#x7684;&#x89E3;&#x91CA;&#x91CC;&#x7684;&#x539F;&#x53E5; &#x522B;&#x4EBA;&#x6253;&#x9519;&#x5B57;&#x4E86; &#x5947;&#x602A;&#x5947;&#x602A;</p>
+]]></content>
+      <tags>
+        <tag>疑惑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My Project</title>
+    <url>/2025/12/26/2025-12-26-ai-demo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>HuggingFace is very generous and really make my project crazy,I think this is my best project<br>It&#x2019;s a combination of creativity and a lot of reflections about how I used to do wrong</p>
+<p>So this project is really about deeply combining AI with your Notion notes to help you actually absorb the knowledge in them, as a way to fight against how easily we forget things.</p>
+<p>Because I don&#x2019;t think taking notes guarantees that you truly understand or internalize the content. I&#x2019;ve been using Notion for a long time and have accumulated a lot of notes, but I&#x2019;ve never really practiced active learning. I&#x2019;m always just passively browsing old notes.<br>I am excited to make this open-source in some days<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG551.jpg"></p>
+]]></content>
+      <tags>
+        <tag>Project</tag>
+        <tag>Reflection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>等再次见面，我一定不再是当初的我</title>
+    <url>/2026/01/22/2026-01-22-%E6%89%BE%E7%AC%AC%E4%BA%8C%E4%BB%BD%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%AF%B9%E8%85%BE%E8%AE%AF%E7%AC%AC%E5%9B%9B%E8%BD%AE%E6%8A%80%E6%9C%AF%E9%9D%A2%E6%8C%82%E7%9A%84%E6%80%9D%E8%80%83)-2026/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/Snipaste_2026-01-24_19-05-50.png"></p>
+<blockquote>
+<p>&#x5E0C;&#x671B;&#x4E4B;&#x540E;&#x56DE;&#x987E;&#x8FD9;&#x7BC7;&#x535A;&#x5BA2;&#x80FD;&#x6709;&#x6240;&#x6536;&#x83B7;</p>
+</blockquote>
+<h1 id="&#x8FC7;&#x7A0B;&#x63CF;&#x8FF0;"><a href="#&#x8FC7;&#x7A0B;&#x63CF;&#x8FF0;" class="headerlink" title="&#x8FC7;&#x7A0B;&#x63CF;&#x8FF0;"></a>&#x8FC7;&#x7A0B;&#x63CF;&#x8FF0;</h1><p>&#x603B;&#x7ED3;&#x8FD9;&#x6B21;&#x627E;&#x5B9E;&#x4E60; &#x5FC3;&#x6001;&#x4E0A;&#x5B9E;&#x5728;&#x662F;&#x592A;&#x8FC7;&#x7126;&#x6025;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x8FD8;&#x672A;&#x590D;&#x76D8;&#xFF0C;&#x672A;&#x590D;&#x4E60;&#xFF0C;&#x6539;&#x4E86;&#x4E2A;&#x7B80;&#x5386;&#x5C31;&#x53BB;&#x627E;&#x6295;bat&#xFF0C;&#x5012;&#x662F;&#x90FD;&#x7ED9;&#x9762;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x9762;&#x6DD8;&#x5929;&#x5C31;&#x72B6;&#x6001;&#x4E0D;&#x5BF9;&#xFF0C;&#x5BF9;&#x77E5;&#x8BC6;&#x70B9;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x7C97;&#x6D45;&#x5370;&#x8C61;&#xFF0C;&#x7ED3;&#x679C;&#x4E0D;&#x51FA;&#x6240;&#x6599;&#x6302;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x5C31;&#x63A8;&#x6389;&#x5176;&#x4ED6;&#x9762;&#x8BD5;&#xFF0C;&#x5F00;&#x59CB;&#x6C89;&#x6DC0;&#xFF0C;&#x590D;&#x4E60;&#x3002;<br>1&#x6708;&#x4EFD;&#x8FDB;&#x5165;&#x5B66;&#x6821;&#x671F;&#x672B;&#xFF0C;&#x540C;&#x65F6;&#x6211;&#x5B9E;&#x5728;&#x5FCD;&#x4E0D;&#x4F4F;&#x60F3;&#x8981;&#x6295;&#x7B80;&#x5386;&#xFF0C;&#x4E00;&#x5F00;&#x59CB;&#x90FD;&#x6295;&#xFF0C;boss&#x4E5F;&#x8981;&#x4E86;&#x7B80;&#x5386;&#xFF0C;&#x4F46;&#x662F;&#x4E00;&#x5929;&#x5185;&#x6CA1;&#x6709;&#x7EA6;&#x9762;&#xFF0C;&#x5FC3;&#x60C5;&#x5C31;&#x7279;&#x522B;&#x7126;&#x6025;&#xFF0C;&#x8D8A;&#x6765;&#x8D8A;&#x7740;&#x6025;&#xFF0C;&#x6BCF;&#x5929;&#x90FD;&#x5728;&#x7126;&#x8651;&#x7B49;&#x5F85;&#x3002;&#x540E;&#x9762;&#x7B2C;&#x4E00;&#x9636;&#x6BB5;&#x817E;&#x8BAF;&#xFF0C;&#x5B57;&#x8282;&#xFF0C;&#x7C73;&#x54C8;&#x6E38;&#x7EA6;&#x9762; &#x7B2C;&#x4E8C;&#x9636;&#x6BB5;&#x51E0;&#x4E4E;&#x6295;&#x7684;&#x6240;&#x6709;&#x5927;&#x5382;&#x90FD;&#x7EA6;&#x9762;&#xFF0C;&#x611F;&#x89C9;&#x5F88;&#x7D2F;&#x53C8;&#x63A8;&#x6389;&#x4E86;&#x4E00;&#x4E9B;</p>
+<h2 id="&#x7C73;&#x54C8;&#x6E38;&#x4E8C;&#x9762;"><a href="#&#x7C73;&#x54C8;&#x6E38;&#x4E8C;&#x9762;" class="headerlink" title="&#x7C73;&#x54C8;&#x6E38;&#x4E8C;&#x9762;"></a>&#x7C73;&#x54C8;&#x6E38;&#x4E8C;&#x9762;</h2><p>&#x4ECE;&#x5934;&#x5230;&#x5C3E;&#x5C31;&#x611F;&#x89C9;&#x6BD4;&#x8F83;&#x538B;&#x529B;&#xFF0C;&#x611F;&#x89C9;&#x88AB;&#x5BF9;&#x9762;&#x9762;&#x8BD5;&#x5B98;&#x72E0;&#x72E0;&#x5426;&#x5B9A;&#x3002;&#x8FD8;&#x8BB0;&#x5F97;&#x521A;&#x9762;&#x5B8C;&#x6211;&#x81EA;&#x4FE1;&#x5F88;&#x53D7;&#x6253;&#x51FB;&#xFF0C;&#x8DDF;&#x6211;&#x670B;&#x53CB;&#x8BF4;&#x201D;&#x611F;&#x89C9;&#x6211;&#x4E00;&#x76F4;&#x5728;&#x8FC7;&#x5BB6;&#x5BB6;&#x4E00;&#x6837;&#xFF0C;&#x83DC;&#x7684;&#x4E00;&#x6279;&#x201D;</p>
+<h2 id="&#x817E;&#x8BAF;&#x4E00;&#x9762;"><a href="#&#x817E;&#x8BAF;&#x4E00;&#x9762;" class="headerlink" title="&#x817E;&#x8BAF;&#x4E00;&#x9762;"></a>&#x817E;&#x8BAF;&#x4E00;&#x9762;</h2><p>&#x4E09;&#x9053;&#x9898;&#xFF0C;&#x603B;&#x7B97;&#x80FD;&#x628A;&#x9898;&#x90FD;&#x5199;&#x51FA;&#x6765;&#xFF0C;&#x589E;&#x5F3A;&#x4E86;&#x4E00;&#x70B9;&#x4FE1;&#x5FC3;</p>
+<h2 id="&#x817E;&#x8BAF;&#x4E8C;&#x9762;"><a href="#&#x817E;&#x8BAF;&#x4E8C;&#x9762;" class="headerlink" title="&#x817E;&#x8BAF;&#x4E8C;&#x9762;"></a>&#x817E;&#x8BAF;&#x4E8C;&#x9762;</h2><p>&#x8FD9;&#x662F;&#x5728;&#x7C73;&#x54C8;&#x6E38;&#x4E8C;&#x9762;&#x8FC7;&#x540E;&#xFF0C;&#x6211;&#x4FE1;&#x5FC3;&#x6BD4;&#x8F83;&#x4F4E;&#x843D;&#xFF0C;&#x6709;&#x4E00;&#x79CD;&#x968F;&#x4FBF;&#x5427;&#x7684;&#x5FC3;&#x60C5;&#xFF0C;&#x8FD8;&#x597D;&#x7B97;&#x6CD5;&#x9898;&#x5199;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x53CD;&#x95EE;&#x65F6;&#x5019;&#xFF0C;&#x9762;&#x8BD5;&#x5B98;&#x4EE5;&#x4E3A;&#x5728;&#x62DB;&#x6625;&#x62DB;&#x8865;&#x5F55;&#xFF0C;&#x8BF4;&#x4E0D;&#x786E;&#x5B9A;&#x6211;&#x80FD;&#x4E0D;&#x80FD;&#x4EE5;&#x5B9E;&#x4E60;&#x751F;&#x8EAB;&#x4EFD;&#x52A0;&#x5165;&#xFF0C;&#x6211;&#x5FC3;&#x60C5;&#x4E0A;&#x5DF2;&#x7ECF;&#x662F;&#x65E0;&#x6240;&#x8C13;&#x4E86;</p>
+<h2 id="&#x817E;&#x8BAF;&#x4E09;&#x9762;"><a href="#&#x817E;&#x8BAF;&#x4E09;&#x9762;" class="headerlink" title="&#x817E;&#x8BAF;&#x4E09;&#x9762;"></a>&#x817E;&#x8BAF;&#x4E09;&#x9762;</h2><p>&#x8FD9;&#x65F6;&#x521A;&#x4E00;&#x5929;&#x7A81;&#x51FB;&#x8003;&#x5B8C;&#x671F;&#x672B;&#x8003;&#x8BD5;&#xFF0C;&#x800C;&#x4E14;&#x5176;&#x4ED6;&#x5BB6;&#x5927;&#x5382;&#x7ED9;&#x6211;oc&#x4E86;&#xFF0C;&#x6211;&#x50AC;&#x4FC3;&#x817E;&#x8BAF;&#x5C3D;&#x5FEB;&#x7ED9;&#x7ED3;&#x679C;&#xFF0C;&#x6240;&#x4EE5;&#x4ED6;&#x7ED9;&#x6211;&#x5B89;&#x6392;&#x4E86;&#x4E00;&#x4E2A;&#x9762;&#x8BD5;&#x3002;&#x5728;&#x53EA;&#x7761;&#x4E86;&#x4E09;&#x5C0F;&#x65F6;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x544A;&#x8BC9;&#x81EA;&#x5DF1;&#xFF0C;&#x62FC;&#x4E00;&#x628A;&#x4E0D;&#x7559;&#x4F59;&#x529B;&#xFF0C;&#x8FC7;&#x7A0B;&#x4E2D;&#x611F;&#x89C9;&#x804A;&#x7684;&#x633A;&#x8212;&#x670D;&#x7684;&#xFF0C;&#x6211;&#x5DF2;&#x7ECF;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x4FDD;&#x7559;&#x7684;&#x4E86;&#xFF0C;&#x611F;&#x89C9;&#x8FD9;&#x4E2A;&#x9762;&#x8BD5;&#x5B98;&#x8003;&#x5BDF;&#x6D89;&#x53CA;&#x6211;&#x4E2A;&#x4EBA;&#x7684;&#x5404;&#x79CD;pespective&#x548C;philosophy&#xFF0C;&#x8FD8;&#x7B2C;&#x4E00;&#x6B21;&#x505A;&#x4E86;&#x4E00;&#x4E2A;&#x5FAE;&#x4FE1;&#x626B;&#x7801;&#x7684;&#x7CFB;&#x7EDF;&#x8BBE;&#x8BA1;&#x9898;&#xFF0C;&#x6700;&#x540E;&#x5E94;&#x8BE5;&#x662F;&#x505A;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x611F;&#x89C9;&#x4ED6;&#x633A;&#x6EE1;&#x610F;&#x7684;&#x3002;&#x6700;&#x540E;&#x53CD;&#x95EE;&#x6211;&#x89E3;&#x91CA;&#x9053;&#x5176;&#x4ED6;&#x5BB6;&#x9A6C;&#x4E0A;&#x8981;&#x6211;&#x56DE;&#x590D;&#xFF0C;&#x5E0C;&#x671B;&#x80FD;&#x591F;&#x5C3D;&#x5FEB;&#x51FA;&#x7ED3;&#x679C;&#xFF0C;&#x4ED6;&#x95EE;&#x6211;base&#x6DF1;&#x5733;&#x80FD;&#x63A5;&#x53D7;&#x5417;&#xFF0C;&#x4E4B;&#x540E;hr&#x4F1A;&#x8054;&#x7CFB;&#x6211;<br>&#x7136;&#x540E;&#x6211;&#x770B;&#x5230;&#x4E09;&#x9762;&#x8FC7;&#x4E86;&#xFF0C;&#x7531;&#x4E8E;&#x5728;&#x7F51;&#x4E0A;&#x770B;&#x5230;&#x7684;&#x90FD;&#x662F;&#x4E8C;&#x9762;&#x6216;&#x4E09;&#x9762;&#xFF0C;&#x6211;&#x5C31;&#x4EE5;&#x4E3A;&#x5DF2;&#x7ECF;&#x7A33;&#x4E86;<br>&#x7761;&#x9192;&#x7B2C;&#x4E8C;&#x5929;&#x53D1;&#x73B0;&#x53C8;&#x7EA6;&#x4E86;&#x4E00;&#x9762;&#x590D;&#x8BD5;&#xFF0C;&#x8FD8;&#x7EA6;&#x5728;&#x51E0;&#x5929;&#x540E;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x5C31;&#x89C9;&#x5F97;&#x5F88;&#x5947;&#x602A;&#xFF0C;&#x7B2C;&#x4E00;&#x662F;&#x6211;&#x89C9;&#x5F97;&#x65E5;&#x5E38;&#x5B9E;&#x4E60;&#x4E0D;&#x5C31;&#x4E09;&#x9762;&#x5417;&#xFF0C;&#x7B2C;&#x4E8C;&#x662F;&#x6211;&#x4E00;&#x76F4;&#x5728;&#x50AC;campus&#xFF0C;&#x4E5F;&#x8DDF;&#x9762;&#x8BD5;&#x5B98;&#x771F;&#x8BDA;&#x8868;&#x8FBE;&#x8FC7;&#x6025;&#x7740;&#x8981;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x9762;&#x4E5F;&#x4E0D;&#x5E94;&#x8BE5;&#x7EA6;&#x5728;&#x51E0;&#x5929;&#x540E;&#x5427;&#xFF1F;<br>&#x8FD9;&#x4E2A;&#x5B89;&#x6392;&#x8BA9;&#x6211;&#x89C9;&#x5F97;&#x6709;&#x4E00;&#x70B9;&#x88AB;&#x8F9C;&#x8D1F;&#xFF0C;&#x5F53;&#x7136;&#x4ED6;&#x9009;&#x62E9;&#x9762;&#x51E0;&#x6B21;&#x662F;&#x4ED6;&#x7684;&#x81EA;&#x7531;&#x548C;&#x6743;&#x529B;&#x3002;</p>
+<h2 id="&#x56DB;&#x9762;"><a href="#&#x56DB;&#x9762;" class="headerlink" title="&#x56DB;&#x9762;"></a>&#x56DB;&#x9762;</h2><p>&#x56DB;&#x9762;&#x4E0D;&#x60F3;&#x56DE;&#x5FC6;&#x4E86;&#xFF0C;&#x6211;&#x53EA;&#x8BB0;&#x5F97;&#x521A;&#x770B;&#x5230;&#x6D41;&#x7A0B;&#x53D8;&#x7070;&#x90A3;&#x4E00;&#x523B;&#xFF0C;&#x6211;&#x7684;&#x5FC3;&#x4E00;&#x4E0B;&#x5B50;&#x7279;&#x522B;&#x96BE;&#x53D7;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x6211;&#x5DF2;&#x7ECF;&#x8868;&#x73B0;&#x51FA;potential&#xFF0C;&#x6211;&#x8DB3;&#x591F;&#x7684;&#x771F;&#x8BDA;&#xFF0C;&#x6574;&#x4E2A;&#x9762;&#x8BD5;&#x8FC7;&#x7A0B;&#x6211;&#x4E00;&#x904D;&#x5E94;&#x5BF9;&#x7740;&#x5B8C;&#x5168;&#x6CA1;&#x5B66;&#x8FC7;&#x7684;&#x671F;&#x672B;&#x8003;&#x8BD5;&#xFF0C;&#x4E00;&#x8FB9;&#x8C03;&#x6574;&#x5FC3;&#x6001;&#x590D;&#x4E60;&#x77E5;&#x8BC6;&#xFF0C;&#x524D;&#x4E09;&#x6B21;&#x9762;&#x8BD5;&#x6BCF;&#x6B21;&#x4E00;&#x4E2A;&#x591A;&#x5C0F;&#x65F6;&#x6211;&#x5DF2;&#x7ECF;&#x4ED8;&#x51FA;&#x5168;&#x90E8;&#xFF0C;&#x73B0;&#x5728;&#x4E00;&#x4E2A;&#x7070;&#x8272;&#x7684;&#x201C;&#x6D41;&#x7A0B;&#x5DF2;&#x7ED3;&#x675F;&#x201D;&#x7A81;&#x7136;&#x5B8C;&#x5168;&#x5426;&#x5B9A;&#x6211;&#x7684;&#x52AA;&#x529B;&#xFF0C;&#x6211;&#x611F;&#x5230;&#x5F88;&#x4E0D;&#x7518;&#x5FC3;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x6211;&#x7EDD;&#x5BF9;&#x80FD;&#x80DC;&#x4EFB;&#x4E00;&#x4E2A;&#x65E5;&#x5E38;&#x5B9E;&#x4E60;&#x751F;&#x7684;&#x5C97;&#x4F4D;&#xFF0C;&#x51B5;&#x4E14;&#x9762;&#x7684;&#x4E5F;&#x4E0D;&#x662F;&#x7F51;&#x4E0A;&#x8BF4;&#x7684;&#x6838;&#x5FC3;&#x90E8;&#x95E8;&#x3002;</p>
+<p>&#x6302;&#x4E86;&#x4EE5;&#x540E;wxg&#x5F88;&#x5FEB;&#x635E;&#x6211;&#xFF0C;&#x6211;&#x5DF2;&#x7ECF;&#x6CA1;&#x6709;&#x7CBE;&#x529B;&#x7EE7;&#x7EED;</p>
+<h1 id="&#x53CD;&#x601D;"><a href="#&#x53CD;&#x601D;" class="headerlink" title="&#x53CD;&#x601D;"></a>&#x53CD;&#x601D;</h1><p>&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x6B21;&#x4F1A;&#x5931;&#x8D25;</p>
+<ol>
+<li>&#x5C3D;&#x7BA1;&#x6211;&#x4E00;&#x76F4;&#x5728;&#x63D0;&#x9192;&#x81EA;&#x5DF1;&#xFF0C;&#x4E5F;&#x5199;&#x6210;&#x5FAE;&#x4FE1;&#x7B7E;&#x540D;&#xFF1A;&#x65E0;&#x6240;&#x6C42;&#x5FC5;&#x6EE1;&#x8F7D;&#x800C;&#x5F52;&#xFF0C;&#x9759;&#x4E0B;&#x5FC3;&#x6765;<br>&#x4F46;&#x5176;&#x5B9E;&#x6211;&#x8FD8;&#x662F;&#x5FC3;&#x6001;&#x4E0A;&#x592A;&#x8FC7;&#x7126;&#x6025;&#xFF0C;&#x592A;&#x60F3;&#x8D76;&#x7D27;&#x8981;&#x4E00;&#x4E2A;&#x7ED3;&#x679C;</li>
+<li>&#x4E0D;&#x65AD;&#x7684;&#x50AC;&#x4FC3;&#x6D41;&#x7A0B;&#x63A8;&#x8FDB;&#xFF0C;&#x53EF;&#x80FD;&#x5BF9;&#x4ED6;&#x4EEC;&#x611F;&#x89C9;&#x6211;&#x4E0D;&#x591F;&#x771F;&#x8BDA;&#x6216;&#x793C;&#x8C8C;&#xFF0C;&#x8FD9;&#x5E76;&#x975E;&#x6211;&#x7684;&#x672C;&#x610F;&#xFF0C;&#x6211;&#x5E76;&#x4E0D;&#x60F3;&#x50AC;&#x4FC3;&#xFF0C;&#x53EA;&#x662F;&#x6211;&#x4E5F;&#x5F97;&#x5C0A;&#x91CD;&#x5176;&#x4ED6;&#x5BB6;&#xFF0C;&#x6211;&#x5F97;&#x5C3D;&#x5FEB;&#x7ED9;&#x5176;&#x4ED6;&#x5BB6;&#x4E00;&#x4E2A;&#x7B54;&#x590D;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x53BB;&#xFF0C;&#x4ED6;&#x4EEC;&#x4E5F;&#x80FD;&#x591F;&#x5C3D;&#x5FEB;&#x627E;&#x4E0B;&#x4E00;&#x4E2A;&#x5019;&#x9009;&#x4EBA;&#x3002;</li>
+</ol>
+<ul>
+<li>&#x8FD9;&#x4E00;&#x70B9;&#x6211;&#x89C9;&#x5F97;&#x662F;&#x4E0D;&#x53EF;&#x907F;&#x514D;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x76F4;&#x63A5;&#x63A5;&#x4E86;offer&#x4E4B;&#x540E;&#x53C8;&#x5F88;&#x5FEB;&#x79BB;&#x804C;&#xFF0C;&#x6211;&#x89C9;&#x5F97;&#x8FD9;&#x4E0D;&#x7B26;&#x5408;&#x6211;&#x7684;&#x4E3A;&#x4EBA;&#x5904;&#x4E8B;</li>
+</ul>
+<ol start="3">
+<li>&#x96BE;&#x70B9;&#x90E8;&#x5206;&#x6CA1;&#x6709;&#x51C6;&#x5907;&#x597D;&#xFF0C;&#x6211;&#x7684;&#x5FC3;&#x6001;&#x91CC;&#x603B;&#x5BB3;&#x6015;&#x50CF;&#x7C73;&#x54C8;&#x6E38;&#x4E8C;&#x9762;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F53;&#x6211;&#x628A;&#x51C6;&#x5907;&#x7684;&#x96BE;&#x70B9;&#x7ED9;&#x51FA;&#x53BB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9762;&#x8BD5;&#x5B98;&#x4F1A;&#x5426;&#x5B9A;&#x6211;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x4E00;&#x4E9B;&#x5730;&#x65B9;&#x6211;&#x9009;&#x62E9;&#x5148;&#x8BF4;&#x201C;&#x5176;&#x5B9E;&#x4E5F;&#x4E0D;&#x662F;&#x5F88;&#x96BE;&#x201D;&#x6765;&#x4FDD;&#x62A4;&#x81EA;&#x5DF1;&#x7684;&#x81EA;&#x5C0A;&#x3002;</li>
+</ol>
+<ul>
+<li>&#x5B8C;&#x5168;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x5BB3;&#x6015;&#xFF0C;&#x7136;&#x540E;&#x66F4;&#x8981;&#x7CBE;&#x8FDB;&#x7684;&#x5C31;&#x662F;&#x5BF9;&#x96BE;&#x70B9;&#x7684;&#x51C6;&#x5907;&#x548C;&#x5728;&#x5B9E;&#x4E60;&#x8FC7;&#x7A0B;&#x4E2D;&#x8BB0;&#x5F55;&#x601D;&#x8003;&#x548C;&#x96BE;&#x70B9;</li>
+</ul>
+<p>&#x8FD9;&#x6B21;&#x7ECF;&#x5386;&#x6211;&#x53EF;&#x4EE5;&#x544A;&#x8BC9;&#x6211;&#xFF1A;&#x201D;You have to be so good that they have to give it to you,and you weren&#x2019;t &#x201C;&#xFF0C;&#x4F46;&#x662F;&#x7B49;&#x518D;&#x6B21;&#x89C1;&#x9762;&#xFF0C;&#x6211;&#x4E00;&#x5B9A;&#x4E0D;&#x518D;&#x662F;&#x5F53;&#x521D;&#x7684;&#x6211;<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG597.jpg"></p>
+]]></content>
+      <tags>
+        <tag>Reflection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>音文同步技术方案思考</title>
+    <url>/2025/12/27/2025-12-27-%E9%9F%B3%E6%96%87%E5%90%8C%E6%AD%A5%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>So I was running towards a problem while enhancing my project.</p>
+<p>The goal was simple: <strong>Highlight the text in the browser as the audio plays.</strong></p>
+<p>Initially, I was quite proud of coming up with the idea of &#x200B;&#x200B;using binary search to find the matching relationship between the start/end times of the generated audio and text segments. However, I later encountered the problem of inaccurate matching. Why? Because the Markdown I initially rendered was the content returned by the AI. I used regular expressions to clean it up into segments usable by the TTS service. Therefore, the audio&#x2019;s <code>currentTime</code> corresponds to the cleaned plain text, not the rendered Markdown text visible to the user.  This makes using <code>includes</code> or <code>indexOf</code> for matching quite fragile.</p>
+<p>Then I learned how other people did it.</p>
+<p>Large companies would absolutely not use string matching (indexOf or includes) on the front end for highlighting, because it&#x2019;s extremely unreliable (as I&#x2019;ve discovered, punctuation, formatting, and code blocks can all break the matching).</p>
+<p>The general solution is <strong>&#x201C;ID mapping based on AST (Abstract Syntax Tree)&#x201D;</strong>.</p>
+<p>&#x6838;&#x5FC3;&#x601D;&#x8DEF;&#xFF1A;&#x4E0D;&#x8981;&#x5339;&#x914D;&#x6587;&#x672C;&#xFF0C;&#x5339;&#x914D; ID<br>&#x5728;&#x540E;&#x7AEF;&#x5904;&#x7406; Markdown &#x65F6;&#xFF0C;&#x4E0D;&#x8981;&#x76F4;&#x63A5;&#x7528;&#x6B63;&#x5219;&#x53BB;&#x6E05;&#x6D17;&#x6587;&#x672C;&#x3002;&#x4F7F;&#x7528; Markdown &#x89E3;&#x6790;&#x5668; &#x5F53;&#x8C03;&#x7528; TTS &#x5F15;&#x64CE;&#x751F;&#x6210;&#x97F3;&#x9891;&#x65F6;&#xFF0C;&#x4FDD;&#x7559;&#x8FD9;&#x4E2A; id&#x3002;</p>
+<p>&#x524D;&#x7AEF;&#x5728;&#x6E32;&#x67D3; Markdown &#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x6E32;&#x67D3;&#x5668;&#xFF08;Custom Renderer&#xFF09;&#xFF0C;&#x5C06;&#x540E;&#x7AEF;&#x751F;&#x6210;&#x7684;&#x90A3;&#x4E2A; id &#x6CE8;&#x5165;&#x5230; HTML &#x6807;&#x7B7E;&#x7684; data-id &#x5C5E;&#x6027;&#x4E2D;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x6211;&#x7528;&#x7684;&#x662F;React-markdown &#x76F4;&#x63A5;&#x7531;&#x540E;&#x7AEF;&#x8FD4;&#x56DE;&#x5E26;&#x6709; ID &#x7684; HTML/JSON &#x7ED9;&#x524D;&#x7AEF;&#x6E32;&#x67D3;&#x6216;&#x8BB8;&#x663E;&#x5F97;&#x66F4;&#x7A33;&#x59A5;</p>
+]]></content>
+      <tags>
+        <tag>Project</tag>
+        <tag>Reflection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unix Philosophy</title>
     <url>/2025/02/16/Jottings/2025/2025-02-18-first-journal/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -2160,56 +2244,6 @@ end
 ]]></content>
       <tags>
         <tag>Jottings</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>突击数值分析有感</title>
-    <url>/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x6700;&#x8FD1;&#x7528;&#x4E09;&#x56DB;&#x5929;&#x4ECE;&#x65E0;&#x5230;&#x6709;&#x7A81;&#x51FB;&#x6570;&#x503C;&#x5206;&#x6790;,&#x76EE;&#x6807;&#x662F;&#x901A;&#x8FC7;&#x7684;&#x8BDD;&#x6839;&#x672C;&#x6CA1;&#x5FC5;&#x8981;&#x4ECE;PPT&#x5B66;&#x8D77;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x5728;B&#x7AD9;&#x4E0A;&#x8BFE;&#x7A0B;&#x8D44;&#x6E90;&#x4E0D;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x540C;&#x5927;&#x5B66;&#x8BFE;&#x7A0B;&#x5185;&#x5BB9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x8BFE;&#xFF0C;&#x76F4;&#x63A5;&#x5C31;&#x627E;&#x4E00;&#x4EFD;&#x5F80;&#x5E74;&#x9898;&#xFF0C;&#x6CA1;&#x6709;&#x5F80;&#x5E74;&#x9898;&#x5C31;&#x627E;&#x5E73;&#x5E38;&#x8001;&#x5E08;&#x5E03;&#x7F6E;&#x7684;&#x8BFE;&#x540E;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x6254;&#x7ED9;Gemini &#x8BA9;&#x4ED6;&#x7528;&#x6559;&#x5B66;&#x98CE;&#x683C;&#x6559;&#x4F60;&#x600E;&#x4E48;&#x505A;&#xFF08;&#x7528;&#x5947;&#x5999;&#x7684;Prompt&#x1F601;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7B54;&#x6848;&#x786E;&#x4FDD;&#x4ED6;&#x6CA1;&#x6709;&#x89E3;&#x9519;&#x3002;&#x73B0;&#x5728;Gemini3.0 pro&#x89E3;&#x8FD9;&#x79CD;&#x9898;&#x5DF2;&#x7ECF;&#x5F88;&#x5389;&#x5BB3;&#x4E86;&#x3002;&#x8FD9;&#x662F;&#x4ECE;&#x9898;&#x76EE;&#x51FA;&#x53D1;&#x5B66;&#x4E60;&#xFF0C;&#x4ECE;&#x76EE;&#x7684;&#x53CD;&#x903C;&#x81EA;&#x5DF1;&#xFF0C;&#x4F60;&#x6700;&#x7EC8;&#x76EE;&#x6807;&#x4E0D;&#x5C31;&#x662F;&#x8981;&#x4F1A;&#x505A;&#x9898;&#x561B;&#x3002;<br>&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x56FA;&#x5B9A;&#x9898;&#x578B; &#x5728;b&#x7AD9;&#x4E0A;&#x641C;&#x7D22;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E9B;&#x5FEB;&#x901F;&#x89E3;&#x6CD5;&#xFF0C;&#x96C6;&#x767E;&#x5BB6;&#x4E4B;&#x957F;&#x6784;&#x5EFA;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x89E3;&#x6CD5;&#x3002;</p>
-<p>&#x4EE5;&#x6B64;&#x7BC7;Blog&#x7948;&#x7977;&#xFF0C;&#x671F;&#x76FC;&#x9526;&#x9CA4;&#x9644;&#x4F53;&#x3002;<br>&#x7948;&#x7977;&#x6765;&#x9762;&#x8BD5;&#xFF0C;&#x6C42;&#x9762;&#xFF01;</p>
-]]></content>
-      <tags>
-        <tag>感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gemini 3.0 pro 为什么会打错字</title>
-    <url>/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG70332.jpg"></p>
-<p>&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&#x4E48;Gemini&#x4F1A;&#x6253;&#x9519;&#x5B57;&#x5462;&#xFF1F; &#x8FD9;&#x662F;&#x56E0;&#x4E3A;Gemini&#x80FD;&#x50CF;&#x4EBA;&#x4E00;&#x6837;&#x72AF;&#x9519;&#x4E86;&#xFF08;&#x8FD9;&#x4E48;&#x5389;&#x5BB3;&#x5417;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;&#x8FD8;&#x662F;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x8BAD;&#x7EC3;&#x91CC;&#x9762;&#x201C;&#x77E5;&#x9053;&#x201D;&#x6253;&#x9519;&#x5F88;&#x591A;&#xFF0C;&#x5BFC;&#x81F4;&#x4ED6;&#x7684;&#x9884;&#x6D4B;&#x201C;&#x76F4;&#x5230;&#x201D;&#x6982;&#x7387;&#x5F88;&#x9AD8; &#x4ED6;pick&#x4E86;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4F46;&#x662F;&#x8FD9;&#x4E5F;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x554A;Gemini&#x600E;&#x4E48;&#x4F1A;&#x72AF;&#x8FD9;&#x6837;&#x3002;&#x6216;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x522B;&#x4EBA;&#x7684;&#x89E3;&#x91CA;&#x91CC;&#x7684;&#x539F;&#x53E5; &#x522B;&#x4EBA;&#x6253;&#x9519;&#x5B57;&#x4E86; &#x5947;&#x602A;&#x5947;&#x602A;</p>
-]]></content>
-      <tags>
-        <tag>疑惑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>My Project</title>
-    <url>/2025/12/26/2025-12-26-ai-demo/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>HuggingFace is very generous and really make my project crazy,I think this is my best project<br>It&#x2019;s a combination of creativity and a lot of reflections about how I used to do wrong</p>
-<p>So this project is really about deeply combining AI with your Notion notes to help you actually absorb the knowledge in them, as a way to fight against how easily we forget things.</p>
-<p>Because I don&#x2019;t think taking notes guarantees that you truly understand or internalize the content. I&#x2019;ve been using Notion for a long time and have accumulated a lot of notes, but I&#x2019;ve never really practiced active learning. I&#x2019;m always just passively browsing old notes.<br>I am excited to make this open-source in some days<br><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG551.jpg"></p>
-]]></content>
-      <tags>
-        <tag>Project</tag>
-        <tag>Reflection</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>音文同步技术方案思考</title>
-    <url>/2025/12/27/2025-12-27-%E9%9F%B3%E6%96%87%E5%90%8C%E6%AD%A5%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E6%80%9D%E8%80%83/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>So I was running towards a problem while enhancing my project.</p>
-<p>The goal was simple: <strong>Highlight the text in the browser as the audio plays.</strong></p>
-<p>Initially, I was quite proud of coming up with the idea of &#x200B;&#x200B;using binary search to find the matching relationship between the start/end times of the generated audio and text segments. However, I later encountered the problem of inaccurate matching. Why? Because the Markdown I initially rendered was the content returned by the AI. I used regular expressions to clean it up into segments usable by the TTS service. Therefore, the audio&#x2019;s <code>currentTime</code> corresponds to the cleaned plain text, not the rendered Markdown text visible to the user.  This makes using <code>includes</code> or <code>indexOf</code> for matching quite fragile.</p>
-<p>Then I learned how other people did it.</p>
-<p>Large companies would absolutely not use string matching (indexOf or includes) on the front end for highlighting, because it&#x2019;s extremely unreliable (as I&#x2019;ve discovered, punctuation, formatting, and code blocks can all break the matching).</p>
-<p>The general solution is <strong>&#x201C;ID mapping based on AST (Abstract Syntax Tree)&#x201D;</strong>.</p>
-<p>&#x6838;&#x5FC3;&#x601D;&#x8DEF;&#xFF1A;&#x4E0D;&#x8981;&#x5339;&#x914D;&#x6587;&#x672C;&#xFF0C;&#x5339;&#x914D; ID<br>&#x5728;&#x540E;&#x7AEF;&#x5904;&#x7406; Markdown &#x65F6;&#xFF0C;&#x4E0D;&#x8981;&#x76F4;&#x63A5;&#x7528;&#x6B63;&#x5219;&#x53BB;&#x6E05;&#x6D17;&#x6587;&#x672C;&#x3002;&#x4F7F;&#x7528; Markdown &#x89E3;&#x6790;&#x5668; &#x5F53;&#x8C03;&#x7528; TTS &#x5F15;&#x64CE;&#x751F;&#x6210;&#x97F3;&#x9891;&#x65F6;&#xFF0C;&#x4FDD;&#x7559;&#x8FD9;&#x4E2A; id&#x3002;</p>
-<p>&#x524D;&#x7AEF;&#x5728;&#x6E32;&#x67D3; Markdown &#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x6E32;&#x67D3;&#x5668;&#xFF08;Custom Renderer&#xFF09;&#xFF0C;&#x5C06;&#x540E;&#x7AEF;&#x751F;&#x6210;&#x7684;&#x90A3;&#x4E2A; id &#x6CE8;&#x5165;&#x5230; HTML &#x6807;&#x7B7E;&#x7684; data-id &#x5C5E;&#x6027;&#x4E2D;&#x3002;</p>
-<p>&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x6211;&#x7528;&#x7684;&#x662F;React-markdown &#x76F4;&#x63A5;&#x7531;&#x540E;&#x7AEF;&#x8FD4;&#x56DE;&#x5E26;&#x6709; ID &#x7684; HTML/JSON &#x7ED9;&#x524D;&#x7AEF;&#x6E32;&#x67D3;&#x6216;&#x8BB8;&#x663E;&#x5F97;&#x66F4;&#x7A33;&#x59A5;</p>
-]]></content>
-      <tags>
-        <tag>Project</tag>
-        <tag>Reflection</tag>
       </tags>
   </entry>
 </search>
