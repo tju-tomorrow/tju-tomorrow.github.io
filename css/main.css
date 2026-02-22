@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7478bb;
+  background: #94ed73;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3262,4 +3262,19 @@ ul.breadcrumb li + li:last-child {
     font-size: 14px;
     margin-right: 5px;
   }
+}
+.header .busuanzi-count {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em !important;
+  opacity: 1 !important;
+  color: #000;
+}
+.header .busuanzi-count .post-meta-item {
+  margin-right: 15px;
+  color: #000;
+}
+.header .busuanzi-count .post-meta-divider {
+  opacity: 0.8;
+  color: #000;
 }
