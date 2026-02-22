@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/dog-solid-24.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Georgia,Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="claude code&#x8DD1;claude&#x6A21;&#x578B;&#x5BF9;&#x4E8E;&#x5927;&#x5B66;&#x751F;&#x592A;&#x8D35;&#x4E86;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="claude code切换model为qwen">
+<meta property="og:url" content="https://tju-tomorrow.github.io/2026/02/22/2026-02-22-claude-code-/index.html">
+<meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
+<meta property="og:description" content="claude code&#x8DD1;claude&#x6A21;&#x578B;&#x5BF9;&#x4E8E;&#x5927;&#x5B66;&#x751F;&#x592A;&#x8D35;&#x4E86;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-22T13:59:23.593Z">
+<meta property="article:author" content="Victor Chen">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tju-tomorrow.github.io/2026/02/22/2026-02-22-claude-code-/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>claude code切换model为qwen | Chenkaixuan's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script>
+    NexT.CONFIG.blog_show_image = '/images/meditate.jpg';
+  </script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Chenkaixuan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Embrace The Grind <br> Leave It All To God</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-personal">
+
+    <a href="/personal/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a>
+
+  </li>
+        <li class="menu-item menu-item-jottings">
+
+    <a href="/Jottings/" rel="section"><i class="fa fa-book fa-fw"></i>随笔</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook/" rel="section"><i class="fa fa-comments fa-fw"></i>留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-recommand">
+
+    <a href="/Recommand/" rel="section"><i class="fa fa-bookmark fa-fw"></i>Recommand</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2026/02/22/2026-02-22-claude-code-/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Selfie.jpg">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          claude code切换model为qwen
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-02-22 00:00:00 / 修改时间：21:59:23" itemprop="dateCreated datePublished" datetime="2026-02-22T00:00:00+08:00">2026-02-22</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body post-body-full" itemprop="articleBody">
+
+      
+        <h1 id="Claude-Code-Router-&#x901A;&#x4E49;&#x5343;&#x95EE;"><a href="#Claude-Code-Router-&#x901A;&#x4E49;&#x5343;&#x95EE;" class="headerlink" title="Claude Code Router + &#x901A;&#x4E49;&#x5343;&#x95EE;"></a>Claude Code Router + &#x901A;&#x4E49;&#x5343;&#x95EE;</h1><p>&#x7528; Claude Code &#x7684;&#x754C;&#x9762;&#xFF0C;&#x80CC;&#x540E;&#x5B9E;&#x9645;&#x8C03;&#x7528;&#x963F;&#x91CC;&#x4E91;&#x901A;&#x4E49;&#x5343;&#x95EE;&#xFF08;Qwen&#xFF09;</p>
+<hr>
+<h2 id="&#x4E00;&#x3001;&#x524D;&#x63D0;&#x6761;&#x4EF6;"><a href="#&#x4E00;&#x3001;&#x524D;&#x63D0;&#x6761;&#x4EF6;" class="headerlink" title="&#x4E00;&#x3001;&#x524D;&#x63D0;&#x6761;&#x4EF6;"></a>&#x4E00;&#x3001;&#x524D;&#x63D0;&#x6761;&#x4EF6;</h2><ul>
+<li>&#x6709;&#x4E00;&#x4E2A; <strong>&#x963F;&#x91CC;&#x4E91;&#x767E;&#x70BC; / DashScope</strong> &#x8D26;&#x53F7;&#xFF0C;&#x5E76;&#x5DF2;&#x5F00;&#x901A; <strong>&#x901A;&#x4E49;&#x5343;&#x95EE;</strong> &#x76F8;&#x5173;&#x6A21;&#x578B;</li>
+<li>&#x5728; <a target="_blank" rel="noopener" href="https://dashscope.console.aliyun.com/">DashScope &#x63A7;&#x5236;&#x53F0;</a> &#x521B;&#x5EFA; API Key&#xFF0C;&#x8BB0;&#x4E0B; <code>sk-xxx</code></li>
+</ul>
+<hr>
+<h2 id="&#x4E8C;&#x3001;&#x5B89;&#x88C5;"><a href="#&#x4E8C;&#x3001;&#x5B89;&#x88C5;" class="headerlink" title="&#x4E8C;&#x3001;&#x5B89;&#x88C5;"></a>&#x4E8C;&#x3001;&#x5B89;&#x88C5;</h2><p>&#x5728;&#x7EC8;&#x7AEF;&#x6267;&#x884C;&#xFF1A;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. &#x5B89;&#x88C5; Claude Code&#xFF08;Anthropic &#x5B98;&#x65B9; CLI&#xFF09;</span></span><br><span class="line">npm install -g @anthropic-ai/claude-code</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. &#x5B89;&#x88C5; Claude Code Router&#xFF08;&#x8D1F;&#x8D23;&#x628A;&#x8BF7;&#x6C42;&#x8F6C;&#x5230;&#x901A;&#x4E49;&#xFF09;</span></span><br><span class="line">npm install -g @musistudio/claude-code-router</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x76EE;&#x5F55;&#x548C;&#x57FA;&#x7840;&#x914D;&#x7F6E;"><a href="#&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x76EE;&#x5F55;&#x548C;&#x57FA;&#x7840;&#x914D;&#x7F6E;" class="headerlink" title="&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x76EE;&#x5F55;&#x548C;&#x57FA;&#x7840;&#x914D;&#x7F6E;"></a>&#x4E09;&#x3001;&#x521B;&#x5EFA;&#x914D;&#x7F6E;&#x76EE;&#x5F55;&#x548C;&#x57FA;&#x7840;&#x914D;&#x7F6E;</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &#x786E;&#x4FDD;&#x914D;&#x7F6E;&#x76EE;&#x5F55;&#x5B58;&#x5728;</span></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.claude-code-router</span><br></pre></td></tr></table></figure>
+
+<p>&#x5728; <code>~/.claude-code-router/config.json</code> &#x91CC;&#x5199;<strong>&#x6700;&#x7B80;&#x53EF;&#x7528;&#x914D;&#x7F6E;</strong>&#xFF08;&#x5148;&#x80FD;&#x8DD1;&#x901A;&#x518D;&#x4F18;&#x5316;&#xFF09;&#xFF1A;</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">  <span class="attr">&quot;LOG&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;LOG_LEVEL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;info&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;HOST&quot;</span><span class="punctuation">:</span> <span class="string">&quot;127.0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;PORT&quot;</span><span class="punctuation">:</span> <span class="number">3456</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;API_TIMEOUT_MS&quot;</span><span class="punctuation">:</span> <span class="number">120000</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Providers&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;api_base_url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;api_key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&#x4F60;&#x7684;DashScope_API_Key&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;models&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;qwen3-coder-plus&quot;</span><span class="punctuation">,</span> <span class="string">&quot;qwen-plus-latest&quot;</span><span class="punctuation">,</span> <span class="string">&quot;qwen-max-latest&quot;</span><span class="punctuation">,</span> <span class="string">&quot;qwen3-max&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;transformer&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">&quot;use&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;maxtoken&quot;</span><span class="punctuation">,</span> <span class="punctuation">{</span> <span class="attr">&quot;max_tokens&quot;</span><span class="punctuation">:</span> <span class="number">8192</span> <span class="punctuation">}</span><span class="punctuation">]</span><span class="punctuation">]</span></span><br><span class="line">      <span class="punctuation">}</span></span><br><span class="line">    <span class="punctuation">}</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;Router&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">    <span class="attr">&quot;default&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen,qwen3-coder-plus&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;background&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen,qwen-plus-latest&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;think&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qwen,qwen-max-latest&quot;</span></span><br><span class="line">  <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x8981;&#x70B9;&#xFF1A;</strong></p>
+<ul>
+<li><code>api_key</code>&#xFF1A;&#x6362;&#x6210;&#x4F60;&#x5728; DashScope &#x62FF;&#x5230;&#x7684; Key&#x3002;</li>
+<li><code>api_base_url</code>&#xFF1A;&#x4E2D;&#x56FD;&#x533A;&#x7528; <code>dashscope.aliyuncs.com</code>&#xFF1B;&#x82E5;&#x662F;&#x56FD;&#x9645;&#x7AD9; Key&#xFF0C;&#x6539;&#x4E3A; <code>https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions</code>&#x3002;</li>
+<li><code>models</code>&#xFF1A;&#x53EA;&#x5199; DashScope &#x771F;&#x5B9E;&#x652F;&#x6301;&#x7684;&#x6A21;&#x578B;&#x540D;&#xFF08;&#x5982; <code>qwen-plus-latest</code>&#x3001;<code>qwen-max-latest</code>&#xFF09;&#xFF0C;&#x4E0D;&#x8981;&#x5199; <code>qwen-2.5-coder-32b-instruct</code> &#x8FD9;&#x7C7B; OpenRouter &#x624D;&#x6709;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x5426;&#x5219;&#x4F1A; 404&#x3002;</li>
+<li><code>transformer</code> &#x91CC;&#x7684; <code>maxtoken</code> &#x628A; <code>max_tokens</code> &#x9650;&#x5236;&#x5728; 8192&#xFF0C;&#x907F;&#x514D;&#x901A;&#x4E49;&#x63A5;&#x53E3;&#x62A5; 400&#x3002;</li>
+</ul>
+<hr>
+<h2 id="&#x56DB;&#x3001;&#x89E3;&#x51B3;&#x300C;&#x6A21;&#x578B;&#x4E0D;&#x5B58;&#x5728;-404&#x300D;&#xFF1A;&#x7528;&#x5BF9;&#x6A21;&#x578B;&#x540D;-&#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;"><a href="#&#x56DB;&#x3001;&#x89E3;&#x51B3;&#x300C;&#x6A21;&#x578B;&#x4E0D;&#x5B58;&#x5728;-404&#x300D;&#xFF1A;&#x7528;&#x5BF9;&#x6A21;&#x578B;&#x540D;-&#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;" class="headerlink" title="&#x56DB;&#x3001;&#x89E3;&#x51B3;&#x300C;&#x6A21;&#x578B;&#x4E0D;&#x5B58;&#x5728; / 404&#x300D;&#xFF1A;&#x7528;&#x5BF9;&#x6A21;&#x578B;&#x540D; + &#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;"></a>&#x56DB;&#x3001;&#x89E3;&#x51B3;&#x300C;&#x6A21;&#x578B;&#x4E0D;&#x5B58;&#x5728; / 404&#x300D;&#xFF1A;&#x7528;&#x5BF9;&#x6A21;&#x578B;&#x540D; + &#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;</h2><h3 id="4-1-&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;-404"><a href="#4-1-&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0;-404" class="headerlink" title="4.1 &#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0; 404"></a>4.1 &#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x51FA;&#x73B0; 404</h3><ul>
+<li>Claude Code &#x754C;&#x9762;&#x4E0A;&#x9009;&#x7684;&#x662F; <strong>&#x300C;Default (claude-sonnet-4-6)&#x300D;&#x300C;deepseek-chat&#x300D;</strong> &#x7B49;&#x540D;&#x5B57;&#x3002;</li>
+<li>&#x8FD9;&#x4E9B;&#x540D;&#x5B57;&#x4F1A;&#x4F5C;&#x4E3A;&#x300C;&#x8BF7;&#x6C42;&#x91CC;&#x7684; model&#x300D;&#x53D1;&#x7ED9; Router&#x3002;</li>
+<li>&#x4F60;&#x7684; Router &#x91CC;&#x53EA;&#x914D;&#x7F6E;&#x4E86; qwen&#xFF0C;&#x4E14;&#x5217;&#x8868;&#x91CC;&#x6CA1;&#x6709; <code>claude-sonnet-4-6</code>&#xFF0C;Router &#x627E;&#x4E0D;&#x5230;&#x5BF9;&#x5E94; provider &#x2192; &#x62A5;&#x9519;&#x300C;&#x6A21;&#x578B;&#x4E0D;&#x5B58;&#x5728; / 404&#x300D;&#x3002;</li>
+</ul>
+<p>&#x6240;&#x4EE5;&#x8981;&#x505A;&#x4E24;&#x4EF6;&#x4E8B;&#xFF1A;<strong>&#x6A21;&#x578B;&#x540D;&#x7528;&#x5BF9;</strong> + <strong>&#x628A;&#x754C;&#x9762;&#x4E0A;&#x7684;&#x540D;&#x5B57;&#x6620;&#x5C04;&#x5230;&#x901A;&#x4E49;</strong>&#x3002;</p>
+<h3 id="4-2-&#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#xFF1A;&#x628A;&#x300C;&#x754C;&#x9762;&#x4E0A;&#x7684;&#x540D;&#x5B57;&#x300D;&#x6620;&#x5C04;&#x5230;&#x300C;&#x901A;&#x4E49;&#x6A21;&#x578B;&#x300D;"><a href="#4-2-&#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#xFF1A;&#x628A;&#x300C;&#x754C;&#x9762;&#x4E0A;&#x7684;&#x540D;&#x5B57;&#x300D;&#x6620;&#x5C04;&#x5230;&#x300C;&#x901A;&#x4E49;&#x6A21;&#x578B;&#x300D;" class="headerlink" title="4.2 &#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#xFF1A;&#x628A;&#x300C;&#x754C;&#x9762;&#x4E0A;&#x7684;&#x540D;&#x5B57;&#x300D;&#x6620;&#x5C04;&#x5230;&#x300C;&#x901A;&#x4E49;&#x6A21;&#x578B;&#x300D;"></a>4.2 &#x81EA;&#x5B9A;&#x4E49;&#x8DEF;&#x7531;&#xFF1A;&#x628A;&#x300C;&#x754C;&#x9762;&#x4E0A;&#x7684;&#x540D;&#x5B57;&#x300D;&#x6620;&#x5C04;&#x5230;&#x300C;&#x901A;&#x4E49;&#x6A21;&#x578B;&#x300D;</h3><p>&#x5728; <code>~/.claude-code-router/</code> &#x4E0B;&#x65B0;&#x5EFA; <code>custom-router.js</code>&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#x628A; Claude Code &#x754C;&#x9762;&#x91CC;&#x9009;&#x7684;&#x6A21;&#x578B;&#x540D;&#xFF0C;&#x6620;&#x5C04;&#x5230;&#x5B9E;&#x9645;&#x8981;&#x7528;&#x7684; &#x901A;&#x4E49; &#x6A21;&#x578B;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">MODEL_MAP</span> = {</span><br><span class="line">  <span class="string">&apos;claude-sonnet-4-6&apos;</span>: <span class="string">&apos;qwen,qwen-max-latest&apos;</span>,</span><br><span class="line">  <span class="string">&apos;claude-opus-4-6&apos;</span>: <span class="string">&apos;qwen,qwen-max-latest&apos;</span>,</span><br><span class="line">  <span class="string">&apos;claude-haiku-4-5-20251001&apos;</span>: <span class="string">&apos;qwen,qwen-plus-latest&apos;</span>,</span><br><span class="line">  <span class="string">&apos;deepseek-chat&apos;</span>: <span class="string">&apos;qwen,qwen3-coder-plus&apos;</span>,</span><br><span class="line">  <span class="string">&apos;deepseek-reasoner&apos;</span>: <span class="string">&apos;qwen,qwen-max-latest&apos;</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">router</span>(<span class="params">req, config</span>) {</span><br><span class="line">  <span class="keyword">const</span> model = req?.<span class="property">body</span>?.<span class="property">model</span>;</span><br><span class="line">  <span class="keyword">if</span> (model &amp;&amp; <span class="variable constant_">MODEL_MAP</span>[model]) {</span><br><span class="line">    <span class="keyword">return</span> <span class="variable constant_">MODEL_MAP</span>[model];</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;  <span class="comment">// &#x5176;&#x4ED6;&#x60C5;&#x51B5;&#x8D70; config &#x91CC; Router &#x7684; default/background/think</span></span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+
+<p>&#x5728; <code>config.json</code> &#x91CC;&#x52A0;&#x4E0A;&#xFF08;&#x548C;&#x9876;&#x5C42;&#x5176;&#x4ED6;&#x952E;&#x5E76;&#x5217;&#xFF09;&#xFF1A;</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;CUSTOM_ROUTER_PATH&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/Users/&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;/.claude-code-router/custom-router.js&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>&#x628A;&#x8DEF;&#x5F84;&#x91CC;&#x7684;&#x300C;&#x4F60;&#x7684;&#x7528;&#x6237;&#x540D;&#x300D;&#x6362;&#x6210;&#x81EA;&#x5DF1;&#x7535;&#x8111;&#x7684;&#x7528;&#x6237;&#x540D;&#xFF08;&#x6216;&#x5199; <code>~</code> &#x7684;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#xFF09;&#x3002;&#x8FD9;&#x6837;&#xFF1A;</p>
+<ul>
+<li>&#x9009;&#x300C;Default (claude-sonnet-4-6)&#x300D;&#x2192; &#x5B9E;&#x9645;&#x7528; <code>qwen,qwen-max-latest</code></li>
+<li>&#x9009;&#x300C;deepseek-chat&#x300D;&#x2192; &#x5B9E;&#x9645;&#x7528; <code>qwen,qwen3-coder-plus</code></li>
+<li>&#x5176;&#x4ED6;&#x672A;&#x5728; <code>MODEL_MAP</code> &#x91CC;&#x7684;&#xFF0C;&#x4ECD;&#x8D70; Router &#x7684; default/background/think&#x3002;</li>
+</ul>
+<hr>
+<h2 id="&#x4E94;&#x3001;&#x89E3;&#x51B3;&#x300C;max-tokens-&#x62A5;-400&#x300D;"><a href="#&#x4E94;&#x3001;&#x89E3;&#x51B3;&#x300C;max-tokens-&#x62A5;-400&#x300D;" class="headerlink" title="&#x4E94;&#x3001;&#x89E3;&#x51B3;&#x300C;max_tokens &#x62A5; 400&#x300D;"></a>&#x4E94;&#x3001;&#x89E3;&#x51B3;&#x300C;max_tokens &#x62A5; 400&#x300D;</h2><p>&#x9519;&#x8BEF;&#x7C7B;&#x4F3C;&#xFF1A;<code>Range of max_tokens should be [1, 8192]</code>&#x3002;</p>
+<p>&#x901A;&#x4E49;&#x63A5;&#x53E3;&#x8981;&#x6C42; <code>max_tokens</code> &#x5728; 1&#xFF5E;8192&#xFF0C;&#x800C; Claude Code &#x4F1A;&#x4F20;&#x66F4;&#x5927;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x8981;&#x5728; <strong>Provider &#x91CC;&#x52A0;&#x8F6C;&#x6362;&#x5668;</strong>&#xFF0C;&#x5F3A;&#x5236;&#x6210; 8192&#xFF1A;</p>
+<p>&#x5728;&#x5BF9;&#x5E94; provider &#x7684;&#x914D;&#x7F6E;&#x91CC;&#x52A0;&#x4E0A;&#xFF1A;</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;transformer&quot;</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">  <span class="attr">&quot;use&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;maxtoken&quot;</span><span class="punctuation">,</span> <span class="punctuation">{</span> <span class="attr">&quot;max_tokens&quot;</span><span class="punctuation">:</span> <span class="number">8192</span> <span class="punctuation">}</span><span class="punctuation">]</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></table></figure>
+
+<p>&#xFF08;&#x524D;&#x9762;&#x300C;&#x6700;&#x7B80;&#x914D;&#x7F6E;&#x300D;&#x91CC;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#xFF0C;&#x8FD9;&#x91CC;&#x53EA;&#x662F;&#x8BF4;&#x660E;&#x539F;&#x56E0;&#x3002;&#xFF09;</p>
+<hr>
+<h2 id="&#x516D;&#x3001;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x6D41;&#x7A0B;"><a href="#&#x516D;&#x3001;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x6D41;&#x7A0B;" class="headerlink" title="&#x516D;&#x3001;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x6D41;&#x7A0B;"></a>&#x516D;&#x3001;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x6D41;&#x7A0B;</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. &#x542F;&#x52A8; Router&#xFF08;&#x9996;&#x6B21;&#x6216;&#x91CD;&#x542F;&#x540E;&#xFF09;</span></span><br><span class="line">ccr start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. &#x7528; Router &#x542F;&#x52A8; Claude Code&#xFF08;&#x63A8;&#x8350;&#xFF09;</span></span><br><span class="line">ccr code</span><br></pre></td></tr></table></figure>
+
+<p><strong>&#x6539;&#x8FC7; config &#x6216; custom-router.js &#x540E;&#x4E00;&#x5B9A;&#x8981;&#xFF1A;</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccr restart</span><br></pre></td></tr></table></figure>
+
+<p>&#x518D;&#x8BD5;&#x4E00;&#x6B21;&#x5BF9;&#x8BDD;&#x3002;</p>
+<hr>
+<h2 id="&#x4E03;&#x3001;&#x5982;&#x4F55;&#x786E;&#x8BA4;&#x300C;&#x5B9E;&#x9645;&#x7528;&#x7684;&#x662F;&#x901A;&#x4E49;&#x300D;"><a href="#&#x4E03;&#x3001;&#x5982;&#x4F55;&#x786E;&#x8BA4;&#x300C;&#x5B9E;&#x9645;&#x7528;&#x7684;&#x662F;&#x901A;&#x4E49;&#x300D;" class="headerlink" title="&#x4E03;&#x3001;&#x5982;&#x4F55;&#x786E;&#x8BA4;&#x300C;&#x5B9E;&#x9645;&#x7528;&#x7684;&#x662F;&#x901A;&#x4E49;&#x300D;"></a>&#x4E03;&#x3001;&#x5982;&#x4F55;&#x786E;&#x8BA4;&#x300C;&#x5B9E;&#x9645;&#x7528;&#x7684;&#x662F;&#x901A;&#x4E49;&#x300D;</h2><ul>
+<li>&#x754C;&#x9762;&#x4E0A;&#x4ECD;&#x4F1A;&#x663E;&#x793A;&#x300C;Default (claude-sonnet-4-6)&#x300D;&#x7B49;&#xFF0C;&#x56E0;&#x4E3A;&#x90A3;&#x662F; Claude Code &#x81EA;&#x5E26;&#x7684;&#x9009;&#x9879;&#x540D;&#x3002;</li>
+<li>&#x5B9E;&#x9645;&#x8BF7;&#x6C42;&#x88AB; Router &#x8F6C;&#x5230;&#x4E86;&#x901A;&#x4E49;&#xFF1B;&#x82E5;&#x4F60;&#x95EE;&#x300C;&#x4F60;&#x662F;&#x4EC0;&#x4E48;&#x6A21;&#x578B;&#x300D;&#xFF0C;&#x6A21;&#x578B;&#x53EF;&#x80FD;&#x6309;&#x7CFB;&#x7EDF;&#x63D0;&#x793A;&#x8BF4;&#x300C;&#x6211;&#x662F; Claude&#x2026;&#x300D;&#xFF0C;<strong>&#x4F46;&#x540E;&#x7AEF;&#x771F;&#x5B9E;&#x8C03;&#x7528;&#x7684;&#x662F;&#x901A;&#x4E49;&#x5343;&#x95EE;</strong>&#x3002;</li>
+<li>&#x53EF;&#x5728; <code>~/.claude-code-router/logs/</code> &#x4E0B;&#x770B;&#x6700;&#x65B0;&#x65E5;&#x5FD7;&#xFF0C;&#x4F1A;&#x6709; <code>provider(qwen,...)</code> &#x6216; <code>provider(&#x901A;&#x4E49;,...)</code> &#x548C;&#x6A21;&#x578B;&#x540D;&#xFF0C;&#x5373;&#x53EF;&#x786E;&#x8BA4;&#x3002;</li>
+</ul>
+<hr>
+<h2 id><a href="#" class="headerlink" title></a></h2><ul>
+<li><strong>404 / &#x6A21;&#x578B;&#x4E0D;&#x5B58;&#x5728;</strong>&#xFF1A;&#x68C0;&#x67E5; <code>models</code> &#x662F;&#x5426;&#x90FD;&#x662F; DashScope &#x652F;&#x6301;&#x7684;&#x540D;&#x79F0;&#xFF08;&#x5982; <code>qwen-plus-latest</code>&#xFF09;&#xFF1B;&#x5E76;&#x786E;&#x8BA4; <code>custom-router.js</code> &#x91CC;&#x5BF9; <code>claude-sonnet-4-6</code> &#x7B49;&#x6709;&#x6620;&#x5C04;&#x3002;</li>
+<li><strong>400 max_tokens</strong>&#xFF1A;&#x5728;&#x5BF9;&#x5E94; provider &#x52A0; <code>&quot;transformer&quot;: { &quot;use&quot;: [[&quot;maxtoken&quot;, { &quot;max_tokens&quot;: 8192 }]] }</code>&#x3002;</li>
+<li><strong>&#x4ECD;&#x7136;&#x8FDE;&#x4E0D;&#x4E0A;</strong>&#xFF1A;&#x786E;&#x8BA4; <code>ccr start</code> &#x5DF2;&#x6267;&#x884C;&#x4E14;&#x65E0;&#x62A5;&#x9519;&#xFF1B;&#x786E;&#x8BA4; <code>api_base_url</code> &#x4E0E; API Key &#x533A;&#x57DF;&#x4E00;&#x81F4;&#xFF08;&#x4E2D;&#x56FD;&#x533A; / &#x56FD;&#x9645;&#x7AD9;&#xFF09;&#x3002;</li>
+</ul>
+<p>&#x6309;&#x4E0A;&#x9762;&#x4ECE;&#x300C;&#x4E8C;&#x300D;&#x5230;&#x300C;&#x4E03;&#x300D;&#x505A;&#x4E00;&#x904D;&#xFF0C;&#x5C31;&#x662F;&#x4ECE;&#x96F6;&#x5230;&#x53EF;&#x7528;&#x7684;&#x5B8C;&#x6574;&#x8FC7;&#x7A0B;&#xFF1B;&#x4F60;&#x5F53;&#x524D;&#x5DF2;&#x7ECF;&#x8DD1;&#x901A;&#xFF0C;&#x8FD9;&#x4EFD;&#x6587;&#x6863;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4EE5;&#x540E;&#x91CD;&#x88C5;&#x6216;&#x6362;&#x673A;&#x65F6;&#x7684;&#x6574;&#x4F53;&#x6307;&#x5357;&#x3002;</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI/" rel="tag"># AI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/02/16/2026-02-16-agent-skills%E5%92%8Cmcp-2026/" rel="prev" title="agent skills and Mcp">
+      <i class="fa fa-chevron-left"></i> agent skills and Mcp
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Claude-Code-Router-%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE"><span class="nav-number">1.</span> <span class="nav-text">Claude Code Router + 通义千问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">一、前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">二、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%9B%AE%E5%BD%95%E5%92%8C%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">三、创建配置目录和基础配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%A7%A3%E5%86%B3%E3%80%8C%E6%A8%A1%E5%9E%8B%E4%B8%8D%E5%AD%98%E5%9C%A8-404%E3%80%8D%EF%BC%9A%E7%94%A8%E5%AF%B9%E6%A8%A1%E5%9E%8B%E5%90%8D-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E7%94%B1"><span class="nav-number">1.4.</span> <span class="nav-text">四、解决「模型不存在 &#x2F; 404」：用对模型名 + 自定义路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%87%BA%E7%8E%B0-404"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 为什么会出现 404</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E7%94%B1%EF%BC%9A%E6%8A%8A%E3%80%8C%E7%95%8C%E9%9D%A2%E4%B8%8A%E7%9A%84%E5%90%8D%E5%AD%97%E3%80%8D%E6%98%A0%E5%B0%84%E5%88%B0%E3%80%8C%E9%80%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E3%80%8D"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 自定义路由：把「界面上的名字」映射到「通义模型」</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%A7%A3%E5%86%B3%E3%80%8Cmax-tokens-%E6%8A%A5-400%E3%80%8D"><span class="nav-number">1.5.</span> <span class="nav-text">五、解决「max_tokens 报 400」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">六、日常使用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A6%82%E4%BD%95%E7%A1%AE%E8%AE%A4%E3%80%8C%E5%AE%9E%E9%99%85%E7%94%A8%E7%9A%84%E6%98%AF%E9%80%9A%E4%B9%89%E3%80%8D"><span class="nav-number">1.7.</span> <span class="nav-text">七、如何确认「实际用的是通义」</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Victor Chen"
+      src="/images/Selfie.jpg">
+  <p class="site-author-name" itemprop="name">Victor Chen</p>
+  <div class="site-description" itemprop="description">Victor Chen's English Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tju-tomorrow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tju-tomorrow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chendasd33@gmail.com" title="E-Mail → chendasd33@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tju-tomorrow.github.io/guestbook/" title="Weixin → https:&#x2F;&#x2F;tju-tomorrow.github.io&#x2F;guestbook&#x2F;"><i class="fab fa-weixin fa-fw"></i>Weixin</a>
+      </span>
+  </div>
+
+
+
+
+  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backend/" rel="tag">Backend</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backpropagation/" rel="tag">Backpropagation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Frontend/" rel="tag">Frontend</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fun-Info/" rel="tag">Fun Info</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradient-Descent/" rel="tag">Gradient Descent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jottings/" rel="tag">Jottings</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loss-Function/" rel="tag">Loss Function</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Networking/" rel="tag">Networking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Neural-Network/" rel="tag">Neural Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Project/" rel="tag">Project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reflection/" rel="tag">Reflection</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/" rel="tag">Transformer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cheerio/" rel="tag">cheerio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%84%9F%E6%82%9F/" rel="tag">感悟</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%96%91%E6%83%91/" rel="tag">疑惑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">3</span></li></ul>
+      </canvas>
+    </div>
+  </div>
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Victor Chen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+        
+<div class="busuanzi-count" style="font-size: 0.85em; opacity: 0.8;">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline-block !important;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline-block !important;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        Views: <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Come on! ..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'Ov23liJsZlMAkl4LjqlF',
+      clientSecret: 'decc50a11696ace1c117ace7d17f42ebf90ae5a2',
+      repo        : 'tju-tomorrow.github.io',
+      owner       : 'tju-tomorrow',
+      admin       : ['tju-tomorrow'],
+      id          : 'ad8a502fe2642136f3b8ac146efd15b5',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+<!-- 引入樱花动画脚本 -->
+<script src="/js/sakura.js"></script>
+
+<!-- 引入自定义搜索脚本 -->
+<script src="/js/custom-search.js"></script>
+</body>
+</html>

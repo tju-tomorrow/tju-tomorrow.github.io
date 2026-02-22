@@ -1231,7 +1231,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #39d4ff;
+  background: #216fe9;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3241,37 +3241,25 @@ ul.breadcrumb li + li:last-child {
 }
 .post-pinned-flag {
   display: inline-block;
-  padding: 2px 8px;
-  margin-right: 8px;
-  background-color: #f0ad4e;
-  color: #fff;
-  border-radius: 3px;
-  font-size: 12px;
-  font-weight: 500;
+  margin-right: 10%;
+  color: #576a8f;
+  font-size: 32px;
   vertical-align: middle;
-  transition: all 0.3s ease;
-}
-.post-pinned-flag i {
-  margin-right: 4px;
+  transition: transform 0.2s ease;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.06);
 }
 .post-pinned-flag:hover {
-  background-color: #ec971f;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 @media (max-width: 767px) {
   .post-pinned-flag {
-    font-size: 11px;
-    padding: 2px 6px;
+    font-size: 16px;
     margin-right: 6px;
-  }
-  .post-pinned-flag .post-pinned-text {
-    display: inline;
   }
 }
 @media (max-width: 480px) {
   .post-pinned-flag {
-    font-size: 10px;
-    padding: 1px 5px;
+    font-size: 14px;
     margin-right: 5px;
   }
 }
