@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/dog-solid-24.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/dog-solid-24.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.loli.net/css?family=Georgia,Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="QMD 是完全本地运行的 Markdown 搜索引擎，结合关键词、语义和 LLM 重排三种技术，已支持 Claude Code、OpenClaw、Obsidian 等主流工具集成。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QMD — 本地 Markdown 文档搜索引擎">
+<meta property="og:url" content="https://tju-tomorrow.github.io/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/index.html">
+<meta property="og:site_name" content="Chenkaixuan&#39;s Blog">
+<meta property="og:description" content="QMD 是完全本地运行的 Markdown 搜索引擎，结合关键词、语义和 LLM 重排三种技术，已支持 Claude Code、OpenClaw、Obsidian 等主流工具集成。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-06T16:49:24.620Z">
+<meta property="article:author" content="Victor Chen">
+<meta property="article:tag" content="QMD">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="本地搜索">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="开源">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tju-tomorrow.github.io/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>QMD — 本地 Markdown 文档搜索引擎 | Chenkaixuan's Blog</title>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="ffb4e0cc-ecb9-44bd-a0e1-1cf6ec68e560"></script>
+  
+
+
+
+
+
+
+<script async defer src="https://cloud.umami.is/umami.js" data-website-id="ffb4e0cc-ecb9-44bd-a0e1-1cf6ec68e560"></script>
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script>
+    NexT.CONFIG.blog_show_image = '/images/meditate.jpg';
+  </script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Chenkaixuan's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Embrace The Grind <br> Leave It All To God</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-personal">
+
+    <a href="/personal/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a>
+
+  </li>
+        <li class="menu-item menu-item-jottings">
+
+    <a href="/Jottings/" rel="section"><i class="fa fa-book fa-fw"></i>随笔</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook/" rel="section"><i class="fa fa-comments fa-fw"></i>留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-recommand">
+
+    <a href="/Recommand/" rel="section"><i class="fa fa-bookmark fa-fw"></i>Recommand</a>
+
+  </li>
+        <li class="menu-item menu-item-热点汇总">
+
+    <a href="/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/" rel="section"><i class="fa fa-fire fa-fw"></i>热点汇总</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+</div>
+      
+<div class="busuanzi-count" style="font-size: 0.85em; opacity: 0.8;">
+    <span class="post-meta-item" style="display: inline-block !important;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        Visitors: 993
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" style="display: inline-block !important;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        Views: 2395
+      </span>
+    </span>
+
+  <span class="post-meta-divider">|</span>
+  <span class="post-meta-item" style="display: inline-block !important;">
+    <span class="post-meta-item-text">
+      Analytics by Umami
+    </span>
+  </span>
+</div>
+
+
+
+
+
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand hot-topics-post">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Selfie.jpg">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          QMD — 本地 Markdown 文档搜索引擎
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-07 00:00:00 / 修改时间：00:49:24" itemprop="dateCreated datePublished" datetime="2026-05-07T00:00:00+08:00">2026-05-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/" itemprop="url" rel="index"><span itemprop="name">热点汇总</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">QMD 是完全本地运行的 Markdown 搜索引擎，结合关键词、语义和 LLM 重排三种技术，已支持 Claude Code、OpenClaw、Obsidian 等主流工具集成。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body post-body-full" itemprop="articleBody">
+
+      
+        <p>&#x89C6;&#x9891;&#x94FE;&#x63A5;&#xFF1A;<a target="_blank" rel="noopener" href="https://v.douyin.com/s-NIe6pvtdU/">https://v.douyin.com/s-NIe6pvtdU/</a></p>
+<hr>
+<h2 id="QMD-&#x662F;&#x4EC0;&#x4E48;"><a href="#QMD-&#x662F;&#x4EC0;&#x4E48;" class="headerlink" title="QMD &#x662F;&#x4EC0;&#x4E48;"></a>QMD &#x662F;&#x4EC0;&#x4E48;</h2><p>QMD&#xFF08;Query My Documents&#xFF09;&#x662F;&#x4E00;&#x4E2A;<strong>&#x5B8C;&#x5168;&#x672C;&#x5730;&#x8FD0;&#x884C;</strong>&#x7684; CLI &#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x4E13;&#x95E8;&#x7528;&#x6765;&#x641C;&#x7D22; Markdown &#x6587;&#x6863;&#x3001;&#x77E5;&#x8BC6;&#x5E93;&#x3001;&#x4F1A;&#x8BAE;&#x8BB0;&#x5F55;&#x7B49;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x628A;&#x4E09;&#x79CD;&#x641C;&#x7D22;&#x6280;&#x672F;&#x878D;&#x5408;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#x91CC;&#xFF1A;</p>
+<ul>
+<li><strong>BM25 &#x5173;&#x952E;&#x8BCD;&#x641C;&#x7D22;</strong> &#x2014; &#x4F20;&#x7EDF;&#x7684;&#x5168;&#x6587;&#x68C0;&#x7D22;&#xFF0C;&#x7CBE;&#x786E;&#x5339;&#x914D;</li>
+<li><strong>&#x5411;&#x91CF;&#x8BED;&#x4E49;&#x641C;&#x7D22;</strong> &#x2014; &#x7406;&#x89E3;&#x8BED;&#x4E49;&#xFF0C;&#x627E;&#x4E0D;&#x5230;&#x5173;&#x952E;&#x8BCD;&#x4E5F;&#x80FD;&#x641C;&#x5230;&#x76F8;&#x5173;&#x5185;&#x5BB9;</li>
+<li><strong>LLM &#x91CD;&#x6392;&#x5E8F;</strong> &#x2014; &#x7528;&#x5927;&#x6A21;&#x578B;&#x5BF9;&#x7ED3;&#x679C;&#x4E8C;&#x6B21;&#x6392;&#x5E8F;&#xFF0C;&#x63D0;&#x5347;&#x51C6;&#x786E;&#x7387;</li>
+</ul>
+<p>&#x4E0D;&#x9700;&#x8981;&#x8054;&#x7F51;&#xFF0C;&#x4E0D;&#x9700;&#x8981; GPU&#xFF0C;&#x88C5;&#x5B8C;&#x5C31;&#x80FD;&#x7528;&#x3002;</p>
+<h2 id="&#x4F5C;&#x8005;&#x662F;&#x8C01;"><a href="#&#x4F5C;&#x8005;&#x662F;&#x8C01;" class="headerlink" title="&#x4F5C;&#x8005;&#x662F;&#x8C01;"></a>&#x4F5C;&#x8005;&#x662F;&#x8C01;</h2><p>QMD &#x7684;&#x4F5C;&#x8005;&#x662F; <strong>Tobias L&#xFC;tke</strong>&#xFF0C;Shopify &#x7684;&#x521B;&#x59CB;&#x4EBA;&#x517C; CEO&#x3002;&#x4ED6;&#x5E73;&#x65F6;&#x5927;&#x91CF;&#x4F7F;&#x7528; Markdown &#x6765;&#x8BB0;&#x5F55;&#x7B14;&#x8BB0;&#x3001;&#x4F1A;&#x8BAE;&#x5185;&#x5BB9;&#x548C;&#x6587;&#x6863;&#xFF0C;&#x4E1C;&#x897F;&#x591A;&#x4E86;&#x627E;&#x4E0D;&#x5230;&#xFF0C;&#x5C31;&#x81EA;&#x5DF1;&#x52A8;&#x624B;&#x9020;&#x4E86;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x3002;</p>
+<p>&#x4ED6;&#x7684; GitHub &#x8D26;&#x53F7;&#x5C31;&#x662F; <a target="_blank" rel="noopener" href="https://github.com/tobi">tobi</a>&#xFF0C;QMD &#x4ED3;&#x5E93;&#x81F3;&#x4ECA;&#x5DF2;&#x83B7;&#x5F97; <strong>24000+ Stars</strong>&#x3002;</p>
+<h2 id="&#x600E;&#x4E48;&#x7528;"><a href="#&#x600E;&#x4E48;&#x7528;" class="headerlink" title="&#x600E;&#x4E48;&#x7528;"></a>&#x600E;&#x4E48;&#x7528;</h2><p>&#x5B89;&#x88C5;&#x548C;&#x4F7F;&#x7528;&#x90FD;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF1A;</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm &#x5B89;&#x88C5;</span></span><br><span class="line">npm install -g qmd</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6DFB;&#x52A0;&#x8981;&#x7D22;&#x5F15;&#x7684;&#x76EE;&#x5F55;</span></span><br><span class="line">qmd add ~/Documents/notes</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x751F;&#x6210;&#x5411;&#x91CF;&#x5D4C;&#x5165;</span></span><br><span class="line">qmd embed</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x59CB;&#x641C;&#x7D22;</span></span><br><span class="line">qmd search <span class="string">&quot;&#x4F60;&#x7684;&#x641C;&#x7D22;&#x5173;&#x952E;&#x8BCD;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>QMD &#x8FD8;&#x63D0;&#x4F9B;&#x4E86; <strong>MCP Server</strong>&#xFF0C;&#x53EF;&#x4EE5;&#x65E0;&#x7F1D;&#x63A5;&#x5165; Claude Code &#x7B49; AI &#x7F16;&#x7A0B;&#x52A9;&#x624B;&#xFF0C;&#x8BA9; Agent &#x76F4;&#x63A5;&#x641C;&#x7D22;&#x4F60;&#x7684;&#x672C;&#x5730;&#x6587;&#x6863;&#x3002;</p>
+<h2 id="&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528;-QMD"><a href="#&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528;-QMD" class="headerlink" title="&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528; QMD"></a>&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528; QMD</h2><p>QMD &#x5DF2;&#x7ECF;&#x6210;&#x4E3A;&#x672C;&#x5730;&#x8BED;&#x4E49;&#x641C;&#x7D22;&#x7684;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#xFF0C;&#x88AB;&#x5927;&#x91CF; AI &#x5DE5;&#x5177;&#x96C6;&#x6210;&#xFF1A;</p>
+<h3 id="&#x7F16;&#x7A0B;-Agent"><a href="#&#x7F16;&#x7A0B;-Agent" class="headerlink" title="&#x7F16;&#x7A0B; Agent"></a>&#x7F16;&#x7A0B; Agent</h3><table>
+<thead>
+<tr>
+<th>&#x5DE5;&#x5177;</th>
+<th>&#x96C6;&#x6210;&#x65B9;&#x5F0F;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Claude Code</strong></td>
+<td>&#x591A;&#x79CD; skill/&#x63D2;&#x4EF6;&#x652F;&#x6301;&#xFF08;ghost&#x3001;claude-never-forgets&#x3001;git-wiki &#x7B49;&#xFF09;</td>
+</tr>
+<tr>
+<td><strong>OpenClaw</strong></td>
+<td>&#x8BB0;&#x5FC6;&#x6A21;&#x5757;&#x9ED8;&#x8BA4;&#x641C;&#x7D22;&#x5F15;&#x64CE;</td>
+</tr>
+<tr>
+<td><strong>Codex</strong></td>
+<td>remnic / memento-vault &#x63D2;&#x4EF6;</td>
+</tr>
+<tr>
+<td><strong>Cursor / Windsurf</strong></td>
+<td>memento-vault hooks</td>
+</tr>
+<tr>
+<td><strong>pi</strong></td>
+<td>pi-qmd &#x6269;&#x5C55;&#x3001;pi-memory &#x8BB0;&#x5FC6;&#x6269;&#x5C55;</td>
+</tr>
+<tr>
+<td><strong>Hermes</strong></td>
+<td>remnic &#x63D2;&#x4EF6;</td>
+</tr>
+</tbody></table>
+<h3 id="&#x7B14;&#x8BB0;&#x5DE5;&#x5177;"><a href="#&#x7B14;&#x8BB0;&#x5DE5;&#x5177;" class="headerlink" title="&#x7B14;&#x8BB0;&#x5DE5;&#x5177;"></a>&#x7B14;&#x8BB0;&#x5DE5;&#x5177;</h3><ul>
+<li><strong>Obsidian</strong> &#x2014; &#x6709;&#x591A;&#x4E2A; QMD &#x96C6;&#x6210;&#x63D2;&#x4EF6;&#xFF08;obsidian-qmd&#x3001;qmd-search-obsidian&#xFF09;&#xFF0C;&#x53EF;&#x5728; Obsidian &#x5185;&#x76F4;&#x63A5;&#x4F7F;&#x7528; QMD &#x7684;&#x6DF7;&#x5408;&#x641C;&#x7D22;</li>
+</ul>
+<h3 id="&#x8BB0;&#x5FC6;-&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;"><a href="#&#x8BB0;&#x5FC6;-&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x8BB0;&#x5FC6;/&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;"></a>&#x8BB0;&#x5FC6;/&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;</h3><p>QMD &#x751F;&#x6001;&#x6700;&#x6D3B;&#x8DC3;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x5404;&#x79CD;&#x57FA;&#x4E8E; QMD &#x7684; Agent &#x8BB0;&#x5FC6;&#x65B9;&#x6848;&#x5C42;&#x51FA;&#x4E0D;&#x7A77;&#xFF1A;</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/joshuaswarren/remnic">remnic</a> (73&#x2605;) &#x2014; &#x591A; Agent &#x672C;&#x5730;&#x8BB0;&#x5FC6;&#x63D2;&#x4EF6;&#xFF0C;&#x652F;&#x6301; OpenClaw&#x3001;Hermes&#x3001;Codex&#x3001;Claude Code</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/notkurt/ghost">ghost</a> (11&#x2605;) &#x2014; Claude Code &#x4F1A;&#x8BDD;&#x81EA;&#x52A8;&#x6355;&#x83B7; + QMD &#x8BED;&#x4E49;&#x641C;&#x7D22;</li>
+<li><strong>Memento Vault</strong> &#x2014; &#x8DE8;&#x7F16;&#x7A0B; Agent &#x7684;&#x77E5;&#x8BC6;&#x6301;&#x4E45;&#x5316;</li>
+<li><strong>Claude Never Forgets</strong> &#x2014; &#x81EA;&#x52A8;&#x5BFC;&#x51FA;&#x4F1A;&#x8BDD;&#x3001;&#x7D22;&#x5F15;&#x3001;&#x8DE8;&#x4F1A;&#x8BDD;&#x8BB0;&#x5FC6;&#x53EC;&#x56DE;</li>
+<li><strong>MemClawz</strong> &#x2014; OpenClaw &#x7684;&#x4E09;&#x5C42;&#x8BB0;&#x5FC6;&#x4F53;&#x7CFB;</li>
+<li><strong>Lucid Context Engine</strong> &#x2014; &#x81EA;&#x4E3B;&#x4E0A;&#x4E0B;&#x6587;&#x5F15;&#x64CE;&#xFF0C;&#x542B;&#x663E;&#x8457;&#x6027;&#x8BC4;&#x5206;&#x548C;&#x8DE8; Agent &#x8BB0;&#x5FC6;</li>
+</ul>
+<h3 id="&#x540C;&#x7C7B;&#x5DE5;&#x5177;"><a href="#&#x540C;&#x7C7B;&#x5DE5;&#x5177;" class="headerlink" title="&#x540C;&#x7C7B;&#x5DE5;&#x5177;"></a>&#x540C;&#x7C7B;&#x5DE5;&#x5177;</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/oceanbase/seekx">seekx</a> (17&#x2605;) &#x2014; OceanBase &#x51FA;&#x54C1;&#xFF0C;&#x53D7; QMD &#x542F;&#x53D1;&#x800C;&#x5EFA;</li>
+</ul>
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;-QMD-&#x4F1A;&#x706B;"><a href="#&#x4E3A;&#x4EC0;&#x4E48;-QMD-&#x4F1A;&#x706B;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48; QMD &#x4F1A;&#x706B;"></a>&#x4E3A;&#x4EC0;&#x4E48; QMD &#x4F1A;&#x706B;</h2><p>&#x9664;&#x4E86;&#x4F5C;&#x8005;&#x672C;&#x8EAB;&#x7684;&#x5F71;&#x54CD;&#x529B;&#xFF0C;QMD &#x80FD;&#x5FEB;&#x901F;&#x4F20;&#x64AD;&#x8FD8;&#x6709;&#x4E24;&#x4E2A;&#x539F;&#x56E0;&#xFF1A;</p>
+<ol>
+<li><strong>OpenClaw &#x7684;&#x96C6;&#x6210;</strong> &#x2014; OpenClaw &#x8BB0;&#x5FC6;&#x6A21;&#x5757;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528; QMD &#x4F5C;&#x4E3A;&#x672C;&#x5730;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x5927;&#x91CF; OpenClaw &#x7528;&#x6237;&#x56E0;&#x6B64;&#x63A5;&#x89E6;&#x5E76;&#x5F00;&#x59CB;&#x4F7F;&#x7528; QMD</li>
+<li><strong>MCP &#x534F;&#x8BAE;&#x7684;&#x652F;&#x6301;</strong> &#x2014; QMD &#x63D0;&#x4F9B; MCP Server&#xFF0C;&#x610F;&#x5473;&#x7740;&#x4EFB;&#x4F55;&#x652F;&#x6301; MCP &#x7684; AI &#x5DE5;&#x5177;&#x90FD;&#x80FD;&#x76F4;&#x63A5;&#x8C03;&#x7528; QMD &#x641C;&#x7D22;&#x672C;&#x5730;&#x6587;&#x6863;&#xFF0C;&#x8FD9;&#x5927;&#x5E45;&#x964D;&#x4F4E;&#x4E86;&#x96C6;&#x6210;&#x95E8;&#x69DB;</li>
+</ol>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>QMD &#x89E3;&#x51B3;&#x4E86;&#x4E00;&#x4E2A;&#x5F88;&#x5177;&#x4F53;&#x4F46;&#x5F88;&#x666E;&#x904D;&#x7684;&#x9700;&#x6C42;&#xFF1A;&#x4F60;&#x6709;&#x5927;&#x91CF; Markdown &#x7B14;&#x8BB0;&#xFF0C;&#x9700;&#x8981;&#x5FEB;&#x901F;&#x3001;&#x51C6;&#x786E;&#x5730;&#x627E;&#x5230;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x4E0D;&#x662F;&#x8981;&#x66FF;&#x4EE3; Google&#xFF0C;&#x800C;&#x662F;&#x8981;&#x8BA9;&#x4F60;<strong>&#x5728;&#x672C;&#x5730;&#x5C31;&#x80FD;&#x641C;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x77E5;&#x8BC6;</strong>&#x3002;&#x52A0;&#x4E0A; MCP &#x7684;&#x652F;&#x6301;&#xFF0C;AI Agent &#x4E5F;&#x80FD;&#x8BFB;&#x61C2;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x4E86;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x91CF;&#x5DF2;&#x7ECF;&#x5927;&#x5230;&#x627E;&#x4E1C;&#x897F;&#x56F0;&#x96BE;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;QMD &#x503C;&#x5F97;&#x4E00;&#x8BD5;&#x3002;</p>
+<hr>
+<p><strong>&#x53C2;&#x8003;&#xFF1A;</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/tobi/qmd">tobi/qmd - GitHub</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/joshuaswarren/remnic">remnic - &#x591A; Agent &#x672C;&#x5730;&#x8BB0;&#x5FC6;&#x63D2;&#x4EF6;</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/achekulaev/obsidian-qmd">obsidian-qmd - Obsidian &#x63D2;&#x4EF6;</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/QMD/" rel="tag"># QMD</a>
+              <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+              <a href="/tags/%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2/" rel="tag"># 本地搜索</a>
+              <a href="/tags/MCP/" rel="tag"># MCP</a>
+              <a href="/tags/%E5%BC%80%E6%BA%90/" rel="tag"># 开源</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/05/05/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-05-DeepSeek-MHC/" rel="prev" title="DeepSeek新论文：MHC是什么？一文看懂残差网络→HC→MHC进化史">
+      <i class="fa fa-chevron-left"></i> DeepSeek新论文：MHC是什么？一文看懂残差网络→HC→MHC进化史
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Victor Chen</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Come on! ..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'Ov23liJsZlMAkl4LjqlF',
+      clientSecret: 'decc50a11696ace1c117ace7d17f42ebf90ae5a2',
+      repo        : 'tju-tomorrow.github.io',
+      owner       : 'tju-tomorrow',
+      admin       : ['tju-tomorrow'],
+      id          : '15ec033d4be09d4e9ff93ae5a714aa63',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+<!-- 引入樱花动画脚本 -->
+<script src="/js/sakura.js"></script>
+
+<!-- 引入自定义搜索脚本 -->
+<script src="/js/custom-search.js"></script>
+</body>
+</html>
