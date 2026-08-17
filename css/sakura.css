@@ -1,0 +1,40 @@
+.sakura {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 15px;
+  height: 12px;
+  background: linear-gradient(120deg, #ffd1e8 0%, #ffc9e0 50%, #ffa7d1 100%);
+  border-radius: 12px 1px;
+  box-shadow: 0 0 6px rgba(255, 182, 213, 0.5);
+  animation: fall linear;
+  opacity: 0;
+  transform-origin: center;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0.8;
+    transform: translate(0, 0) rotate(0deg) scale(0.8);
+  }
+  25% {
+    transform: translate(var(--quarter-x), var(--quarter-y))
+      rotate(var(--quarter-rotate)) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(var(--half-x), var(--half-y))
+      rotate(var(--half-rotate)) scale(0.9);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(var(--three-quarter-x), var(--three-quarter-y))
+      rotate(var(--three-quarter-rotate)) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--final-x), var(--final-y))
+      rotate(var(--rotate-deg)) scale(0.5);
+  }
+}
