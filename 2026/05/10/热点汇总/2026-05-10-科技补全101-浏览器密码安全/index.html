@@ -31,9 +31,9 @@
 <meta property="article:modified_time" content="2026-05-09T19:29:54.000Z">
 <meta property="article:author" content="Victor Chen">
 <meta property="article:tag" content="AI">
+<meta property="article:tag" content="开源">
 <meta property="article:tag" content="浏览器安全">
 <meta property="article:tag" content="科技热点">
-<meta property="article:tag" content="开源">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://tju-tomorrow.github.io/2026/05/10/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-10-%E7%A7%91%E6%8A%80%E8%A1%A5%E5%85%A8101-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8/">
@@ -65,10 +65,6 @@
         if (localStorage.getItem('claude-sidebar') === 'collapsed') {
           document.documentElement.classList.add('sidebar-collapsed');
         }
-      } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
       } catch (e) {}
     })();
   </script>
@@ -195,7 +191,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>
@@ -263,14 +258,8 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
             <div class="post-description">浏览器明文存储密码的安全隐患分析，以及豆包收费、三星退出中国、Linux新提权漏洞、Chrome后台下载AI模型等一周科技动态汇总</div>
+            <span class="post-font-switcher" id="blog-font-switcher" data-post-path="/2026/05/10/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-10-%E7%A7%91%E6%8A%80%E8%A1%A5%E5%85%A8101-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8/"></span>
 
         </div>
       </header>
@@ -366,9 +355,9 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/%E5%BC%80%E6%BA%90/" rel="tag"># 开源</a>
               <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%89%E5%85%A8/" rel="tag"># 浏览器安全</a>
               <a href="/tags/%E7%A7%91%E6%8A%80%E7%83%AD%E7%82%B9/" rel="tag"># 科技热点</a>
-              <a href="/tags/%E5%BC%80%E6%BA%90/" rel="tag"># 开源</a>
           </div>
 
         

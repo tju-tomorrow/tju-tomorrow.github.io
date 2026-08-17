@@ -61,10 +61,6 @@
           document.documentElement.classList.add('sidebar-collapsed');
         }
       } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
-      } catch (e) {}
     })();
   </script>
   <title>分类: 热点汇总 | Chenkaixuan's Blog</title>
@@ -190,7 +186,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>

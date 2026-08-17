@@ -67,10 +67,6 @@
           document.documentElement.classList.add('sidebar-collapsed');
         }
       } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
-      } catch (e) {}
     })();
   </script>
   <title>DeepSeek新论文：MHC是什么？一文看懂残差网络→HC→MHC进化史 | Chenkaixuan's Blog</title>
@@ -196,7 +192,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>
@@ -258,14 +253,8 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
             <div class="post-description">从ResNet到HC再到MHC，用通俗比喻看懂DeepSeek如何用一个数学约束让大模型训练更稳定。</div>
+            <span class="post-font-switcher" id="blog-font-switcher" data-post-path="/2026/05/05/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-05-DeepSeek-MHC/"></span>
 
         </div>
       </header>

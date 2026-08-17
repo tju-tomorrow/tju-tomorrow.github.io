@@ -30,11 +30,11 @@
 <meta property="article:published_time" content="2026-05-07T00:00:00.000Z">
 <meta property="article:modified_time" content="2026-05-06T16:49:24.000Z">
 <meta property="article:author" content="Victor Chen">
-<meta property="article:tag" content="开源">
 <meta property="article:tag" content="QMD">
 <meta property="article:tag" content="Markdown">
 <meta property="article:tag" content="本地搜索">
 <meta property="article:tag" content="MCP">
+<meta property="article:tag" content="开源">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://tju-tomorrow.github.io/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
@@ -66,10 +66,6 @@
         if (localStorage.getItem('claude-sidebar') === 'collapsed') {
           document.documentElement.classList.add('sidebar-collapsed');
         }
-      } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
       } catch (e) {}
     })();
   </script>
@@ -196,7 +192,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>
@@ -264,14 +259,8 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
             <div class="post-description">QMD 是完全本地运行的 Markdown 搜索引擎，结合关键词、语义和 LLM 重排三种技术，已支持 Claude Code、OpenClaw、Obsidian 等主流工具集成。</div>
+            <span class="post-font-switcher" id="blog-font-switcher" data-post-path="/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"></span>
 
         </div>
       </header>
@@ -368,11 +357,11 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%BC%80%E6%BA%90/" rel="tag"># 开源</a>
               <a href="/tags/QMD/" rel="tag"># QMD</a>
               <a href="/tags/Markdown/" rel="tag"># Markdown</a>
               <a href="/tags/%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2/" rel="tag"># 本地搜索</a>
               <a href="/tags/MCP/" rel="tag"># MCP</a>
+              <a href="/tags/%E5%BC%80%E6%BA%90/" rel="tag"># 开源</a>
           </div>
 
         

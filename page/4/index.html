@@ -61,10 +61,6 @@
           document.documentElement.classList.add('sidebar-collapsed');
         }
       } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
-      } catch (e) {}
     })();
   </script>
   <title>Chenkaixuan's Blog</title>
@@ -190,7 +186,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>
@@ -235,6 +230,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
+              <span class="post-pinned-flag" title="置顶">🔝</span>
             <a href="/2026/01/22/2026-01-22-%E6%89%BE%E7%AC%AC%E4%BA%8C%E4%BB%BD%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%AF%B9%E8%85%BE%E8%AE%AF%E7%AC%AC%E5%9B%9B%E8%BD%AE%E6%8A%80%E6%9C%AF%E9%9D%A2%E6%8C%82%E7%9A%84%E6%80%9D%E8%80%83)-2026/" class="post-title-link" itemprop="url">等再次见面，我一定不再是当初的我</a>
         </h2>
 
@@ -266,15 +262,18 @@
     <div class="post-body post-body-excerpt" itemprop="articleBody">
 
       
-          &#x8BB0;&#x5F55;&#x627E;&#x7B2C;&#x4E8C;&#x4EFD;&#x5B9E;&#x4E60;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x53CD;&#x601D;&#x4E3A;&#x4EC0;&#x4E48;&#x817E;&#x8BAF;&#x5728;&#x7B2C;&#x56DB;&#x9762;&#x6302;&#x6211;
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/01/22/2026-01-22-%E6%89%BE%E7%AC%AC%E4%BA%8C%E4%BB%BD%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%AF%B9%E8%85%BE%E8%AE%AF%E7%AC%AC%E5%9B%9B%E8%BD%AE%E6%8A%80%E6%9C%AF%E9%9D%A2%E6%8C%82%E7%9A%84%E6%80%9D%E8%80%83)-2026/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+        <p class="post-card-excerpt">
+
+&#x5E0C;&#x671B;&#x4E4B;&#x540E;&#x56DE;&#x987E;&#x8FD9;&#x7BC7;&#x535A;&#x5BA2;&#x80FD;&#x6709;&#x6240;&#x6536;&#x83B7;
+
+&#x8FC7;&#x7A0B…</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2026/01/22/2026-01-22-%E6%89%BE%E7%AC%AC%E4%BA%8C%E4%BB%BD%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95(%E5%AF%B9%E8%85%BE%E8%AE%AF%E7%AC%AC%E5%9B%9B%E8%BD%AE%E6%8A%80%E6%9C%AF%E9%9D%A2%E6%8C%82%E7%9A%84%E6%80%9D%E8%80%83)-2026/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
       
     </div>
 
@@ -332,15 +331,16 @@
     <div class="post-body post-body-excerpt" itemprop="articleBody">
 
       
-          You can&apos;t progress in a wrong way
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/12/27/2025-12-27-%E9%9F%B3%E6%96%87%E5%90%8C%E6%AD%A5%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E6%80%9D%E8%80%83/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+        <p class="post-card-excerpt">So I was running towards a problem while enhancing my project.
+The goal was simple: Highlight the text in the browser as the audio plays.
+I…</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2025/12/27/2025-12-27-%E9%9F%B3%E6%96%87%E5%90%8C%E6%AD%A5%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E6%80%9D%E8%80%83/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
       
     </div>
 
@@ -404,15 +404,15 @@
     <div class="post-body post-body-excerpt" itemprop="articleBody">
 
       
-          Happy developing
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/12/26/2025-12-26-ai-demo/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+        <p class="post-card-excerpt">HuggingFace is very generous 
+this project is really about deeply combining AI with your Notion notes to help you actually absorb the knowl…</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2025/12/26/2025-12-26-ai-demo/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
       
     </div>
 

@@ -2129,16 +2129,6 @@ end
       </tags>
   </entry>
   <entry>
-    <title>Gemini 3.0 pro 为什么会打错字</title>
-    <url>/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG70332.jpg"></p>
-<p>&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&#x4E48;Gemini&#x4F1A;&#x6253;&#x9519;&#x5B57;&#x5462;&#xFF1F; &#x8FD9;&#x662F;&#x56E0;&#x4E3A;Gemini&#x80FD;&#x50CF;&#x4EBA;&#x4E00;&#x6837;&#x72AF;&#x9519;&#x4E86;&#xFF08;&#x8FD9;&#x4E48;&#x5389;&#x5BB3;&#x5417;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;&#x8FD8;&#x662F;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x8BAD;&#x7EC3;&#x91CC;&#x9762;&#x201C;&#x77E5;&#x9053;&#x201D;&#x6253;&#x9519;&#x5F88;&#x591A;&#xFF0C;&#x5BFC;&#x81F4;&#x4ED6;&#x7684;&#x9884;&#x6D4B;&#x201C;&#x76F4;&#x5230;&#x201D;&#x6982;&#x7387;&#x5F88;&#x9AD8; &#x4ED6;pick&#x4E86;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4F46;&#x662F;&#x8FD9;&#x4E5F;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x554A;Gemini&#x600E;&#x4E48;&#x4F1A;&#x72AF;&#x8FD9;&#x6837;&#x3002;&#x6216;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x522B;&#x4EBA;&#x7684;&#x89E3;&#x91CA;&#x91CC;&#x7684;&#x539F;&#x53E5; &#x522B;&#x4EBA;&#x6253;&#x9519;&#x5B57;&#x4E86; &#x5947;&#x602A;&#x5947;&#x602A;</p>
-]]></content>
-      <tags>
-        <tag>疑惑</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>突击数值分析有感</title>
     <url>/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x6700;&#x8FD1;&#x7528;&#x4E09;&#x56DB;&#x5929;&#x4ECE;&#x65E0;&#x5230;&#x6709;&#x7A81;&#x51FB;&#x6570;&#x503C;&#x5206;&#x6790;,&#x76EE;&#x6807;&#x662F;&#x901A;&#x8FC7;&#x7684;&#x8BDD;&#x6839;&#x672C;&#x6CA1;&#x5FC5;&#x8981;&#x4ECE;PPT&#x5B66;&#x8D77;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x5728;B&#x7AD9;&#x4E0A;&#x8BFE;&#x7A0B;&#x8D44;&#x6E90;&#x4E0D;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x540C;&#x5927;&#x5B66;&#x8BFE;&#x7A0B;&#x5185;&#x5BB9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x8BFE;&#xFF0C;&#x76F4;&#x63A5;&#x5C31;&#x627E;&#x4E00;&#x4EFD;&#x5F80;&#x5E74;&#x9898;&#xFF0C;&#x6CA1;&#x6709;&#x5F80;&#x5E74;&#x9898;&#x5C31;&#x627E;&#x5E73;&#x5E38;&#x8001;&#x5E08;&#x5E03;&#x7F6E;&#x7684;&#x8BFE;&#x540E;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x6254;&#x7ED9;Gemini &#x8BA9;&#x4ED6;&#x7528;&#x6559;&#x5B66;&#x98CE;&#x683C;&#x6559;&#x4F60;&#x600E;&#x4E48;&#x505A;&#xFF08;&#x7528;&#x5947;&#x5999;&#x7684;Prompt&#x1F601;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7B54;&#x6848;&#x786E;&#x4FDD;&#x4ED6;&#x6CA1;&#x6709;&#x89E3;&#x9519;&#x3002;&#x73B0;&#x5728;Gemini3.0 pro&#x89E3;&#x8FD9;&#x79CD;&#x9898;&#x5DF2;&#x7ECF;&#x5F88;&#x5389;&#x5BB3;&#x4E86;&#x3002;&#x8FD9;&#x662F;&#x4ECE;&#x9898;&#x76EE;&#x51FA;&#x53D1;&#x5B66;&#x4E60;&#xFF0C;&#x4ECE;&#x76EE;&#x7684;&#x53CD;&#x903C;&#x81EA;&#x5DF1;&#xFF0C;&#x4F60;&#x6700;&#x7EC8;&#x76EE;&#x6807;&#x4E0D;&#x5C31;&#x662F;&#x8981;&#x4F1A;&#x505A;&#x9898;&#x561B;&#x3002;<br>&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x56FA;&#x5B9A;&#x9898;&#x578B; &#x5728;b&#x7AD9;&#x4E0A;&#x641C;&#x7D22;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E9B;&#x5FEB;&#x901F;&#x89E3;&#x6CD5;&#xFF0C;&#x96C6;&#x767E;&#x5BB6;&#x4E4B;&#x957F;&#x6784;&#x5EFA;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x89E3;&#x6CD5;&#x3002;</p>
@@ -2146,6 +2136,16 @@ end
 ]]></content>
       <tags>
         <tag>感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gemini 3.0 pro 为什么会打错字</title>
+    <url>/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG70332.jpg"></p>
+<p>&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&#x4E48;Gemini&#x4F1A;&#x6253;&#x9519;&#x5B57;&#x5462;&#xFF1F; &#x8FD9;&#x662F;&#x56E0;&#x4E3A;Gemini&#x80FD;&#x50CF;&#x4EBA;&#x4E00;&#x6837;&#x72AF;&#x9519;&#x4E86;&#xFF08;&#x8FD9;&#x4E48;&#x5389;&#x5BB3;&#x5417;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;&#x8FD8;&#x662F;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x8BAD;&#x7EC3;&#x91CC;&#x9762;&#x201C;&#x77E5;&#x9053;&#x201D;&#x6253;&#x9519;&#x5F88;&#x591A;&#xFF0C;&#x5BFC;&#x81F4;&#x4ED6;&#x7684;&#x9884;&#x6D4B;&#x201C;&#x76F4;&#x5230;&#x201D;&#x6982;&#x7387;&#x5F88;&#x9AD8; &#x4ED6;pick&#x4E86;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4F46;&#x662F;&#x8FD9;&#x4E5F;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x554A;Gemini&#x600E;&#x4E48;&#x4F1A;&#x72AF;&#x8FD9;&#x6837;&#x3002;&#x6216;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x522B;&#x4EBA;&#x7684;&#x89E3;&#x91CA;&#x91CC;&#x7684;&#x539F;&#x53E5; &#x522B;&#x4EBA;&#x6253;&#x9519;&#x5B57;&#x4E86; &#x5947;&#x602A;&#x5947;&#x602A;</p>
+]]></content>
+      <tags>
+        <tag>疑惑</tag>
       </tags>
   </entry>
   <entry>
@@ -2446,6 +2446,98 @@ end
       </tags>
   </entry>
   <entry>
+    <title>QMD — 本地 Markdown 文档搜索引擎</title>
+    <url>/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x89C6;&#x9891;&#x94FE;&#x63A5;&#xFF1A;<a href="https://v.douyin.com/s-NIe6pvtdU/">https://v.douyin.com/s-NIe6pvtdU/</a></p>
+<hr>
+<h2 id="QMD-&#x662F;&#x4EC0;&#x4E48;"><a href="#QMD-&#x662F;&#x4EC0;&#x4E48;" class="headerlink" title="QMD &#x662F;&#x4EC0;&#x4E48;"></a>QMD &#x662F;&#x4EC0;&#x4E48;</h2><p>QMD&#xFF08;Query My Documents&#xFF09;&#x662F;&#x4E00;&#x4E2A;<strong>&#x5B8C;&#x5168;&#x672C;&#x5730;&#x8FD0;&#x884C;</strong>&#x7684; CLI &#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x4E13;&#x95E8;&#x7528;&#x6765;&#x641C;&#x7D22; Markdown &#x6587;&#x6863;&#x3001;&#x77E5;&#x8BC6;&#x5E93;&#x3001;&#x4F1A;&#x8BAE;&#x8BB0;&#x5F55;&#x7B49;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x628A;&#x4E09;&#x79CD;&#x641C;&#x7D22;&#x6280;&#x672F;&#x878D;&#x5408;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#x91CC;&#xFF1A;</p>
+<ul>
+<li><strong>BM25 &#x5173;&#x952E;&#x8BCD;&#x641C;&#x7D22;</strong> &#x2014; &#x4F20;&#x7EDF;&#x7684;&#x5168;&#x6587;&#x68C0;&#x7D22;&#xFF0C;&#x7CBE;&#x786E;&#x5339;&#x914D;</li>
+<li><strong>&#x5411;&#x91CF;&#x8BED;&#x4E49;&#x641C;&#x7D22;</strong> &#x2014; &#x7406;&#x89E3;&#x8BED;&#x4E49;&#xFF0C;&#x627E;&#x4E0D;&#x5230;&#x5173;&#x952E;&#x8BCD;&#x4E5F;&#x80FD;&#x641C;&#x5230;&#x76F8;&#x5173;&#x5185;&#x5BB9;</li>
+<li><strong>LLM &#x91CD;&#x6392;&#x5E8F;</strong> &#x2014; &#x7528;&#x5927;&#x6A21;&#x578B;&#x5BF9;&#x7ED3;&#x679C;&#x4E8C;&#x6B21;&#x6392;&#x5E8F;&#xFF0C;&#x63D0;&#x5347;&#x51C6;&#x786E;&#x7387;</li>
+</ul>
+<p>&#x4E0D;&#x9700;&#x8981;&#x8054;&#x7F51;&#xFF0C;&#x4E0D;&#x9700;&#x8981; GPU&#xFF0C;&#x88C5;&#x5B8C;&#x5C31;&#x80FD;&#x7528;&#x3002;</p>
+<h2 id="&#x4F5C;&#x8005;&#x662F;&#x8C01;"><a href="#&#x4F5C;&#x8005;&#x662F;&#x8C01;" class="headerlink" title="&#x4F5C;&#x8005;&#x662F;&#x8C01;"></a>&#x4F5C;&#x8005;&#x662F;&#x8C01;</h2><p>QMD &#x7684;&#x4F5C;&#x8005;&#x662F; <strong>Tobias L&#xFC;tke</strong>&#xFF0C;Shopify &#x7684;&#x521B;&#x59CB;&#x4EBA;&#x517C; CEO&#x3002;&#x4ED6;&#x5E73;&#x65F6;&#x5927;&#x91CF;&#x4F7F;&#x7528; Markdown &#x6765;&#x8BB0;&#x5F55;&#x7B14;&#x8BB0;&#x3001;&#x4F1A;&#x8BAE;&#x5185;&#x5BB9;&#x548C;&#x6587;&#x6863;&#xFF0C;&#x4E1C;&#x897F;&#x591A;&#x4E86;&#x627E;&#x4E0D;&#x5230;&#xFF0C;&#x5C31;&#x81EA;&#x5DF1;&#x52A8;&#x624B;&#x9020;&#x4E86;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x3002;</p>
+<p>&#x4ED6;&#x7684; GitHub &#x8D26;&#x53F7;&#x5C31;&#x662F; <a href="https://github.com/tobi">tobi</a>&#xFF0C;QMD &#x4ED3;&#x5E93;&#x81F3;&#x4ECA;&#x5DF2;&#x83B7;&#x5F97; <strong>24000+ Stars</strong>&#x3002;</p>
+<h2 id="&#x600E;&#x4E48;&#x7528;"><a href="#&#x600E;&#x4E48;&#x7528;" class="headerlink" title="&#x600E;&#x4E48;&#x7528;"></a>&#x600E;&#x4E48;&#x7528;</h2><p>&#x5B89;&#x88C5;&#x548C;&#x4F7F;&#x7528;&#x90FD;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF1A;</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm &#x5B89;&#x88C5;</span></span><br><span class="line">npm install -g qmd</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6DFB;&#x52A0;&#x8981;&#x7D22;&#x5F15;&#x7684;&#x76EE;&#x5F55;</span></span><br><span class="line">qmd add ~/Documents/notes</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x751F;&#x6210;&#x5411;&#x91CF;&#x5D4C;&#x5165;</span></span><br><span class="line">qmd embed</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x59CB;&#x641C;&#x7D22;</span></span><br><span class="line">qmd search <span class="string">&quot;&#x4F60;&#x7684;&#x641C;&#x7D22;&#x5173;&#x952E;&#x8BCD;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>QMD &#x8FD8;&#x63D0;&#x4F9B;&#x4E86; <strong>MCP Server</strong>&#xFF0C;&#x53EF;&#x4EE5;&#x65E0;&#x7F1D;&#x63A5;&#x5165; Claude Code &#x7B49; AI &#x7F16;&#x7A0B;&#x52A9;&#x624B;&#xFF0C;&#x8BA9; Agent &#x76F4;&#x63A5;&#x641C;&#x7D22;&#x4F60;&#x7684;&#x672C;&#x5730;&#x6587;&#x6863;&#x3002;</p>
+<h2 id="&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528;-QMD"><a href="#&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528;-QMD" class="headerlink" title="&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528; QMD"></a>&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528; QMD</h2><p>QMD &#x5DF2;&#x7ECF;&#x6210;&#x4E3A;&#x672C;&#x5730;&#x8BED;&#x4E49;&#x641C;&#x7D22;&#x7684;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#xFF0C;&#x88AB;&#x5927;&#x91CF; AI &#x5DE5;&#x5177;&#x96C6;&#x6210;&#xFF1A;</p>
+<h3 id="&#x7F16;&#x7A0B;-Agent"><a href="#&#x7F16;&#x7A0B;-Agent" class="headerlink" title="&#x7F16;&#x7A0B; Agent"></a>&#x7F16;&#x7A0B; Agent</h3><table>
+<thead>
+<tr>
+<th>&#x5DE5;&#x5177;</th>
+<th>&#x96C6;&#x6210;&#x65B9;&#x5F0F;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Claude Code</strong></td>
+<td>&#x591A;&#x79CD; skill/&#x63D2;&#x4EF6;&#x652F;&#x6301;&#xFF08;ghost&#x3001;claude-never-forgets&#x3001;git-wiki &#x7B49;&#xFF09;</td>
+</tr>
+<tr>
+<td><strong>OpenClaw</strong></td>
+<td>&#x8BB0;&#x5FC6;&#x6A21;&#x5757;&#x9ED8;&#x8BA4;&#x641C;&#x7D22;&#x5F15;&#x64CE;</td>
+</tr>
+<tr>
+<td><strong>Codex</strong></td>
+<td>remnic / memento-vault &#x63D2;&#x4EF6;</td>
+</tr>
+<tr>
+<td><strong>Cursor / Windsurf</strong></td>
+<td>memento-vault hooks</td>
+</tr>
+<tr>
+<td><strong>pi</strong></td>
+<td>pi-qmd &#x6269;&#x5C55;&#x3001;pi-memory &#x8BB0;&#x5FC6;&#x6269;&#x5C55;</td>
+</tr>
+<tr>
+<td><strong>Hermes</strong></td>
+<td>remnic &#x63D2;&#x4EF6;</td>
+</tr>
+</tbody></table>
+<h3 id="&#x7B14;&#x8BB0;&#x5DE5;&#x5177;"><a href="#&#x7B14;&#x8BB0;&#x5DE5;&#x5177;" class="headerlink" title="&#x7B14;&#x8BB0;&#x5DE5;&#x5177;"></a>&#x7B14;&#x8BB0;&#x5DE5;&#x5177;</h3><ul>
+<li><strong>Obsidian</strong> &#x2014; &#x6709;&#x591A;&#x4E2A; QMD &#x96C6;&#x6210;&#x63D2;&#x4EF6;&#xFF08;obsidian-qmd&#x3001;qmd-search-obsidian&#xFF09;&#xFF0C;&#x53EF;&#x5728; Obsidian &#x5185;&#x76F4;&#x63A5;&#x4F7F;&#x7528; QMD &#x7684;&#x6DF7;&#x5408;&#x641C;&#x7D22;</li>
+</ul>
+<h3 id="&#x8BB0;&#x5FC6;-&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;"><a href="#&#x8BB0;&#x5FC6;-&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x8BB0;&#x5FC6;/&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;"></a>&#x8BB0;&#x5FC6;/&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;</h3><p>QMD &#x751F;&#x6001;&#x6700;&#x6D3B;&#x8DC3;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x5404;&#x79CD;&#x57FA;&#x4E8E; QMD &#x7684; Agent &#x8BB0;&#x5FC6;&#x65B9;&#x6848;&#x5C42;&#x51FA;&#x4E0D;&#x7A77;&#xFF1A;</p>
+<ul>
+<li><a href="https://github.com/joshuaswarren/remnic">remnic</a> (73&#x2605;) &#x2014; &#x591A; Agent &#x672C;&#x5730;&#x8BB0;&#x5FC6;&#x63D2;&#x4EF6;&#xFF0C;&#x652F;&#x6301; OpenClaw&#x3001;Hermes&#x3001;Codex&#x3001;Claude Code</li>
+<li><a href="https://github.com/notkurt/ghost">ghost</a> (11&#x2605;) &#x2014; Claude Code &#x4F1A;&#x8BDD;&#x81EA;&#x52A8;&#x6355;&#x83B7; + QMD &#x8BED;&#x4E49;&#x641C;&#x7D22;</li>
+<li><strong>Memento Vault</strong> &#x2014; &#x8DE8;&#x7F16;&#x7A0B; Agent &#x7684;&#x77E5;&#x8BC6;&#x6301;&#x4E45;&#x5316;</li>
+<li><strong>Claude Never Forgets</strong> &#x2014; &#x81EA;&#x52A8;&#x5BFC;&#x51FA;&#x4F1A;&#x8BDD;&#x3001;&#x7D22;&#x5F15;&#x3001;&#x8DE8;&#x4F1A;&#x8BDD;&#x8BB0;&#x5FC6;&#x53EC;&#x56DE;</li>
+<li><strong>MemClawz</strong> &#x2014; OpenClaw &#x7684;&#x4E09;&#x5C42;&#x8BB0;&#x5FC6;&#x4F53;&#x7CFB;</li>
+<li><strong>Lucid Context Engine</strong> &#x2014; &#x81EA;&#x4E3B;&#x4E0A;&#x4E0B;&#x6587;&#x5F15;&#x64CE;&#xFF0C;&#x542B;&#x663E;&#x8457;&#x6027;&#x8BC4;&#x5206;&#x548C;&#x8DE8; Agent &#x8BB0;&#x5FC6;</li>
+</ul>
+<h3 id="&#x540C;&#x7C7B;&#x5DE5;&#x5177;"><a href="#&#x540C;&#x7C7B;&#x5DE5;&#x5177;" class="headerlink" title="&#x540C;&#x7C7B;&#x5DE5;&#x5177;"></a>&#x540C;&#x7C7B;&#x5DE5;&#x5177;</h3><ul>
+<li><a href="https://github.com/oceanbase/seekx">seekx</a> (17&#x2605;) &#x2014; OceanBase &#x51FA;&#x54C1;&#xFF0C;&#x53D7; QMD &#x542F;&#x53D1;&#x800C;&#x5EFA;</li>
+</ul>
+<h2 id="&#x4E3A;&#x4EC0;&#x4E48;-QMD-&#x4F1A;&#x706B;"><a href="#&#x4E3A;&#x4EC0;&#x4E48;-QMD-&#x4F1A;&#x706B;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48; QMD &#x4F1A;&#x706B;"></a>&#x4E3A;&#x4EC0;&#x4E48; QMD &#x4F1A;&#x706B;</h2><p>&#x9664;&#x4E86;&#x4F5C;&#x8005;&#x672C;&#x8EAB;&#x7684;&#x5F71;&#x54CD;&#x529B;&#xFF0C;QMD &#x80FD;&#x5FEB;&#x901F;&#x4F20;&#x64AD;&#x8FD8;&#x6709;&#x4E24;&#x4E2A;&#x539F;&#x56E0;&#xFF1A;</p>
+<ol>
+<li><strong>OpenClaw &#x7684;&#x96C6;&#x6210;</strong> &#x2014; OpenClaw &#x8BB0;&#x5FC6;&#x6A21;&#x5757;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528; QMD &#x4F5C;&#x4E3A;&#x672C;&#x5730;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x5927;&#x91CF; OpenClaw &#x7528;&#x6237;&#x56E0;&#x6B64;&#x63A5;&#x89E6;&#x5E76;&#x5F00;&#x59CB;&#x4F7F;&#x7528; QMD</li>
+<li><strong>MCP &#x534F;&#x8BAE;&#x7684;&#x652F;&#x6301;</strong> &#x2014; QMD &#x63D0;&#x4F9B; MCP Server&#xFF0C;&#x610F;&#x5473;&#x7740;&#x4EFB;&#x4F55;&#x652F;&#x6301; MCP &#x7684; AI &#x5DE5;&#x5177;&#x90FD;&#x80FD;&#x76F4;&#x63A5;&#x8C03;&#x7528; QMD &#x641C;&#x7D22;&#x672C;&#x5730;&#x6587;&#x6863;&#xFF0C;&#x8FD9;&#x5927;&#x5E45;&#x964D;&#x4F4E;&#x4E86;&#x96C6;&#x6210;&#x95E8;&#x69DB;</li>
+</ol>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>QMD &#x89E3;&#x51B3;&#x4E86;&#x4E00;&#x4E2A;&#x5F88;&#x5177;&#x4F53;&#x4F46;&#x5F88;&#x666E;&#x904D;&#x7684;&#x9700;&#x6C42;&#xFF1A;&#x4F60;&#x6709;&#x5927;&#x91CF; Markdown &#x7B14;&#x8BB0;&#xFF0C;&#x9700;&#x8981;&#x5FEB;&#x901F;&#x3001;&#x51C6;&#x786E;&#x5730;&#x627E;&#x5230;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x4E0D;&#x662F;&#x8981;&#x66FF;&#x4EE3; Google&#xFF0C;&#x800C;&#x662F;&#x8981;&#x8BA9;&#x4F60;<strong>&#x5728;&#x672C;&#x5730;&#x5C31;&#x80FD;&#x641C;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x77E5;&#x8BC6;</strong>&#x3002;&#x52A0;&#x4E0A; MCP &#x7684;&#x652F;&#x6301;&#xFF0C;AI Agent &#x4E5F;&#x80FD;&#x8BFB;&#x61C2;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x4E86;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x91CF;&#x5DF2;&#x7ECF;&#x5927;&#x5230;&#x627E;&#x4E1C;&#x897F;&#x56F0;&#x96BE;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;QMD &#x503C;&#x5F97;&#x4E00;&#x8BD5;&#x3002;</p>
+<hr>
+<p><strong>&#x53C2;&#x8003;&#xFF1A;</strong></p>
+<ul>
+<li><a href="https://github.com/tobi/qmd">tobi/qmd - GitHub</a></li>
+<li><a href="https://github.com/joshuaswarren/remnic">remnic - &#x591A; Agent &#x672C;&#x5730;&#x8BB0;&#x5FC6;&#x63D2;&#x4EF6;</a></li>
+<li><a href="https://github.com/achekulaev/obsidian-qmd">obsidian-qmd - Obsidian &#x63D2;&#x4EF6;</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>热点汇总</category>
+      </categories>
+      <tags>
+        <tag>QMD</tag>
+        <tag>Markdown</tag>
+        <tag>本地搜索</tag>
+        <tag>MCP</tag>
+        <tag>开源</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI思维链是幻象吗？</title>
     <url>/2026/05/10/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-10-AI%E6%80%9D%E7%BB%B4%E9%93%BE%E6%98%AF%E5%B9%BB%E8%B1%A1%E5%90%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x89C6;&#x9891;&#x94FE;&#x63A5;&#xFF1A;<a href="https://v.douyin.com/B4_zH4WVvIU/">https://v.douyin.com/B4_zH4WVvIU/</a></p>
@@ -2604,101 +2696,9 @@ end
       </categories>
       <tags>
         <tag>AI</tag>
+        <tag>开源</tag>
         <tag>浏览器安全</tag>
         <tag>科技热点</tag>
-        <tag>开源</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>QMD — 本地 Markdown 文档搜索引擎</title>
-    <url>/2026/05/07/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-07-QMD-%E6%9C%AC%E5%9C%B0Markdown%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x89C6;&#x9891;&#x94FE;&#x63A5;&#xFF1A;<a href="https://v.douyin.com/s-NIe6pvtdU/">https://v.douyin.com/s-NIe6pvtdU/</a></p>
-<hr>
-<h2 id="QMD-&#x662F;&#x4EC0;&#x4E48;"><a href="#QMD-&#x662F;&#x4EC0;&#x4E48;" class="headerlink" title="QMD &#x662F;&#x4EC0;&#x4E48;"></a>QMD &#x662F;&#x4EC0;&#x4E48;</h2><p>QMD&#xFF08;Query My Documents&#xFF09;&#x662F;&#x4E00;&#x4E2A;<strong>&#x5B8C;&#x5168;&#x672C;&#x5730;&#x8FD0;&#x884C;</strong>&#x7684; CLI &#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x4E13;&#x95E8;&#x7528;&#x6765;&#x641C;&#x7D22; Markdown &#x6587;&#x6863;&#x3001;&#x77E5;&#x8BC6;&#x5E93;&#x3001;&#x4F1A;&#x8BAE;&#x8BB0;&#x5F55;&#x7B49;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x628A;&#x4E09;&#x79CD;&#x641C;&#x7D22;&#x6280;&#x672F;&#x878D;&#x5408;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x5DE5;&#x5177;&#x91CC;&#xFF1A;</p>
-<ul>
-<li><strong>BM25 &#x5173;&#x952E;&#x8BCD;&#x641C;&#x7D22;</strong> &#x2014; &#x4F20;&#x7EDF;&#x7684;&#x5168;&#x6587;&#x68C0;&#x7D22;&#xFF0C;&#x7CBE;&#x786E;&#x5339;&#x914D;</li>
-<li><strong>&#x5411;&#x91CF;&#x8BED;&#x4E49;&#x641C;&#x7D22;</strong> &#x2014; &#x7406;&#x89E3;&#x8BED;&#x4E49;&#xFF0C;&#x627E;&#x4E0D;&#x5230;&#x5173;&#x952E;&#x8BCD;&#x4E5F;&#x80FD;&#x641C;&#x5230;&#x76F8;&#x5173;&#x5185;&#x5BB9;</li>
-<li><strong>LLM &#x91CD;&#x6392;&#x5E8F;</strong> &#x2014; &#x7528;&#x5927;&#x6A21;&#x578B;&#x5BF9;&#x7ED3;&#x679C;&#x4E8C;&#x6B21;&#x6392;&#x5E8F;&#xFF0C;&#x63D0;&#x5347;&#x51C6;&#x786E;&#x7387;</li>
-</ul>
-<p>&#x4E0D;&#x9700;&#x8981;&#x8054;&#x7F51;&#xFF0C;&#x4E0D;&#x9700;&#x8981; GPU&#xFF0C;&#x88C5;&#x5B8C;&#x5C31;&#x80FD;&#x7528;&#x3002;</p>
-<h2 id="&#x4F5C;&#x8005;&#x662F;&#x8C01;"><a href="#&#x4F5C;&#x8005;&#x662F;&#x8C01;" class="headerlink" title="&#x4F5C;&#x8005;&#x662F;&#x8C01;"></a>&#x4F5C;&#x8005;&#x662F;&#x8C01;</h2><p>QMD &#x7684;&#x4F5C;&#x8005;&#x662F; <strong>Tobias L&#xFC;tke</strong>&#xFF0C;Shopify &#x7684;&#x521B;&#x59CB;&#x4EBA;&#x517C; CEO&#x3002;&#x4ED6;&#x5E73;&#x65F6;&#x5927;&#x91CF;&#x4F7F;&#x7528; Markdown &#x6765;&#x8BB0;&#x5F55;&#x7B14;&#x8BB0;&#x3001;&#x4F1A;&#x8BAE;&#x5185;&#x5BB9;&#x548C;&#x6587;&#x6863;&#xFF0C;&#x4E1C;&#x897F;&#x591A;&#x4E86;&#x627E;&#x4E0D;&#x5230;&#xFF0C;&#x5C31;&#x81EA;&#x5DF1;&#x52A8;&#x624B;&#x9020;&#x4E86;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x3002;</p>
-<p>&#x4ED6;&#x7684; GitHub &#x8D26;&#x53F7;&#x5C31;&#x662F; <a href="https://github.com/tobi">tobi</a>&#xFF0C;QMD &#x4ED3;&#x5E93;&#x81F3;&#x4ECA;&#x5DF2;&#x83B7;&#x5F97; <strong>24000+ Stars</strong>&#x3002;</p>
-<h2 id="&#x600E;&#x4E48;&#x7528;"><a href="#&#x600E;&#x4E48;&#x7528;" class="headerlink" title="&#x600E;&#x4E48;&#x7528;"></a>&#x600E;&#x4E48;&#x7528;</h2><p>&#x5B89;&#x88C5;&#x548C;&#x4F7F;&#x7528;&#x90FD;&#x975E;&#x5E38;&#x7B80;&#x5355;&#xFF1A;</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># npm &#x5B89;&#x88C5;</span></span><br><span class="line">npm install -g qmd</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x6DFB;&#x52A0;&#x8981;&#x7D22;&#x5F15;&#x7684;&#x76EE;&#x5F55;</span></span><br><span class="line">qmd add ~/Documents/notes</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x751F;&#x6210;&#x5411;&#x91CF;&#x5D4C;&#x5165;</span></span><br><span class="line">qmd embed</span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x5F00;&#x59CB;&#x641C;&#x7D22;</span></span><br><span class="line">qmd search <span class="string">&quot;&#x4F60;&#x7684;&#x641C;&#x7D22;&#x5173;&#x952E;&#x8BCD;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>QMD &#x8FD8;&#x63D0;&#x4F9B;&#x4E86; <strong>MCP Server</strong>&#xFF0C;&#x53EF;&#x4EE5;&#x65E0;&#x7F1D;&#x63A5;&#x5165; Claude Code &#x7B49; AI &#x7F16;&#x7A0B;&#x52A9;&#x624B;&#xFF0C;&#x8BA9; Agent &#x76F4;&#x63A5;&#x641C;&#x7D22;&#x4F60;&#x7684;&#x672C;&#x5730;&#x6587;&#x6863;&#x3002;</p>
-<h2 id="&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528;-QMD"><a href="#&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528;-QMD" class="headerlink" title="&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528; QMD"></a>&#x54EA;&#x4E9B;&#x5DE5;&#x5177;&#x5728;&#x7528; QMD</h2><p>QMD &#x5DF2;&#x7ECF;&#x6210;&#x4E3A;&#x672C;&#x5730;&#x8BED;&#x4E49;&#x641C;&#x7D22;&#x7684;&#x57FA;&#x7840;&#x8BBE;&#x65BD;&#xFF0C;&#x88AB;&#x5927;&#x91CF; AI &#x5DE5;&#x5177;&#x96C6;&#x6210;&#xFF1A;</p>
-<h3 id="&#x7F16;&#x7A0B;-Agent"><a href="#&#x7F16;&#x7A0B;-Agent" class="headerlink" title="&#x7F16;&#x7A0B; Agent"></a>&#x7F16;&#x7A0B; Agent</h3><table>
-<thead>
-<tr>
-<th>&#x5DE5;&#x5177;</th>
-<th>&#x96C6;&#x6210;&#x65B9;&#x5F0F;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Claude Code</strong></td>
-<td>&#x591A;&#x79CD; skill/&#x63D2;&#x4EF6;&#x652F;&#x6301;&#xFF08;ghost&#x3001;claude-never-forgets&#x3001;git-wiki &#x7B49;&#xFF09;</td>
-</tr>
-<tr>
-<td><strong>OpenClaw</strong></td>
-<td>&#x8BB0;&#x5FC6;&#x6A21;&#x5757;&#x9ED8;&#x8BA4;&#x641C;&#x7D22;&#x5F15;&#x64CE;</td>
-</tr>
-<tr>
-<td><strong>Codex</strong></td>
-<td>remnic / memento-vault &#x63D2;&#x4EF6;</td>
-</tr>
-<tr>
-<td><strong>Cursor / Windsurf</strong></td>
-<td>memento-vault hooks</td>
-</tr>
-<tr>
-<td><strong>pi</strong></td>
-<td>pi-qmd &#x6269;&#x5C55;&#x3001;pi-memory &#x8BB0;&#x5FC6;&#x6269;&#x5C55;</td>
-</tr>
-<tr>
-<td><strong>Hermes</strong></td>
-<td>remnic &#x63D2;&#x4EF6;</td>
-</tr>
-</tbody></table>
-<h3 id="&#x7B14;&#x8BB0;&#x5DE5;&#x5177;"><a href="#&#x7B14;&#x8BB0;&#x5DE5;&#x5177;" class="headerlink" title="&#x7B14;&#x8BB0;&#x5DE5;&#x5177;"></a>&#x7B14;&#x8BB0;&#x5DE5;&#x5177;</h3><ul>
-<li><strong>Obsidian</strong> &#x2014; &#x6709;&#x591A;&#x4E2A; QMD &#x96C6;&#x6210;&#x63D2;&#x4EF6;&#xFF08;obsidian-qmd&#x3001;qmd-search-obsidian&#xFF09;&#xFF0C;&#x53EF;&#x5728; Obsidian &#x5185;&#x76F4;&#x63A5;&#x4F7F;&#x7528; QMD &#x7684;&#x6DF7;&#x5408;&#x641C;&#x7D22;</li>
-</ul>
-<h3 id="&#x8BB0;&#x5FC6;-&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;"><a href="#&#x8BB0;&#x5FC6;-&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x8BB0;&#x5FC6;/&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;"></a>&#x8BB0;&#x5FC6;/&#x4E0A;&#x4E0B;&#x6587;&#x7CFB;&#x7EDF;</h3><p>QMD &#x751F;&#x6001;&#x6700;&#x6D3B;&#x8DC3;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x5404;&#x79CD;&#x57FA;&#x4E8E; QMD &#x7684; Agent &#x8BB0;&#x5FC6;&#x65B9;&#x6848;&#x5C42;&#x51FA;&#x4E0D;&#x7A77;&#xFF1A;</p>
-<ul>
-<li><a href="https://github.com/joshuaswarren/remnic">remnic</a> (73&#x2605;) &#x2014; &#x591A; Agent &#x672C;&#x5730;&#x8BB0;&#x5FC6;&#x63D2;&#x4EF6;&#xFF0C;&#x652F;&#x6301; OpenClaw&#x3001;Hermes&#x3001;Codex&#x3001;Claude Code</li>
-<li><a href="https://github.com/notkurt/ghost">ghost</a> (11&#x2605;) &#x2014; Claude Code &#x4F1A;&#x8BDD;&#x81EA;&#x52A8;&#x6355;&#x83B7; + QMD &#x8BED;&#x4E49;&#x641C;&#x7D22;</li>
-<li><strong>Memento Vault</strong> &#x2014; &#x8DE8;&#x7F16;&#x7A0B; Agent &#x7684;&#x77E5;&#x8BC6;&#x6301;&#x4E45;&#x5316;</li>
-<li><strong>Claude Never Forgets</strong> &#x2014; &#x81EA;&#x52A8;&#x5BFC;&#x51FA;&#x4F1A;&#x8BDD;&#x3001;&#x7D22;&#x5F15;&#x3001;&#x8DE8;&#x4F1A;&#x8BDD;&#x8BB0;&#x5FC6;&#x53EC;&#x56DE;</li>
-<li><strong>MemClawz</strong> &#x2014; OpenClaw &#x7684;&#x4E09;&#x5C42;&#x8BB0;&#x5FC6;&#x4F53;&#x7CFB;</li>
-<li><strong>Lucid Context Engine</strong> &#x2014; &#x81EA;&#x4E3B;&#x4E0A;&#x4E0B;&#x6587;&#x5F15;&#x64CE;&#xFF0C;&#x542B;&#x663E;&#x8457;&#x6027;&#x8BC4;&#x5206;&#x548C;&#x8DE8; Agent &#x8BB0;&#x5FC6;</li>
-</ul>
-<h3 id="&#x540C;&#x7C7B;&#x5DE5;&#x5177;"><a href="#&#x540C;&#x7C7B;&#x5DE5;&#x5177;" class="headerlink" title="&#x540C;&#x7C7B;&#x5DE5;&#x5177;"></a>&#x540C;&#x7C7B;&#x5DE5;&#x5177;</h3><ul>
-<li><a href="https://github.com/oceanbase/seekx">seekx</a> (17&#x2605;) &#x2014; OceanBase &#x51FA;&#x54C1;&#xFF0C;&#x53D7; QMD &#x542F;&#x53D1;&#x800C;&#x5EFA;</li>
-</ul>
-<h2 id="&#x4E3A;&#x4EC0;&#x4E48;-QMD-&#x4F1A;&#x706B;"><a href="#&#x4E3A;&#x4EC0;&#x4E48;-QMD-&#x4F1A;&#x706B;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48; QMD &#x4F1A;&#x706B;"></a>&#x4E3A;&#x4EC0;&#x4E48; QMD &#x4F1A;&#x706B;</h2><p>&#x9664;&#x4E86;&#x4F5C;&#x8005;&#x672C;&#x8EAB;&#x7684;&#x5F71;&#x54CD;&#x529B;&#xFF0C;QMD &#x80FD;&#x5FEB;&#x901F;&#x4F20;&#x64AD;&#x8FD8;&#x6709;&#x4E24;&#x4E2A;&#x539F;&#x56E0;&#xFF1A;</p>
-<ol>
-<li><strong>OpenClaw &#x7684;&#x96C6;&#x6210;</strong> &#x2014; OpenClaw &#x8BB0;&#x5FC6;&#x6A21;&#x5757;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528; QMD &#x4F5C;&#x4E3A;&#x672C;&#x5730;&#x641C;&#x7D22;&#x5F15;&#x64CE;&#xFF0C;&#x5927;&#x91CF; OpenClaw &#x7528;&#x6237;&#x56E0;&#x6B64;&#x63A5;&#x89E6;&#x5E76;&#x5F00;&#x59CB;&#x4F7F;&#x7528; QMD</li>
-<li><strong>MCP &#x534F;&#x8BAE;&#x7684;&#x652F;&#x6301;</strong> &#x2014; QMD &#x63D0;&#x4F9B; MCP Server&#xFF0C;&#x610F;&#x5473;&#x7740;&#x4EFB;&#x4F55;&#x652F;&#x6301; MCP &#x7684; AI &#x5DE5;&#x5177;&#x90FD;&#x80FD;&#x76F4;&#x63A5;&#x8C03;&#x7528; QMD &#x641C;&#x7D22;&#x672C;&#x5730;&#x6587;&#x6863;&#xFF0C;&#x8FD9;&#x5927;&#x5E45;&#x964D;&#x4F4E;&#x4E86;&#x96C6;&#x6210;&#x95E8;&#x69DB;</li>
-</ol>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>QMD &#x89E3;&#x51B3;&#x4E86;&#x4E00;&#x4E2A;&#x5F88;&#x5177;&#x4F53;&#x4F46;&#x5F88;&#x666E;&#x904D;&#x7684;&#x9700;&#x6C42;&#xFF1A;&#x4F60;&#x6709;&#x5927;&#x91CF; Markdown &#x7B14;&#x8BB0;&#xFF0C;&#x9700;&#x8981;&#x5FEB;&#x901F;&#x3001;&#x51C6;&#x786E;&#x5730;&#x627E;&#x5230;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x4E0D;&#x662F;&#x8981;&#x66FF;&#x4EE3; Google&#xFF0C;&#x800C;&#x662F;&#x8981;&#x8BA9;&#x4F60;<strong>&#x5728;&#x672C;&#x5730;&#x5C31;&#x80FD;&#x641C;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x77E5;&#x8BC6;</strong>&#x3002;&#x52A0;&#x4E0A; MCP &#x7684;&#x652F;&#x6301;&#xFF0C;AI Agent &#x4E5F;&#x80FD;&#x8BFB;&#x61C2;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x4E86;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x91CF;&#x5DF2;&#x7ECF;&#x5927;&#x5230;&#x627E;&#x4E1C;&#x897F;&#x56F0;&#x96BE;&#x7684;&#x7A0B;&#x5EA6;&#xFF0C;QMD &#x503C;&#x5F97;&#x4E00;&#x8BD5;&#x3002;</p>
-<hr>
-<p><strong>&#x53C2;&#x8003;&#xFF1A;</strong></p>
-<ul>
-<li><a href="https://github.com/tobi/qmd">tobi/qmd - GitHub</a></li>
-<li><a href="https://github.com/joshuaswarren/remnic">remnic - &#x591A; Agent &#x672C;&#x5730;&#x8BB0;&#x5FC6;&#x63D2;&#x4EF6;</a></li>
-<li><a href="https://github.com/achekulaev/obsidian-qmd">obsidian-qmd - Obsidian &#x63D2;&#x4EF6;</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>热点汇总</category>
-      </categories>
-      <tags>
-        <tag>开源</tag>
-        <tag>QMD</tag>
-        <tag>Markdown</tag>
-        <tag>本地搜索</tag>
-        <tag>MCP</tag>
       </tags>
   </entry>
   <entry>
@@ -2771,40 +2771,6 @@ end
       </tags>
   </entry>
   <entry>
-    <title>Unix Philosophy</title>
-    <url>/2025/02/16/Jottings/2025/2025-02-18-first-journal/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
-</blockquote>
-<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
-<li>break down a complex computational tasks into simple, clear linguistic components</li>
-<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
-</ul>
-<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
-<li>Allowing simple tools to be connected through pipes and redirections</li>
-<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
-<li>Promoting modularity and flexibility in system design</li>
-</ul>
-<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
-<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
-<li>Achieving complex operations through the intelligent combination of simple tools</li>
-</ul>
-<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
-<li>Lone wolves in computer science are an endangered species.</li>
-<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
-</ul>
-<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
-<li><strong>Each tool does one specific task</strong></li>
-<li><strong>Tools are connected through pipes</strong></li>
-<li><strong>Complex functionality emerges from simple tool composition</strong></li>
-<li><strong>Convey ideas</strong></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Jottings</tag>
-      </tags>
-  </entry>
-  <entry>
     <title></title>
     <url>/2026/08/17/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-13-karpathy-knowledge-base/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://v.douyin.com/FNlCHl5dSoY/">https://v.douyin.com/FNlCHl5dSoY/</a></p>
@@ -2870,5 +2836,39 @@ end
 <p><strong>&#x6838;&#x5FC3;&#x5DE5;&#x5177;&#x94FE;</strong>&#xFF1A;Obsidian&#xFF08;&#x77E5;&#x8BC6;&#x5E93; IDE&#xFF09;+ Claude Code&#xFF08;AI Agent &#x7F16;&#x8BD1;&#x5668;&#xFF09;+ claw.md&#xFF08;&#x89C4;&#x8303;&#x6587;&#x4EF6;&#xFF09;</p>
 <p><strong>&#x6838;&#x5FC3;&#x539F;&#x5219;</strong>&#xFF1A;&#x589E;&#x91CF;&#x5904;&#x7406;&#x3001;&#x81EA;&#x52A8;&#x5173;&#x8054;&#x3001;&#x53CC;&#x5411;&#x94FE;&#x63A5;&#x3001;&#x5F62;&#x6210;&#x95ED;&#x73AF;</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Unix Philosophy</title>
+    <url>/2025/02/16/Jottings/2025/2025-02-18-first-journal/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computation.</p>
+</blockquote>
+<h1 id="linguistic-abstraction"><a href="#linguistic-abstraction" class="headerlink" title="linguistic abstraction"></a>linguistic abstraction</h1><ul>
+<li>break down a complex computational tasks into simple, clear linguistic components</li>
+<li>Creating tools that are focused into doing something exclusively<br><strong>&#x6781;&#x7B80;&#x4E3B;&#x4E49;</strong>&#xFF08;Minimalist&#xFF09;</li>
+</ul>
+<h1 id="composition"><a href="#composition" class="headerlink" title="composition"></a>composition</h1><ul>
+<li>Allowing simple tools to be connected through pipes and redirections</li>
+<li>Enabling complex tasks to be accomplished by combining small, specialized tools</li>
+<li>Promoting modularity and flexibility in system design</li>
+</ul>
+<h1 id="Effecting-Computation"><a href="#Effecting-Computation" class="headerlink" title="Effecting Computation"></a>Effecting Computation</h1><ul>
+<li>The ultimate goal is to solve computational problems efficiently and elegantly</li>
+<li>Achieving complex operations through the intelligent combination of simple tools</li>
+</ul>
+<h1 id="Technical-communication"><a href="#Technical-communication" class="headerlink" title="Technical communication"></a>Technical communication</h1><ul>
+<li>Lone wolves in computer science are an endangered species.</li>
+<li>Modern computer scientists must practice persuasively and clearly communicating their ideas to non-programmers.</li>
+</ul>
+<h1 id="Sum"><a href="#Sum" class="headerlink" title="Sum"></a>Sum</h1><ul>
+<li><strong>Each tool does one specific task</strong></li>
+<li><strong>Tools are connected through pipes</strong></li>
+<li><strong>Complex functionality emerges from simple tool composition</strong></li>
+<li><strong>Convey ideas</strong></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Jottings</tag>
+      </tags>
   </entry>
 </search>

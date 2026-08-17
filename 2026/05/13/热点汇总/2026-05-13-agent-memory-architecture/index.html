@@ -66,10 +66,6 @@
           document.documentElement.classList.add('sidebar-collapsed');
         }
       } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
-      } catch (e) {}
     })();
   </script>
   <title>如何构建生产级的Agent Memory架构 | Chenkaixuan's Blog</title>
@@ -195,7 +191,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>
@@ -257,14 +252,8 @@
             </span>
 
           
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
             <div class="post-description">深入拆解Agent记忆机制的设计陷阱与工程实践，包含ChatGPT分层架构、Agentic Memory三大命题、时间约束与程序性记忆等高阶概念</div>
+            <span class="post-font-switcher" id="blog-font-switcher" data-post-path="/2026/05/13/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/2026-05-13-agent-memory-architecture/"></span>
 
         </div>
       </header>

@@ -61,10 +61,6 @@
           document.documentElement.classList.add('sidebar-collapsed');
         }
       } catch (e) {}
-      try {
-        var f = localStorage.getItem('blog-font');
-        if (f) document.documentElement.setAttribute('data-font', f);
-      } catch (e) {}
     })();
   </script>
   <title>Jottings | Chenkaixuan's Blog
@@ -191,7 +187,6 @@
       </span>
   </div>
 
-        <div class="blog-font-switcher" id="blog-font-switcher"></div>
         <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
           <i class="fa fa-moon"></i>
           <span>主题</span>
@@ -284,15 +279,15 @@
     <div class="post-body post-body-excerpt" itemprop="articleBody">
 
       
-          Reaction to &#x300A;What every computer science major should know&#x300B;
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/02/16/Jottings/2025/2025-02-18-first-journal/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+        <p class="post-card-excerpt">
+The Unix philosophy (as opposed to Unix itself) is one that emphasizes linguistic abstraction and composition in order to effect computati…</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2025/02/16/Jottings/2025/2025-02-18-first-journal/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
       
     </div>
 
