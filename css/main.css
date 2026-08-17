@@ -1229,7 +1229,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #09ffff;
+  background: #34e54d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -3005,9 +3005,9 @@ html[data-theme="light"] {
   --claude-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
   --claude-dialog-radius: 22px;
   --claude-sidebar-width: 260px;
-  --claude-font-ui: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --claude-font-display: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --claude-font-body: "IBM Plex Sans", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --claude-font-ui: "Source Serif 4", Lyon-Text, Georgia, "Noto Serif SC", "Songti SC", "Hiragino Mincho ProN", "Yu Mincho", SimSun, serif;
+  --claude-font-display: "Source Serif 4", Lyon-Text, Georgia, "Noto Serif SC", "Songti SC", "Hiragino Mincho ProN", "Yu Mincho", SimSun, serif;
+  --claude-font-body: "Source Serif 4", Lyon-Text, Georgia, "Noto Serif SC", "Songti SC", "Hiragino Mincho ProN", "Yu Mincho", SimSun, serif;
   --claude-font-mono: "JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --body-bg-color: var(--claude-bg);
   --content-bg-color: var(--claude-surface);
@@ -3359,12 +3359,12 @@ html.sidebar-collapsed .claude-sidebar-reopen {
   font-size: 0.82rem;
   color: var(--claude-muted);
 }
-.post-font-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
-  padding: 0;
+/* 全站字体切换按钮已关闭 */
+.blog-font-switcher,
+.post-font-switcher,
+.blog-font-label,
+#blog-font-select {
+  display: none !important;
 }
 .post-font-switcher .blog-font-label {
   font-size: 0.75rem;
