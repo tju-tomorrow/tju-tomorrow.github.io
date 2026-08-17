@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-font="ibm-plex" data-post-font="ibm-plex" data-font="ibm-plex">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -44,7 +44,32 @@
   };
 </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('claude-theme');
+        // 默认浅色；仅用户显式切换过才用 localStorage
+        document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      try {
+        if (localStorage.getItem('claude-sidebar') === 'collapsed') {
+          document.documentElement.classList.add('sidebar-collapsed');
+        }
+      } catch (e) {}
+      try {
+        var f = localStorage.getItem('blog-font');
+        if (f) document.documentElement.setAttribute('data-font', f);
+      } catch (e) {}
+    })();
+  </script>
   <title>标签: Data structure | Chenkaixuan's Blog</title>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="ffb4e0cc-ecb9-44bd-a0e1-1cf6ec68e560"></script>
+  <script defer src="https://ccagents.cc/b/r.js"></script>
   
 
 
@@ -80,39 +105,25 @@
   </script>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="claude-body">
+  <div class="claude-app container use-motion">
+    <aside class="claude-sidebar" id="claude-sidebar" aria-label="Sidebar">
+      <div class="claude-sidebar-top">
+        <a href="/" class="claude-brand" rel="start">
+          <span class="claude-brand-text">Victor Chen</span>
+        </a>
+        <div class="claude-sidebar-actions">
+          <button type="button" class="claude-icon-btn popup-trigger" aria-label="搜索" title="搜索">
+            <i class="fa fa-search"></i>
+          </button>
+          <button type="button" class="claude-icon-btn" id="claude-sidebar-toggle" aria-label="Toggle sidebar" title="Toggle sidebar">
+            <i class="fa fa-angle-double-left"></i>
+          </button>
+        </div>
+      </div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Chenkaixuan's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Embrace The Grind</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
+      <nav class="claude-nav">
+        
 
 <nav class="site-nav">
   <ul id="menu" class="main-menu menu">
@@ -158,49 +169,47 @@
   </ul>
 </nav>
 
+      </nav>
 
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Come on! ..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
+      <div class="claude-sidebar-foot">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Victor Chen"
+      src="/images/mbappe.webp">
+  <p class="site-author-name" itemprop="name">Victor Chen</p>
+  <div class="site-description" itemprop="description">Victor Chen's English Blog</div>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tju-tomorrow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tju-tomorrow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/chendasd33@gmail.com" title="E-Mail → chendasd33@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://tju-tomorrow.github.io/guestbook/" title="Weixin → https:&#x2F;&#x2F;tju-tomorrow.github.io&#x2F;guestbook&#x2F;"><i class="fab fa-weixin fa-fw"></i>Weixin</a>
+      </span>
   </div>
 
+        <div class="blog-font-switcher" id="blog-font-switcher"></div>
+        <button type="button" class="claude-theme-toggle" id="claude-theme-toggle" aria-label="Toggle theme">
+          <i class="fa fa-moon"></i>
+          <span>主题</span>
+        </button>
+      </div>
+    </aside>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    <div class="claude-main">
+      <button type="button" class="claude-sidebar-reopen" id="claude-sidebar-reopen" aria-label="Open sidebar">
+        <i class="fa fa-angle-double-right"></i>
+      </button>
 
-          <div class="content tag">
+      <main class="main">
+        <div class="main-inner">
+          <div class="content-wrap claude-dialog">
             
+
+            <div class="content tag">
+              
 
   
   
@@ -248,8 +257,8 @@
 
 
 
-          </div>
-          
+            </div>
+            
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -273,8 +282,8 @@
   }
 </script>
 
-        </div>
-          
+          </div>
+            
   
   <div class="toggle sidebar-toggle">
     <span class="toggle-line toggle-line-first"></span>
@@ -306,27 +315,6 @@
   <p class="site-author-name" itemprop="name">Victor Chen</p>
   <div class="site-description" itemprop="description">Victor Chen's English Blog</div>
 </div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">20</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">分类</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">26</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/tju-tomorrow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tju-tomorrow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
@@ -339,21 +327,6 @@
       </span>
   </div>
 
-
-
-
-  <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
-  <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div id="myCanvasContainer" class="widget tagcloud">
-      <canvas width="250" height="250" id="resCanvas" style="width:100%">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Backpropagation/" rel="tag">Backpropagation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Browser/" rel="tag">Browser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-structure/" rel="tag">Data structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gradient-Descent/" rel="tag">Gradient Descent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jottings/" rel="tag">Jottings</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Loss-Function/" rel="tag">Loss Function</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Neural-Network/" rel="tag">Neural Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Process/" rel="tag">Process</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Promise/" rel="tag">Promise</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Proxy/" rel="tag">Proxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stack/" rel="tag">Stack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Transformer/" rel="tag">Transformer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/URL/" rel="tag">URL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs-app/" rel="tag">cs app</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-types/" rel="tag">data types</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/domain/" rel="tag">domain</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/https/" rel="tag">https</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="tag">数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">3</span></li></ul>
-      </canvas>
-    </div>
-  </div>
-
-
       </div>
 
     </div>
@@ -361,14 +334,14 @@
   <div id="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+        </div>
+      </main>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+      <footer class="footer">
+        <div class="footer-inner">
+          
 
-        
+          
 
 <div class="copyright">
   
@@ -386,37 +359,34 @@
 
 
 
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline-block !important;" >
-      <span class="post-meta-item-icon" style="display: inline-block !important;">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量" style="display: inline-block !important;">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider" style="display: inline-block !important;">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline-block !important;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv">0</span>
-      </span>
-    </span>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Come on! ..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
 </div>
 
-
-
-
-
-
-
-
-      </div>
-    </footer>
+    </div>
   </div>
 
   
@@ -474,7 +444,16 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
-<!-- 引入樱花动画脚本 -->
-<script src="/js/sakura.js"></script> 
+<script src="/js/fonts-catalog.js"></script>
+<script src="/js/font-switcher.js"></script>
+<script src="/js/claude-ui.js"></script>
+<script src="/js/custom-search.js"></script>
+
+  
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
 </body>
 </html>
