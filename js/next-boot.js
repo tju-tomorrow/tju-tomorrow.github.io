@@ -8,22 +8,26 @@ NexT.boot.registerEvents = function() {
   NexT.utils.registerCanIUseTag();
 
   // Mobile top menu bar.
-  document.querySelector('.site-nav-toggle .toggle').addEventListener('click', () => {
-    event.currentTarget.classList.toggle('toggle-close');
-    var siteNav = document.querySelector('.site-nav');
-    var animateAction = siteNav.classList.contains('site-nav-on') ? 'slideUp' : 'slideDown';
+  var mobileToggle = document.querySelector('.site-nav-toggle .toggle');
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', (event) => {
+      event.currentTarget.classList.toggle('toggle-close');
+      var siteNav = document.querySelector('.site-nav');
+      if (!siteNav) return;
+      var animateAction = siteNav.classList.contains('site-nav-on') ? 'slideUp' : 'slideDown';
 
-    if (typeof Velocity === 'function') {
-      Velocity(siteNav, animateAction, {
-        duration: 200,
-        complete: function() {
-          siteNav.classList.toggle('site-nav-on');
-        }
-      });
-    } else {
-      siteNav.classList.toggle('site-nav-on');
-    }
-  });
+      if (typeof Velocity === 'function') {
+        Velocity(siteNav, animateAction, {
+          duration: 200,
+          complete: function() {
+            siteNav.classList.toggle('site-nav-on');
+          }
+        });
+      } else {
+        siteNav.classList.toggle('site-nav-on');
+      }
+    });
+  }
 
   var TAB_ANIMATE_DURATION = 200;
   document.querySelectorAll('.sidebar-nav li').forEach((element, index) => {
