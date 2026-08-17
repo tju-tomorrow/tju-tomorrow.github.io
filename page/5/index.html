@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-font="ibm-plex" data-post-font="ibm-plex" data-font="ibm-plex">
+<html lang="zh-CN" data-default-font="notion-serif" data-post-font="notion-serif" data-font="notion-serif">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -12,12 +12,12 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.loli.net/css?family=Georgia,Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"tju-tomorrow.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="Victor Chen&#39;s English Blog">
@@ -73,6 +73,8 @@
 
 
 
+<script async defer src="https://cloud.umami.is/umami.js" data-website-id="ffb4e0cc-ecb9-44bd-a0e1-1cf6ec68e560"></script>
+
   <noscript>
   <style>
   .use-motion .brand,
@@ -102,7 +104,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="claude-body">
-  <div class="claude-app container use-motion">
+  <div class="claude-app container">
     <aside class="claude-sidebar" id="claude-sidebar" aria-label="Sidebar">
       <div class="claude-sidebar-top">
         <a href="/" class="claude-brand" rel="start">
@@ -133,29 +135,19 @@
     <a href="/personal/" rel="section"><i class="fa fa-user fa-fw"></i>个人简介</a>
 
   </li>
-        <li class="menu-item menu-item-jottings">
-
-    <a href="/Jottings/" rel="section"><i class="fa fa-book fa-fw"></i>随笔</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
         <li class="menu-item menu-item-guestbook">
 
     <a href="/guestbook/" rel="section"><i class="fa fa-comments fa-fw"></i>留言板</a>
 
   </li>
-        <li class="menu-item menu-item-recommand_article">
+        <li class="menu-item menu-item-jottings">
 
-    <a href="/Recommand_Article/" rel="section"><i class="fa fa-bookmark fa-fw"></i>Recommand_Article</a>
+    <a href="/Jottings/" rel="section"><i class="fa fa-book fa-fw"></i>随笔</a>
+
+  </li>
+        <li class="menu-item menu-item-热点汇总">
+
+    <a href="/%E7%83%AD%E7%82%B9%E6%B1%87%E6%80%BB/" rel="section"><i class="fa fa-fire fa-fw"></i>热点汇总</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -169,8 +161,11 @@
 
       <div class="claude-sidebar-foot">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Victor Chen"
-      src="/images/mbappe.webp">
+    <button type="button" class="site-author-avatar-btn" id="claude-avatar-lightbox-trigger" aria-label="查看头像" title="点击放大">
+      <img class="site-author-image" itemprop="image" alt="Victor Chen"
+        src="/images/Selfie.jpg"
+        data-lightbox-src="/images/Selfie.jpg">
+    </button>
   <p class="site-author-name" itemprop="name">Victor Chen</p>
   <div class="site-description" itemprop="description">Victor Chen's English Blog</div>
 </div>
@@ -179,10 +174,7 @@
         <a href="https://github.com/tju-tomorrow" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tju-tomorrow" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/chendasd33@gmail.com" title="E-Mail → chendasd33@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tju-tomorrow.github.io/guestbook/" title="Weixin → https:&#x2F;&#x2F;tju-tomorrow.github.io&#x2F;guestbook&#x2F;"><i class="fab fa-weixin fa-fw"></i>Weixin</a>
+        <a href="mailto:chenkaixuan23_@tju.edu.cn" title="chenkaixuan23_@tju.edu.cn → mailto:chenkaixuan23_@tju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>chenkaixuan23_@tju.edu.cn</a>
       </span>
   </div>
 
@@ -207,19 +199,19 @@
               
 
   <div class="claude-hero">
-    <img class="claude-hero-image" src="/images/25.png" alt="Banner" width="1200" height="400">
-    <div class="claude-hero-stats">
-      Visitors: 993 &nbsp;|&nbsp; Views: 2395
+    <div class="claude-hero-media">
+      <img class="claude-hero-image" src="/images/25.png" alt="Banner" width="1200" height="400">
+      <div class="claude-hero-stats">Visitors: 993 &nbsp;|&nbsp; Views: 2395</div>
     </div>
   </div>
       
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2025/01/17/2025-01-17-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/mbappe.webp">
+      <meta itemprop="image" content="/images/Selfie.jpg">
       <meta itemprop="name" content="Victor Chen">
       <meta itemprop="description" content="Victor Chen's English Blog">
     </span>
@@ -230,7 +222,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/" class="post-title-link" itemprop="url">Gemini 3.0 pro 为什么会打错字</a>
+            <a href="/2025/01/17/2025-01-17-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">Process & Thread</a>
         </h2>
 
         <div class="post-meta">
@@ -240,14 +232,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-12-07 00:00:00" itemprop="dateCreated datePublished" datetime="2025-12-07T00:00:00+00:00">2025-12-07</time>
+              <time title="创建时间：2025-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-17T00:00:00+00:00">2025-01-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-12-06 07:05:08" itemprop="dateModified" datetime="2025-12-06T07:05:08+00:00">2025-12-06</time>
+                <time title="修改时间：2025-04-13 13:50:04" itemprop="dateModified" datetime="2025-04-13T13:50:04+00:00">2025-04-13</time>
               </span>
 
           
@@ -262,10 +254,12 @@
 
       
         <p class="post-card-excerpt">
-&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&…</p>
+
+
+After a programmer finishes writing a program, it is saved permanently on the hard drive. Just as a chef needs a cutting board and a countertop to prepare food, the CPU needs t…</p>
         <!--noindex-->
           <div class="post-button">
-            <a class="btn" href="/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/" rel="contents">
+            <a class="btn" href="/2025/01/17/2025-01-17-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" rel="contents">
               阅读全文 <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -288,10 +282,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/11/02/2024-11-2-%E8%B7%A8%E5%9F%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/mbappe.webp">
+      <meta itemprop="image" content="/images/Selfie.jpg">
       <meta itemprop="name" content="Victor Chen">
       <meta itemprop="description" content="Victor Chen's English Blog">
     </span>
@@ -302,72 +296,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/" class="post-title-link" itemprop="url">突击数值分析有感</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-12-05 00:00:00 / 修改时间：10:57:37" itemprop="dateCreated datePublished" datetime="2025-12-05T00:00:00+00:00">2025-12-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body post-body-excerpt" itemprop="articleBody">
-
-      
-        <p class="post-card-excerpt">&#x6700;&#x8FD1;&#x7528;&#x4E09;&#x56DB;&#x5929;&#x4ECE;&#x65E0;&#x5230;&#x6709;&#x7A81;&#x51FB;&#x6570;&#x503C;&#x5206;&#x6790;,&#x76EE;&#…</p>
-        <!--noindex-->
-          <div class="post-button">
-            <a class="btn" href="/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/" rel="contents">
-              阅读全文 <span aria-hidden="true">→</span>
-            </a>
-          </div>
-        <!--/noindex-->
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2025/11/02/2025-11-02-Goroutinue-and-Channel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/mbappe.webp">
-      <meta itemprop="name" content="Victor Chen">
-      <meta itemprop="description" content="Victor Chen's English Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chenkaixuan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/11/02/2025-11-02-Goroutinue-and-Channel/" class="post-title-link" itemprop="url">goroutine和channel</a>
+            <a href="/2024/11/02/2024-11-2-%E8%B7%A8%E5%9F%9F/" class="post-title-link" itemprop="url">跨域</a>
         </h2>
 
         <div class="post-meta">
@@ -377,14 +306,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-11-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-11-02T00:00:00+00:00">2025-11-02</time>
+              <time title="创建时间：2024-11-02 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-02T00:00:00+00:00">2024-11-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-11-13 19:01:13" itemprop="dateModified" datetime="2025-11-13T19:01:13+00:00">2025-11-13</time>
+                <time title="修改时间：2025-04-13 13:50:04" itemprop="dateModified" datetime="2025-04-13T13:50:04+00:00">2025-04-13</time>
               </span>
 
           
@@ -398,11 +327,239 @@
     <div class="post-body post-body-excerpt" itemprop="articleBody">
 
       
-        <p class="post-card-excerpt">goroutine &#x548C; channel &#x662F; Go &#x8BED;&#x8A00;&#x7684;&#x7075;&#x9B42;&#x3002;
-&#x6240;&#x6709;&#x6211;&#x4EEC;&#x8C08;&#x8BBA;&#x…</p>
+        <p class="post-card-excerpt">&#x540C;&#x6E90;&#x7B56;&#x7565;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x7684;&#x5B9A;&#x4E49;&#x540C;&#x6E90;&#x7B56;&#x7565;&#x8981;&#x6C42;&#xFF0C;&#x53EA;&#x6709;&#x5F53;&#x4E24;&#x…</p>
         <!--noindex-->
           <div class="post-button">
-            <a class="btn" href="/2025/11/02/2025-11-02-Goroutinue-and-Channel/" rel="contents">
+            <a class="btn" href="/2024/11/02/2024-11-2-%E8%B7%A8%E5%9F%9F/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/23/2024-08-19-Proxy-2024/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Selfie.jpg">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/23/2024-08-19-Proxy-2024/" class="post-title-link" itemprop="url">Proxy</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-10-23 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-23T00:00:00+00:00">2024-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-13 13:50:04" itemprop="dateModified" datetime="2025-04-13T13:50:04+00:00">2025-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Front-end/" itemprop="url" rel="index"><span itemprop="name">Front-end</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body post-body-excerpt" itemprop="articleBody">
+
+      
+        <p class="post-card-excerpt">Proxywhat&#x2019;s a proxya proxy is a object with a superpower of wrapping another object Like a trash wrapper 
+
+
+Not only wrap it but also protect it . The protecting way is to …</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2024/10/23/2024-08-19-Proxy-2024/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/22/2024-10-22-Bubbling%20and%20capturing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Selfie.jpg">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/22/2024-10-22-Bubbling%20and%20capturing/" class="post-title-link" itemprop="url">Bubbling and capturing</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+00:00">2024-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-13 13:50:04" itemprop="dateModified" datetime="2025-04-13T13:50:04+00:00">2025-04-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body post-body-excerpt" itemprop="articleBody">
+
+      
+        <p class="post-card-excerpt">
+12345&lt;div onclick=&quot;alert(&apos;The handler!&apos;)&quot;&gt;  &lt;em    &gt;If you click on &lt;code&gt;EM&lt;/code&gt;, the handler on &lt;code&gt;DIV&lt;/code&gt; runs.…</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2024/10/22/2024-10-22-Bubbling%20and%20capturing/" rel="contents">
+              阅读全文 <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        <!--/noindex-->
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tju-tomorrow.github.io/2024/10/22/2024-10-22-signal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Selfie.jpg">
+      <meta itemprop="name" content="Victor Chen">
+      <meta itemprop="description" content="Victor Chen's English Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chenkaixuan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/22/2024-10-22-signal/" class="post-title-link" itemprop="url">Siganls</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+00:00">2024-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-13 13:50:04" itemprop="dateModified" datetime="2025-04-13T13:50:04+00:00">2025-04-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body post-body-excerpt" itemprop="articleBody">
+
+      
+        <p class="post-card-excerpt">
+A signal is a mechanism for communication between processes. You can think of it like a notification that interrupts you, prompting you to pay attention to something important.
+
+…</p>
+        <!--noindex-->
+          <div class="post-button">
+            <a class="btn" href="/2024/10/22/2024-10-22-signal/" rel="contents">
               阅读全文 <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -424,7 +581,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -474,11 +631,6 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Victor Chen</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
 
 
         </div>
@@ -513,12 +665,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>
@@ -578,6 +726,7 @@ if (document.querySelectorAll('pre.mermaid').length) {
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 </body>
 </html>

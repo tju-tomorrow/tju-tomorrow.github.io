@@ -118,8 +118,8 @@
 <li><code>state</code> &#x2014; initially <code>&quot;pending&quot;</code>, then changes to either <code>&quot;fulfilled&quot;</code> when <code>resolve</code> is called or <code>&quot;rejected&quot;</code> when <code>reject</code> is called.</li>
 <li><code>result</code> &#x2014; initially <code>undefined</code>, then changes to <code>value</code> when <code>resolve(value)</code> is called or <code>error</code> when <code>reject(error)</code> is called.</li>
 </ul>
-<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
-<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
+<p>So the executor eventually moves <code>promise</code> to one of these states:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727013201754.png" alt="image-20240727013201754"></p>
+<p>and if we successfully produce the result which the consuming codes are craving for. It turned like this:<img src="/2024/07/27/2024-07-27-Promise-2024/07/27/2024-07-27-Promise-2024/GitHub%20download/typora/%E6%96%87%E4%BB%B6%E9%9B%86%E5%90%88/Blogs/Promise/Promise.assets/image-20240727014147939.png" alt="image-20240727014147939"></p>
 <p>A promise that is either fulfilled or rejected is called &#x201C;settled&#x201D;, as opposed to an initially &#x201C;pending&#x201D; promise.</p>
 <h2 id="To-be-noted-fundamental"><a href="#To-be-noted-fundamental" class="headerlink" title="To be noted (fundamental)"></a>To be noted (fundamental)</h2><ol>
 <li><strong>There can be only a single result or an error</strong></li>
@@ -1774,6 +1774,22 @@ end
       </tags>
   </entry>
   <entry>
+    <title>AI CLI</title>
+    <url>/2025/07/07/2025-07-07-Ai-Cli-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
+<li>Claude code - &#x9700;&#x8981;api &#x597D;&#x8D35;</li>
+<li>Gemini Cli - token&#x591A; &#x6BCF;&#x5206;&#x949F;&#x6709;&#x514D;&#x8D39;&#x8BF7;&#x6C42;</li>
+<li>Warp -&#x6BCF;&#x4E2A;&#x6708; &#x514D;&#x8D39;&#x7528;&#x6237;&#x6709;&#x9650;&#x5236;</li>
+<li>Amazon Q &#x53EF;&#x4EE5;&#x8C03;Claude sonnet 4 &#x8FD8;&#x53EF;&#x4EE5;&#x5440; &#x6CA1;&#x6709;&#x9650;&#x5236;&#xFF1F; q chat</li>
+</ul>
+<p>&#x73B0;&#x5728;&#x4E3B;&#x8981;&#x7528;Amazon Q</p>
+<p>&#x53E6;&#x5916;&#x4ECA;&#x5929;&#x53D1;&#x73B0;&#x5168;&#x5C40;&#x68AF;&#x5B50; gemini&#x600E;&#x4E48;&#x5410;&#x90A3;&#x4E48;&#x591A;&#x1F923;</p>
+]]></content>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大型语言模型（LLM）信息来源的核心</title>
     <url>/2025/07/20/2025-07-20-%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E4%BF%A1%E6%81%AF%E6%9D%A5%E6%BA%90%E7%9A%84%E6%A0%B8%E5%BF%83-2025/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="main"><a href="#main" class="headerlink" title="main"></a>main</h1><p>&#x8FD9;&#x6837;&#x7684;&#x7406;&#x89E3;&#x662F;&#x6B63;&#x786E;&#x7684;&#xFF1A;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x6211;&#x4EEC;&#x4ECA;&#x5929;&#x8C08;&#x8BBA;&#x7684;LLM&#xFF0C;&#x6BD4;&#x5982;GPT&#x7CFB;&#x5217;&#xFF0C;&#x5176;&#x8BAD;&#x7EC3;&#x57FA;&#x7840;&#x786E;&#x5B9E;&#x662F;<strong>&#x6587;&#x672C;&#xFF08;Text-based&#xFF09;</strong>&#x3002;&#x5B83;&#x4EEC;&#x672C;&#x8EAB;&#x5E76;&#x4E0D;&#x80FD;&#x50CF;&#x4EBA;&#x7C7B;&#x4E00;&#x6837;&#x201C;&#x89C2;&#x770B;&#x201D;&#x7535;&#x5F71;&#x6216;&#x8005;&#x201C;&#x542C;&#x201D;&#x97F3;&#x9891;&#x3002;</p>
@@ -1825,22 +1841,6 @@ end
         <tag>AI</tag>
         <tag>LLM</tag>
         <tag>Fun Info</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI CLI</title>
-    <url>/2025/07/07/2025-07-07-Ai-Cli-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
-<li>Claude code - &#x9700;&#x8981;api &#x597D;&#x8D35;</li>
-<li>Gemini Cli - token&#x591A; &#x6BCF;&#x5206;&#x949F;&#x6709;&#x514D;&#x8D39;&#x8BF7;&#x6C42;</li>
-<li>Warp -&#x6BCF;&#x4E2A;&#x6708; &#x514D;&#x8D39;&#x7528;&#x6237;&#x6709;&#x9650;&#x5236;</li>
-<li>Amazon Q &#x53EF;&#x4EE5;&#x8C03;Claude sonnet 4 &#x8FD8;&#x53EF;&#x4EE5;&#x5440; &#x6CA1;&#x6709;&#x9650;&#x5236;&#xFF1F; q chat</li>
-</ul>
-<p>&#x73B0;&#x5728;&#x4E3B;&#x8981;&#x7528;Amazon Q</p>
-<p>&#x53E6;&#x5916;&#x4ECA;&#x5929;&#x53D1;&#x73B0;&#x5168;&#x5C40;&#x68AF;&#x5B50; gemini&#x600E;&#x4E48;&#x5410;&#x90A3;&#x4E48;&#x591A;&#x1F923;</p>
-]]></content>
-      <tags>
-        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -1954,26 +1954,6 @@ end
       <tags>
         <tag>Fun Info</tag>
         <tag>Web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>突击数值分析有感</title>
-    <url>/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x6700;&#x8FD1;&#x7528;&#x4E09;&#x56DB;&#x5929;&#x4ECE;&#x65E0;&#x5230;&#x6709;&#x7A81;&#x51FB;&#x6570;&#x503C;&#x5206;&#x6790;,&#x76EE;&#x6807;&#x662F;&#x901A;&#x8FC7;&#x7684;&#x8BDD;&#x6839;&#x672C;&#x6CA1;&#x5FC5;&#x8981;&#x4ECE;PPT&#x5B66;&#x8D77;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x5728;B&#x7AD9;&#x4E0A;&#x8BFE;&#x7A0B;&#x8D44;&#x6E90;&#x4E0D;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x540C;&#x5927;&#x5B66;&#x8BFE;&#x7A0B;&#x5185;&#x5BB9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x8BFE;&#xFF0C;&#x76F4;&#x63A5;&#x5C31;&#x627E;&#x4E00;&#x4EFD;&#x5F80;&#x5E74;&#x9898;&#xFF0C;&#x6CA1;&#x6709;&#x5F80;&#x5E74;&#x9898;&#x5C31;&#x627E;&#x5E73;&#x5E38;&#x8001;&#x5E08;&#x5E03;&#x7F6E;&#x7684;&#x8BFE;&#x540E;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x6254;&#x7ED9;Gemini &#x8BA9;&#x4ED6;&#x7528;&#x6559;&#x5B66;&#x98CE;&#x683C;&#x6559;&#x4F60;&#x600E;&#x4E48;&#x505A;&#xFF08;&#x7528;&#x5947;&#x5999;&#x7684;Prompt&#x1F601;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7B54;&#x6848;&#x786E;&#x4FDD;&#x4ED6;&#x6CA1;&#x6709;&#x89E3;&#x9519;&#x3002;&#x73B0;&#x5728;Gemini3.0 pro&#x89E3;&#x8FD9;&#x79CD;&#x9898;&#x5DF2;&#x7ECF;&#x5F88;&#x5389;&#x5BB3;&#x4E86;&#x3002;&#x8FD9;&#x662F;&#x4ECE;&#x9898;&#x76EE;&#x51FA;&#x53D1;&#x5B66;&#x4E60;&#xFF0C;&#x4ECE;&#x76EE;&#x7684;&#x53CD;&#x903C;&#x81EA;&#x5DF1;&#xFF0C;&#x4F60;&#x6700;&#x7EC8;&#x76EE;&#x6807;&#x4E0D;&#x5C31;&#x662F;&#x8981;&#x4F1A;&#x505A;&#x9898;&#x561B;&#x3002;<br>&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x56FA;&#x5B9A;&#x9898;&#x578B; &#x5728;b&#x7AD9;&#x4E0A;&#x641C;&#x7D22;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E9B;&#x5FEB;&#x901F;&#x89E3;&#x6CD5;&#xFF0C;&#x96C6;&#x767E;&#x5BB6;&#x4E4B;&#x957F;&#x6784;&#x5EFA;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x89E3;&#x6CD5;&#x3002;</p>
-<p>&#x4EE5;&#x6B64;&#x7BC7;Blog&#x7948;&#x7977;&#xFF0C;&#x671F;&#x76FC;&#x9526;&#x9CA4;&#x9644;&#x4F53;&#x3002;<br>&#x7948;&#x7977;&#x6765;&#x9762;&#x8BD5;&#xFF0C;&#x6C42;&#x9762;&#xFF01;</p>
-]]></content>
-      <tags>
-        <tag>感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Gemini 3.0 pro 为什么会打错字</title>
-    <url>/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG70332.jpg"></p>
-<p>&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&#x4E48;Gemini&#x4F1A;&#x6253;&#x9519;&#x5B57;&#x5462;&#xFF1F; &#x8FD9;&#x662F;&#x56E0;&#x4E3A;Gemini&#x80FD;&#x50CF;&#x4EBA;&#x4E00;&#x6837;&#x72AF;&#x9519;&#x4E86;&#xFF08;&#x8FD9;&#x4E48;&#x5389;&#x5BB3;&#x5417;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;&#x8FD8;&#x662F;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x8BAD;&#x7EC3;&#x91CC;&#x9762;&#x201C;&#x77E5;&#x9053;&#x201D;&#x6253;&#x9519;&#x5F88;&#x591A;&#xFF0C;&#x5BFC;&#x81F4;&#x4ED6;&#x7684;&#x9884;&#x6D4B;&#x201C;&#x76F4;&#x5230;&#x201D;&#x6982;&#x7387;&#x5F88;&#x9AD8; &#x4ED6;pick&#x4E86;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4F46;&#x662F;&#x8FD9;&#x4E5F;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x554A;Gemini&#x600E;&#x4E48;&#x4F1A;&#x72AF;&#x8FD9;&#x6837;&#x3002;&#x6216;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x522B;&#x4EBA;&#x7684;&#x89E3;&#x91CA;&#x91CC;&#x7684;&#x539F;&#x53E5; &#x522B;&#x4EBA;&#x6253;&#x9519;&#x5B57;&#x4E86; &#x5947;&#x602A;&#x5947;&#x602A;</p>
-]]></content>
-      <tags>
-        <tag>疑惑</tag>
       </tags>
   </entry>
   <entry>
@@ -2146,6 +2126,26 @@ end
       <tags>
         <tag>Go</tag>
         <tag>Backend</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>突击数值分析有感</title>
+    <url>/2025/12/05/2025-12-05-%E7%AA%81%E5%87%BB%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>&#x6700;&#x8FD1;&#x7528;&#x4E09;&#x56DB;&#x5929;&#x4ECE;&#x65E0;&#x5230;&#x6709;&#x7A81;&#x51FB;&#x6570;&#x503C;&#x5206;&#x6790;,&#x76EE;&#x6807;&#x662F;&#x901A;&#x8FC7;&#x7684;&#x8BDD;&#x6839;&#x672C;&#x6CA1;&#x5FC5;&#x8981;&#x4ECE;PPT&#x5B66;&#x8D77;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD9;&#x79CD;&#x5728;B&#x7AD9;&#x4E0A;&#x8BFE;&#x7A0B;&#x8D44;&#x6E90;&#x4E0D;&#x591A;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x540C;&#x5927;&#x5B66;&#x8BFE;&#x7A0B;&#x5185;&#x5BB9;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#x8BFE;&#xFF0C;&#x76F4;&#x63A5;&#x5C31;&#x627E;&#x4E00;&#x4EFD;&#x5F80;&#x5E74;&#x9898;&#xFF0C;&#x6CA1;&#x6709;&#x5F80;&#x5E74;&#x9898;&#x5C31;&#x627E;&#x5E73;&#x5E38;&#x8001;&#x5E08;&#x5E03;&#x7F6E;&#x7684;&#x8BFE;&#x540E;&#x9898;&#xFF0C;&#x7136;&#x540E;&#x6254;&#x7ED9;Gemini &#x8BA9;&#x4ED6;&#x7528;&#x6559;&#x5B66;&#x98CE;&#x683C;&#x6559;&#x4F60;&#x600E;&#x4E48;&#x505A;&#xFF08;&#x7528;&#x5947;&#x5999;&#x7684;Prompt&#x1F601;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7B54;&#x6848;&#x786E;&#x4FDD;&#x4ED6;&#x6CA1;&#x6709;&#x89E3;&#x9519;&#x3002;&#x73B0;&#x5728;Gemini3.0 pro&#x89E3;&#x8FD9;&#x79CD;&#x9898;&#x5DF2;&#x7ECF;&#x5F88;&#x5389;&#x5BB3;&#x4E86;&#x3002;&#x8FD9;&#x662F;&#x4ECE;&#x9898;&#x76EE;&#x51FA;&#x53D1;&#x5B66;&#x4E60;&#xFF0C;&#x4ECE;&#x76EE;&#x7684;&#x53CD;&#x903C;&#x81EA;&#x5DF1;&#xFF0C;&#x4F60;&#x6700;&#x7EC8;&#x76EE;&#x6807;&#x4E0D;&#x5C31;&#x662F;&#x8981;&#x4F1A;&#x505A;&#x9898;&#x561B;&#x3002;<br>&#x7136;&#x540E;&#x5BF9;&#x4E8E;&#x7279;&#x5B9A;&#x7684;&#x56FA;&#x5B9A;&#x9898;&#x578B; &#x5728;b&#x7AD9;&#x4E0A;&#x641C;&#x7D22;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x4E9B;&#x5FEB;&#x901F;&#x89E3;&#x6CD5;&#xFF0C;&#x96C6;&#x767E;&#x5BB6;&#x4E4B;&#x957F;&#x6784;&#x5EFA;&#x4E00;&#x5957;&#x81EA;&#x5DF1;&#x7684;&#x89E3;&#x6CD5;&#x3002;</p>
+<p>&#x4EE5;&#x6B64;&#x7BC7;Blog&#x7948;&#x7977;&#xFF0C;&#x671F;&#x76FC;&#x9526;&#x9CA4;&#x9644;&#x4F53;&#x3002;<br>&#x7948;&#x7977;&#x6765;&#x9762;&#x8BD5;&#xFF0C;&#x6C42;&#x9762;&#xFF01;</p>
+]]></content>
+      <tags>
+        <tag>感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gemini 3.0 pro 为什么会打错字</title>
+    <url>/2025/12/07/2025-12-06-gemini%E7%96%91%E6%83%91-2025/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="https://raw.githubusercontent.com/tju-tomorrow/Image/main/img/WechatIMG70332.jpg"></p>
+<p>&#x5F88;&#x660E;&#x663E;&#x662F;&#x201D;&#x77E5;&#x9053;&#x201D;&#x800C;&#x4E0D;&#x662F;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4E3A;&#x4EC0;&#x4E48;Gemini&#x4F1A;&#x6253;&#x9519;&#x5B57;&#x5462;&#xFF1F; &#x8FD9;&#x662F;&#x56E0;&#x4E3A;Gemini&#x80FD;&#x50CF;&#x4EBA;&#x4E00;&#x6837;&#x72AF;&#x9519;&#x4E86;&#xFF08;&#x8FD9;&#x4E48;&#x5389;&#x5BB3;&#x5417;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;&#x8FD8;&#x662F;&#x56E0;&#x4E3A;&#x4ED6;&#x7684;&#x8BAD;&#x7EC3;&#x91CC;&#x9762;&#x201C;&#x77E5;&#x9053;&#x201D;&#x6253;&#x9519;&#x5F88;&#x591A;&#xFF0C;&#x5BFC;&#x81F4;&#x4ED6;&#x7684;&#x9884;&#x6D4B;&#x201C;&#x76F4;&#x5230;&#x201D;&#x6982;&#x7387;&#x5F88;&#x9AD8; &#x4ED6;pick&#x4E86;&#x201C;&#x76F4;&#x5230;&#x201D; &#x4F46;&#x662F;&#x8FD9;&#x4E5F;&#x4E0D;&#x592A;&#x53EF;&#x80FD;&#x554A;Gemini&#x600E;&#x4E48;&#x4F1A;&#x72AF;&#x8FD9;&#x6837;&#x3002;&#x6216;&#x8005;&#x662F;&#x56E0;&#x4E3A;&#x5B83;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;&#x522B;&#x4EBA;&#x7684;&#x89E3;&#x91CA;&#x91CC;&#x7684;&#x539F;&#x53E5; &#x522B;&#x4EBA;&#x6253;&#x9519;&#x5B57;&#x4E86; &#x5947;&#x602A;&#x5947;&#x602A;</p>
+]]></content>
+      <tags>
+        <tag>疑惑</tag>
       </tags>
   </entry>
   <entry>

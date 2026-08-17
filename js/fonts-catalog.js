@@ -1,10 +1,21 @@
 window.BLOG_FONTS = {
-  "default": "ibm-plex",
+  "default": "notion-serif",
   "fonts": [
+    {
+      "id": "notion-serif",
+      "name": "Notion Serif",
+      "zh": "Notion 衬线（默认）",
+      "group": "默认 / 衬线",
+      "sample": "Notion Serif · 像文档一样的长文阅读感。你好，世界。",
+      "family": "\"Source Serif 4\", Lyon-Text, Georgia, \"Noto Serif SC\", \"Songti SC\", \"Hiragino Mincho ProN\", \"Yu Mincho\", SimSun, serif",
+      "css": [
+        "https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      ]
+    },
     {
       "id": "ibm-plex",
       "name": "IBM Plex Sans",
-      "zh": "IBM Plex + 思源黑体（默认）",
+      "zh": "IBM Plex + 思源黑体",
       "group": "默认 / 无衬线",
       "sample": "The quick brown fox 你好，世界。代码与中文一起读。",
       "family": "\"IBM Plex Sans\", \"Noto Sans SC\", \"PingFang SC\", sans-serif",
